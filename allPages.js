@@ -293,7 +293,6 @@ function loadXMLDoc(filename) {
 
 //Load PNX XML from Primo DB
 function loadPNX(recordId) {
-	//Creating a Native empty Dom Element
 	var pnxRecord;
 	if (!pnxRecord) {
 		pnxRecord = $.ajax({
