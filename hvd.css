@@ -1,0 +1,1076 @@
+    	
+
+    		    	
+
+/* HOLLIS+ Implementation - Alon Botvinik */
+
+/* Smaller body with maximum width */
+body {
+    margin: 0 auto;
+    /* max-width: 1150px; */
+}
+
+/* Harvard link colors */
+a:link, a:visited, a:active {
+	color: #a51c30;
+}
+a:hover {
+	color: #000000;
+}
+
+/* 201409180fix for issue that came with 4.8 that caused page to jump to the right horizontally */
+#exlIdssoLogin { 
+  display: none;
+}
+
+/* Border of the page */
+#contentEXL {
+    border-right: 1px solid #CFCFCF !important;
+    border-left: 1px solid #CFCFCF !important;
+    border-bottom: 1px solid #CFCFCF !important;
+    -webkit-box-shadow: 0 8px 6px -6px #CFCFCF;
+    -moz-box-shadow: 0 8px 6px -6px #CFCFCF;
+    box-shadow: 0 8px 6px -6px #CFCFCF;
+}
+#content {
+    border-right: 1px solid #CFCFCF !important;
+    border-left: 1px solid #CFCFCF !important;
+    border-bottom: 1px solid #CFCFCF !important;
+    -webkit-box-shadow: 0 8px 6px -6px #CFCFCF;
+    -moz-box-shadow: 0 8px 6px -6px #CFCFCF;
+    box-shadow: 0 8px 6px -6px #CFCFCF;
+}
+
+/* Home page text color change */
+#exlidHomeContainer {
+	color: #333333;
+	width:auto;
+}
+.EXLHomeNewsContainer {
+	padding-left:70px;
+} 
+
+/* Positioning of the Main Menu and User Menu */
+#exlidUserAreaTile {
+    position: absolute;
+    top: 50px;
+    right: 0;
+    z-index: 4;
+}
+#exlidUserAreaTile ul {
+    padding-top: 8px;
+}
+#exlidUserAreaRibbon li {
+	font-weight:bold;
+	padding-top: 5px;
+	background-image: none;
+}
+#exlidUserAreaRibbon li a{
+	color: #a51c30;
+}
+#exlidUserAreaRibbon li a:link a:visited{
+	color: #a51c30;
+}
+#exlidUserAreaRibbon li a:hover {
+	color: #000000;
+	text-decoration:none;
+}
+#exlidUserAreaRibbon li span.EXLUserAreaStart {
+	background-image: none;
+}
+#exlidUserAreaRibbon li.EXLUserName  {
+	font-weight: normal;
+}
+#exlidUserAreaRibbon.EXLEShelfTileGuest li span.EXLUserNameDisplay {
+	background-image: url(../HVD/guest_icon.png);	
+	background-repeat: no-repeat;
+	background-position: 0px 0px;
+	background-size: 23px;
+	min-width: 30px;
+	float: left;
+	margin-left: 0.3em;
+	margin-top: 0px;
+	padding-left:25px;
+}
+#exlidUserAreaRibbon li span.EXLMyShelfStarSelected {
+	background-image: none;
+	width: 6px;
+}
+/* #exlidUserAreaRibbon li#exlidMyAccount  {
+	display:none;
+} */
+#exlidMainMenuTile {
+    position: absolute;
+    right: 0;
+    top: 65px;
+    vertical-align: text-top;
+    width: 49em;
+    margin-top: 0.8em;
+    margin-bottom: 0em;
+}
+#exlidMainMenuRibbon {
+	padding-top: 9px;
+}
+
+
+/* Home page changes - one column */
+#exlidHomeContainer div.EXLHomeBlockContainer1 div.EXLContentBlock1 {
+	width: 100%;
+}
+
+/* Search Box */
+#exlidSearchTile {
+	background-image: url(../images/_blank.png);
+	background: #8C8179; /* Old browsers */
+	background: -moz-linear-gradient(top,  #b2a399  0%, #8C8179 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#b2a399 ), color-stop(100%,#8C8179)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  #b2a399  0%,#8C8179 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  #b2a399  0%,#8C8179 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  #b2a399  0%,#8C8179 100%); /* IE10+ */
+	background: linear-gradient(to bottom,  #b2a399  0%,#8C8179 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b2a399', endColorstr='#8C8179',GradientType=0 ); /* IE6-9 */
+	height: 90px;
+	border-top: 0px;
+	border-bottom: 0px;
+}
+.EXLClearSimpleSearchBoxButtonClose {
+	height: 30px;
+}
+#exlidHeaderSearchLimits {
+	background-color: #8C8179;
+	color: #ffffff;
+	border-bottom:0px;
+}
+#exlidHeaderSearchLimits select{
+	border:none;
+	width: 150px;
+}
+#exlidHeaderSearchLimits fieldset {
+	padding-top: 0px;
+	color: #ffffff;
+}
+.EXLHeaderSearchLimitsFieldsTitle {
+	margin-right: 7px;
+}
+
+/* Search Ribbon */
+#exlidSearchRibbon {
+    margin-top: 15px;
+}
+#exlidSearchRibbon div.EXLSearchFieldRibbon {
+	border: 1px solid #ffffff;
+	height:30px;
+}	
+	
+/* Shift the Advanced Search link up to accomodate New Search */
+.EXLSearchFieldRibbonAdvancedSearchLink {
+	width:7%;
+	margin-top: 6px;
+}
+.EXLSearchFieldRibbonBrowseSearchLink {
+	width:7%;
+}
+.EXLSearchFieldRibbonAdvancedSearchLink a.EXLSearchFieldRibbonAdvancedTwoLinks {
+	padding-top: 5px;
+	font-size:100%;
+	color: #ffffff;
+	font-weight:bold;
+}
+.EXLSearchFieldRibbonBrowseSearchLink a.EXLSearchFieldRibbonAdvancedTwoLinks {
+	padding-top: 5px;
+	font-size:100%;
+	color: #ffffff;
+	font-weight:bold;
+}
+.EXLSearchFieldRibbonFormBrowseSearchFor {
+	border: none;
+}
+
+
+
+/* Search Tabs */
+#exlidSearchTabs {
+	height: 30px;
+}
+#exlidSearchTabs li {
+	border: 0px;
+	padding-top: 6px;
+	height: 22px;
+	background-image: url(../images/_blank.png);
+	background-color: #293352;
+	margin-right: 6px;
+	border-top-color: #293352;
+	border-top-style: solid;
+	border-top-width: 2px;
+	border-right-color: #293352;
+	border-right-style: solid;
+	border-right-width: 2px;
+}
+#exlidSearchTabs li.EXLSearchTabSelected {
+	border: 0px;
+	padding-top: 6px;
+	height: 22px;
+	background-image: url(../images/_blank.png);
+	background-color: #F3F3F1;
+	margin-right: 6px;
+	border-bottom-width: 2px;
+	border-bottom-color: #F3F3F1;
+	border-bottom-style: solid;
+}
+#exlidSearchTabs li.EXLSearchTabSelected a:link, a:visited {
+	color: #000000;
+	font-weight: bold;
+}
+#exlidSearchTabs li.EXLSearchTabSelected a {
+	color: #000000;
+	font-weight: bold;
+}
+#exlidSearchTabs li a {
+	color: #ffffff;
+	font-weight: bold;
+}
+#exlidSearchTabs li a:link, a:visited {
+	color: #ffffff;
+	font-weight: bold;
+}
+/* search input box */
+.EXLSearchFieldRibbonFormSearchFor input.EXLSearchFieldMaximized {
+	outline: none;
+}
+
+/* begin advanced search and browse */
+#exlidAdvancedSearchRibbon div.EXLSearchFieldRibbonFormLinks {
+	line-height: 30px;
+}
+#exlidAdvancedSearchRibbon div.EXLSearchFieldRibbonFormLinks a {
+    padding-right: 22px;
+}
+#exlidAdvancedSearchRibbon div.EXLSearchFieldRibbonFormFieldsGroup1 {
+	width: 44em;
+}
+#exlidAdvancedSearchRibbon div.EXLSearchFieldRibbonFormFieldsGroup2 {
+	border:none;
+}
+
+#exlidAdvancedSearchTile {
+	border: none;
+	background-image:none;
+	background-color: #FFFFFF;
+}
+#exlidAdvancedSearchRibbon div.EXLSearchFieldRibbonPreFilters {
+	border: none;
+	background: #F3F3F1; 
+}
+#exlidAdvancedSearchRibbon div.EXLBrowseFieldRibbon {
+	border: none;
+	background: #8C8179; /* Old browsers */
+	background: -moz-linear-gradient(top,  #b2a399  0%, #8C8179 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#b2a399 ), color-stop(100%,#8C8179)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  #b2a399  0%,#8C8179 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  #b2a399  0%,#8C8179 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  #b2a399  0%,#8C8179 100%); /* IE10+ */
+	background: linear-gradient(to bottom,  #b2a399  0%,#8C8179 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b2a399', endColorstr='#8C8179',GradientType=0 ); /* IE6-9 */
+	padding: 1.5em 1em 0.5em 1em;
+}
+.EXLSearchFieldRibbonFormSelectedBrowse {
+	background-color: #FFFFFF;
+	border:none;
+	margin-right: 20px;
+}
+
+/* ---To remove the extra little white box around the search Button in Advanced Search--- */
+#exlidAdvancedSearchRibbon div.EXLSearchFieldRibbonFormSubmitSearch {
+	border:none;
+    clear: none;
+    display: inline;
+    float: left;
+    margin-top: -1px;
+	background-image: none;
+	width: 10.5em;
+	margin-right: 10px;	
+}
+#exlidAdvancedSearchRibbon input.submit {
+	background-color: #a51c30;
+	background-image: none;
+	height: 30px;
+}
+#exlidAdvancedSearchRibbon div.EXLSearchFieldRibbonFormClearSearch input {
+	background-image:none;
+	background-color:#FFFFFF;
+	color:#a51c30;
+	background-image: url("../../images/icon_clear_search.png");
+	background-position: left;
+	background-repeat: no-repeat;
+	text-align: left;
+	padding-left: 23px;
+}
+/* prevent width of title option from changing after starts-with is chosen */
+select#exlidInput_scope_1, select#exlidInput_scope_2, select#exlidInput_scope_3, select#exlidInput_scope_4 {
+    width: 145px;
+}
+[id^="exlidInput_scope"] {
+min-width: 0%;
+}
+
+/* end advanced search and browse */
+
+#exlidHeaderSystemFeedback strong {
+	background-color:#FFDB6D;
+	background-image: none;
+	border-top:0px;
+	border-bottom:0px;
+}
+
+/* Result titles */
+.EXLResultsList h2 {
+	font-size: 115% 
+	/* font-size: 12px; */
+}
+.EXLResultsHeader div.EXLResultsNumbers div.EXLResultsSortBy {
+	width: 14em;
+}
+.EXLResultsHeader div.EXLResultsNumbers div.EXLResultsSortBy ul {
+	width: 8em;
+}
+
+/* navigation elements */
+
+.EXLBackToResults  {
+	font-size:14px;
+}
+.EXLBackToResults a {
+	font-size:14px;
+	background-image: url(../../uploaded_files/HVD/backdoublebracket.png);
+	background-repeat: no-repeat;
+	background-position: 0px 0px;
+	padding-left: 40px;
+	font-weight:bold;
+}
+body.EXLFullView div.EXLBackToResults {
+	font-size:100%;
+}
+.EXLResultsHeader div.EXLResultsNumbers {
+	float: left;
+	width: 80%;
+	line-height: 20px;
+	border-bottom: solid 1px #e4e4e4;
+	border-top: solid 1px #e4e4e4;
+	border-left: solid 1px #e4e4e4;
+	padding: 5px 0px 5px 0px;
+	background: #fafafa;
+	margin: 0px -1px 0px -2px;
+}
+.EXLResultsHeader div.EXLResultsNavigation {
+	font-size: 14px; 
+	margin: 0px;
+	height: 20px;
+	line-height: 20px;
+	border-bottom: solid 1px #e4e4e4;
+	border-top: solid 1px #e4e4e4;
+	border-right: solid 1px #e4e4e4;
+	padding: 5px 0px 7px 0px;
+	background: #fafafa;
+	float: right;
+	width: 20%;
+	text-align: right;
+}
+.EXLResultsHeader div.EXLResultsNavigation img {
+	padding-left:6px;
+	padding-right: 6px;	
+}
+.EXLPrevious{
+	padding-right:5px;
+}
+.EXLNext {
+	padding-left: 5px;
+}
+.EXLResultsList {
+	border-top: none;
+/*	padding-top: 10px;*/
+}
+
+/* Top level Facet above Brief results */
+#exlidTopLevelFacetsTile div.EXLToplevelFacetsContainer strong {
+        margin-top: 0.15em;
+		padding-left:0;
+}
+/* Banner showing what facets have been selected */
+.EXLRefinementRibbonWithExclude {
+	/* background-color: #C3D7A4; */
+	background-color: none;
+	/* margin-left: -2px;
+	border-right: 2px solid #C3D7A4; */
+	padding-top: 2px;
+} 
+.EXLRefinementRibbonWithExclude span.EXLRefinementsListTitle {
+	margin-left: 0;
+}
+
+
+.EXLRemoveRefinement {
+	background-color: #F4EDCA;
+}
+/* Left side Facets design changes */
+.EXLFacetContainer {
+	margin-top: 0px;
+	padding: 0px;
+	border: none;	
+}
+
+.EXLFacetContainer ol li {
+	padding: 3px 0px 0px 10px;
+	font-size: 75%;
+}
+.EXLFacetContainer h1 {
+	border-top: none;
+	line-height: 20px;
+	margin-bottom: 10px;
+	padding: 5px 0px 5px 5px;
+}
+.EXLFacetContainer h3 {
+	padding: 5px 0px 5px 5px;
+	line-height: 20px;
+}
+.EXLFacetContainer h4 {
+	padding-bottom: 3px;
+	font-size: 90%;
+	border-bottom-width: 1px;
+	border-bottom-color: #e4e4e4;
+	border-bottom-style: solid;
+	margin-bottom: 3px;	
+}
+/* selecting Add page doens't change class to On, so checkbox is always empty */
+/* .EXLFacetContainer div.EXLFacetActionsV2 li.EXLFacetSaveToEShelfActionOff  {
+	background-image: url(../HVD/icon_checkbox_off.png);
+}
+.EXLFacetContainer div.EXLFacetActionsV2 li.EXLFacetSaveToEShelfActionOn  {
+	background-image: url(../HVD/icon_checkbox_on.png);
+} */
+.EXLFacetTile {
+	border: solid 1px #ededed;
+	margin-left: 5px;
+}
+#exlidFacetsLightboxContainer a.EXLSubmit {
+	background-color: #a51c30;
+	background-image: none;
+}
+.EXLResultsContainer div.EXLResultsTile {
+	border-left: none;
+	padding-left: 0px;
+	width: 78%;
+}
+.EXLFacetContainer div.EXLFacetActionsV2 {
+	/* border-top: 0px; */
+}
+.EXLDateRangeLine {
+	font-size: 85%;
+}
+/* Facet counts on the right */
+.EXLFacetContainer ol li span {
+	float: right;
+	margin-right: 1em;
+	display: block;
+}
+/* date Slider  */
+.datebox {
+	border: solid 1px #8C8179;
+}
+.EXLDateRangeLine {
+	font-size: 85%;
+}
+#startdate, #enddate {
+	width: 30px;
+}
+#slider-range {
+	width: 75%;
+	margin-left: 20px;
+}
+.EXLSliderRefine a, .EXLSliderRefine a:link, .EXLSliderRefine a:visited, .EXLSliderRefine a:active, .EXLSliderRefine a:hover {
+	background-color: #a51c30;
+	color: #ffffff;
+}
+#slider-range .ui-state-default {
+	color:#000;
+}
+
+
+/* Removing Search Suggestions */
+#exlidSuggestedList {
+        display: none;
+}
+
+
+/* Spacing the results a bit further apart */
+.EXLResultsList td.EXLSummary {
+	padding-top: 10px;
+	padding-bottom: 0px
+}
+.EXLTabsRibbonClosed {
+	margin-bottom: 1em;
+}
+/* Result Numbering */
+.EXLResultsList td.EXLResultNumber {
+	width: 15px;
+	padding-top: 18px;
+	display: table-cell;
+}
+.EXLResultsList td.EXLThumbnail {
+	padding-top: 18px;
+}
+.EXLResultsList td.EXLThumbnail span.EXLThumbnailCaption {
+	font-size: 90%
+}
+.EXLResultsList td.EXLMyShelfStar {
+	padding-top: 18px;
+	padding-left: 0.3em;
+}
+.EXLResultsList td.EXLThumbnail img {
+	width: 43px;
+	height: 65px;
+}
+.multipleCoverImageContainer {
+	width: 43px;
+	height: 65px;
+	background-size: 100%; 
+}
+.EXLTabsRibbon div li.EXLResultFirstTab {
+	padding-left: 0.8em;	
+}
+
+/* commenting out availability for now -- CB 20140607 */
+
+.EXLResultAvailability {
+	display:none;
+}
+.EXLResultsList p.EXLResultSnippet {
+	margin-left: 10px;
+	margin-top: 5px;
+}
+
+/* Locations fixes */
+.EXLLocationList {
+	padding-bottom: 7px;
+}
+.EXLLocationsTitle {
+	/* width: 25%; */
+	width: 250px;
+	padding-top: 10px;
+	margin-bottom: 7px;
+}
+.EXLLocationsTitle span.EXLLocationsTitleContainer {
+	float: left;
+	margin-left: 10px;
+	font-size: 14px;
+	font-weight: bold;
+	color: #A51C30;
+	width:auto;
+}
+.EXLLocationInfo {
+	/* width: 70%; */
+	padding-top: 10px;
+	margin-left: 5px;
+	float: left;
+}
+.EXLLocationInfo strong {
+	width: 35%; 
+}
+.EXLLocationInfo cite {
+	width: 35%; 
+	/* display:none; */
+}
+.EXLLocationInfo em {
+	width: 20%; 
+	float: right;
+}
+.EXLLocationsMoreInfo strong {
+	font-style:italic;
+}
+.EXLLocationsMoreInfo strong {
+	font-weight: normal;
+	font-style:normal;
+	padding-bottom: 8px;	
+}
+.EXLLocationsMoreInfo strong a{
+	font-weight: bold;
+	margin-left: 8px;
+}
+
+.EXLResultsList em.EXLResultStatusAvailable {
+	float: right;
+}
+.EXLResultsList em.EXLResultStatusMaybeAvailable{
+	display:none;
+}
+.EXLLocationsTabContent h4 {
+	display:none;
+}	
+.EXLLocationsTabContent div.EXLLocationViewAllLink {
+	background-color: #C3D7A4;
+}
+
+.EXLLocationsTabContent div.EXLLocationList table.EXLLocationTable{
+	margin-top: 10px;
+}
+.EXLLocationsTabContent div.EXLLocationList table.EXLLocationTable td.EXLShowInfo a {
+	/* background-image:none; */
+	color:#000;
+}
+.EXLLocationsTabContent div.EXLLocationList table.EXLLocationTable .EXLLocationTableMargin {
+	padding-left: 1.4em;
+}
+.EXLLocationsTabContent div.EXLLocationList table.EXLLocationTable th {
+	padding-bottom: 0.4em;
+	border-bottom: none;
+	color: #293352;
+	background-color:#ffffff;
+}
+.EXLLocationsTabContent div.EXLLocationList table.EXLLocationTable tr {
+	background-color:#f3f3f3;
+}
+.EXLLocationsTabContent div.EXLLocationList table.EXLLocationTable tr.EXLLocationTableRowBgColor {
+	background-color:#ffffff;
+}
+
+/* Action Menu drop down adjustments */
+.EXLTabHeader div.EXLTabHeaderButtons li {
+	height: 22px;
+	padding-top: 5px;		
+}
+.EXLTabHeader div.EXLTabHeaderButtons li {
+	background-image: none;
+}
+.EXLTabHeader div.EXLTabHeaderButtons li span {
+	background-image: none;	
+}
+.EXLTabHeaderButtonSendTo {
+	padding-right: 0.7em;
+	font-weight: bold;
+	background-color: #FFDB6D;
+}
+.EXLTabHeaderButtonSendTo img {
+padding-left: 0.5em;
+padding-right: 0.4em;
+}
+
+
+/* Facet Title changes
+.EXLFacetContainer h4 {
+	font-size: 14px;
+	padding-bottom: 2px;
+	font-weight: bold;
+	color: #000000;
+} */
+
+/* Search Button  */
+.EXLSearchFieldRibbonFormFields {
+	width: 87%;
+}
+.EXLSearchFieldRibbonFormSubmitSearch {
+	width:13%;
+	float: right;
+	margin-right: -3px;
+}
+#exlidSearchRibbon input {
+	padding: 2px;
+}
+#exlidSearchRibbon input.submit {
+	background-color: #a51c30;
+	background-image: url(../images/_blank.png);
+	height:32px;
+	/* padding:0px; */
+	border-color: #a51c30;
+	padding-top: 6px;
+	margin-top: -1px;
+	/* text-transform: uppercase; */
+	font-weight: bold;
+	font-size: 15px;	
+}
+
+/* tabs ribbon in brief results */
+
+.EXLTabsRibbon div li.EXLResultTab {
+
+}
+.EXLTabsRibbon div li.EXLResultTab a {
+	color:#293352;
+}
+.EXLTabsRibbon div li.EXLResultSelectedTab {
+	border: 1px solid #BAC5C6;
+	border-bottom: 2px solid #fff;
+	background-image:none;
+
+}
+.EXLTabsRibbon div li.EXLResultSelectedTab a {
+
+}
+.EXLResultTabContainer div.EXLTabHeader {
+	border-left: 1px solid #BAC5C6;
+	border-right: 1px solid #BAC5C6;
+}
+.EXLTabContent {
+	border: 1px solid #BAC5C6;
+	border-top-color: #ffffff;
+	box-shadow: 5px 5px 2px #888888;
+}
+body.EXLFullView div.EXLTabContent{
+	border: 1px solid #BAC5C6;
+	border-top-color: #ffffff;
+	min-height: 30em;
+}
+
+/* Hide Request tab */
+.EXLTabsRibbon div li.EXLRequestTab {
+	display:none
+}
+/* Hide request options header, so ScanDel links etc. options don't appear */
+.EXLTabHeaderContent #HoldRequestBtn  {display:none;}
+.EXLTabHeaderContent #PhotocopyRequestBtn  {display:none;}
+.EXLTabHeaderContent #BookingRequestBtn  {display:none;}
+.EXLTabHeaderContent #BookingRequestBtn  {display:none;}
+.EXLRefreshRequestLink {display:none;}
+
+/* Hide the More tab */
+.EXLTabsRibbon div li.EXLMoreTab {
+	display:none
+}
+/* Hide the Reviews and Tags tab */
+.EXLTabsRibbon div li.EXLReviewsTab {
+	display:none
+}
+.EXLTabsRibbon div li.EXLViewOnlineTab {	
+	background-image: url(../../images/icon_available.png);
+	background-repeat: no-repeat;
+	background-position: 0px 2px;
+	padding-left:15px;
+}
+.EXLTabsRibbon div li.EXLViewOnlineTab  a {	
+	font-weight:bold;
+	color:#52854C;
+}
+.EXLTabsRibbon div li.EXLLocationsTab {	
+	background-image: url(../../uploaded_files/HVD/locations_icon.png);
+	background-repeat: no-repeat;
+	background-position: -2px -2px;
+	padding-left:21px;
+}
+
+/* Details tab (Alon B modified first line */
+.EXLDetailsTabContent div.EXLDetailsContent  > ul > li {
+    position: relative;
+    margin-left: 10em;
+}
+.EXLDetailsTabContent div.EXLDetailsContent li strong {
+    position: absolute;
+    left: -10em;
+    width: 9em;
+    text-align: right;
+}
+
+
+/* Links and Electronic Book Plates */
+.EXLDetailsTabContent div.EXLDetailsLinks li span.EXLDetailsLinksTitle a:link, a:visited, a:active {
+	color: #a51c30;
+}
+
+.EXLDetailsTabContent div.EXLDetailsLinks {
+	width: 225px;
+	background-image:none;
+	background-color:#F3F3F3;
+}
+.EXLDetailsTabContent div.EXLDetailsContent {
+	width: 55%;
+	margin: 1em 1em 1em 1em;
+}
+.EXLDetailsTabContent div.EXLDetailsLinks li div.ebkplate {
+	align-content: center;
+	text-align: center;
+	width: 186px;
+	/* background-color: #F3F3F3; */
+	padding: 5px;
+	margin: 0px 5px 5px 0px;
+}
+.EXLDetailsTabContent div.EXLDetailsLinks li div.ebkplate_text {
+	margin-top: -5px;
+}
+
+.EXLDetailsTabContent div.EXLDetailsLinks li span.EXLDetailsLinksTitle a {
+	width: 90%;
+}
+
+
+
+/*---Removing Languages drop-down from main menu---*/
+#exlidMainMenuTile div.EXLLanguagesContainer {
+    display: none
+}
+#exlidMainMenuTile div.EXLMainMenuContainer {
+    float: right;
+    width: 40em;
+}
+
+/*---Removing Subscribe to Library News Feeds button from search bar---*/
+#exlidSearchBanner {
+    display: none
+}
+
+/*---Removing star next to e-shelf in top user menu---*/
+/*---  .EXLMyShelfStarSelected {display:none;}  ---_NO__DOTCOMMA__AFTER__*/
+/*---To prevent line breaks around hyperlinks in static htmls---*/
+#exlidHomeContainer div.EXLHomeBlockContainer1 div.EXLContentBlock1 p a {
+    display: inline
+}
+
+.EXLFooterTile {
+	border-top:0px;
+}
+/*---Removing Last Update line---*/
+/*Footer Styles*/
+.EXLFooterTile div.EXLFooterUpdateContainer div.EXLFooterLastUpdate {
+    display: none
+}
+
+/*---Changing width of footer---*/
+.EXLFooterTile div.EXLFooterLinksContainer {
+    width: 100%
+}
+/*---Hide top-level facets including Primo Central Options---
+.EXLTopLevelFacetList {
+    display: none
+}
+
+/*---Remove pipe | after items main menu---*/
+#exlidMainMenuRibbon li span {
+    border-right: 0px;
+}
+/* add crimson bullet to main menu ribbon items */
+#exlidMainMenuRibbon li {
+	/* background: url(http://library.harvard.edu/sites/all/themes/HarvardLibraryPortalTheme/images/squarebullet.gif) no-repeat 0px 4px; */
+	padding:0px 10px 0px 7px;
+}
+#exlidMainMenuRibbon li a {
+	color:#a51c30;
+	font-weight:bold;
+}	
+
+/*---Hide &amp;#034;Update my screen automatically&amp;#034;---*/
+.EXLFooterAutoUpdate {
+    display: none
+}
+
+/*---Remove &amp;#034;o&amp;#034; from left side of e-shelf
+.offstage {
+    display: none
+}
+#exlidAdvancedSearchRibbon div.EXLSearchFieldRibbon {
+    height: 180px
+}---*/
+
+/*
+#exlidHeaderSearchLimits {
+    width: 100%;
+    nowhitespace: afterproperty;
+    border-bottom: 1px solid #f3f3f3;
+    background-color: #f3f3f3;
+    color: #666666;
+    height: 2em;
+    display: none;
+    change to display: block to show system feedback;
+}
+*/
+
+
+/*---Removing MyAccountTab from e-shelf sub-menu---*/
+/* .EXLMyAccountTabsRibbon div li.EXLMyAccountLastTab {
+	display:none;
+} _NO__DOTCOMMA__AFTER__*/
+
+/*---Removing option to save email address from &amp;#039;Send By E-mail&amp;#039; screen---*/
+.EXLEmailDetailsWideCell {
+    display: none
+}
+
+
+
+
+#exlidHeaderContainer {
+    margin-top: -12px;
+    position: relative;
+    height: auto;
+    width: 100%;
+    background-color: #FFFFFF;
+}
+
+/* Try changing width of header image */
+/* and positioning */
+#exlidHeaderTile { 
+	width:100%; 
+	position:relative; 
+	padding-left:0.8em; 
+	padding-top:0.8em;
+	padding-bottom:0.3em;
+	min-height: 92px;
+}
+
+/* add metalib+ logo information */
+#hl-mplogo {
+    cursor: pointer;
+    width: 204px;
+    height: 40px;
+    float: left;
+    clear: both;
+}
+#exlidMainMenuTile {
+    vertical-align: text-top;
+    width: 49em;
+    float: right;
+    clear: right;
+    margin-top: 0.8em;
+    margin-bottom: 0em;
+}
+
+/* begin user area customization - My Account etc. */
+.EXLMyAccountTabsRibbon {
+	border-bottom: 2px solid #a51c30;
+}
+.EXLMyAccountTabsRibbon div li {
+	width:auto;
+}
+.EXLMyAccountTabsRibbon div li.EXLMyAccountSelectedTab {
+	border: 1px solid #a51c30;
+	border-bottom: 2px solid #a51c30;
+	background-color: #a51c30;
+	background-image: none;
+}
+.EXLMyAccountMainMenuContainer ol li span.EXLMyAccountMainMenuBulletSelected {
+	background-image: url(../HVD/bullet_myAccount_menu_hvd.png)
+}
+.buttonGo a {
+	background-color: #F4EDCA;
+}
+/* hide edit button until 4.8 */
+/* a#editPersonalDetails {
+	display:none;
+} */
+table#ilsFields #address_1 {display:none;}
+table#ilsFields #address_2 {display:none;}
+table#ilsFields #address_3 {display:none;}
+table#ilsFields #address_4 {display:none;}
+table#ilsFields #address_5 {display:none;}
+table#ilsFields #zip {display:none;}
+table#ilsFields #address_valid_from {display:none;}
+table#ilsFields #address_valid_to {display:none;}
+table#ilsFields #telephone_1 {display:none;}
+table#ilsFields #telephone_2 {display:none;}
+table#ilsFields #telephone_3 {display:none;}
+table#ilsFields #telephone_4 {display:none;}
+table#ilsFields #sms_authorized {display:none;}
+table#ilsFields #mail_attachement {display:none;}
+
+
+/* end user area customization - My Account etc. */
+
+/* begin My Databases */
+#exlidFindDBContainer input.EXLSubmit {
+	background-color: #a51c30;
+	background-image: none;
+}
+.EXLFindDBTabsRibbon div li.EXLFindDBSelectedTab {
+	border: 1px solid #a51c30;
+	border-bottom: 2px solid #a51c30;
+	background-color: #a51c30;
+	background-image: none;
+}
+/* end My Databases*/
+
+/* begin requests*/
+.EXLRequestTabContent form input.submit {
+	background-color: #a51c30;
+	background-image: none;
+}
+/* end requests */
+
+
+/* Alon B: Loading wheel for locations */
+.HVD_LoadingWheel {
+	display: block;
+	padding-left: 10px;
+}
+
+/* Alon B: Borrow Direct links: */
+div.borrowDirect {
+	float: left;
+	margin: 15px;
+}	  
+
+span.borrowDirectHeader {
+	display: block;
+	font-size: 14px;
+	font-weight: bold;
+	color: #A51C30;
+}
+
+span.borrowDirectText {
+	display: block;
+	font-weight: bold;
+	margin-left: 10px;
+}
+
+/* Alon B: VRA search result thumbnails
+/* Alon B: VRA gallary and displays */
+.EXLDetailsContent li[id^='Images'] {
+	display: none;
+}
+.EXLDetailsContent li[id^='Number of Images'] {
+        display: none;
+}
+
+.VRAGallary { 
+	display: block; 
+	width: 135%;
+	margin: 0px 26px 26px 26px;;
+}
+
+.VRAGallaryHeader {
+	display: block;
+	font-weight: bold;
+	margin: 26px 26px 0px 26px;
+	width: 120%;
+	border-bottom: 1px solid #a51c30;
+}
+
+div.VRAThumbnail {
+	float: left;
+	margin: 10px 10px 10px 10px;
+}
+.VRAThumbnail table {
+	width: 156px;
+	height: 156px;
+	border-spacing: 0px;
+}
+
+.VRAThumbnail table tr:hover {
+	background-color: white;
+}
+.VRAThumbnail table td {
+	vertical-align: middle;
+	text-align: center;
+	padding: 0px;
+
+}
+
+.VRAThumbnail img {
+	padding: 3pm;
+	background-color: #acacac;
+
+}
+
+/* -------------------------------------- */
+
+	    		
+
+  	
+
+	    		
+
+  	
