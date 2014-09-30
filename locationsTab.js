@@ -7,7 +7,8 @@ function locationsTabModifications() {
 
 	//Each DIV has it's own variables and listener, so no conflict should happen.
 	$(".EXLSublocation").each(function() {
-		createRequestOptions();
+		//Modify all the Items in this single Holding record
+		modifyHoldItems();
 
 		//Put a listener on the Sublibrary DIV which contains the Request options to catch when it is populated, or more items are added
 		$(this).on("DOMSubtreeModified propertychange", handleDomChanges);
@@ -24,30 +25,31 @@ function locationsTabModifications() {
 
 	//If it is a single location, perform all changes immediately before attaching a listener
 	shortenLocationNotes();
-
 	createCountwaySerialsNote();
+
 	//20140919 TEST: CB added text call number 
-	textCallNo();
+	//textCallNo();
 
 	//Alon B: Adding BorrowDirect at the bottom of Locations tab
 	borrowDirect();
-
-
 }
 
 //Handles when the EXLSublocation is updated, with condition when it contains the EXLLocationTableActions in it
+//Place functions here needed per Holding when expended (Request Options, Notes, MapIt, etc...)
 function handleDomChanges() {
 	//Remove the listener before changing
 	$(this).off();
 
-	//Modify contents
+	//Modify contents of Holding
 	shortenLocationNotes();
 	createCountwaySerialsNote();
-	//20140919 TEST: CB added text call number 
-	textCallNo();
 
+	//20140919 TEST: CB added text call number 
+	//textCallNo();
+	
+	//Modify all items in this Holding that was just changed in the DOM.
 	if ($(this).find(".EXLLocationTableActions").length)
-		createRequestOptions();
+		modifyHoldItems();
 
 	//Resume listening (if there are more items, RTA changes, Primo OTB changes
 	$(this).on("DOMSubtreeModified propertychange", handleDomChanges);
@@ -58,10 +60,10 @@ function handleDomChanges() {
 
 
 //Full solution implementation, e.g. HVD_ALEPH008190450
-//Uses functions inside requestOptions.js to determine the request options available
-function createRequestOptions() {
+//Uses functions inside requestOptions.js, mapIt.js to modify request options and enable other features
+function modifyHoldItems() {
 	$(".EXLLocationTableActions").each(function() {
-		//Check if this was modified
+		//Check if this Item was modified already
 		if ($(this).find(".EXLLocationModified").length)
 			return;
 
@@ -75,26 +77,26 @@ function createRequestOptions() {
 		//If there's any Hold Request from Primo's API, store it.
 		$(this).find("ul li.EXLLocationTableActionsFirstItem a").text("Request Item");
 		var holdRequest = $(this).find("ul li.EXLLocationTableActionsFirstItem").html();
+
 		//Clean the list
 		$(this).find("ul").empty();
 
-		//AEON request, will remove Booking option from Aleph's OvP API if present
+		//Hold Request available, will display the original link
 		if (requestOptions.indexOf("hold") > -1)
 			$(this).find("ul").append('<li>' + holdRequest + '</li>');
-
+		
+		//AEON request
 		if (requestOptions.indexOf("aeon") > -1) {
 			var url = "http://sfx.hul.harvard.edu/sfx_local?sid=HOLLIS:AEON&pid=DocNumber=" + itemArgs["admDocNumer"] + ",ItemSequence=" + itemArgs["itemSequence"] + "&sfx.skip_augmentation=1";
 			$(this).find("ul").append('<li><a href="' + url + '" target="_blank">Request Item</a></li>');
 		}
-		//Scan & Deliver request, will remove Photocopy Request option from Aleph's OvP API if present
+		//Scan & Deliver request
 		if (requestOptions.indexOf("scandeliver") > -1) {
 			var url = "http://sfx.hul.harvard.edu/sfx_local?sid=HOLLIS:ILL&pid=DocNumber=" + itemArgs["admDocNumer"] + ",ItemSequence=" + itemArgs["itemSequence"] + "&sfx.skip_augmentation=1";
 			$(this).find("ul").append('<li><a href="' + url + '" target="_blank">Scan & Deliver</a></li>');
 		}
-		//If no options, show not available
-		//if (!$(this).find("ul li").length)
-		//	$(this).find("ul").append('<li>Request not available</li>');
-		//
+
+		//MapIt feature - per item
 		stacksMap(itemArgs, $(this));
 	});
 }
@@ -119,8 +121,8 @@ function shortenLocationNotes() {
 			}
 		});
 	}
-	// 20140911 CB added test for temporary Countway serials workaround due to AVA bug; backfiles don't display
 
+//Corinna B. added test for temporary Countway serials workaround due to AVA bug; backfiles don't display
 function createCountwaySerialsNote() {
 	$(".EXLLocationInfo > strong").each(function() {
 		if ($(this).text() == 'Russell Reading Room') {
@@ -137,7 +139,7 @@ function createCountwaySerialsNote() {
 function collectItemArgs(element) {
 	var itemArgs = {};
 
-	//For each ITEM, collect data from the Elements on page
+	//For request options, collect data from the Item Elements on page
 	itemArgs["admDocNumer"] = getAdmDocNumber(element.find(".EXLLocationItemId").val());
 	itemArgs["itemSequence"] = getItemSequence(element.find(".EXLLocationItemId").val());
 	itemArgs["subLibraryCode"] = element.find(".EXLLocationMainLocationCode").val();
@@ -195,42 +197,6 @@ function returnOnHoldStatus(value) {
 	else
 		return "N";
 }
-
-
-
-//Phased out?
-//Changing incase Multi-Location - to land back on Request tab. Not working good right now.
-function cleanUrl(url) {
-		var urlParams = parseUrl(decodeURIComponent(url));
-		var newUrl = decodeURIComponent(url).substr(0, decodeURIComponent(url).indexOf("expand.do?") + 10);
-		newUrl = newUrl + "&tab=" + urlParams["tab"];
-		newUrl = newUrl + "&mode=" + urlParams["mode"];
-		newUrl = newUrl + "&gathStatTab=" + urlParams["gathStatTab"];
-		newUrl = newUrl + "&vl(freeText0)=" + urlParams["vl(freeText0)"];
-		newUrl = newUrl + "&vid=" + urlParams["vid"];
-		newUrl = newUrl + "&recIds=" + urlParams["recIds"];
-		newUrl = newUrl + "&tabs=requestTab";
-		return newUrl;
-	}
-	//Part of the above scenario - clonky
-
-function parseUrl(url) {
-	var urlParams;
-	var match,
-		pl = /\+/g, // Regex for replacing addition symbol with a space
-		search = /([^&=]+)=?([^&]*)/g,
-		decode = function(s) {
-			return decodeURIComponent(s.replace(pl, " "));
-		},
-		query = url.substring(1);
-
-	urlParams = {};
-	while (match = search.exec(query))
-		urlParams[decode(match[1])] = decode(match[2]);
-	return urlParams;
-}
-
-
 
 //Ajax Events for locations tabs 
 $(document).ajaxComplete(function(event, request, settings) {
