@@ -403,6 +403,16 @@
 		<alephHoldRequest itemProcessStatus="NULL">
 			<xserver on-hold="Y" item-status="01;61"/>
 		</alephHoldRequest>
+		
+		<scanDeliver itemProcessStatus="HD;NULL">
+			<xserver loan-status="NULL" on-hold="N" item-status="01"/>
+		</scanDeliver>
+		<scanDeliver itemProcessStatus="HD">
+			<xserver loan-status="NULL" on-hold="N" item-status="92"/>
+		</scanDeliver>
+		<scanDeliver itemProcessStatus="NULL">
+			<xserver loan-status="NULL" on-hold="N" item-status="02"/>
+		</scanDeliver>
 	</sublibrary>
 
 	<sublibrary id="MED">
@@ -624,3 +634,4 @@
 	</sublibrary>
 
 </requestlinkconfig>
+
