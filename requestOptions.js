@@ -2,6 +2,7 @@
 //This JavaScript file is for all the XML logic and parsing.
 //Get item arguments, and run them through the XML file.
 function processRequestOptions(itemArgs) {
+	logJS(itemArgs);
 	var requestOptions = [];
 	//Get all sublibraries in the XML to find which Sub library the item belongs to
 	var subLibraries = xmlDoc.getElementsByTagName("sublibrary");

@@ -1,0 +1,626 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<requestlinkconfig>
+
+	<!-- Some notes on how this relates to Aleph tab15.eng config switches:
+	col 6 can be loaned [ n/a for ab]
+	col 7 can be renewed [ n/a for ab]
+	col 8 hold req: Y = present req link if on loan
+					C = present req link regardless of loan status, e.g. HD links
+					N = never present req link
+	col 9 photo copy / EDD; Y or N [overwritten if N in col 8 ?]
+	col 10 OPAC display [ n/a for ab]
+	col 11 specifc item (Y), vs. N for like copy [ n/a for ab]
+	col 12 limit # holds [ n/a for ab]
+	col 13 allows req if item is on hold; this relates to itemreq where on-hold = Y
+	col 14 booking = aeon
+	PA is doing java hack in HC such that scandeliver links never appear for items on loan or hold
+    
+	Revisions:
+	20140912 HS added alephHoldRequest for DES item status 20, IPS HD
+	20140916 HS removed scanDeliver for DIV item status 92, IPS HD
+	            added Harvard Direct requests for FAL/RUB - looks like this:
+					<alephHoldRequest itemProcessStatus="NULL">
+						<xserver loan-status="NULL" on-hold="N" item-status="01"/>
+					</alephHoldRequest>
+	-->				  
+
+	<sublibrary id="AJP">
+		<alephHoldRequest itemProcessStatus="BD;BP;CO;CT;MI;OR;RE">
+			<xserver loan-status="A" item-status="*"/>
+		</alephHoldRequest>
+		<alephHoldRequest itemProcessStatus="NULL">
+			<xserver loan-status="A" item-status="01"/>
+		</alephHoldRequest>
+		<alephHoldRequest itemProcessStatus="NULL">
+			<xserver on-hold="Y" item-status="01"/>
+		</alephHoldRequest>				 
+	</sublibrary>
+
+	<sublibrary id="BAK">
+		<alephHoldRequest itemProcessStatus="BD;BP;CO;CT;MI;OR;RE">
+			<xserver loan-status="A" item-status="*"/>
+		</alephHoldRequest>
+		<alephHoldRequest itemProcessStatus="HD">
+			<xserver loan-status="NULL;A" item-status="01;02;61;62;63;64"/>
+		</alephHoldRequest>
+		<alephHoldRequest itemProcessStatus="NULL">
+			<xserver loan-status="A" item-status="01;61"/>
+		</alephHoldRequest>
+		<alephHoldRequest itemProcessStatus="NULL">
+			<xserver on-hold="Y" item-status="01;61"/>
+		</alephHoldRequest>
+
+		<scanDeliver itemProcessStatus="NULL">
+			<xserver loan-status="NULL" on-hold="N" item-status="01;02"/>
+		</scanDeliver>
+	</sublibrary>
+
+	<sublibrary id="BER">
+		<scanDeliver itemProcessStatus="NULL">
+			<xserver loan-status="NULL" on-hold="N" item-status="01;02;24"/>
+		</scanDeliver>
+	</sublibrary>
+
+	<sublibrary id="BLH">
+		<alephHoldRequest itemProcessStatus="BD;BP;CO;CT;MI;OR;RE">
+			<xserver loan-status="A" item-status="*"/>
+		</alephHoldRequest>
+		<alephHoldRequest itemProcessStatus="HD">
+			<xserver loan-status="NULL;A" item-status="02;03;23;28"/>
+		</alephHoldRequest>
+		<alephHoldRequest itemProcessStatus="NULL">
+			<xserver loan-status="A" item-status="23;28"/>
+		</alephHoldRequest>
+		<alephHoldRequest itemProcessStatus="NULL">
+			<xserver on-hold="Y" item-status="28"/>
+		</alephHoldRequest>
+	</sublibrary>
+
+	<sublibrary id="CAB">
+		<alephHoldRequest itemProcessStatus="BD;BP;CO;CT;MI;RE">
+			<xserver loan-status="A" item-status="*"/>
+		</alephHoldRequest>
+		<alephHoldRequest itemProcessStatus="OR;RE">
+			<xserver loan-status="NULL;A" item-status="02;04;08;12;19;20;26;28;61;62;63;64;92;98"/>
+		</alephHoldRequest>
+		<alephHoldRequest itemProcessStatus="HD">
+			<xserver loan-status="NULL;A" item-status="02;28;61;62;63;64"/>
+		</alephHoldRequest>
+		<alephHoldRequest itemProcessStatus="NULL">
+			<xserver loan-status="A" item-status="08;26;28;61"/>
+		</alephHoldRequest>
+		<alephHoldRequest itemProcessStatus="NULL">
+			<xserver on-hold="Y" item-status="08;26;28;61"/>
+		</alephHoldRequest>
+
+		<scanDeliver itemProcessStatus="HD;NULL">
+			<xserver loan-status="NULL" on-hold="N" item-status="02;11;28"/>
+		</scanDeliver>
+	</sublibrary>
+
+	<sublibrary id="CHE">
+		<alephHoldRequest itemProcessStatus="BD;BP;CO;CT;MI;OR;RE">
+			<xserver loan-status="A" item-status="*"/>
+		</alephHoldRequest>
+		<alephHoldRequest itemProcessStatus="HD">
+			<xserver loan-status="NULL;A" item-status="01;02;61;62;63;64"/>
+		</alephHoldRequest>
+		<alephHoldRequest itemProcessStatus="NULL">
+			<xserver loan-status="A" item-status="01;22;61"/>
+		</alephHoldRequest>
+		<alephHoldRequest itemProcessStatus="NULL">
+			<xserver on-hold="Y" item-status="01;61"/>
+		</alephHoldRequest>
+
+		<scanDeliver itemProcessStatus="HD;NULL">
+			<xserver loan-status="NULL" on-hold="N" item-status="01;02"/>
+		</scanDeliver>
+	</sublibrary>
+
+	<sublibrary id="DDO">
+		<scanDeliver itemProcessStatus="NULL">
+			<xserver loan-status="NULL" on-hold="N" item-status="02"/>
+		</scanDeliver>
+	</sublibrary>				  
+
+	<sublibrary id="DES">
+		<alephHoldRequest itemProcessStatus="BD;BP;CO;CT;MI;OR">
+			<xserver loan-status="A" item-status="*"/>
+		</alephHoldRequest>
+		<alephHoldRequest itemProcessStatus="RE;OR">
+			<xserver loan-status="NULL;A" item-status="01;02;04;14;20;24;61;62;63;64;92;98"/>
+		</alephHoldRequest>
+		<alephHoldRequest itemProcessStatus="HD">
+			<xserver loan-status="NULL;A" item-status="01;02;20;61;62;63;64"/>
+		</alephHoldRequest>
+		<alephHoldRequest itemProcessStatus="NULL">
+			<xserver loan-status="A" item-status="01;20;61"/>
+		</alephHoldRequest>
+		<alephHoldRequest itemProcessStatus="NULL">
+			<xserver on-hold="Y" item-status="01;20;61"/>
+		</alephHoldRequest>
+
+		<scanDeliver itemProcessStatus="HD;NULL">
+			<xserver loan-status="NULL" on-hold="N" item-status="01;02;20"/>
+		</scanDeliver>
+	</sublibrary>
+
+	<sublibrary id="DIV">
+		<alephHoldRequest itemProcessStatus="BD;BP;CO;CT;MI">
+			<xserver loan-status="A" item-status="*"/>
+		</alephHoldRequest>
+		<alephHoldRequest itemProcessStatus="RE;OR">
+			<xserver loan-status="NULL;A" item-status="01;02;08;20;22;61;62;63;64;92;98"/>
+		</alephHoldRequest>
+		<alephHoldRequest itemProcessStatus="HD">
+			<xserver loan-status="NULL;A" item-status="01;02;10;11;20;22;61;62;63;64"/>
+		</alephHoldRequest>
+		<alephHoldRequest itemProcessStatus="NULL">
+			<xserver loan-status="A" item-status="01;08;20;22;61"/>
+		</alephHoldRequest>
+		<alephHoldRequest itemProcessStatus="NULL">
+			<xserver on-hold="Y" item-status="01;08;61"/>
+		</alephHoldRequest>
+		<alephHoldRequest itemProcessStatus="NULL">
+			<xserver loan-status="NULL" on-hold="N" item-status="01;94"/>
+		</alephHoldRequest>
+
+		<scanDeliver itemProcessStatus="NULL">
+			<xserver loan-status="NULL" on-hold="N" item-status="01;02"/>
+		</scanDeliver>
+		<scanDeliver itemProcessStatus="HD">
+			<xserver loan-status="NULL" on-hold="N" item-status="01;02"/>
+		</scanDeliver>
+	</sublibrary>
+
+	<sublibrary id="DOC">
+		<alephHoldRequest itemProcessStatus="BD;BP;CO;CT;MI;OR;RE">
+			<xserver loan-status="A" item-status="*"/>
+		</alephHoldRequest>
+		<alephHoldRequest itemProcessStatus="HD">
+			<xserver loan-status="NULL;A" item-status="01;02;61;62;63;64"/>
+		</alephHoldRequest>
+		<alephHoldRequest itemProcessStatus="NULL">
+			<xserver loan-status="A" item-status="01;61"/>
+		</alephHoldRequest>
+		<alephHoldRequest itemProcessStatus="NULL">
+			<xserver on-hold="Y" item-status="01;61"/>
+		</alephHoldRequest>
+
+		<scanDeliver itemProcessStatus="HD;NULL">
+			<xserver loan-status="NULL" on-hold="N" item-status="01"/>
+		</scanDeliver>
+	</sublibrary>
+
+	<sublibrary id="FAL">
+		<alephHoldRequest itemProcessStatus="BD;BP;CO;CT;MI">
+			<xserver loan-status="A" item-status="*"/>
+		</alephHoldRequest>
+		<alephHoldRequest itemProcessStatus="RE;OR">
+			<xserver loan-status="NULL;A" item-status="01;02;03;61;62;63;64;92;98"/>
+		</alephHoldRequest>
+		<alephHoldRequest itemProcessStatus="HD">
+			<xserver loan-status="NULL;A" item-status="01;02;61;62;63;64"/>
+		</alephHoldRequest>
+		<alephHoldRequest itemProcessStatus="NULL">
+			<xserver loan-status="A" item-status="01;61"/>
+		</alephHoldRequest>
+		<alephHoldRequest itemProcessStatus="NULL">
+			<xserver on-hold="Y" item-status="01;61"/>
+		</alephHoldRequest>
+		<alephHoldRequest itemProcessStatus="NULL">
+			<xserver loan-status="NULL" on-hold="N" item-status="01"/>
+		</alephHoldRequest>
+
+		<scanDeliver itemProcessStatus="HD;NULL">
+			<xserver loan-status="NULL" on-hold="N" item-status="01;02"/>
+		</scanDeliver>
+
+		<aeonrequest itemProcessStatus="HD;NULL">
+			<xserver loan-status="NULL" on-hold="N" item-status="92"/>
+		</aeonrequest>
+
+	</sublibrary>
+
+
+	<sublibrary id="GUT">
+		<alephHoldRequest itemProcessStatus="BD;BP;CO;CT;MI">
+			<xserver loan-status="A" item-status="*"/>
+		</alephHoldRequest>
+		<alephHoldRequest itemProcessStatus="RE;OR">
+			<xserver loan-status="NULL;A" item-status="*"/>
+		</alephHoldRequest>
+		<alephHoldRequest itemProcessStatus="HD">
+			<xserver loan-status="NULL;A" item-status="01;02;61;62;63;64"/>
+		</alephHoldRequest>
+		<alephHoldRequest itemProcessStatus="NULL">
+			<xserver loan-status="A" item-status="01;61;"/>
+		</alephHoldRequest>
+		<alephHoldRequest itemProcessStatus="NULL">
+			<xserver on-hold="Y" item-status="01;61;"/>
+		</alephHoldRequest>
+
+		<scanDeliver itemProcessStatus="HD;NULL">
+			<xserver loan-status="NULL" on-hold="N" item-status="01;02"/>
+		</scanDeliver>
+	</sublibrary>
+
+	<sublibrary id="HEL">
+		<scanDeliver itemProcessStatus="NULL">
+			<xserver loan-status="NULL" on-hold="N" item-status="02"/>
+		</scanDeliver>
+	</sublibrary>
+
+	<sublibrary id="HFA">		
+
+		<alephHoldRequest itemProcessStatus="HD">
+			<xserver loan-status="NULL;A" item-status="01;02;62;64"/>
+		</alephHoldRequest>				 
+		<alephHoldRequest itemProcessStatus="NULL">
+			<xserver loan-status="A" item-status="01;"/>
+		</alephHoldRequest>
+		<alephHoldRequest itemProcessStatus="NULL">
+			<xserver on-hold="Y" item-status="01;"/>
+		</alephHoldRequest>
+
+		<aeonrequest itemProcessStatus="HD">
+			<xserver loan-status="NULL" on-hold="N" item-status="92"/>
+		</aeonrequest>
+	</sublibrary> 
+
+	<sublibrary id="HOU">
+		<aeonrequest itemProcessStatus="HD;NULL">
+			<xserver loan-status="NULL" on-hold="N" item-status="02;92"/>
+		</aeonrequest>
+	</sublibrary>
+
+	<sublibrary id="HYL">
+		<alephHoldRequest itemProcessStatus="BD;BP;CO;CT;MI">
+			<xserver loan-status="A" item-status="*"/>
+		</alephHoldRequest>
+		<alephHoldRequest itemProcessStatus="RE;OR">
+			<xserver loan-status="NULL;A" item-status="*"/>
+		</alephHoldRequest>
+		<alephHoldRequest itemProcessStatus="HD">
+			<xserver loan-status="NULL;A" item-status="01;02;22;24;26;61;62;63;64"/>
+		</alephHoldRequest>
+		<alephHoldRequest itemProcessStatus="NULL">
+			<xserver loan-status="A" item-status="01;03;24;26;61"/>
+		</alephHoldRequest>
+		<alephHoldRequest itemProcessStatus="NULL">
+			<xserver on-hold="Y" item-status="01;24;26;61"/>
+		</alephHoldRequest>
+
+		<scanDeliver itemProcessStatus="HD">
+			<xserver loan-status="NULL" on-hold="N" item-status="01;02;26"/>
+		</scanDeliver>
+
+		<aeonrequest itemProcessStatus="HD;NULL">
+			<xserver loan-status="NULL" on-hold="N" item-status="92"/>
+		</aeonrequest>
+	</sublibrary>
+
+	<sublibrary id="KSG">
+		<alephHoldRequest itemProcessStatus="BD;BP;CO;CT;MI">
+			<xserver loan-status="A" item-status="*"/>
+		</alephHoldRequest>
+		<alephHoldRequest itemProcessStatus="RE;OR">
+			<xserver loan-status="NULL;A" item-status="01;02;08;20;21;22;61;62;63;64;92;98"/>
+		</alephHoldRequest>
+		<alephHoldRequest itemProcessStatus="HD">
+			<xserver loan-status="NULL;A" item-status="01;02;61;62;63;64"/>
+		</alephHoldRequest>
+		<alephHoldRequest itemProcessStatus="NULL">
+			<xserver loan-status="A" item-status="01;08;22;61"/>
+		</alephHoldRequest>
+		<alephHoldRequest itemProcessStatus="NULL">
+			<xserver on-hold="Y" item-status="01;08;22;61"/>
+		</alephHoldRequest>
+
+		<scanDeliver itemProcessStatus="HD;NULL">
+			<xserver loan-status="NULL" on-hold="N" item-status="01;02"/>
+		</scanDeliver>
+	</sublibrary>
+
+	<sublibrary id="LAM">
+		<alephHoldRequest itemProcessStatus="BD;BP;CO;CT;MI">
+			<xserver loan-status="A" item-status="*"/>
+		</alephHoldRequest>
+		<alephHoldRequest itemProcessStatus="OR;RE">
+			<xserver loan-status="NULL;A" item-status="20;24;28"/>
+		</alephHoldRequest>					 
+		<alephHoldRequest itemProcessStatus="HD">
+			<xserver loan-status="NULL;A" item-status="02;28;62;64"/>
+		</alephHoldRequest>
+		<alephHoldRequest itemProcessStatus="NULL">
+			<xserver loan-status="A" item-status="08;20;24;28;29"/>
+		</alephHoldRequest>
+		<alephHoldRequest itemProcessStatus="NULL">
+			<xserver on-hold="Y" item-status="08;24;28;29"/>
+		</alephHoldRequest>
+
+	</sublibrary>
+
+	<sublibrary id="LAW">
+		<alephHoldRequest itemProcessStatus="BD;BP;CO;CT;MI">
+			<xserver loan-status="A" item-status="*"/>
+		</alephHoldRequest>
+		<alephHoldRequest itemProcessStatus="RE;OR">
+			<xserver loan-status="NULL;A" item-status="01;02;04;20;22;24;61;62;63;64;92;93;98"/>
+		</alephHoldRequest>
+		<alephHoldRequest itemProcessStatus="HD">
+			<xserver loan-status="NULL;A" item-status="01;02;04;10;61;62;63;64"/>
+		</alephHoldRequest>
+		<alephHoldRequest itemProcessStatus="NULL">
+			<xserver loan-status="A" item-status="01;02;04;61;62;63"/>
+		</alephHoldRequest>
+		<alephHoldRequest itemProcessStatus="NULL">
+			<xserver on-hold="Y" item-status="01;02;04"/>
+		</alephHoldRequest>
+		<alephHoldRequest itemProcessStatus="NULL">
+			<xserver loan-status="NULL" on-hold="N" item-status="01"/>
+		</alephHoldRequest>
+
+		<scanDeliver itemProcessStatus="HD;NULL">
+			<xserver loan-status="NULL" on-hold="N" item-status="01;02;04"/>
+		</scanDeliver>
+	</sublibrary>
+
+	<sublibrary id="MAP">
+		<aeonrequest itemProcessStatus="BD;BP;CO;HD;MI;OR;RE;">
+			<xserver loan-status="NULL" on-hold="N" item-status="02"/>
+		</aeonrequest>
+		<aeonrequest itemProcessStatus="NULL">
+			<xserver loan-status="NULL" on-hold="N" item-status="02"/>
+		</aeonrequest>
+	</sublibrary>
+
+	<sublibrary id="MCK">
+		<alephHoldRequest itemProcessStatus="BD;BP;CO;CT;MI;OR;RE">
+			<xserver loan-status="A" item-status="*"/>
+		</alephHoldRequest>
+		<alephHoldRequest itemProcessStatus="HD">
+			<xserver loan-status="NULL;A" item-status="02;03;23;28"/>
+		</alephHoldRequest>
+		<alephHoldRequest itemProcessStatus="NULL">
+			<xserver loan-status="A" item-status="23;28"/>
+		</alephHoldRequest>
+		<alephHoldRequest itemProcessStatus="NULL">
+			<xserver on-hold="Y" item-status="28"/>
+		</alephHoldRequest>
+	</sublibrary>
+
+	<sublibrary id="MCZ">
+		<alephHoldRequest itemProcessStatus="BD;BP;CO;CT;MI;OR;RE">
+			<xserver loan-status="A" item-status="*"/>
+		</alephHoldRequest>
+		<alephHoldRequest itemProcessStatus="HD">
+			<xserver loan-status="NULL;A" item-status="01;02;61;62;63;64"/>
+		</alephHoldRequest>
+		<alephHoldRequest itemProcessStatus="NULL">
+			<xserver loan-status="A" item-status="01;61"/>
+		</alephHoldRequest>
+		<alephHoldRequest itemProcessStatus="NULL">
+			<xserver on-hold="Y" item-status="01;61"/>
+		</alephHoldRequest>
+	</sublibrary>
+
+	<sublibrary id="MED">
+		<alephHoldRequest itemProcessStatus="BD;BP;CO;CT;MI">
+			<xserver loan-status="A" item-status="*"/>
+		</alephHoldRequest>
+		<alephHoldRequest itemProcessStatus="RE;OR">
+			<xserver loan-status="NULL;A" item-status="*"/>
+		</alephHoldRequest>
+		<alephHoldRequest itemProcessStatus="HD">
+			<xserver loan-status="NULL;A" item-status="02;24;28;61;62;63;64"/>
+		</alephHoldRequest>
+		<alephHoldRequest itemProcessStatus="NULL">
+			<xserver loan-status="A" item-status="08;21;24;28;61"/>
+		</alephHoldRequest>
+		<alephHoldRequest itemProcessStatus="NULL">
+			<xserver on-hold="Y" item-status="08;21;24;28;61"/>
+		</alephHoldRequest>
+		<alephHoldRequest itemProcessStatus="NULL">
+			<xserver loan-status="NULL" on-hold="N" item-status="28"/>
+		</alephHoldRequest>
+
+		<scanDeliver itemProcessStatus="HD;NULL">
+			<xserver loan-status="NULL" on-hold="N" item-status="28"/>
+		</scanDeliver>
+		<scanDeliver itemProcessStatus="HD">
+			<xserver loan-status="NULL" on-hold="N" item-status="02"/>
+		</scanDeliver>
+	</sublibrary>
+
+	<sublibrary id="MIC">
+		<alephHoldRequest itemProcessStatus="BD;BP;CO;CT;MI;OR;RE">
+			<xserver loan-status="A" item-status="*"/>
+		</alephHoldRequest>
+		<alephHoldRequest itemProcessStatus="HD">
+			<xserver loan-status="NULL;A" item-status="01;02"/>
+		</alephHoldRequest>
+		<alephHoldRequest itemProcessStatus="NULL">
+			<xserver loan-status="A" item-status="01"/>
+		</alephHoldRequest>
+		<alephHoldRequest itemProcessStatus="NULL">
+			<xserver on-hold="Y" item-status="01"/>
+		</alephHoldRequest>
+	</sublibrary>
+
+	<sublibrary id="MUS">
+		<alephHoldRequest itemProcessStatus="BD;BP;CO;CT;MI;OR">
+			<xserver loan-status="A" item-status="*"/>
+		</alephHoldRequest>
+		<alephHoldRequest itemProcessStatus="RE;OR">
+			<xserver loan-status="NULL;A" item-status="01;02;03;13;22;61;62;63;64;92;98"/>
+		</alephHoldRequest>
+		<alephHoldRequest itemProcessStatus="HD">
+			<xserver loan-status="NULL;A" item-status="01;02;11;13;61;62;63;64"/>
+		</alephHoldRequest>
+		<alephHoldRequest itemProcessStatus="NULL">
+			<xserver loan-status="A" item-status="01;61"/>
+		</alephHoldRequest>
+		<alephHoldRequest itemProcessStatus="NULL">
+			<xserver on-hold="Y" item-status="01;61"/>
+		</alephHoldRequest>
+
+		<scanDeliver itemProcessStatus="HD;NULL">
+			<xserver loan-status="NULL" on-hold="N" item-status="01;02"/>
+		</scanDeliver>
+
+		<aeonrequest itemProcessStatus="HD;NULL">
+			<xserver loan-status="NULL" on-hold="N" item-status="92"/>
+		</aeonrequest>
+
+	</sublibrary>
+
+	<sublibrary id="PHY">
+		<alephHoldRequest itemProcessStatus="BD;BP;CO;CT;MI;OR;RE">
+			<xserver loan-status="A" item-status="*"/>
+		</alephHoldRequest>
+		<alephHoldRequest itemProcessStatus="HD">
+			<xserver loan-status="NULL;A" item-status="02;28;61;62;63;64"/>
+		</alephHoldRequest>
+		<alephHoldRequest itemProcessStatus="NULL">
+			<xserver loan-status="A" item-status="03;22;28;61"/>
+		</alephHoldRequest>
+		<alephHoldRequest itemProcessStatus="NULL">
+			<xserver on-hold="Y" item-status="28;61"/>
+		</alephHoldRequest>
+
+		<scanDeliver itemProcessStatus="HD;NULL">
+			<xserver loan-status="NULL" on-hold="N" item-status="02;28"/>
+		</scanDeliver>
+	</sublibrary>
+
+
+	<sublibrary id="POE">
+		<alephHoldRequest itemProcessStatus="BD;BP;CO;CT;MI;OR;RE">
+			<xserver loan-status="A" item-status="*"/>
+		</alephHoldRequest>
+		<alephHoldRequest itemProcessStatus="HD">
+			<xserver loan-status="NULL;A" item-status="01;02;24;61;62;63;64"/>
+		</alephHoldRequest>
+		<alephHoldRequest itemProcessStatus="NULL">
+			<xserver loan-status="A" item-status="01;20;24;61"/>
+		</alephHoldRequest>
+		<alephHoldRequest itemProcessStatus="NULL">
+			<xserver on-hold="Y" item-status="01;24;61"/>
+		</alephHoldRequest>
+
+		<scanDeliver itemProcessStatus="HD;NULL">
+			<xserver loan-status="NULL" on-hold="N" item-status="01"/>
+		</scanDeliver>
+	</sublibrary>
+
+	<sublibrary id="RUB">
+		<alephHoldRequest itemProcessStatus="BD;BP;CO;CT;MI">
+			<xserver loan-status="A" item-status="*"/>
+		</alephHoldRequest>
+		<alephHoldRequest itemProcessStatus="RE;OR">
+			<xserver loan-status="NULL;A" item-status="*"/>
+		</alephHoldRequest>
+		<alephHoldRequest itemProcessStatus="HD">
+			<xserver loan-status="NULL;A" item-status="01;02;61;62;63;64"/>
+		</alephHoldRequest>
+		<alephHoldRequest itemProcessStatus="NULL">
+			<xserver loan-status="A" item-status="01;61"/>
+		</alephHoldRequest>
+		<alephHoldRequest itemProcessStatus="NULL">
+			<xserver on-hold="Y" item-status="01;61"/>
+		</alephHoldRequest>
+		<alephHoldRequest itemProcessStatus="NULL">
+			<xserver loan-status="NULL" on-hold="N" item-status="01"/>
+		</alephHoldRequest>
+
+		<scanDeliver itemProcessStatus="HD;NULL">
+			<xserver loan-status="NULL" on-hold="N" item-status="01;02"/>
+		</scanDeliver>
+
+		<aeonrequest itemProcessStatus="HD;NULL">
+			<xserver loan-status="NULL" on-hold="N" item-status="92"/>
+		</aeonrequest>
+
+	</sublibrary>
+
+	<sublibrary id="THE">
+		<aeonrequest itemProcessStatus="HD;NULL">
+			<xserver loan-status="NULL" on-hold="N" item-status="02;92"/>
+		</aeonrequest>
+	</sublibrary>
+
+	<sublibrary id="TOZ">
+		<alephHoldRequest itemProcessStatus="BD;BP;CO;CT;MI">
+			<xserver loan-status="A" item-status="*"/>
+		</alephHoldRequest>
+		<alephHoldRequest itemProcessStatus="RE;OR">
+			<xserver loan-status="NULL;A" item-status="01;02;04;10;21;61;62;63;64;72;92;98"/>
+		</alephHoldRequest>
+		<alephHoldRequest itemProcessStatus="HD">
+			<xserver loan-status="NULL;A" item-status="01;02;04;61;62;63;64"/>
+		</alephHoldRequest>
+		<alephHoldRequest itemProcessStatus="NULL">
+			<xserver loan-status="A" item-status="01;61"/>
+		</alephHoldRequest>
+		<alephHoldRequest itemProcessStatus="NULL">
+			<xserver on-hold="Y" item-status="01;61"/>
+		</alephHoldRequest>
+
+		<scanDeliver itemProcessStatus="BP;CO;CT;RE;">
+			<xserver loan-status="NULL" on-hold="N" item-status="01;02;04"/>
+		</scanDeliver>
+		<scanDeliver itemProcessStatus="HD;NULL">
+			<xserver loan-status="NULL" on-hold="N" item-status="01;04"/>
+		</scanDeliver>
+
+		<aeonrequest itemProcessStatus="NULL">
+			<xserver loan-status="NULL" on-hold="N" item-status="92"/>
+		</aeonrequest>					 
+	</sublibrary>
+
+	<sublibrary id="WID">
+		<alephHoldRequest itemProcessStatus="BD;BP;CO;CT;MI">
+			<xserver loan-status="A" item-status="*"/>
+		</alephHoldRequest>
+		<alephHoldRequest itemProcessStatus="RE;OR">
+			<xserver loan-status="NULL;A" item-status="*"/>
+		</alephHoldRequest>
+		<alephHoldRequest itemProcessStatus="HD">
+			<xserver loan-status="NULL;A" item-status="01;02;24;96;61;62;63;64"/>
+		</alephHoldRequest>
+		<alephHoldRequest itemProcessStatus="NULL">
+			<xserver loan-status="A" item-status="01;02;24;61;62;63;81"/>
+		</alephHoldRequest>
+		<alephHoldRequest itemProcessStatus="NULL">
+			<xserver on-hold="Y" item-status="01;02;24;61;62;63;81"/>
+		</alephHoldRequest>
+		<alephHoldRequest itemProcessStatus="NULL">
+			<xserver loan-status="NULL" on-hold="N" item-status="01"/>
+		</alephHoldRequest>
+
+		<scanDeliver itemProcessStatus="HD">
+			<xserver loan-status="NULL" on-hold="N" item-status="01;02;93;94"/>
+		</scanDeliver>
+		<scanDeliver itemProcessStatus="NULL">
+			<xserver loan-status="NULL" on-hold="N" item-status="01;02"/>
+		</scanDeliver>
+
+	</sublibrary>
+
+	<sublibrary id="WOL">
+		<alephHoldRequest itemProcessStatus="BD;BP;CO;CT;MI;OR;RE">
+			<xserver loan-status="A" item-status="*"/>
+		</alephHoldRequest>
+		<alephHoldRequest itemProcessStatus="HD">
+			<xserver loan-status="NULL;A" item-status="01;02;04"/>
+		</alephHoldRequest>
+		<alephHoldRequest itemProcessStatus="NULL">
+			<xserver loan-status="A" item-status="01;04;20;24;26"/>
+		</alephHoldRequest>
+		<alephHoldRequest itemProcessStatus="NULL">
+			<xserver on-hold="Y" item-status="01;04;24;26"/>
+		</alephHoldRequest>
+	</sublibrary>
+
+</requestlinkconfig>
