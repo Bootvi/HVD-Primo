@@ -309,7 +309,7 @@ function loadPNX(recordId) {
 			}
 		}).responseXML;
 	}
-	console.log(pnxRecord);
+	//logJS(pnxRecord);
 	return pnxRecord;
 }
 

@@ -182,12 +182,16 @@ function returnItemProcessStatus(value) {
 
 //Loan Status can have NULL or A
 function returnLoanStatus(value) {
-	if (value.toLowerCase().indexOf("checked") == 0)
+	if (value.toLowerCase().indexOf("long overdue") > -1)
+		return "L";
+	else if (value.toLowerCase().indexOf("claimed returned") > -1)
+		return "C";
+	else if (value.toLowerCase().indexOf("checked") == 0)
 		return "A";
 	else if ((value.toLowerCase().indexOf("not checked out") > -1) || (value.toLowerCase().indexOf("requested") == 0))
 		return "NULL";
-	else
-		return "A";
+	
+	return "A";
 }
 
 //On Hold status can be Y or N
