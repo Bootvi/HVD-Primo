@@ -1,70 +1,72 @@
 function buildViaGallary() {
 	if ($(".EXLDetailsContent li[id^='lds20']").length && $(".EXLDetailsContent li[id^='lds21']").length) {
-		
+
 		$(".EXLDetailsContent li[id^='lds20']").parents(".EXLDetailsContent").each(function() {
-			//We have images
-			logJS("Images exist");
+			//Avoid duplicate work
+			if ($(this).find(".VIAGallary").length)
+				return;
 
 			$(this).parents(".EXLDetailsTabContent").css({
-	                        "height": "auto",
-	                        "max-height": "38em"
-	                });
+				"height": "auto",
+				"max-height": "38em"
+			});
 
 			//Get the record ID to create unique gallaries
-                	var recordId = $(this).parents(".EXLResult").find(".EXLResultRecordId").attr("id");
-			
-			//Load XSL file
-	                xslDoc = loadXMLDoc("../uploaded_files/HVD/via.xsl");
-			createHeader($(this));
+			var recordId = $(this).parents(".EXLResult").find(".EXLResultRecordId").attr("id");
 
-			//Create a blank Gallary at the bottom of the Details tab
-                        $(this).append('<div class="VIAGallary"></div>');
+			//Load XSL file
+			xslDoc = loadXMLDoc("../uploaded_files/HVD/via.xsl");
+
+			//Create a header and a blank Gallary at the bottom of the Details tab
+			createHeader($(this));
+			$(this).append('<div class="VIAGallary"></div>');
 
 			//Each XML needs to become HTML using the XSL
 			$(this).find("li[id^='lds21'] span.EXLDetailsDisplayVal").each(convertXMLtoHTML);
 
-			var captions = ($(this).parents(".VIAThumbnail").find(".VIAMetaData").html());
-
-			
-
-			//Make it FANCY
+			//Make it FANCYBOX, with MetaData function call to populate the information
 			$(this).find(".VIAGallary a.fancybox").fancybox({
-                                openEffect: 'none', closeEffect: 'none', nextEffect: 'none', prevEffect: 'none',
-                                width: '1200', height: '660', margin: [20, 60, 20, 60],
-                                helpers: {
-                                        title: {
-                                        	type: 'inside'
-                                        },
-                                        overlay: {
-                                                locked: false
-                                        }
-                                },
+				openEffect: 'none',
+				closeEffect: 'none',
+				nextEffect: 'none',
+				prevEffect: 'none',
+				width: '1200',
+				height: '660',
+				margin: [20, 60, 20, 60],
+				helpers: {
+					title: {
+						type: 'inside'
+					},
+					overlay: {
+						locked: false
+					}
+				},
 				afterLoad: function(current, previous) {
 					addMetaData(current, previous);
 				}
 
 
-                           });
-
+			});
 
 		});
 
 	}
 }
 
+//Builds a header based on lds20
 function createHeader(element) {
 	var numberOfImages = element.find("li[id^='lds20'] .EXLDetailsDisplayVal").text();
- 
-	var gallaryHeaderHTML = "";
-        if (numberOfImages == '1')
-        	gallaryHeaderHTML = '<span class="VIAGallaryHeader">Click on the image to enlarge and view more information</span>';
-        else
-                gallaryHeaderHTML = '<span class="VIAGallaryHeader">' + numberOfImages + ' images (Click on an image to enlarge and view more information)</span>';
+
+	var gallaryHeaderHTML = '<span class="VIAGallaryHeader">';
+	if (numberOfImages == '1')
+		gallaryHeaderHTML = 'Click on the image to enlarge and view more information</span>';
+	else
+		gallaryHeaderHTML = numberOfImages + ' images (Click on an image to enlarge and view more information)</span>';
 	element.append(gallaryHeaderHTML);
 }
 
+//Use the XSL 
 function convertXMLtoHTML() {
-	logJS("Converting stuff");
 	var recordId = $(this).parents(".EXLResult").find(".EXLResultRecordId").attr("id");
 
 	var xmlDoc = jQuery.parseXML($(this).text().replace("&", "&amp;"));
@@ -73,143 +75,15 @@ function convertXMLtoHTML() {
 		var newHTML = transformXSL(xmlDoc, xslDoc);
 		$(this).parents(".EXLDetailsContent").find(".VIAGallary").append(newHTML);
 	}
-	$(this).parents(".EXLDetailsContent").find("a.fancybox").attr("rel",recordId);
+	//Add a Gallary ID for the FancyBox
+	$(this).parents(".EXLDetailsContent").find("a.fancybox").attr("rel", recordId);
 }
 
+//Get the MetaData based on the Image URL (unique), and puts the title with that value
 function addMetaData(current, previous) {
 	metaData = $("a.fancybox[href='" + current.href + "']").parents(".VIAThumbnail").find(".VIAMetaData").html();
-	current.title = metaData;
+	if (metaData.length > 0)
+		current.title = metaData;
 
 }
 
-/*
-function buildViaGallaryBeta() {
-	$(".EXLDetailsContent li[id^='lds22']").each(function() {
-
-                //Create a top header
-                var numberOfImages = $(this).parents(".EXLDetailsContent").find("li[id^='Number of Images'] .EXLDetailsDisplayVal").text();
-                var recordId = $(this).parents(".EXLResult").find(".EXLResultRecordId").attr("id");
-                var gallaryHeaderHTML = "";
-                if (numberOfImages == '1')
-                        gallaryHeaderHTML = '<span class="VIAGallaryHeader">Click on the image to enlarge and view more information</span>';
-                else
-                        gallaryHeaderHTML = '<span class="VIAGallaryHeader">' + numberOfImages + ' images (Click on an image to enlarge and view more information)</span>';
-		$(this).parents(".EXLDetailsContent").append(gallaryHeaderHTML);
-
-
-		//Get the record ID to create unique gallaries
-		var recordId = $(this).parents(".EXLResult").find(".EXLResultRecordId").attr("id");
-		
-		//Create a blank Gallary at the bottom of the Details tab
-		$(this).parents(".EXLDetailsContent").append('<div class="VIAGallary"></div>');
-		
-		//Parse XML through XSL to create the gallary
-                $(this).find("span.EXLDetailsDisplayVal").each(function() {
-			var xmlDoc = jQuery.parseXML($(this).text().replace("&", "&amp;"));
-			var xslDoc = loadXMLDoc("../uploaded_files/HVD/via.xsl");
-			if (xmlDoc) {
-				$(this).parents(".EXLDetailsContent").find(".VRAGallary").append(transformXSL(xmlDoc, xslDoc));
-
-			}
-		});
-		
-		//Assign a single gallary to the thumbnails generated by XSL, apply FancyBox
-		$(this).parents(".EXLDetailsContent").find(".VRAGallary a.fancybox").attr("rel", recordId);
-
-		$(this).parents(".EXLDetailsContent").find(".VRAGallary a.fancybox").each(function() {
-			var captions = ($(this).parents(".VRAThumbnail").find(".VRAMetaData").html());
-	                $(this).fancybox({
-                        	openEffect: 'none', closeEffect: 'none', nextEffect: 'none', prevEffect: 'none',
-                        	width: '1200', height: '660', margin: [20, 60, 20, 60],
-	                        helpers: {
-				        title: {
-				            type: 'inside'
-				        },
-                                	overlay: {
-                        	                locked: false
-                	                }
- 	      	                },
-				beforeLoad: function() {
-				        this.title = captions;
-				}
-
-
-		           });
-		});
-	
-		
-	});
-/*
-	//Add a FancyBox plugin to generate a Lightbox with full viewer iFrame
-                $(".fancybox").fancybox({
-                        openEffect: 'none',
-                        closeEffect: 'none',
-                        nextEffect: 'none',
-                        prevEffect: 'none',
-                        width: '1200',
-                        height: '660',
-                        margin: [20, 60, 20, 60],
-                        helpers: {
-                                overlay: {
-                                        locked: false
-                                }
-                        }
-                });
-	
-
-
-        $(".EXLDetailsContent li[id^='Images']").each(function() {
-                //Mark as modified
-                if ($(this).find(".VIAGallaryGenerated").length)
-                        return;
-                else
-                        $(this).append('<input type="hidden" class="VIAGallaryGenerated">');
-
-                //Create a top header
-                var numberOfImages = $(this).parents(".EXLDetailsContent").find("li[id^='Number of Images'] .EXLDetailsDisplayVal").text();
-		var recordId = $(this).parents(".EXLResult").find(".EXLResultRecordId").attr("id");
-		var gallaryHeaderHTML = "";
-                if (numberOfImages == '1')
-                        gallaryHeaderHTML = '<span class="VRAGallaryHeader">Click on the image to enlarge and view more information</span>';
-                else
-                        gallaryHeaderHTML = '<span class="VRAGallaryHeader">' + numberOfImages + ' images (Click on an image to enlarge and view more information)</span>';
-
-/*
-                //Generate Gallary
-                var thumbnailsHTML = '<div class="VRAGallary">';
-                $(this).find("span.EXLDetailsDisplayVal").each(function() {
-                        thumbnailsHTML = thumbnailsHTML + '<div class="VRAThumbnail"><table><tr><td>';
-			thumbnailsHTML = thumbnailsHTML +       '<a href="' + $(this).text() + '?buttons=Y"  data-fancybox-group="' + recordId + '" class="fancybox fancybox.iframe" title="This is amazing!">';
-			thumbnailsHTML = thumbnailsHTML + 	'<img src="' + $(this).text() + '?height=150&width=150">';
-			thumbnailsHTML = thumbnailsHTML +       '</a>';
-			thumbnailsHTML = thumbnailsHTML + '</td></tr></table></div>';
-                });
-                thumbnailsHTML = thumbnailsHTML + "</div>";
-		
-		//Add the gallary below the details of the record
-                $(this).parents(".EXLDetailsContent").append(gallaryHeaderHTML, thumbnailsHTML);
-
-		//For VRA records, 
-                $(this).parents(".EXLDetailsTabContent").css({
-                        "height": "auto",
-                        "max-height": "38em"
-                });
-		
-		//Add a FancyBox plugin to generate a Lightbox with full viewer iFrame
-		$(".fancybox").fancybox({
-			openEffect: 'none',
-			closeEffect: 'none',
-		        nextEffect: 'none',
-		        prevEffect: 'none',
- 	         	width: '1200',
-        	        height: '660',
-			margin: [20, 60, 20, 60],
-			helpers: {
-				overlay: {
-					locked: false
-				}
-			}
-		});
-        });
-}
-*/

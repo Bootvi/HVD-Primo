@@ -62,6 +62,14 @@
 					<div class="VIAMetaData">
 						<table class="VIAMetaDataTable">
 							<tr>
+								<td class="VIAMetaDataKey">     
+									<strong>Component:</strong>             
+								</td>                           
+								<td class="VIAMetaDataValue">   
+									<xsl:value-of select="@componentID"/>
+								</td>                           
+							</tr>
+							<tr>
 								<td class="VIAMetaDataKey">
 									<strong>Title:</strong>
 								</td>
@@ -85,6 +93,30 @@
 									<xsl:value-of select="workType"/>
 								</td>
 							</tr>
+							<tr>
+								<td class="VIAMetaDataKey">
+									<strong>Date:</strong> 
+								</td>
+								<td class="VIAMetaDataValue">
+									<xsl:value-of select="freeDate"/>
+								</td>
+							</tr>
+							<tr>
+								<td class="VIAMetaDataKey">
+									<strong>Note:</strong> 
+								</td>
+								<td class="VIAMetaDataValue">
+									<xsl:value-of select="notes"/>
+								</td>
+							</tr>
+							<tr>
+								<td class="VIAMetaDataKey">
+									<strong>Classification:</strong> 
+								</td>
+								<td class="VIAMetaDataValue">
+									<xsl:value-of select="classification/number"/>
+								</td>
+							</tr>
 
 						</table>
 
@@ -105,6 +137,4 @@
 
 
 </xsl:stylesheet>
-
-
 
