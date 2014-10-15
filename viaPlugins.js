@@ -70,7 +70,6 @@ function convertXMLtoHTML() {
 	var recordId = $(this).parents(".EXLResult").find(".EXLResultRecordId").attr("id");
 
 	var xmlDoc = jQuery.parseXML($(this).text().replace("&", "&amp;"));
-	logJS(xslDoc);
 	if (xmlDoc) {
 		var newHTML = transformXSL(xmlDoc, xslDoc);
 		$(this).parents(".EXLDetailsContent").find(".VIAGallary").append(newHTML);
