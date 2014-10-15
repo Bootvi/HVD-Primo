@@ -22,6 +22,7 @@
 					<alephHoldRequest itemProcessStatus="NULL">
 						<xserver loan-status="NULL" on-hold="N" item-status="01"/>
 					</alephHoldRequest>
+	20141015 HS added Harvard Direct requests for DES, KSG, MCZ - item status 01, IPS NULL
 	-->				  
 
 	<sublibrary id="AJP">
@@ -138,6 +139,9 @@
 		</alephHoldRequest>
 		<alephHoldRequest itemProcessStatus="NULL">
 			<xserver on-hold="Y" item-status="01;20;61"/>
+		</alephHoldRequest>
+		<alephHoldRequest itemProcessStatus="NULL">
+			<xserver loan-status="NULL" on-hold="N" item-status="01"/>
 		</alephHoldRequest>
 
 		<scanDeliver itemProcessStatus="HD;NULL">
@@ -316,6 +320,9 @@
 		<alephHoldRequest itemProcessStatus="NULL">
 			<xserver on-hold="Y" item-status="01;08;22;61"/>
 		</alephHoldRequest>
+		<alephHoldRequest itemProcessStatus="NULL">
+			<xserver loan-status="NULL" on-hold="N" item-status="01"/>
+		</alephHoldRequest>
 
 		<scanDeliver itemProcessStatus="HD;NULL">
 			<xserver loan-status="NULL" on-hold="N" item-status="01;02"/>
@@ -402,6 +409,9 @@
 		</alephHoldRequest>
 		<alephHoldRequest itemProcessStatus="NULL">
 			<xserver on-hold="Y" item-status="01;61"/>
+		</alephHoldRequest>
+		<alephHoldRequest itemProcessStatus="NULL">
+			<xserver loan-status="NULL" on-hold="N" item-status="01"/>
 		</alephHoldRequest>
 		
 		<scanDeliver itemProcessStatus="HD;NULL">

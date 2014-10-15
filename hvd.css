@@ -119,6 +119,9 @@ a:hover {
 }
 
 /* Search Box */
+#scopesList {
+	display:none;
+}
 #exlidSearchTile {
 	background-image: url(../images/_blank.png);
 	background: #8C8179; /* Old browsers */
@@ -234,6 +237,9 @@ a:hover {
 	font-weight: bold;
 }
 /* search input box */
+.EXLSearchFieldRibbonFormSearchFor {
+	width:95%;
+}
 .EXLSearchFieldRibbonFormSearchFor input.EXLSearchFieldMaximized {
 	outline: none;
 }
@@ -1018,20 +1024,23 @@ span.borrowDirectText {
 
 /* Alon B: VRA search result thumbnails
 /* Alon B: VRA gallary and displays */
-.EXLDetailsContent li[id^='Images'] {
+.EXLDetailsContent li[id^='lds20'] {
 	display: none;
 }
-.EXLDetailsContent li[id^='Number of Images'] {
+.EXLDetailsContent li[id^='lds21'] {
+        display: none;
+}
+.EXLDetailsContent li[id^='lds22'] {
         display: none;
 }
 
-.VRAGallary { 
+.VIAGallary { 
 	display: block; 
 	width: 135%;
 	margin: 0px 26px 26px 26px;;
 }
 
-.VRAGallaryHeader {
+.VIAGallaryHeader {
 	display: block;
 	font-weight: bold;
 	margin: 26px 26px 0px 26px;
@@ -1039,30 +1048,39 @@ span.borrowDirectText {
 	border-bottom: 1px solid #a51c30;
 }
 
-div.VRAThumbnail {
+div.VIAThumbnail {
 	float: left;
 	margin: 10px 10px 10px 10px;
 }
-.VRAThumbnail table {
-	width: 156px;
-	height: 156px;
+.VIAThumbnail table {
+	width: 160px;
+	height: 160px;
 	border-spacing: 0px;
 }
 
-.VRAThumbnail table tr:hover {
+.VIAThumbnail table tr:hover {
 	background-color: white;
 }
-.VRAThumbnail table td {
+.VIAThumbnail table td {
 	vertical-align: middle;
 	text-align: center;
-	padding: 0px;
+	padding: 0px 0px 10px 0px;
 
 }
 
-.VRAThumbnail img {
+.VIAThumbnail img {
 	padding: 3pm;
 	background-color: #acacac;
 
+}
+
+.VIAThumbnail .VIAMetaDataTable {
+	display: none;
+}
+
+.VIAMetaDataKey {
+	text-align: right;
+	padding-right: 10px;
 }
 
 /* -------------------------------------- */
