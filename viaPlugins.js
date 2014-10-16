@@ -59,9 +59,9 @@ function createHeader(element) {
 
 	var gallaryHeaderHTML = '<span class="VIAGallaryHeader">';
 	if (numberOfImages == '1')
-		gallaryHeaderHTML = 'Click on the image to enlarge and view more information</span>';
+		gallaryHeaderHTML += 'Click on the image to enlarge and view more information</span>';
 	else
-		gallaryHeaderHTML = numberOfImages + ' images (Click on an image to enlarge and view more information)</span>';
+		gallaryHeaderHTML += numberOfImages + ' images (Click on an image to enlarge and view more information)</span>';
 	element.append(gallaryHeaderHTML);
 }
 
@@ -80,8 +80,9 @@ function convertXMLtoHTML() {
 
 //Get the MetaData based on the Image URL (unique), and puts the title with that value
 function addMetaData(current, previous) {
-	metaData = $("a.fancybox[href='" + current.href + "']").parents(".VIAThumbnail").find(".VIAMetaData").html();
-	if (metaData.length > 0)
+	var metaData = $("a.fancybox[href='" + current.href + "']").parents(".VIAThumbnail").find(".VIAMetaData").html();
+	logJS(metaData);
+	if (metaData != null && metaData.length > 0)
 		current.title = metaData;
 
 }

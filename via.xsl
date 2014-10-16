@@ -14,7 +14,7 @@
 									</xsl:attribute>
 									<img>
 										<xsl:attribute name="src">
-											<xsl:value-of select="concat(@xlink:href, '?height=150&amp;width=150')" />
+											<xsl:value-of select="concat(thumbnail/@xlink:href, '?height=150&amp;width=150')" />
 										</xsl:attribute>
 									</img>
 								</a>

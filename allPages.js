@@ -302,8 +302,23 @@ jQuery(function($) {
 });
 //end code for ND for Date Slider;
 
+function loadXMLDoc(dname) {
+
+	if (typeof ActiveXObject !== 'undefined') {
+		xhttp = new ActiveXObject('Msxml2.XMLHTTP.3.0');
+	} else if (typeof XMLHttpRequest != 'undefined') {
+		xhttp = new XMLHttpRequest();
+	}
+	if (xhttp) {
+		xhttp.open('GET', dname, false);
+		xhttp.send();
+		return xhttp.responseXML;
+	}
+	// else handle case here that browser does not support ActiveXObject nor XMLHttpRequest
+}
+
 //Generic XML loader
-function loadXMLDoc(filename) {
+function loadXMLDocOrig(filename) {
 	// code for IE7+, Firefox, Chrome, Opera, Safari
 	if (window.XMLHttpRequest) {
 		xhttp = new XMLHttpRequest();
@@ -318,10 +333,12 @@ function loadXMLDoc(filename) {
 }
 
 //Generic XSL Transformer
-// code for IE
 function transformXSL(xml, xsl) {
+	//Code for IE10
 	if (window.ActiveXObject || xhttp.responseType == "msxml-document") {
-		ex = xml.transformNode(xsl);
+		logJS(new XMLSerializer().serializeToString(xml));
+		updateXML = new XMLSerializer().serializeToString(xml);
+		ex = updateXML.transformNode(xsl);
 		return ex;
 	}
 	// code for Chrome, Firefox, Opera, etc.
