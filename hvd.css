@@ -1057,6 +1057,10 @@ div.VIAThumbnail {
 	height: 160px;
 	border-spacing: 0px;
 }
+tr.VIAThumbnailImage {
+	height: 160px;
+}
+
 
 .VIAThumbnail table tr:hover {
 	background-color: white;
@@ -1083,6 +1087,8 @@ div.VIAThumbnail {
 	padding-right: 10px;
 	vertical-align: top;
 }
+
+
 
 /* -------------------------------------- */
 
