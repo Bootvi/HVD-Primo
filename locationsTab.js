@@ -3,7 +3,7 @@
 //Processing starts here (after page load, or Ajax, see bottom of file)
 function locationsTabModifications() {
 	//Create a global variable for the XML, no need to read it million of times
-	xmlDoc = loadXMLDoc("../uploaded_files/HVD/requestLinkLogic.xml");
+	xmlDoc = loadXML("../uploaded_files/HVD/requestLinkLogic.xml");
 
 	//Each DIV has it's own variables and listener, so no conflict should happen.
 	$(".EXLSublocation").each(function() {

@@ -105,39 +105,6 @@ function detailsLanguagesSpaces() {
 	});
 }
 
-function buildViaGallary() {
-	$(".EXLDetailsContent li[id^='Images']").each(function() {
-		//Mark as modified
-		if ($(this).find(".VIAGallaryGenerated").length)
-			return;
-		else
-			$(this).append('<input type="hidden" class="VIAGallaryGenerated">');
-
-		//Create a top header
-		var numberOfImages = $(this).parents(".EXLDetailsContent").find("li[id^='Number of Images'] .EXLDetailsDisplayVal").text();
-		var gallaryHeaderHTML
-		if (numberOfImages == '1')
-			gallaryHeaderHTML = '<span class="VRAGallaryHeader">Click on the image to enlarge and view more information</span>';
-		else
-			gallaryHeaderHTML = '<span class="VRAGallaryHeader">' + numberOfImages + ' images (Click on an image to enlarge and view more information)</span>';
-
-
-		//Generate Gallary
-		var thumbnailsHTML = '<div class="VRAGallary">';
-		$(this).find("span.EXLDetailsDisplayVal").each(function() {
-			thumbnailsHTML = thumbnailsHTML + '<div class="VRAThumbnail"><table><tr><td><img src="' + $(this).text() + '?height=150&width=150"></td></tr></table></div>';
-		});
-		thumbnailsHTML = thumbnailsHTML + "</div>";
-
-		$(this).parents(".EXLDetailsContent").append(gallaryHeaderHTML, thumbnailsHTML);
-
-		$(this).parents(".EXLDetailsTabContent").css({
-			"height": "auto",
-			"max-height": "34em"
-		});
-	});
-}
-
 //Incase direct link to Details tab, do these:
 $(document).ready(function() {
 	if ((RegExp("tabs=detailsTab").test(window.location.href)) || (RegExp("fn=permalink").test(window.location.href))) {
@@ -159,6 +126,7 @@ function doDetailsTab() {
 	detailsHyperlinks();
 	removeTOCLinks();
 
+	//Build VRA support
 	buildViaGallary();
 
 	//Linkify here 

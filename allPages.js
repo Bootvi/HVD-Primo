@@ -58,21 +58,11 @@ $(document).ready(function() {
 		"background-image": "none",
 		"padding-left": "0px"
 	});
-
-	//Move VIA thumbnails outside of the result icon
-	/*
-	$("a.EXLResultRecordId[id^='HVD_VIA']").each(function() {
-		if ($(this).parents(".EXLThumbnail").find(".EXLBriefResultsCover").length) {
-			var thumbnailUrl = $(this).parents(".EXLThumbnail").find("img.EXLBriefResultsCover").attr("src");
-			
-			var newThumbnailHTML = '<div class="VIASearchThumbnail"><table><tr><td><img src="' + thumbnailUrl + '"></td></tr></table>';
-
-			$(this).parents(".EXLResult").find(".EXLSummaryContainer").append(newThumbnailHTML);
-			console.log(newThumbnailHTML);
-		}
-	//k++;
-	//	console.log(k);
-	});*/
+	
+	//Change Details tab for VIA records
+	$(".EXLResultRecordId[id^='HVD_VIA'").each(function() { 
+		$(this).parents(".EXLResult").find(".EXLDetailsTab a:contains('Details')").text("Details & Gallery");
+	});
 
 	//Change HELP link to custom file
 	$(".EXLMainMenuItem > span > a:contains('Help')").attr("href", "../uploaded_files/HVD/help.html");
@@ -91,6 +81,11 @@ $(document).ready(function() {
 
 	//Moving RSS, eShelf, etc to bottom of Facets
 	$('#exlidFacetTile').append($('.EXLFacetActionsV2').parent().parent());
+
+	//Add a custom tab for VIA records, put a listener on the content
+	//EXLTA_addTab('Gallery', 'VIATab', '', viaTabHandler, false, viaEvaluator);
+	//$(".VIATab-Container").on("DOMSubtreeModified propertychange", buildViaTab);
+
 
 });
 
@@ -302,52 +297,36 @@ jQuery(function($) {
 });
 //end code for ND for Date Slider;
 
-function loadXMLDoc(dname) {
 
-	if (typeof ActiveXObject !== 'undefined') {
-		xhttp = new ActiveXObject('Msxml2.XMLHTTP.3.0');
-	} else if (typeof XMLHttpRequest != 'undefined') {
+function loadXMLDoc(filename) {
+	if (window.ActiveXObject) {
+		xhttp = new ActiveXObject("Msxml2.XMLHTTP");
+	} else {
 		xhttp = new XMLHttpRequest();
-	}
-	if (xhttp) {
-		xhttp.open('GET', dname, false);
-		xhttp.send();
-		return xhttp.responseXML;
-	}
-	// else handle case here that browser does not support ActiveXObject nor XMLHttpRequest
-}
-
-//Generic XML loader
-function loadXMLDocOrig(filename) {
-	// code for IE7+, Firefox, Chrome, Opera, Safari
-	if (window.XMLHttpRequest) {
-		xhttp = new XMLHttpRequest();
-	}
-	// code for IE6, IE5
-	else {
-		xhttp = new ActiveXObject("Microsoft.XMLHTTP");
 	}
 	xhttp.open("GET", filename, false);
-	xhttp.send();
+	try {
+		xhttp.responseType = "msxml-document"
+	} catch (err) {} // Helping IE11
+	xhttp.send("");
 	return xhttp.responseXML;
 }
 
-//Generic XSL Transformer
-function transformXSL(xml, xsl) {
-	//Code for IE10
-	if (window.ActiveXObject || xhttp.responseType == "msxml-document") {
-		logJS(new XMLSerializer().serializeToString(xml));
-		updateXML = new XMLSerializer().serializeToString(xml);
-		ex = updateXML.transformNode(xsl);
-		return ex;
-	}
-	// code for Chrome, Firefox, Opera, etc.
-	else if (document.implementation && document.implementation.createDocument) {
-		xsltProcessor = new XSLTProcessor();
-		xsltProcessor.importStylesheet(xsl);
-		resultDocument = xsltProcessor.transformToFragment(xml, document);
-		return resultDocument;
-	}
+
+
+//Load PNX XML from Primo DB
+function loadXML(url) {
+        //Creating a Native empty Dom Element
+              var  xml = $.ajax({
+                        url: url,
+                        dataType: "xml",
+                        async: false,
+                        error: function() {
+                                logJS('XML retrieval error')
+                        }
+                }).responseXML;
+        //logJS(pnxRecord);
+        return xml;
 }
 
 //Load PNX XML from Primo DB
@@ -362,6 +341,7 @@ function loadPNX(recordId) {
 				doc: recordId,
 				showPnx: true
 			},
+			dataType: "xml",
 			async: false,
 			error: function() {
 				log('pnx retrieval error')
