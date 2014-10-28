@@ -1074,8 +1074,18 @@ tr.VIAThumbnailImage {
 
 .VIAThumbnail img {
 	padding: 0px;
-	background-color: #acacac;
 
+}
+
+.VIAThumbnailImageWrapper {
+	position: relative;
+	display: initial;
+}
+
+.VIARestrictedThumbnail {
+	position: absolute;
+	right: 0;
+	bottom: 5px;
 }
 
 .VIAThumbnail .VIAMetaDataTable {
