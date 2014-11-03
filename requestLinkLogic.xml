@@ -23,6 +23,7 @@
 						<xserver loan-status="NULL" on-hold="N" item-status="01"/>
 					</alephHoldRequest>
 	20141015 HS added Harvard Direct requests for DES, KSG, MCZ - item status 01, IPS NULL
+	20141103 HS removed recalls for LAM item status 20 (loan-status = A)
 	-->				  
 
 	<sublibrary id="AJP">
@@ -340,7 +341,7 @@
 			<xserver loan-status="NULL;A" item-status="02;28;62;64"/>
 		</alephHoldRequest>
 		<alephHoldRequest itemProcessStatus="NULL">
-			<xserver loan-status="A" item-status="08;20;24;28;29"/>
+			<xserver loan-status="A" item-status="08;24;28;29"/>
 		</alephHoldRequest>
 		<alephHoldRequest itemProcessStatus="NULL">
 			<xserver on-hold="Y" item-status="08;24;28;29"/>

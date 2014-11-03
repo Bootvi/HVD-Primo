@@ -22,7 +22,7 @@ function buildViaGallary() {
                 $(this).append('<div class="VIAGallary"></div>');
 	
 		//Append the converted VIA XML to the gallery, and set 'rel' parameter to make them 1 gallary 
-		$(this).find(".VIAGallary").append(transformVIAXML(viaXML));
+		$(this).find(".VIAGallary").append(transformXSL(viaXML, "../uploaded_files/HVD/viaThumbnail.xsl"));
 		$(this).find("a.fancybox").attr("rel", recordId);
 		
                 //Trim the cpations
@@ -63,40 +63,6 @@ function buildViaGallary() {
 	});
 }
 
-function transformVIAXML(viaXML) {
-        //Code for IE
-        if (window.ActiveXObject) {
-                //Initialize all the XSLT methods
-                var xslt = new ActiveXObject("Msxml2.XSLTemplate.3.0");
-                var xslDoc = new ActiveXObject("Msxml2.FreeThreadedDOMDocument.3.0");
-                xslDoc.async = false;
-                xslDoc.load("../uploaded_files/HVD/via.xsl");
-
-                //Load the XML
-                var xmlDoc = new ActiveXObject("Msxml2.DOMDocument.6.0");
-                xmlDoc.loadXML('<?xml version="1.0"?>' + (new XMLSerializer()).serializeToString(viaXML));
-
-                if (xslDoc.parseError.errorCode != 0) {
-                        var myErr = xslDoc.parseError;
-                        logJS("You have error " + myErr.reason);
-                } else {
-                        xslt.stylesheet = xslDoc;
-                        var xslProc = xslt.createProcessor();
-                        xslProc.input = xmlDoc;
-                        xslProc.transform();
-
-                        return xslProc.output;
-                }
-        }
-        //Code for Normal browsers like Chrome, Firefox, Opera, etc.
-        else if (document.implementation && document.implementation.createDocument) {
-                var viaXSL = loadXML("../uploaded_files/HVD/via.xsl");
-                xsltProcessor = new XSLTProcessor();
-                xsltProcessor.importStylesheet(viaXSL);
-                resultDocument = xsltProcessor.transformToFragment(viaXML, document);
-                return resultDocument;
-        }
-}
 
 //Builds a header based on lds20
 function createHeader(element, numberOfImages) {
@@ -114,8 +80,15 @@ function createHeader(element, numberOfImages) {
 //Get the MetaData based on the Image URL (unique), and puts the title with that value
 function addMetaData(current, previous) {
 	var metaData = $("a.fancybox[href='" + current.href + "']").parents(".VIAThumbnail").find(".VIAMetaData").html();
-	if (metaData != null && metaData.length > 0)
+
+	var recordId = $("a.fancybox[href='" + current.href + "']").attr("rel");
+	var imageId = current.href.replace(/^(.*[\/])/, "");
+	imageId = imageId.substr(0, imageId.indexOf("?"));
+	
+	if (metaData != null && metaData.length > 0) {
+		metaData = metaData.replace("LinkPrintPlaceHolder", "../uploaded_files/HVD/viaPage.html?recordId=" + recordId + "&imageId=" + imageId);
 		current.title = metaData;
+	}
 
 }
 

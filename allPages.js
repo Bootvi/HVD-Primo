@@ -329,13 +329,48 @@ function loadXML(url) {
         return xml;
 }
 
+function transformXSL(viaXML, fileName) {
+        //Code for IE
+        if (window.ActiveXObject) {
+                //Initialize all the XSLT methods
+                var xslt = new ActiveXObject("Msxml2.XSLTemplate.3.0");
+                var xslDoc = new ActiveXObject("Msxml2.FreeThreadedDOMDocument.3.0");
+                xslDoc.async = false;
+                xslDoc.load(fileName);
+
+                //Load the XML
+                var xmlDoc = new ActiveXObject("Msxml2.DOMDocument.6.0");
+                xmlDoc.loadXML('<?xml version="1.0"?>' + (new XMLSerializer()).serializeToString(viaXML));
+
+                if (xslDoc.parseError.errorCode != 0) {
+                        var myErr = xslDoc.parseError;
+                        logJS("You have error " + myErr.reason);
+                } else {
+                        xslt.stylesheet = xslDoc;
+                        var xslProc = xslt.createProcessor();
+                        xslProc.input = xmlDoc;
+                        xslProc.transform();
+
+                        return xslProc.output;
+                }
+        }
+        //Code for Normal browsers like Chrome, Firefox, Opera, etc.
+        else if (document.implementation && document.implementation.createDocument) {
+                var viaXSL = loadXML(fileName);
+                xsltProcessor = new XSLTProcessor();
+                xsltProcessor.importStylesheet(viaXSL);
+                resultDocument = xsltProcessor.transformToFragment(viaXML, document);
+                return resultDocument;
+        }
+}
+
 //Load PNX XML from Primo DB
 function loadPNX(recordId) {
 	//Creating a Native empty Dom Element
 	var pnxRecord;
 	if (!pnxRecord) {
 		pnxRecord = $.ajax({
-			url: 'display.do',
+			url: '/primo_library/libweb/action/display.do',
 			data: {
 				fn: 'display',
 				doc: recordId,
@@ -352,6 +387,21 @@ function loadPNX(recordId) {
 	return pnxRecord;
 }
 
+//General URL parser:
+function getURLParams(qs) {
+	qs = qs.split("+").join(" ");
+
+	var params = {},
+		tokens,
+		re = /[?&]?([^=]+)=([^&]*)/g;
+
+	while (tokens = re.exec(qs)) {
+		params[decodeURIComponent(tokens[1])] = decodeURIComponent(tokens[2]);
+	}
+
+	return params;
+}
+
 //Debugger for the customer JS
 debugJS = false
 
@@ -366,3 +416,5 @@ function logJS(msg) {
 		}
 	}
 }
+
+

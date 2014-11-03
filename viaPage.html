@@ -1,0 +1,59 @@
+<html>
+
+<head>
+	<link rel="stylesheet" type="text/css" href="viaPage.css" media="all" />
+
+</head>
+
+<body>
+</body>
+
+
+<script type="text/javascript" src="jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="allPages.js"></script>
+
+<script>
+
+	$(document).ready(function() {
+		var parameters = getURLParams(document.location.search);
+		logJS(parameters);
+
+		generatePrintabePage(parameters);
+	});
+
+
+
+	function generatePrintabePage(parameters) {
+		var pnxXML = loadPNX(parameters['recordId']);
+                var viaXML = $.parseXML($(pnxXML).find("addata > mis1").text().replace(/&/g, "&amp;"));		
+		$(viaXML).find("image").each(function (){
+			var imageLinkId = $(this).attr("xlink:href").replace(/^(.*[\/])/, "");
+
+			if (imageLinkId == parameters['imageId'])
+				recursiveCleanup($(this));
+
+
+		
+		});
+		if ($(viaXML).find("image").length == 1) {
+			$("body").append(transformXSL(viaXML, "viaPage.xsl"));
+			$(".VIAMetaDataValueHollisNumber").text(parameters['recordId'].replace("HVD_VIA", ""));
+			$(".VIAMetaDataValueLinkToRecord").text(document.location);
+
+		} else 
+			$("body").append("ID did not match");
+
+	}
+function recursiveCleanup(element) {
+	if (element[0].nodeName == '#document') 
+		return;
+	$(element).siblings("subwork, surrogate, image").remove();
+
+	recursiveCleanup(element.parent());
+
+
+}
+</script>
+
+</html>
+
