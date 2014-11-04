@@ -32,7 +32,7 @@ function stacksMap(itemArgs, element) {
 					element.parents("table.EXLLocationTable").find(".EXLLocationTableColumn1").append(htmlCode);
 			},
 			error: function(data, error, thrown) {
-				alert("error: " + itemArgs["barcode"] + " " + thrown);
+				logJS("error: " + itemArgs["barcode"] + " " + thrown);
 			}
 		});
 	}
