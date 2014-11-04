@@ -1088,7 +1088,7 @@ tr.VIAThumbnailImage {
 	bottom: 5px;
 }
 
-.VIAThumbnail .VIAMetaDataTable {
+.VIAThumbnail .VIAMetaDataTable, .VIAThumbnail .VIAMetaDataSubTable {
 	display: none;
 }
 
@@ -1096,6 +1096,25 @@ tr.VIAThumbnailImage {
 	text-align: right;
 	padding-right: 10px;
 	vertical-align: top;
+	width: 10%;
+}
+
+.VIAMetaDataTable {
+	width: 100%;
+	font-size: 15px;
+}
+
+.VIAMetaDataSubTable {
+	width: 100%;
+	font-size: 13px;
+}
+
+.tableSeperator {
+	margin-top: 0.4em;
+	margin-bottom: 0.5em;
+	border-width: 0px;
+	background-color: #ddd;
+	height: 5px;
 }
 
 
