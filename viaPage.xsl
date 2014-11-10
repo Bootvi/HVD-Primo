@@ -21,7 +21,7 @@
 
 				<tr>
 					<td class="VIAMetaDataKey">
-						<strong>Link to this record:</strong>
+						<strong>Link to this record: </strong>
 					</td>
 					<td class="VIAMetaDataValue VIAMetaDataValueLinkToRecord"/>
 				</tr>
