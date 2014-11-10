@@ -6,6 +6,9 @@
 	<xsl:template  match="/">
 		<html>
 			<body>
+				<div id="viaHeader">
+					HOLLIS+ Image Detail
+				</div>
 				<xsl:apply-templates/>
 			</body>
 		</html>
@@ -21,7 +24,7 @@
 
 				<tr>
 					<td class="VIAMetaDataKey">
-						<strong>Link to this record: </strong>
+						<strong>Link to this record:</strong>
 					</td>
 					<td class="VIAMetaDataValue VIAMetaDataValueLinkToRecord"/>
 				</tr>
@@ -70,7 +73,7 @@
 		<xsl:if test="workType">
 			<tr>
 				<td class="VIAMetaDataKey">
-					<strong>Worktype:</strong>
+					<strong>Work Type:</strong>
 				</td>
 				<td class="VIAMetaDataValue">
 					<xsl:value-of select="workType"/>
@@ -290,21 +293,7 @@
 		<xsl:if test="style">
 			<tr>
 				<td class="VIAMetaDataKey">
-					<strong>Note:</strong>
-				</td>
-				<td class="VIAMetaDataValue VIAMetaDataValueStyle">
-					<xsl:for-each select="style">
-						<xsl:value-of select="term"/>
-						<xsl:if test="position()!=last()">; </xsl:if>
-					</xsl:for-each>
-				</td>
-			</tr>
-		</xsl:if>				
-
-		<xsl:if test="style">
-			<tr>
-				<td class="VIAMetaDataKey">
-					<strong>Note:</strong>
+					<strong>Style/Period:</strong>
 				</td>
 				<td class="VIAMetaDataValue VIAMetaDataValueStyle">
 					<xsl:for-each select="style">
@@ -355,6 +344,50 @@
 				</td>
 			</tr>
 		</xsl:if>
+		
+		<xsl:if test="relatedInformation">
+			<tr>
+				<td class="VIAMetaDataKey">
+					<strong>Related Information:</strong>
+				</td>
+				<td class="VIAMetaDataValue VIAMetaDataValueRelatedInformation">
+					<xsl:for-each select="relatedInformation">
+						<xsl:choose>
+							<xsl:when test="./@xlink:href">
+								<a target="_blank">
+									<xsl:attribute name="href">
+										<xsl:value-of select="./@xlink:href"/>
+									</xsl:attribute>
+									<xsl:value-of select="."/>
+								</a>
+							</xsl:when>
+							<xsl:otherwise>
+								<xsl:value-of select="."/>
+							</xsl:otherwise>
+						</xsl:choose>							
+						<xsl:if test="position()!=last()">
+							<br />
+						</xsl:if>
+					</xsl:for-each>
+				</td>
+			</tr>
+		</xsl:if>		
+		
+		<xsl:if test="notes">
+			<tr>
+				<td class="VIAMetaDataKey">
+					<strong>Note:</strong>
+				</td>
+				<td class="VIAMetaDataValue VIAMetaDataValueNotes">
+					<xsl:for-each select="notes">
+						<xsl:value-of select="."/>
+						<xsl:if test="position()!=last()">
+							<br />
+						</xsl:if>
+					</xsl:for-each>
+				</td>
+			</tr>
+		</xsl:if>		
 
 		<xsl:if test="classification">
 			<tr>
@@ -496,8 +529,8 @@
 			<xsl:when test="./repositoryName = 'Arnold Arboretum/Horticulture Library (Jamaica Plain)'">
 				<a target="_new">
 					<xsl:attribute name="href">http://hul.harvard.edu/cmtes/ulc/aac/via/desc-Arboretum.html</xsl:attribute>
-					<img class="extimg" onclick="ABLFrame.focus();">
-						<xsl:attribute name="src">infoViaPage.png</xsl:attribute>
+					<img class="extimg" >
+						<xsl:attribute name="src">libInfoPage.png</xsl:attribute>
 					</img>
 				</a>
 			</xsl:when>							  
@@ -505,8 +538,8 @@
 			<xsl:when test="./repositoryName = 'Baker Library, Harvard Business School, Historical Collections'">
 				<a target="_new">
 					<xsl:attribute name="href">http://hul.harvard.edu/cmtes/ulc/aac/via/desc-Baker.html</xsl:attribute>
-					<img class="extimg" onclick="ABLFrame.focus();">
-						<xsl:attribute name="src">infoViaPage.png</xsl:attribute>
+					<img class="extimg" >
+						<xsl:attribute name="src">libInfoPage.png</xsl:attribute>
 					</img>
 				</a>
 			</xsl:when>
@@ -514,8 +547,8 @@
 			<xsl:when test="./repositoryName = 'Biblioteca Berenson, Fototeca, Villa I Tatti - The Harvard University Center for Italian Renaissance Studies'">
 				<a target="_new">
 					<xsl:attribute name="href">http://hul.harvard.edu/cmtes/ulc/aac/via/desc-Itatti.html</xsl:attribute>
-					<img class="extimg" onclick="ABLFrame.focus();">
-						<xsl:attribute name="src">infoViaPage.png</xsl:attribute>
+					<img class="extimg" >
+						<xsl:attribute name="src">libInfoPage.png</xsl:attribute>
 					</img>
 				</a>
 			</xsl:when>
@@ -523,8 +556,8 @@
 			<xsl:when test="./repositoryName = 'Gray Herbarium Library'">
 				<a target="_new">
 					<xsl:attribute name="href">http://hul.harvard.edu/cmtes/ulc/aac/via/desc-Botany.html</xsl:attribute>
-					<img class="extimg" onclick="ABLFrame.focus();">
-						<xsl:attribute name="src">infoViaPage.png</xsl:attribute>
+					<img class="extimg" >
+						<xsl:attribute name="src">libInfoPage.png</xsl:attribute>
 					</img>
 				</a>
 			</xsl:when>
@@ -532,8 +565,8 @@
 			<xsl:when test="./repositoryName = 'Cabot Science Library'">
 				<a target="_new">
 					<xsl:attribute name="href">http://hul.harvard.edu/cmtes/ulc/aac/via/desc-Cabot.html</xsl:attribute>
-					<img class="extimg" onclick="ABLFrame.focus();">
-						<xsl:attribute name="src">infoViaPage.png</xsl:attribute>
+					<img class="extimg" >
+						<xsl:attribute name="src">libInfoPage.png</xsl:attribute>
 					</img>
 				</a>
 			</xsl:when>
@@ -541,8 +574,8 @@
 			<xsl:when test="./repositoryName = 'Center for Hellenic Studies'">
 				<a target="_new">
 					<xsl:attribute name="href">http://hul.harvard.edu/cmtes/ulc/aac/via/desc-Hellenic.html</xsl:attribute>
-					<img class="extimg" onclick="ABLFrame.focus();">
-						<xsl:attribute name="src">infoViaPage.png</xsl:attribute>
+					<img class="extimg" >
+						<xsl:attribute name="src">libInfoPage.png</xsl:attribute>
 					</img>
 				</a>
 			</xsl:when>
@@ -550,8 +583,8 @@
 			<xsl:when test="./repositoryName = 'Francis A. Countway Library of Medicine'">
 				<a target="_new">
 					<xsl:attribute name="href">http://hul.harvard.edu/cmtes/ulc/aac/via/desc-Countway.html</xsl:attribute>
-					<img class="extimg" onclick="ABLFrame.focus();">
-						<xsl:attribute name="src">infoViaPage.png</xsl:attribute>
+					<img class="extimg" >
+						<xsl:attribute name="src">libInfoPage.png</xsl:attribute>
 					</img>
 				</a>
 			</xsl:when>
@@ -559,8 +592,8 @@
 			<xsl:when test="./repositoryName = 'Image Collections and Fieldwork Archives, Dumbarton Oaks Research Library and Collection'">
 				<a target="_new">
 					<xsl:attribute name="href">http://hul.harvard.edu/cmtes/ulc/aac/via/desc-DoaksICFA.html</xsl:attribute>
-					<img class="extimg" onclick="ABLFrame.focus();">
-						<xsl:attribute name="src">infoViaPage.png</xsl:attribute>
+					<img class="extimg" >
+						<xsl:attribute name="src">libInfoPage.png</xsl:attribute>
 					</img>
 				</a>
 			</xsl:when>
@@ -568,8 +601,8 @@
 			<xsl:when test="./repositoryName = 'Ernst Mayr Library of the Museum of Comparative Zoology'">
 				<a target="_new">
 					<xsl:attribute name="href">http://hul.harvard.edu/cmtes/ulc/aac/via/desc-MCZ.html</xsl:attribute>
-					<img class="extimg" onclick="ABLFrame.focus();">
-						<xsl:attribute name="src">infoViaPage.png</xsl:attribute>
+					<img class="extimg" >
+						<xsl:attribute name="src">libInfoPage.png</xsl:attribute>
 					</img>
 				</a>
 			</xsl:when>
@@ -577,8 +610,8 @@
 			<xsl:when test="./repositoryName = 'General Artemas Ward House Museum'">
 				<a target="_new">
 					<xsl:attribute name="href">http://hul.harvard.edu/cmtes/ulc/aac/via/desc-Ward.html</xsl:attribute>
-					<img class="extimg" onclick="ABLFrame.focus();">
-						<xsl:attribute name="src">infoViaPage.png</xsl:attribute>
+					<img class="extimg" >
+						<xsl:attribute name="src">libInfoPage.png</xsl:attribute>
 					</img>
 				</a>
 			</xsl:when>
@@ -586,8 +619,8 @@
 			<xsl:when test="./repositoryName = 'Harvard Art Museum'">
 				<a target="_new">
 					<xsl:attribute name="href">http://hul.harvard.edu/cmtes/ulc/aac/via/desc-HUAM.html</xsl:attribute>
-					<img class="extimg" onclick="ABLFrame.focus();">
-						<xsl:attribute name="src">infoViaPage.png</xsl:attribute>
+					<img class="extimg" >
+						<xsl:attribute name="src">libInfoPage.png</xsl:attribute>
 					</img>
 				</a>
 			</xsl:when>
@@ -595,8 +628,8 @@
 			<xsl:when test="./repositoryName = 'Harvard University Art Museums'">
 				<a target="_new">
 					<xsl:attribute name="href">http://hul.harvard.edu/cmtes/ulc/aac/via/desc-HUAM.html</xsl:attribute>
-					<img class="extimg" onclick="ABLFrame.focus();">
-						<xsl:attribute name="src">infoViaPage.png</xsl:attribute>
+					<img class="extimg" >
+						<xsl:attribute name="src">libInfoPage.png</xsl:attribute>
 					</img>
 				</a>
 			</xsl:when>
@@ -604,8 +637,8 @@
 			<xsl:when test="./repositoryName = 'Harvard College Observatory Library'">
 				<a target="_new">
 					<xsl:attribute name="href">http://tdc-www.harvard.edu/plates/</xsl:attribute>
-					<img class="extimg" onclick="ABLFrame.focus();">
-						<xsl:attribute name="src">infoViaPage.png</xsl:attribute>
+					<img class="extimg" >
+						<xsl:attribute name="src">libInfoPage.png</xsl:attribute>
 					</img>
 				</a>
 			</xsl:when>
@@ -613,8 +646,8 @@
 			<xsl:when test="./repositoryName = 'Harvard Divinity School'">
 				<a target="_new">
 					<xsl:attribute name="href">http://hul.harvard.edu/cmtes/ulc/aac/via/desc-Divinity.html</xsl:attribute>
-					<img class="extimg" onclick="ABLFrame.focus();">
-						<xsl:attribute name="src">infoViaPage.png</xsl:attribute>
+					<img class="extimg" >
+						<xsl:attribute name="src">libInfoPage.png</xsl:attribute>
 					</img>
 				</a>
 			</xsl:when>
@@ -622,8 +655,8 @@
 			<xsl:when test="./repositoryName = 'Harvard Film Archive'">
 				<a target="_new">
 					<xsl:attribute name="href">http://hul.harvard.edu/cmtes/ulc/aac/via/desc-Film.html</xsl:attribute>
-					<img class="extimg" onclick="ABLFrame.focus();">
-						<xsl:attribute name="src">infoViaPage.png</xsl:attribute>
+					<img class="extimg" >
+						<xsl:attribute name="src">libInfoPage.png</xsl:attribute>
 					</img>
 				</a>
 			</xsl:when>
@@ -631,8 +664,8 @@
 			<xsl:when test="./repositoryName = 'Harvard Fine Arts Library, Visual Collections - Slides and Digital Images'">
 				<a target="_new">
 					<xsl:attribute name="href">http://hul.harvard.edu/cmtes/ulc/aac/via/desc-FAL-SDI.html</xsl:attribute>
-					<img class="extimg" onclick="ABLFrame.focus();">
-						<xsl:attribute name="src">infoViaPage.png</xsl:attribute>
+					<img class="extimg" >
+						<xsl:attribute name="src">libInfoPage.png</xsl:attribute>
 					</img>
 				</a>
 			</xsl:when>
@@ -640,8 +673,8 @@
 			<xsl:when test="./repositoryName = 'Harvard Fine Arts Library, Visual Collections - Historical Photographs'">
 				<a target="_new">
 					<xsl:attribute name="href">http://hul.harvard.edu/cmtes/ulc/aac/via/desc-FAL-HPSVC.html</xsl:attribute>
-					<img class="extimg" onclick="ABLFrame.focus();">
-						<xsl:attribute name="src">infoViaPage.png</xsl:attribute>
+					<img class="extimg" >
+						<xsl:attribute name="src">libInfoPage.png</xsl:attribute>
 					</img>
 				</a>
 			</xsl:when>
@@ -649,8 +682,8 @@
 			<xsl:when test="./repositoryName = 'Harvard Fine Arts Library, Special Collections'">
 				<a target="_new">
 					<xsl:attribute name="href">http://hul.harvard.edu/cmtes/ulc/aac/via/desc-FAL-HPSVC.html</xsl:attribute>
-					<img class="extimg" onclick="ABLFrame.focus();">
-						<xsl:attribute name="src">infoViaPage.png</xsl:attribute>
+					<img class="extimg" >
+						<xsl:attribute name="src">libInfoPage.png</xsl:attribute>
 					</img>
 				</a>
 			</xsl:when>
@@ -658,8 +691,8 @@
 			<xsl:when test="./repositoryName = 'Harvard Forest'">
 				<a target="_new">
 					<xsl:attribute name="href">http://hul.harvard.edu/cmtes/ulc/aac/via/desc-Forest.html</xsl:attribute>
-					<img class="extimg" onclick="ABLFrame.focus();">
-						<xsl:attribute name="src">infoViaPage.png</xsl:attribute>
+					<img class="extimg" >
+						<xsl:attribute name="src">libInfoPage.png</xsl:attribute>
 					</img>
 				</a>
 			</xsl:when>
@@ -667,8 +700,8 @@
 			<xsl:when test="./repositoryName = 'Harvard Law School Library'">
 				<a target="_new">
 					<xsl:attribute name="href">http://hul.harvard.edu/cmtes/ulc/aac/via/desc-Law.html</xsl:attribute>
-					<img class="extimg" onclick="ABLFrame.focus();">
-						<xsl:attribute name="src">infoViaPage.png</xsl:attribute>
+					<img class="extimg" >
+						<xsl:attribute name="src">libInfoPage.png</xsl:attribute>
 					</img>
 				</a>
 			</xsl:when>
@@ -676,8 +709,8 @@
 			<xsl:when test="./repositoryName = 'Harvard Portrait/Clock Collections'">
 				<a target="_new">
 					<xsl:attribute name="href">http://hul.harvard.edu/cmtes/ulc/aac/via/desc-HUPC.html</xsl:attribute>
-					<img class="extimg" onclick="ABLFrame.focus();">
-						<xsl:attribute name="src">infoViaPage.png</xsl:attribute>
+					<img class="extimg" >
+						<xsl:attribute name="src">libInfoPage.png</xsl:attribute>
 					</img>
 				</a>
 			</xsl:when>
@@ -685,8 +718,8 @@
 			<xsl:when test="./repositoryName = 'Harvard Theatre Collection'">
 				<a target="_new">
 					<xsl:attribute name="href">http://hul.harvard.edu/cmtes/ulc/aac/via/desc-Theatre.html</xsl:attribute>
-					<img class="extimg" onclick="ABLFrame.focus();">
-						<xsl:attribute name="src">infoViaPage.png</xsl:attribute>
+					<img class="extimg" >
+						<xsl:attribute name="src">libInfoPage.png</xsl:attribute>
 					</img>
 				</a>
 			</xsl:when>
@@ -694,8 +727,8 @@
 			<xsl:when test="./repositoryName = 'Harvard University Archives'">
 				<a target="_new">
 					<xsl:attribute name="href">http://hul.harvard.edu/huarc/</xsl:attribute>
-					<img class="extimg" onclick="ABLFrame.focus();">
-						<xsl:attribute name="src">infoViaPage.png</xsl:attribute>
+					<img class="extimg" >
+						<xsl:attribute name="src">libInfoPage.png</xsl:attribute>
 					</img>
 				</a>
 			</xsl:when>
@@ -703,8 +736,8 @@
 			<xsl:when test="./repositoryName = 'Harvard-Yenching Library'">
 				<a target="_new">
 					<xsl:attribute name="href">http://hul.harvard.edu/cmtes/ulc/aac/via/desc-Yenching.html</xsl:attribute>
-					<img class="extimg" onclick="ABLFrame.focus();">
-						<xsl:attribute name="src">infoViaPage.png</xsl:attribute>
+					<img class="extimg" >
+						<xsl:attribute name="src">libInfoPage.png</xsl:attribute>
 					</img>
 				</a>
 			</xsl:when>
@@ -712,8 +745,8 @@
 			<xsl:when test="./repositoryName = 'Houghton Library, Department of Printing and Graphic Arts'">
 				<a target="_new">
 					<xsl:attribute name="href">http://hul.harvard.edu/cmtes/ulc/aac/via/desc-HoughtonPGA.html</xsl:attribute>
-					<img class="extimg" onclick="ABLFrame.focus();">
-						<xsl:attribute name="src">infoViaPage.png</xsl:attribute>
+					<img class="extimg" >
+						<xsl:attribute name="src">libInfoPage.png</xsl:attribute>
 					</img>
 				</a>
 			</xsl:when>
@@ -721,8 +754,8 @@
 			<xsl:when test="./repositoryName = 'Houghton Library, Manuscript Department'">
 				<a target="_new">
 					<xsl:attribute name="href">http://hul.harvard.edu/cmtes/ulc/aac/via/desc-HoughtonMBMSS.html</xsl:attribute>
-					<img class="extimg" onclick="ABLFrame.focus();">
-						<xsl:attribute name="src">infoViaPage.png</xsl:attribute>
+					<img class="extimg" >
+						<xsl:attribute name="src">libInfoPage.png</xsl:attribute>
 					</img>
 				</a>
 			</xsl:when>
@@ -730,8 +763,8 @@
 			<xsl:when test="./repositoryName = 'Houghton Library'">
 				<a target="_new">
 					<xsl:attribute name="href">http://hcl.harvard.edu/libraries/houghton/</xsl:attribute>
-					<img class="extimg" onclick="ABLFrame.focus();">
-						<xsl:attribute name="src">infoViaPage.png</xsl:attribute>
+					<img class="extimg" >
+						<xsl:attribute name="src">libInfoPage.png</xsl:attribute>
 					</img>
 				</a>
 			</xsl:when>
@@ -739,8 +772,8 @@
 			<xsl:when test="./repositoryName = 'Judaica Division, Widener Library'">
 				<a target="_new">
 					<xsl:attribute name="href">http://hul.harvard.edu/cmtes/ulc/aac/via/desc-Judaica.html</xsl:attribute>
-					<img class="extimg" onclick="ABLFrame.focus();">
-						<xsl:attribute name="src">infoViaPage.png</xsl:attribute>
+					<img class="extimg" >
+						<xsl:attribute name="src">libInfoPage.png</xsl:attribute>
 					</img>
 				</a>
 			</xsl:when>
@@ -748,8 +781,8 @@
 			<xsl:when test="./repositoryName = 'Loeb Library, Harvard Design School'">
 				<a target="_new">
 					<xsl:attribute name="href">http://hul.harvard.edu/cmtes/ulc/aac/via/desc-Leob.html</xsl:attribute>
-					<img class="extimg" onclick="ABLFrame.focus();">
-						<xsl:attribute name="src">infoViaPage.png</xsl:attribute>
+					<img class="extimg" >
+						<xsl:attribute name="src">libInfoPage.png</xsl:attribute>
 					</img>
 				</a>
 			</xsl:when>
@@ -757,8 +790,8 @@
 			<xsl:when test="./repositoryName = 'Milman Parry Collection of Oral Literature'">
 				<a target="_new">
 					<xsl:attribute name="href">http://chs119.harvard.edu/mpc/</xsl:attribute>
-					<img class="extimg" onclick="ABLFrame.focus();">
-						<xsl:attribute name="src">infoViaPage.png</xsl:attribute>
+					<img class="extimg" >
+						<xsl:attribute name="src">libInfoPage.png</xsl:attribute>
 					</img>
 				</a>
 			</xsl:when>
@@ -766,8 +799,8 @@
 			<xsl:when test="./repositoryName = 'Peabody Museum of Archaeology and Ethnology, Photographic Archives'">
 				<a target="_new">
 					<xsl:attribute name="href">http://hul.harvard.edu/cmtes/ulc/aac/via/desc-Peabody.html</xsl:attribute>
-					<img class="extimg" onclick="ABLFrame.focus();">
-						<xsl:attribute name="src">infoViaPage.png</xsl:attribute>
+					<img class="extimg" >
+						<xsl:attribute name="src">libInfoPage.png</xsl:attribute>
 					</img>
 				</a>
 			</xsl:when>
@@ -775,8 +808,8 @@
 			<xsl:when test="./repositoryName = 'Radcliffe Archives'">
 				<a target="_new">
 					<xsl:attribute name="href">http://hul.harvard.edu/cmtes/ulc/aac/via/desc-RadcliffeARCH.html</xsl:attribute>
-					<img class="extimg" onclick="ABLFrame.focus();">
-						<xsl:attribute name="src">infoViaPage.png</xsl:attribute>
+					<img class="extimg" >
+						<xsl:attribute name="src">libInfoPage.png</xsl:attribute>
 					</img>
 				</a>
 			</xsl:when>
@@ -784,8 +817,8 @@
 			<xsl:when test="./repositoryName = 'Schlesinger Library on the History of Women in America, Radcliffe Institute'">
 				<a target="_new">
 					<xsl:attribute name="href">http://hul.harvard.edu/cmtes/ulc/aac/via/desc-Schlesinger.html</xsl:attribute>
-					<img class="extimg" onclick="ABLFrame.focus();">
-						<xsl:attribute name="src">infoViaPage.png</xsl:attribute>
+					<img class="extimg" >
+						<xsl:attribute name="src">libInfoPage.png</xsl:attribute>
 					</img>
 				</a>
 			</xsl:when>
@@ -793,8 +826,8 @@
 			<xsl:when test="./repositoryName = 'Theodore Roosevelt Collection'">
 				<a target="_new">
 					<xsl:attribute name="href">http://hul.harvard.edu/cmtes/ulc/aac/via/desc-TR.html</xsl:attribute>
-					<img class="extimg" onclick="ABLFrame.focus();">
-						<xsl:attribute name="src">infoViaPage.png</xsl:attribute>
+					<img class="extimg" >
+						<xsl:attribute name="src">libInfoPage.png</xsl:attribute>
 					</img>
 				</a>
 			</xsl:when>
@@ -802,8 +835,8 @@
 			<xsl:when test="./repositoryName = 'Tozzer Library'">
 				<a target="_new">
 					<xsl:attribute name="href">http://hcl.harvard.edu/libraries/tozzer/</xsl:attribute>
-					<img class="extimg" onclick="ABLFrame.focus();">
-						<xsl:attribute name="src">infoViaPage.png</xsl:attribute>
+					<img class="extimg" >
+						<xsl:attribute name="src">libInfoPage.png</xsl:attribute>
 					</img>
 				</a>
 			</xsl:when>
@@ -811,8 +844,8 @@
 			<xsl:when test="./repositoryName = 'Widener Library'">
 				<a target="_new">
 					<xsl:attribute name="href">http://hcl.harvard.edu/libraries/widener/</xsl:attribute>
-					<img class="extimg" onclick="ABLFrame.focus();">
-						<xsl:attribute name="src">infoViaPage.png</xsl:attribute>
+					<img class="extimg" >
+						<xsl:attribute name="src">libInfoPage.png</xsl:attribute>
 					</img>
 				</a>
 			</xsl:when> 
