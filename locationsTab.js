@@ -204,6 +204,7 @@ function returnOnHoldStatus(value) {
 
 //Ajax Events for locations tabs 
 $(document).ajaxComplete(function(event, request, settings) {
+	logJS(settings.url);
 	if ((RegExp("tabs=locationsTab").test(settings.url))) {
 		locationsTabModifications();
 	}
@@ -211,6 +212,7 @@ $(document).ajaxComplete(function(event, request, settings) {
 
 //If location tabs are open directly on Full Details view
 $(document).ready(function() {
+	logJS(window.location.href);
 	if ((RegExp("tabs=locationsTab").test(window.location.href))) {
 		locationsTabModifications();
 	}

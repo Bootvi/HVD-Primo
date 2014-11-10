@@ -32,6 +32,7 @@
 									</td>
 								</tr>
 							</table>
+							<script>logJS(window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight);</script>
 						</div>
 					</div>
 				</body>

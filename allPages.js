@@ -82,12 +82,10 @@ $(document).ready(function() {
 	//Moving RSS, eShelf, etc to bottom of Facets
 	$('#exlidFacetTile').append($('.EXLFacetActionsV2').parent().parent());
 
-	//Add a custom tab for VIA records, put a listener on the content
-	//EXLTA_addTab('Gallery', 'VIATab', '', viaTabHandler, false, viaEvaluator);
-	//$(".VIATab-Container").on("DOMSubtreeModified propertychange", buildViaTab);
-
-
 });
+
+//Overwrite the mogileDisplay.js function to avoid adding the languages to the mobile page
+function addLanguages() {}
 
 function snippetToLink() {
 	//Snippets to TOC links - interim solution - not used 

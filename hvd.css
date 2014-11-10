@@ -1088,7 +1088,7 @@ tr.VIAThumbnailImage {
 	bottom: 5px;
 }
 
-.VIAThumbnail .VIAMetaDataTable, .VIAThumbnail .VIAMetaDataSubTable {
+.VIAThumbnail .VIAMetaDataTable, .VIAThumbnail .VIAMetaDataSubTable, .VIAThumbnail .tableSeperator  {
 	display: none;
 }
 
@@ -1117,7 +1117,19 @@ tr.VIAThumbnailImage {
 	height: 5px;
 }
 
+div.EXLBriefResultsDisplayCoverImageNUM0 img.EXLBriefResultsCover {
+	width: auto;
+	transform: translateX(-50%);
+	-ms-transform: translateX(-50%); /* IE 9 */
+	-webkit-transform: translateX(-50%); /* Chrome before 36.0, Safari, Opera */
+	left: 50%;
+	position: relative;
+}
 
+.coverImageDiv {
+	overflow: hidden;
+	width: 43px;
+}
 
 /* -------------------------------------- */
 
