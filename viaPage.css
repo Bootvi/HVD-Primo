@@ -19,3 +19,9 @@ iframe.viaIFrame {
 .viaComponenetMetaData .VIAMetaDataTable {
 	font-size: 12px;
 }
+
+#viaHeader  {
+	font-family: Georgia,"Times New Roman",Times,serif;
+	font-size: 17px;
+	margin-bottom: 10px;
+}

@@ -28,7 +28,7 @@
 							<table class="VIAMetaDataTable">
 								<tr>
 									<td colspan="2" class="VIAMetaDataValue">
-										<a href="LinkPrintPlaceHolder" target="_blank">Link and Print this image</a>
+										<a href="LinkPrintPlaceHolder" target="_blank">View full record (use this for printing / bookmarking)</a>
 									</td>
 								</tr>
 							</table>
@@ -91,13 +91,13 @@
 
 	<!-- Meta Data for Works and Groups - 3 lines -->
 	<xsl:template name="workGroupData">
-		<xsl:if test="../title/textElement">
+		<xsl:if test="/work/title/textElement|/group/title/textElement">
 			<tr>
 				<td class="VIAMetaDataKey">
 					<strong>Title:</strong>
 				</td>
 				<td class="VIAMetaDataValue">
-					<xsl:value-of select="../title/textElement"/>
+					<xsl:value-of select="/work/title/textElement|/group/title/textElement"/>
 				</td>
 			</tr>
 		</xsl:if>
