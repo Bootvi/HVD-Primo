@@ -91,13 +91,13 @@
 
 	<!-- Meta Data for Works and Groups - 3 lines -->
 	<xsl:template name="workGroupData">
-		<xsl:if test="../title/textElement">
+		<xsl:if test="/work/title/textElement|/group/title/textElement">
 			<tr>
 				<td class="VIAMetaDataKey">
 					<strong>Title:</strong>
 				</td>
 				<td class="VIAMetaDataValue">
-					<xsl:value-of select="../title/textElement"/>
+					<xsl:value-of select="/work/title/textElement|/group/title/textElement"/>
 				</td>
 			</tr>
 		</xsl:if>
