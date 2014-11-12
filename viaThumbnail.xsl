@@ -28,7 +28,7 @@
 							<table class="VIAMetaDataTable">
 								<tr>
 									<td colspan="2" class="VIAMetaDataValue">
-										<a href="LinkPrintPlaceHolder" target="_blank">View full record (use this for printing / bookmarking)</a>
+										<a href="LinkPrintPlaceHolder" target="_blank">View full image and record (use this for printing / bookmarking)</a>
 									</td>
 								</tr>
 							</table>
