@@ -3,62 +3,66 @@ function buildViaGallary() {
 		//Avoid duplicate work
 		if ($(this).find(".VIAGallary").length)
 			return;
-		
+
 		//Make this details tab larger
-		$(this).parents(".EXLDetailsTabContent").css({
-			"height": "auto",
-			"max-height": "38em"
-		});
-		
+		if ((RegExp("tabs=detailsTab").test(window.location.href)) || (RegExp("fn=permalink").test(window.location.href)))
+			$(this).parents(".EXLDetailsTabContent").css("height", "auto");
+		else {
+			$(this).parents(".EXLDetailsTabContent").css({
+				"height": "auto",
+				"max-height": "38em"
+			});
+		}
+
 		//Get the VIA XML from the PNX record
 		var recordId = $(this).parents(".EXLResult").find(".EXLResultRecordId").attr("id");
 		var pnxXML = loadPNX(recordId);
 		var viaXML = $.parseXML($(pnxXML).find("addata > mis1").text().replace(/&/g, "&amp;"));
-                
+
 		//Create Gallary header
-                createHeader($(this), $(pnxXML).find("lds20").text());		
+		createHeader($(this), $(pnxXML).find("lds20").text());
 
 		//Create a gallery area
-                $(this).append('<div class="VIAGallary"></div>');
-	
+		$(this).append('<div class="VIAGallary"></div>');
+
 		//Append the converted VIA XML to the gallery, and set 'rel' parameter to make them 1 gallary 
 		$(this).find(".VIAGallary").append(transformXSL(viaXML, "../uploaded_files/HVD/viaThumbnail.xsl"));
 		$(this).find("a.fancybox").attr("rel", recordId);
-		
-                //Trim the cpations
-                $(this).find(".VIAThumbnailTitle").each(function() {
-                	var tlength = $(this).text().length;
-                        if (tlength > 44) {
-                        	$(this).attr("title", $(this).text());
-                                var text = $(this).text().substr(0, 44);
-                                $(this).text(text.substr(0, text.lastIndexOf(" ")) + "...");
-                        }
 
-               });
+		//Trim the cpations
+		$(this).find(".VIAThumbnailTitle").each(function() {
+			var tlength = $(this).text().length;
+			if (tlength > 44) {
+				$(this).attr("title", $(this).text());
+				var text = $(this).text().substr(0, 44);
+				$(this).text(text.substr(0, text.lastIndexOf(" ")) + "...");
+			}
 
-               //Make it FANCYBOX, with MetaData function call to populate the information
-               $(this).find(".VIAGallary a.fancybox").fancybox({
-                                openEffect: 'none',
-                                closeEffect: 'none',
-                                nextEffect: 'none',
-                                prevEffect: 'none',
-                                width: '1200',
-                                height: '660',
-                                margin: [20, 60, 20, 60],
-                                helpers: {
-                                        title: {
-                                                type: 'inside'
-                                        },
-                                        overlay: {
-                                                locked: false
-                                        }
-                                },
-                                afterLoad: function(current, previous) {
-                                        addMetaData(current, previous);
-                                }
+		});
+
+		//Make it FANCYBOX, with MetaData function call to populate the information
+		$(this).find(".VIAGallary a.fancybox").fancybox({
+			openEffect: 'none',
+			closeEffect: 'none',
+			nextEffect: 'none',
+			prevEffect: 'none',
+			width: '1200',
+			height: '660',
+			margin: [20, 60, 20, 60],
+			helpers: {
+				title: {
+					type: 'inside'
+				},
+				overlay: {
+					locked: false
+				}
+			},
+			afterLoad: function(current, previous) {
+				addMetaData(current, previous);
+			}
 
 
-                        });
+		});
 
 	});
 }
@@ -84,11 +88,10 @@ function addMetaData(current, previous) {
 	var recordId = $("a.fancybox[href='" + current.href + "']").attr("rel");
 	var imageId = current.href.replace(/^(.*[\/])/, "");
 	imageId = imageId.substr(0, imageId.indexOf("?"));
-	
+
 	if (metaData != null && metaData.length > 0) {
 		metaData = metaData.replace("LinkPrintPlaceHolder", "../uploaded_files/HVD/viaPage.html?recordId=" + recordId + "&imageId=" + imageId);
 		current.title = metaData;
 	}
 
 }
-
