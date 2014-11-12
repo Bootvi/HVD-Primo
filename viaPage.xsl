@@ -10,6 +10,9 @@
 					HOLLIS+ Image Detail
 				</div>
 				<xsl:apply-templates/>
+				<div id="viaFooter">
+					<a href="http://nrs.harvard.edu/urn-3:hul.ois:portal_copyright">Copyright and Permissions</a>
+				</div>				
 			</body>
 		</html>
 	</xsl:template>
@@ -31,6 +34,8 @@
 			</table>
 		</div>
 		
+		<hr class="tableSeperator">
+				
 		<br/>
 
 		<xsl:for-each select="//surrogate|//subwork">
@@ -41,6 +46,8 @@
 				</table>
 			</div>
 		</xsl:for-each>
+		
+
 
 	</xsl:template>
 

@@ -1,5 +1,5 @@
 body {
-	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	font-family: Arial,verdana;
 }
 
 div.viaIFrame {
@@ -20,8 +20,19 @@ iframe.viaIFrame {
 	font-size: 12px;
 }
 
+.VIAMetaDataKey {
+	width: 100px;
+	text-align: right;
+	vertical-align: top;
+	padding-right: 10px;
+}
+
 #viaHeader  {
 	font-family: Georgia,"Times New Roman",Times,serif;
 	font-size: 17px;
 	margin-bottom: 10px;
+}
+#viaFooter  {
+	font-size: 14px;
+	margin-top: 10px;
 }
