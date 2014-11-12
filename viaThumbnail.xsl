@@ -176,7 +176,7 @@
 		<xsl:if test="../workType">
 			<tr>
 				<td class="VIAMetaDataKey">
-					<strong>Worktype:</strong>
+					<strong>Work Type:</strong>
 				</td>
 				<td class="VIAMetaDataValue">
 					<xsl:value-of select="../workType"/>
@@ -193,16 +193,6 @@
 				</td>
 			</tr>
 		</xsl:if>
-		<xsl:if test="../notes">
-			<tr>
-				<td class="VIAMetaDataKey">
-					<strong>Note:</strong> 
-				</td>
-				<td class="VIAMetaDataValue">
-					<xsl:value-of select="../notes"/>
-				</td>
-			</tr>
-		</xsl:if> 
 
 		<xsl:if test="../topic">            
 			<tr>                                    
@@ -218,16 +208,7 @@
 			</tr> 
 
 		</xsl:if>
-		<xsl:if test="../classification/number">
-			<tr>
-				<td class="VIAMetaDataKey">
-					<strong>Classification:</strong> 
-				</td>
-				<td class="VIAMetaDataValue">
-					<xsl:value-of select="../classification/number"/>
-				</td>
-			</tr>
-		</xsl:if>
+
 
 		<xsl:if test="../repository/repositoryName">
 			<tr>
