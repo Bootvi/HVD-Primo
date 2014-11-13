@@ -1051,6 +1051,7 @@ span.borrowDirectText {
 div.VIAThumbnail {
 	float: left;
 	margin: 10px 10px 10px 10px;
+	height: 210px;
 }
 .VIAThumbnail table {
 	width: 160px;
@@ -1096,7 +1097,7 @@ tr.VIAThumbnailImage {
 	text-align: right;
 	padding-right: 10px;
 	vertical-align: top;
-	width: 10%;
+	width: 100px;
 }
 
 .VIAMetaDataTable {
@@ -1109,6 +1110,12 @@ tr.VIAThumbnailImage {
 	font-size: 13px;
 }
 
+#VIAbookmarkLink {
+padding-top: 10px;
+color: #a51c30;
+font-weight: bold;
+}
+
 .tableSeperator {
 	margin-top: 0.4em;
 	margin-bottom: 0.5em;
@@ -1116,6 +1123,7 @@ tr.VIAThumbnailImage {
 	background-color: #ddd;
 	height: 5px;
 }
+
 
 div.EXLBriefResultsDisplayCoverImageNUM0 img.EXLBriefResultsCover {
 	width: auto;
