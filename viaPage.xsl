@@ -7,7 +7,8 @@
 		<html>
 			<body>
 				<div id="viaHeader">
-					HOLLIS+ Image Detail
+					<img src="../uploaded_files/HVD/pennant_HOLLIS+beta.jpg" />
+					<div>HOLLIS+ Image Detail</div>
 				</div>
 				<xsl:apply-templates/>
 				<div id="viaFooter">
@@ -36,7 +37,7 @@
 		
 		<hr class="tableSeperator"/>
 				
-		<br/>
+		<!-- <br/> -->
 
 		<xsl:for-each select="//surrogate|//subwork">
 			<div class="viaComponenetMetaData">
@@ -502,7 +503,7 @@
 						</xsl:if>
 						<xsl:for-each select="number">
 							<span class="collection">								
-								<br/>
+								<!-- <br/> -->
 								<xsl:value-of select="." />
 							</span>	
 						</xsl:for-each>

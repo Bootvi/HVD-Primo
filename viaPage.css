@@ -2,6 +2,11 @@ body {
 	font-family: Arial,verdana;
 }
 
+a {
+	color: #a51c30;
+	text-decoration: none;
+}
+
 div.viaIFrame {
 	width: 1200px;
 	height: 660px;
@@ -12,12 +17,16 @@ iframe.viaIFrame {
 	height: 100%;
 }
 
+.VIAMetaDataTable td {
+	padding-bottom: 4px;
+}
+
 .viaWorkGroupMetaData .VIAMetaDataTable {
         font-size: 14px;
 }
 
 .viaComponenetMetaData .VIAMetaDataTable {
-	font-size: 12px;
+	font-size: 14px;
 }
 
 .VIAMetaDataKey {
@@ -30,9 +39,27 @@ iframe.viaIFrame {
 #viaHeader  {
 	font-family: Georgia,"Times New Roman",Times,serif;
 	font-size: 17px;
-	margin-bottom: 10px;
+	font-weight: bold;
+	/* margin-bottom: 10px; */
+}
+#viaHeader  img {
+	margin-left: 0px;
+	margin-top: -10px;
+	float: left;
+}
+#viaHeader  div {
+	margin-left: 15px;
+	margin-top: 15px;
+	float: left;
 }
 #viaFooter  {
 	font-size: 14px;
-	margin-top: 10px;
+	margin-top: 15px;
+}
+.tableSeperator {
+	margin-top: 0.4em;
+	margin-bottom: 0em;
+	border-width: 0px;
+	background-color: #ddd;
+	height: 5px;
 }
