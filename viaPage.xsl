@@ -34,7 +34,7 @@
 			</table>
 		</div>
 		
-		<hr class="tableSeperator">
+		<hr class="tableSeperator"/>
 				
 		<br/>
 
