@@ -1034,6 +1034,7 @@ span.borrowDirectText {
         display: none;
 }
 
+
 .VIAGallary { 
 	display: block; 
 	width: 135%;
@@ -1093,6 +1094,9 @@ tr.VIAThumbnailImage {
 	display: none;
 }
 
+.fancybox-inner img {
+	max-height:650px;
+}
 .VIAMetaDataKey {
 	text-align: right;
 	padding-right: 10px;
