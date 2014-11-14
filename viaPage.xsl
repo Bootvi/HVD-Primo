@@ -7,7 +7,7 @@
 		<html>
 			<body>
 				<div id="viaHeader">
-					<img src="../uploaded_files/HVD/pennant_HOLLIS+beta.jpg" />
+					<img src="../../uploaded_files/HVD/pennant_HOLLIS+beta.jpg" />
 					<div>HOLLIS+ Image Detail</div>
 				</div>
 				<xsl:apply-templates/>
