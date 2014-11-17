@@ -9,8 +9,9 @@ a {
 
 div.viaIFrame {
 	width: 1200px;
-	min-height: 660px;
+	height: 660px;
 	clear:both;
+	margin-bottom: 10px;
 }
 
 iframe.viaIFrame {
