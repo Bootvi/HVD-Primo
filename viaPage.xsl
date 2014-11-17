@@ -523,9 +523,9 @@
 
 				<iframe class="viaIFrame" frameborder="0" vspace="0" hspace="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen="" scrolling="auto">
 					<xsl:attribute name="src">
-						<xsl:value-of select="concat(//image/@xlink:href, '?buttons=Y')" />
+						<xsl:value-of select="concat(//image/@xlink:href, '?buttons=Y')" />						
 					</xsl:attribute>
-
+					<xsl:value-of select="//image/caption" />
 				</iframe>
 			</div>
 		</div>
