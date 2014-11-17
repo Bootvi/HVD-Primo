@@ -163,7 +163,7 @@
 				<td class="VIAMetaDataValue">
 					<xsl:for-each select="topic">
 						<xsl:value-of select="term"/>
-						<xsl:if test="position()!=last()">. </xsl:if>
+						<xsl:if test="position()!=last()">; </xsl:if>
 					</xsl:for-each>
 				</td>
 			</tr>
