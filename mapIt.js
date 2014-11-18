@@ -15,7 +15,7 @@ function stacksMap(itemArgs, element) {
 
 	if (proceedWithMapIt) {
 
-		var lawApiUrl = 'http://librarylab.law.harvard.edu/map-it/api/locate/';
+		var lawApiUrl = 'http://mapit.library.harvard.edu/map-it/api/locate/';
 
 		$.ajax({
 			url: lawApiUrl + itemArgs["subLibraryCode"] + '/' + itemArgs["collectionCode"] + '/' + itemArgs["callNumber"] + '/' + itemArgs["barcode"],

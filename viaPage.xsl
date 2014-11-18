@@ -7,9 +7,13 @@
 		<html>
 			<body>
 				<div id="viaHeader">
-					HOLLIS+ Image Detail
+					<img src="../../uploaded_files/HVD/pennant_HOLLIS+beta.jpg" />
+					<div>HOLLIS+ Image Detail</div>
 				</div>
 				<xsl:apply-templates/>
+				<div id="viaFooter">
+					<a href="http://nrs.harvard.edu/urn-3:hul.ois:portal_copyright">Copyright and Permissions</a>
+				</div>				
 			</body>
 		</html>
 	</xsl:template>
@@ -31,7 +35,9 @@
 			</table>
 		</div>
 		
-		<br/>
+		<hr class="tableSeperator"/>
+				
+		<!-- <br/> -->
 
 		<xsl:for-each select="//surrogate|//subwork">
 			<div class="viaComponenetMetaData">
@@ -41,6 +47,8 @@
 				</table>
 			</div>
 		</xsl:for-each>
+		
+
 
 	</xsl:template>
 
@@ -155,7 +163,7 @@
 				<td class="VIAMetaDataValue">
 					<xsl:for-each select="topic">
 						<xsl:value-of select="term"/>
-						<xsl:if test="position()!=last()">. </xsl:if>
+						<xsl:if test="position()!=last()">; </xsl:if>
 					</xsl:for-each>
 				</td>
 			</tr>
@@ -495,7 +503,7 @@
 						</xsl:if>
 						<xsl:for-each select="number">
 							<span class="collection">								
-								<br/>
+								<!-- <br/> -->
 								<xsl:value-of select="." />
 							</span>	
 						</xsl:for-each>
@@ -515,9 +523,9 @@
 
 				<iframe class="viaIFrame" frameborder="0" vspace="0" hspace="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen="" scrolling="auto">
 					<xsl:attribute name="src">
-						<xsl:value-of select="concat(//image/@xlink:href, '?buttons=Y')" />
+						<xsl:value-of select="concat(//image/@xlink:href, '?buttons=Y')" />						
 					</xsl:attribute>
-
+					<xsl:value-of select="//image/caption" />
 				</iframe>
 			</div>
 		</div>

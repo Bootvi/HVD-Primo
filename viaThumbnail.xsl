@@ -5,44 +5,62 @@
 
 	<xsl:template name="VIAGallary" match="/">
 		<xsl:for-each select="//image">
-			<html>
-				<body>
-					<div class="VIAThumbnail">
-						<xsl:call-template name="thumbnailAndCaption"/>
+			<div class="VIAThumbnail">
+				<xsl:call-template name="thumbnailAndCaption"/>
 
-						<!-- Hidden MetaData that is injected to the FancyBox when it opens -->
-						<div class="VIAMetaData">
-							<table class="VIAMetaDataTable">
-								<xsl:call-template name="workGroupData"/>
-							</table>
+				<!-- Hidden MetaData that is injected to the FancyBox when it opens -->
+				<div class="VIAMetaData">
+					<table class="VIAMetaDataTable">
+						<xsl:call-template name="workGroupData"/>
+					</table>
 
-							<!-- Meta Data for the subworks/surrogates -->
-							<xsl:if test="parent::surrogate or parent::subwork">
-								<hr class="tableSeperator"/>
-								<table class="VIAMetaDataSubTable">
-									<xsl:call-template name="subworkSurrogateData"/>
-								</table>
-							</xsl:if>
+					<!-- Meta Data for the subworks/surrogates -->
+					<xsl:if test="parent::surrogate or parent::subwork">
+						<hr class="tableSeperator"/>
+						<table class="VIAMetaDataSubTable">
+							<xsl:call-template name="subworkSurrogateData"/>
+						</table>
+					</xsl:if>
 
-							<!-- Link to the record -->
-							<table class="VIAMetaDataTable">
-								<tr>
-									<td colspan="2" class="VIAMetaDataValue">
-										<a href="LinkPrintPlaceHolder" target="_blank">View full record (use this for printing / bookmarking)</a>
-									</td>
-								</tr>
-							</table>
-							<script>logJS(window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight);</script>
-						</div>
+					<!-- Link to the record -->
+					<table class="VIAMetaDataTable">
+						<tr>
+							<td colspan="2" class="VIAMetaDataValue" id="VIAbookmarkLink">										
+											&gt; <a href="LinkPrintPlaceHolder" target="_blank">View full image and record (use this for printing / bookmarking)</a>
+							</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</xsl:for-each>
+
+		<!-- Additionals non-digital images -->
+		<xsl:for-each select="//surrogate|//subwork">
+			<xsl:if test="count(image)=0">
+				<div class="VIAThumbnail">
+					<xsl:call-template name="noImageAndCaption"/>
+
+					<!-- Hidden MetaData that is injected to the FancyBox when it opens -->
+					<div class="VIAMetaData">
+						<table class="VIAMetaDataTable">
+							<xsl:call-template name="workGroupData"/>
+						</table>
+
+						<!-- Meta Data for the subworks/surrogates -->
+						<hr class="tableSeperator"/>
+						<table class="VIAMetaDataSubTable">
+							<xsl:call-template name="noImageSubworkSurrogateData"/>
+						</table>
+
 					</div>
-				</body>
-			</html>
+				</div>
+			</xsl:if>
 		</xsl:for-each>
 	</xsl:template>
 
+	<!-- Normal thumbnail for work/group/surrogate/subwork with images -->
 	<xsl:template name="thumbnailAndCaption">
 		<table>
-
 			<!-- Thumbnail image starts here -->
 			<tr class="VIAThumbnailImage">
 				<td>
@@ -83,6 +101,38 @@
 						<xsl:if test="not(parent::surrogate or parent::subwork)">
 							<xsl:value-of select="caption"/>
 						</xsl:if>
+					</span>
+				</td>
+			</tr>
+		</table>
+	</xsl:template>
+
+	<!-- Placeholder for surrogate/subwork with no image -->
+	<xsl:template name="noImageAndCaption">
+		<table>
+
+			<!-- Thumbnail image starts here -->
+			<tr class="VIAThumbnailImage">
+				<td>
+					<a class="fancybox fancybox.iframe">
+						<xsl:attribute name="href">
+							<xsl:value-of select="concat('http://i.imgur.com/RNv2FS6.png?', @componentID)" />
+						</xsl:attribute>
+						<xsl:attribute name="title">
+							<xsl:value-of select="title/textElement"/>
+						</xsl:attribute>
+						<div class="VIAThumbnailImageWrapper">
+							<img src="../uploaded_files/HVD/imageNotDigitized.png"/>
+						</div>
+					</a>
+				</td>
+			</tr>
+
+			<!-- Caption under the thumbnail image -->
+			<tr class="VIAThumbnailCaption">
+				<td>
+					<span class="VIAThumbnailTitle">
+						<xsl:value-of select="title/textElement"/>
 					</span>
 				</td>
 			</tr>
@@ -177,7 +227,7 @@
 		<xsl:if test="../workType">
 			<tr>
 				<td class="VIAMetaDataKey">
-					<strong>Worktype:</strong>
+					<strong>Work Type:</strong>
 				</td>
 				<td class="VIAMetaDataValue">
 					<xsl:value-of select="../workType"/>
@@ -194,16 +244,6 @@
 				</td>
 			</tr>
 		</xsl:if>
-		<xsl:if test="../notes">
-			<tr>
-				<td class="VIAMetaDataKey">
-					<strong>Note:</strong> 
-				</td>
-				<td class="VIAMetaDataValue">
-					<xsl:value-of select="../notes"/>
-				</td>
-			</tr>
-		</xsl:if> 
 
 		<xsl:if test="../topic">            
 			<tr>                                    
@@ -219,16 +259,7 @@
 			</tr> 
 
 		</xsl:if>
-		<xsl:if test="../classification/number">
-			<tr>
-				<td class="VIAMetaDataKey">
-					<strong>Classification:</strong> 
-				</td>
-				<td class="VIAMetaDataValue">
-					<xsl:value-of select="../classification/number"/>
-				</td>
-			</tr>
-		</xsl:if>
+
 
 		<xsl:if test="../repository/repositoryName">
 			<tr>
@@ -237,6 +268,95 @@
 				</td>
 				<td class="VIAMetaDataValue">
 					<xsl:value-of select="../repository/repositoryName"/>
+				</td>
+			</tr>
+		</xsl:if>
+	</xsl:template>
+
+
+	<xsl:template name="noImageSubworkSurrogateData">
+		<!-- Metadata for subworks/surrogate  -->
+		<tr>
+			<td class="VIAMetaDataKey">     
+				<strong>Component:</strong>             
+			</td>                           
+			<td class="VIAMetaDataValue">   
+				<xsl:value-of select="@componentID"/>
+			</td>                           
+		</tr>
+		<xsl:if test="title/textElement">
+			<tr>
+				<td class="VIAMetaDataKey">
+					<strong>Title:</strong>
+				</td>
+				<td class="VIAMetaDataValue">
+					<xsl:value-of select="title/textElement"/>
+				</td>
+			</tr>
+		</xsl:if>
+		<xsl:if test="creator/nameElement">
+			<tr>
+				<td class="VIAMetaDataKey">
+					<strong>Creator:</strong>
+				</td>
+				<td class="VIAMetaDataValue">
+					<xsl:value-of select="creator/nameElement"/>
+					<xsl:if test="creator/dates">
+												, <xsl:value-of select="creator/dates"/>, 
+					</xsl:if>
+					<xsl:if test="creator/nationality">
+												, <xsl:value-of select="creator/nationality"/>
+					</xsl:if>
+					<xsl:if test="creator/role">
+												, <xsl:value-of select="creator/role"/>
+					</xsl:if>
+				</td>
+			</tr>
+		</xsl:if>
+		<xsl:if test="workType">
+			<tr>
+				<td class="VIAMetaDataKey">
+					<strong>Work Type:</strong>
+				</td>
+				<td class="VIAMetaDataValue">
+					<xsl:value-of select="workType"/>
+				</td>
+			</tr>
+		</xsl:if>
+		<xsl:if test="freeDate">
+			<tr>
+				<td class="VIAMetaDataKey">
+					<strong>Date:</strong> 
+				</td>
+				<td class="VIAMetaDataValue">
+					<xsl:value-of select="freeDate"/>
+				</td>
+			</tr>
+		</xsl:if>
+
+		<xsl:if test="topic">            
+			<tr>                                    
+				<td class="VIAMetaDataKey">                 
+					<strong>Topic:</strong>                          
+				</td>                                       
+				<td class="VIAMetaDataValue">               
+					<xsl:for-each select="topic">
+						<xsl:value-of select="term"/>
+						<xsl:if test="position()!=last()">;&#160;</xsl:if>
+					</xsl:for-each>
+				</td>                                       
+			</tr> 
+
+		</xsl:if>
+
+
+		<xsl:if test="repository/repositoryName">
+			<tr>
+				<td class="VIAMetaDataKey">
+					<strong>Repository:</strong>
+				</td>
+				<td class="VIAMetaDataValue">
+					<xsl:value-of select="repository/repositoryName"/>
 				</td>
 			</tr>
 		</xsl:if>
