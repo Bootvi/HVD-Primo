@@ -195,7 +195,7 @@
 	<xsl:template name="subworkSurrogateData">
 		<!-- Metadata for subworks/surrogate  -->
 		<xsl:if test="parent::surrogate or parent::subwork">
-			<tr>
+			<tr class="VIAComponentId">
 				<td class="VIAMetaDataKey">     
 					<strong>Component:</strong>             
 				</td>                           
@@ -287,7 +287,7 @@
 
 	<xsl:template name="noImageSubworkSurrogateData">
 		<!-- Metadata for subworks/surrogate  -->
-		<tr>
+		<tr class="VIAComponentId">
 			<td class="VIAMetaDataKey">     
 				<strong>Component:</strong>             
 			</td>                           
