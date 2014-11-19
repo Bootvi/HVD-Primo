@@ -113,7 +113,7 @@ function handleLocationIconClick() {
 //If the Location note is too long, make it a link "more..."
 function shortenLocationNotes() {
 		$(".EXLLocationsMoreInfo > strong").each(function() {
-			if ($(this).text().trim().length > 100 && $(this).children("a").length == 0) {
+			if ($(this).text().trim().length > 250 && $(this).children("a").length == 0) {
 				var part1 = $(this).text().trim().substr(0, $(this).text().trim().substr(0, 130).lastIndexOf(" "));
 				var recordId = $(this).parents("form[name='locationsTabForm']").children("input[name='recIds']").val();
 				var url = "http://hollis.harvard.edu/availability.ashx?&skin=primo&itemid=|library/m/aleph|" + recordId.substr(("HVD_ALEPH").length);
