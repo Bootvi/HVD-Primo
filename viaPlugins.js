@@ -89,8 +89,10 @@ function addMetaData(current, previous) {
 	var imageId = current.href.replace(/^(.*[\/])/, "");
 	imageId = imageId.substr(0, imageId.indexOf("?"));
 
+
 	if (metaData != null && metaData.length > 0) {
-		metaData = metaData.replace("LinkPrintPlaceHolder", "../uploaded_files/HVD/viaPage.html?recordId=" + recordId + "&imageId=" + imageId);
+		var componentId = $(metaData).find("tr.VIAComponentId td.VIAMetaDataValue").text()
+		metaData = metaData.replace("LinkPrintPlaceHolder", "../uploaded_files/HVD/viaPage.html?recordId=" + recordId + "&imageId=" + imageId + "&compId=" + componentId);
 		current.title = metaData;
 	}
 
