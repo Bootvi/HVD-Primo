@@ -20,7 +20,9 @@
 
 	<xsl:template match="work|group">
 
-		<xsl:call-template name="iFrame"/>
+		<xsl:if test="count(//image)=1">
+			<xsl:call-template name="iFrame"/>
+		</xsl:if>
 
 		<div class="viaWorkGroupMetaData">
 			<table class="VIAMetaDataTable">
@@ -34,9 +36,9 @@
 				</tr>
 			</table>
 		</div>
-		
+
 		<hr class="tableSeperator"/>
-				
+
 		<!-- <br/> -->
 
 		<xsl:for-each select="//surrogate|//subwork">
@@ -47,7 +49,7 @@
 				</table>
 			</div>
 		</xsl:for-each>
-		
+
 
 
 	</xsl:template>
@@ -352,7 +354,7 @@
 				</td>
 			</tr>
 		</xsl:if>
-		
+
 		<xsl:if test="relatedInformation">
 			<tr>
 				<td class="VIAMetaDataKey">
@@ -380,7 +382,7 @@
 				</td>
 			</tr>
 		</xsl:if>		
-		
+
 		<xsl:if test="notes">
 			<tr>
 				<td class="VIAMetaDataKey">
