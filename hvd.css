@@ -188,7 +188,9 @@ a:hover {
 .EXLSearchFieldRibbonFormBrowseSearchFor {
 	border: none;
 }
-
+.EXLSearchFieldRibbonFormBrowseSearchFor .EXLSearchFieldRibbonFormSearchFor {
+	width: 70%;
+}
 
 
 /* Search Tabs */
@@ -238,7 +240,7 @@ a:hover {
 }
 /* search input box */
 .EXLSearchFieldRibbonFormSearchFor {
-	width:70%;
+	width:95%;
 }
 .EXLSearchFieldRibbonFormSearchFor input.EXLSearchFieldMaximized {
 	outline: none;
@@ -764,12 +766,12 @@ body.EXLFullView div.EXLTabContent{
 /* Details tab (Alon B modified first line */
 .EXLDetailsTabContent div.EXLDetailsContent  > ul > li {
     position: relative;
-    margin-left: 10em;
+    margin-left: 11em;
 }
 .EXLDetailsTabContent div.EXLDetailsContent li strong {
     position: absolute;
-    left: -10em;
-    width: 9em;
+    left: -11em;
+    width: 10em;
     text-align: right;
 }
 
