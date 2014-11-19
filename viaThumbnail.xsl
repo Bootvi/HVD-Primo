@@ -125,7 +125,7 @@
 				<td>
 					<a class="fancybox fancybox.iframe">
 						<xsl:attribute name="href">
-							<xsl:value-of select="concat('http://i.imgur.com/GfnyHwx.png?', @componentID)" />
+							<xsl:value-of select="concat('../uploaded_files/HVD/imageNotDigitizedLarge.png?', @componentID)" />
 						</xsl:attribute>
 						<xsl:attribute name="title">
 							<xsl:value-of select="title/textElement"/>
