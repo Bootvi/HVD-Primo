@@ -238,7 +238,7 @@ a:hover {
 }
 /* search input box */
 .EXLSearchFieldRibbonFormSearchFor {
-	width:95%;
+	width:70%;
 }
 .EXLSearchFieldRibbonFormSearchFor input.EXLSearchFieldMaximized {
 	outline: none;
