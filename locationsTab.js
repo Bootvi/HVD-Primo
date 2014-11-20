@@ -116,7 +116,7 @@ function shortenLocationNotes() {
 			if ($(this).text().trim().length > 250 && $(this).children("a").length == 0) {
 				var part1 = $(this).text().trim().substr(0, $(this).text().trim().substr(0, 130).lastIndexOf(" "));
 				var recordId = $(this).parents("form[name='locationsTabForm']").children("input[name='recIds']").val();
-				var url = "http://hollis.harvard.edu/availability.ashx?&skin=primo&itemid=|library/m/aleph|" + recordId.substr(("HVD_ALEPH").length);
+				var url = "http://lms01.harvard.edu/F?func=direct&local_base=HVD01&doc_number=" + recordId.substr(("HVD_ALEPH").length);
 				$(this).html(part1 + '<a href="' + url + '" target="_blank">...more</a>');
 			}
 		});
@@ -204,6 +204,7 @@ function returnOnHoldStatus(value) {
 
 //Ajax Events for locations tabs 
 $(document).ajaxComplete(function(event, request, settings) {
+	logJS(settings.url);
 	if ((RegExp("tabs=locationsTab").test(settings.url))) {
 		locationsTabModifications();
 	}
@@ -211,6 +212,7 @@ $(document).ajaxComplete(function(event, request, settings) {
 
 //If location tabs are open directly on Full Details view
 $(document).ready(function() {
+	logJS(window.location.href);
 	if ((RegExp("tabs=locationsTab").test(window.location.href))) {
 		locationsTabModifications();
 	}
