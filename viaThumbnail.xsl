@@ -51,6 +51,15 @@
 						<table class="VIAMetaDataSubTable">
 							<xsl:call-template name="noImageSubworkSurrogateData"/>
 						</table>
+						
+						<!-- Link to the record -->
+						<table class="VIAMetaDataTable">
+							<tr>
+								<td colspan="2" class="VIAMetaDataValue" id="VIAbookmarkLink">										
+												&gt; <a href="LinkPrintPlaceHolder" target="_blank">View full record (use this for printing / bookmarking)</a>
+								</td>
+							</tr>
+						</table>
 
 					</div>
 				</div>
@@ -116,7 +125,7 @@
 				<td>
 					<a class="fancybox fancybox.iframe">
 						<xsl:attribute name="href">
-							<xsl:value-of select="concat('http://i.imgur.com/RNv2FS6.png?', @componentID)" />
+							<xsl:value-of select="concat('../uploaded_files/HVD/imageNotDigitizedLarge.png?', @componentID)" />
 						</xsl:attribute>
 						<xsl:attribute name="title">
 							<xsl:value-of select="title/textElement"/>
@@ -186,7 +195,7 @@
 	<xsl:template name="subworkSurrogateData">
 		<!-- Metadata for subworks/surrogate  -->
 		<xsl:if test="parent::surrogate or parent::subwork">
-			<tr>
+			<tr class="VIAComponentId">
 				<td class="VIAMetaDataKey">     
 					<strong>Component:</strong>             
 				</td>                           
@@ -268,6 +277,8 @@
 				</td>
 				<td class="VIAMetaDataValue">
 					<xsl:value-of select="../repository/repositoryName"/>
+					<xsl:text> </xsl:text>
+					<xsl:value-of select="../repository/number"/>
 				</td>
 			</tr>
 		</xsl:if>
@@ -276,7 +287,7 @@
 
 	<xsl:template name="noImageSubworkSurrogateData">
 		<!-- Metadata for subworks/surrogate  -->
-		<tr>
+		<tr class="VIAComponentId">
 			<td class="VIAMetaDataKey">     
 				<strong>Component:</strong>             
 			</td>                           
@@ -357,6 +368,8 @@
 				</td>
 				<td class="VIAMetaDataValue">
 					<xsl:value-of select="repository/repositoryName"/>
+					<xsl:text> </xsl:text>
+					<xsl:value-of select="repository/number"/>
 				</td>
 			</tr>
 		</xsl:if>

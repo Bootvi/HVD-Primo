@@ -13,47 +13,67 @@
 <script type="text/javascript" src="allPages.js"></script>
 
 <script>
-
 	$(document).ready(function() {
 		var parameters = getURLParams(document.location.search);
-		logJS(parameters);
-
 		generatePrintabePage(parameters);
 	});
 
-
-
+	//This is the main function to build the page
 	function generatePrintabePage(parameters) {
+		//Getting the PNX and VIA xml's
 		var pnxXML = loadPNX(parameters['recordId']);
-                var viaXML = $.parseXML($(pnxXML).find("addata > mis1").text().replace(/&/g, "&amp;"));		
-		$(viaXML).find("image").each(function (){
+		var viaXML = $.parseXML($(pnxXML).find("addata > mis1").text().replace(/&/g, "&amp;"));
+		var matched = false;
+
+
+		//For each image in the VIA XML do the following:
+		$(viaXML).find("image").each(function() {
+			//Cleanup the URL, maintaining only the ID of the image after last slash
 			var imageLinkId = $(this).attr("xlink:href").replace(/^(.*[\/])/, "");
 
-			if (imageLinkId == parameters['imageId'])
+			//If the an image in the VIA matched the one in the URL, do a cleanup to remove all otherimages and siblings
+			if (imageLinkId == parameters['imageId']) {
 				recursiveCleanup($(this));
-
-
-		
+				matched = true;
+			}
 		});
-		if ($(viaXML).find("image").length == 1) {
-			$("body").append(transformXSL(viaXML, "viaPage.xsl"));
-			$(".VIAMetaDataValueHollisNumber").text(parameters['recordId'].replace("HVD_VIA", ""));
-			$(".VIAMetaDataValueLinkToRecord").text(document.location);
 
-		} else 
-			$("body").append("ID did not match");
+		//For each component (surrogate/subwork), let's find a match
+		$(viaXML).find("surrogate, subwork").each(function() {
+			//Get the Component ID of each one
+			var componentId = $(this).attr("componentID");
+
+			//If the componenent in the VIA matched the one in the URL, do a cleanup to remove all otherimages and siblings
+			if (componentId == parameters['compId']) {
+				recursiveCleanup($(this));
+				matched = true;
+			}
+		});
+
+		//So if the remaining VIA XML has an image, transform using XSL, and modify 
+		//a. the HOLLIS id from the URL to remove HVD_VIA
+		//b. ada a URL to this page
+		if (matched) {
+			$("body").append(transformXSL(viaXML, "viaPage.xsl"));
+			
+			$(".VIAMetaDataValueHollisNumber").text(parameters['recordId'].replace("HVD_VIA", ""));
+			$(".VIAMetaDataValueLinkToRecord").html('<a href="' + document.location + '">' + document.location + '</a>');
+
+		} else
+			$("body").append("The URL is not valid, please try again from the main collection on Hollis Plus");
 
 	}
-function recursiveCleanup(element) {
-	if (element[0].nodeName == '#document') 
-		return;
-	$(element).siblings("subwork, surrogate, image").remove();
-
-	recursiveCleanup(element.parent());
 
 
-}
+	function recursiveCleanup(element) {
+		if (element[0].nodeName == '#document')
+			return;
+		$(element).siblings("subwork, surrogate, image").remove();
+
+		recursiveCleanup(element.parent());
+
+
+	}
 </script>
 
 </html>
-

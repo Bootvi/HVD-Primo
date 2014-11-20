@@ -165,6 +165,7 @@ a:hover {
 	height:30px;
 }	
 	
+/* Search links */
 /* Shift the Advanced Search link up to accomodate New Search */
 .EXLSearchFieldRibbonAdvancedSearchLink {
 	width:7%;
@@ -185,10 +186,6 @@ a:hover {
 	color: #ffffff;
 	font-weight:bold;
 }
-.EXLSearchFieldRibbonFormBrowseSearchFor {
-	border: none;
-}
-
 
 
 /* Search Tabs */
@@ -236,7 +233,7 @@ a:hover {
 	color: #ffffff;
 	font-weight: bold;
 }
-/* search input box */
+/* basic search input box */
 .EXLSearchFieldRibbonFormSearchFor {
 	width:95%;
 }
@@ -257,7 +254,6 @@ a:hover {
 #exlidAdvancedSearchRibbon div.EXLSearchFieldRibbonFormFieldsGroup2 {
 	border:none;
 }
-
 #exlidAdvancedSearchTile {
 	border: none;
 	background-image:none;
@@ -278,11 +274,6 @@ a:hover {
 	background: linear-gradient(to bottom,  #b2a399  0%,#8C8179 100%); /* W3C */
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b2a399', endColorstr='#8C8179',GradientType=0 ); /* IE6-9 */
 	padding: 1.5em 1em 0.5em 1em;
-}
-.EXLSearchFieldRibbonFormSelectedBrowse {
-	background-color: #FFFFFF;
-	border:none;
-	margin-right: 20px;
 }
 
 /* ---To remove the extra little white box around the search Button in Advanced Search--- */
@@ -317,6 +308,15 @@ select#exlidInput_scope_1, select#exlidInput_scope_2, select#exlidInput_scope_3,
 }
 [id^="exlidInput_scope"] {
 min-width: 0%;
+}
+.EXLSearchFieldRibbonFormSelectedBrowse {
+	background-color: #FFFFFF;
+	border:none;
+	margin-right: 20px;
+}
+.EXLSearchFieldRibbonFormBrowseSearchFor {
+	border: none;
+	width: 70%;
 }
 
 /* end advanced search and browse */
@@ -764,12 +764,12 @@ body.EXLFullView div.EXLTabContent{
 /* Details tab (Alon B modified first line */
 .EXLDetailsTabContent div.EXLDetailsContent  > ul > li {
     position: relative;
-    margin-left: 10em;
+    margin-left: 11em;
 }
 .EXLDetailsTabContent div.EXLDetailsContent li strong {
     position: absolute;
-    left: -10em;
-    width: 9em;
+    left: -11em;
+    width: 10em;
     text-align: right;
 }
 
