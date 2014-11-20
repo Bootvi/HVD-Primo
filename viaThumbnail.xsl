@@ -51,7 +51,7 @@
 						<table class="VIAMetaDataSubTable">
 							<xsl:call-template name="noImageSubworkSurrogateData"/>
 						</table>
-						
+
 						<!-- Link to the record -->
 						<table class="VIAMetaDataTable">
 							<tr>
@@ -76,16 +76,16 @@
 					<a>
 						<!-- Conditions to determine if this is jp2 or normal, and decide on the class accordingly -->
 						<xsl:if test="@xlink:href=thumbnail/@xlink:href">
-	                        <xsl:attribute name="class">fancybox fancybox.iframe</xsl:attribute>
+							<xsl:attribute name="class">fancybox fancybox.iframe</xsl:attribute>
 						</xsl:if>
-		               <xsl:if test="not(@xlink:href=thumbnail/@xlink:href)">
-                            <xsl:attribute name="class">fancybox fancybox.image</xsl:attribute>
-                        </xsl:if>
+						<xsl:if test="not(@xlink:href=thumbnail/@xlink:href)">
+							<xsl:attribute name="class">fancybox fancybox.image</xsl:attribute>
+						</xsl:if>
 
 						<xsl:attribute name="href">
 							<xsl:value-of select="concat(@xlink:href, '?buttons=Y')" />
 						</xsl:attribute>
-			
+
 						<!-- Title section: if it's a non-component, use caption, otherwise call for more complex building -->
 						<xsl:attribute name="title">
 							<xsl:if test="parent::surrogate or parent::subwork">
@@ -288,7 +288,7 @@
 				</td>
 				<td class="VIAMetaDataValue">
 					<xsl:value-of select="../repository/repositoryName"/>
-					<xsl:text> </xsl:text>
+					<xsl:text/>
 					<xsl:value-of select="../repository/number"/>
 				</td>
 			</tr>
@@ -379,7 +379,7 @@
 				</td>
 				<td class="VIAMetaDataValue">
 					<xsl:value-of select="repository/repositoryName"/>
-					<xsl:text> </xsl:text>
+					<xsl:text/>
 					<xsl:value-of select="repository/number"/>
 				</td>
 			</tr>
