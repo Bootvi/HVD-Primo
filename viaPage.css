@@ -38,6 +38,12 @@ iframe.viaIFrame {
 	padding-right: 10px;
 }
 
+.imageNotDigitizedFullPage {
+	clear: both;
+	margin-bottom: 25px;
+}
+
+
 #viaHeader  {
 	font-size: 17px;
 	font-weight: bold;
