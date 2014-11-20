@@ -73,11 +73,20 @@
 			<!-- Thumbnail image starts here -->
 			<tr class="VIAThumbnailImage">
 				<td>
-					<a class="fancybox fancybox.iframe">
+					<a>
+						<!-- Conditions to determine if this is jp2 or normal, and decide on the class accordingly -->
+						<xsl:if test="@xlink:href=thumbnail/@xlink:href">
+	                        <xsl:attribute name="class">fancybox fancybox.iframe</xsl:attribute>
+						</xsl:if>
+		               <xsl:if test="not(@xlink:href=thumbnail/@xlink:href)">
+                            <xsl:attribute name="class">fancybox fancybox.image</xsl:attribute>
+                        </xsl:if>
+
 						<xsl:attribute name="href">
 							<xsl:value-of select="concat(@xlink:href, '?buttons=Y')" />
 						</xsl:attribute>
-
+			
+						<!-- Title section: if it's a non-component, use caption, otherwise call for more complex building -->
 						<xsl:attribute name="title">
 							<xsl:if test="parent::surrogate or parent::subwork">
 								<xsl:value-of select="../title/textElement"/>
@@ -86,6 +95,8 @@
 								<xsl:value-of select="caption"/>
 							</xsl:if>
 						</xsl:attribute>
+
+						<!-- The image itself -->
 						<div class="VIAThumbnailImageWrapper">
 							<img>
 								<xsl:attribute name="src">
