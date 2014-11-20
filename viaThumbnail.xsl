@@ -8,7 +8,7 @@
 			<div class="VIAThumbnail">
 				<xsl:call-template name="thumbnailAndCaption"/>
 
-				<!-- Hidden MetaData that is injected to the FancyBox when it opens -->
+				<!-- Hidden MetaData that is injected to the FancyBox when it opens. -->
 				<div class="VIAMetaData">
 					<table class="VIAMetaDataTable">
 						<xsl:call-template name="workGroupData"/>
