@@ -20,9 +20,14 @@
 
 	<xsl:template match="work|group">
 
-		<xsl:if test="count(//image)=1">
-			<xsl:call-template name="iFrame"/>
-		</xsl:if>
+		<xsl:choose>
+			<xsl:when test="count(//image)=1">
+				<xsl:call-template name="iFrame"/>
+			</xsl:when>
+			<xsl:otherwise>
+				<xsl:call-template name="noImage"/>
+			</xsl:otherwise>
+		</xsl:choose>
 
 		<div class="viaWorkGroupMetaData">
 			<table class="VIAMetaDataTable">
@@ -532,6 +537,17 @@
 			</div>
 		</div>
 	</xsl:template>
+	
+	<xsl:template name="noImage">
+	
+			<div class="imageNotDigitizedFullPage">
+				<img>
+					<xsl:attribute name="src">imageNotDigitizedLarge.png</xsl:attribute>
+					<xsl:attribute name="alt">Image Not Digitized</xsl:attribute>					
+				</img>
+			</div>
+
+	</xsl:template>	
 
 	<xsl:template name="ilinks">
 
