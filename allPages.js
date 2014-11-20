@@ -60,7 +60,7 @@ $(document).ready(function() {
 	});
 	
 	//Change Details tab for VIA records
-	$(".EXLResultRecordId[id^='HVD_VIA'").each(function() { 
+	$(".EXLResultRecordId[id^='HVD_VIA']").each(function() { 
 		$(this).parents(".EXLResult").find(".EXLDetailsTab a:contains('Details')").text("Details & Gallery");
 	});
 

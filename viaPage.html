@@ -52,9 +52,10 @@
 
 		//So if the remaining VIA XML has an image, transform using XSL, and modify 
 		//a. the HOLLIS id from the URL to remove HVD_VIA
-		//b. add a URL to this page
+		//b. ada a URL to this page
 		if (matched) {
 			$("body").append(transformXSL(viaXML, "viaPage.xsl"));
+			
 			$(".VIAMetaDataValueHollisNumber").text(parameters['recordId'].replace("HVD_VIA", ""));
 			$(".VIAMetaDataValueLinkToRecord").html('<a href="' + document.location + '">' + document.location + '</a>');
 
