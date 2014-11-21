@@ -554,7 +554,7 @@
 		<xsl:choose>	 
 			<xsl:when test="./repositoryName = 'Arnold Arboretum/Horticulture Library (Jamaica Plain)'">
 				<a target="_new">
-					<xsl:attribute name="href">http://hul.harvard.edu/cmtes/ulc/aac/via/desc-Arboretum.html</xsl:attribute>
+					<xsl:attribute name="href">http://library.harvard.edu/AJP</xsl:attribute>
 					<img class="extimg" >
 						<xsl:attribute name="src">libInfoPage.png</xsl:attribute>
 					</img>
@@ -563,25 +563,43 @@
 
 			<xsl:when test="./repositoryName = 'Baker Library, Harvard Business School, Historical Collections'">
 				<a target="_new">
-					<xsl:attribute name="href">http://hul.harvard.edu/cmtes/ulc/aac/via/desc-Baker.html</xsl:attribute>
+					<xsl:attribute name="href">http://library.harvard.edu/BHC</xsl:attribute>
 					<img class="extimg" >
 						<xsl:attribute name="src">libInfoPage.png</xsl:attribute>
 					</img>
 				</a>
 			</xsl:when>
+			
+			<xsl:when test="./repositoryName = 'Berenson Art Collection, Villa I Tatti - The Harvard University Center for Italian Renaissance Studies'">
+				<a target="_new">
+					<xsl:attribute name="href">http://library.harvard.edu/BER</xsl:attribute>
+					<img class="extimg" >
+						<xsl:attribute name="src">libInfoPage.png</xsl:attribute>
+					</img>
+				</a>
+			</xsl:when>			
 
 			<xsl:when test="./repositoryName = 'Biblioteca Berenson, Fototeca, Villa I Tatti - The Harvard University Center for Italian Renaissance Studies'">
 				<a target="_new">
-					<xsl:attribute name="href">http://hul.harvard.edu/cmtes/ulc/aac/via/desc-Itatti.html</xsl:attribute>
+					<xsl:attribute name="href">http://library.harvard.edu/BER</xsl:attribute>
 					<img class="extimg" >
 						<xsl:attribute name="src">libInfoPage.png</xsl:attribute>
 					</img>
 				</a>
 			</xsl:when>
 
-			<xsl:when test="./repositoryName = 'Gray Herbarium Library'">
+			<xsl:when test="./repositoryName = 'Biblioteca Berenson, Villa I Tatti - The Harvard University Center for Italian Renaissance Studies'">
 				<a target="_new">
-					<xsl:attribute name="href">http://hul.harvard.edu/cmtes/ulc/aac/via/desc-Botany.html</xsl:attribute>
+					<xsl:attribute name="href">http://library.harvard.edu/BER</xsl:attribute>
+					<img class="extimg" >
+						<xsl:attribute name="src">libInfoPage.png</xsl:attribute>
+					</img>
+				</a>
+			</xsl:when>
+			
+			<xsl:when test="./repositoryName = 'Gray Herbarium Archives'">
+				<a target="_new">
+					<xsl:attribute name="href">http://library.harvard.edu/BOT</xsl:attribute>
 					<img class="extimg" >
 						<xsl:attribute name="src">libInfoPage.png</xsl:attribute>
 					</img>
@@ -590,7 +608,7 @@
 
 			<xsl:when test="./repositoryName = 'Cabot Science Library'">
 				<a target="_new">
-					<xsl:attribute name="href">http://hul.harvard.edu/cmtes/ulc/aac/via/desc-Cabot.html</xsl:attribute>
+					<xsl:attribute name="href">http://library.harvard.edu/CAB</xsl:attribute>
 					<img class="extimg" >
 						<xsl:attribute name="src">libInfoPage.png</xsl:attribute>
 					</img>
@@ -599,7 +617,7 @@
 
 			<xsl:when test="./repositoryName = 'Center for Hellenic Studies'">
 				<a target="_new">
-					<xsl:attribute name="href">http://hul.harvard.edu/cmtes/ulc/aac/via/desc-Hellenic.html</xsl:attribute>
+					<xsl:attribute name="href">http://library.harvard.edu/HEL</xsl:attribute>
 					<img class="extimg" >
 						<xsl:attribute name="src">libInfoPage.png</xsl:attribute>
 					</img>
@@ -608,7 +626,7 @@
 
 			<xsl:when test="./repositoryName = 'Francis A. Countway Library of Medicine'">
 				<a target="_new">
-					<xsl:attribute name="href">http://hul.harvard.edu/cmtes/ulc/aac/via/desc-Countway.html</xsl:attribute>
+					<xsl:attribute name="href">http://library.harvard.edu/MED</xsl:attribute>
 					<img class="extimg" >
 						<xsl:attribute name="src">libInfoPage.png</xsl:attribute>
 					</img>
@@ -617,7 +635,7 @@
 
 			<xsl:when test="./repositoryName = 'Image Collections and Fieldwork Archives, Dumbarton Oaks Research Library and Collection'">
 				<a target="_new">
-					<xsl:attribute name="href">http://hul.harvard.edu/cmtes/ulc/aac/via/desc-DoaksICFA.html</xsl:attribute>
+					<xsl:attribute name="href">http://library.harvard.edu/DDO</xsl:attribute>
 					<img class="extimg" >
 						<xsl:attribute name="src">libInfoPage.png</xsl:attribute>
 					</img>
@@ -626,7 +644,7 @@
 
 			<xsl:when test="./repositoryName = 'Ernst Mayr Library of the Museum of Comparative Zoology'">
 				<a target="_new">
-					<xsl:attribute name="href">http://hul.harvard.edu/cmtes/ulc/aac/via/desc-MCZ.html</xsl:attribute>
+					<xsl:attribute name="href">http://library.harvard.edu/MCZ</xsl:attribute>
 					<img class="extimg" >
 						<xsl:attribute name="src">libInfoPage.png</xsl:attribute>
 					</img>
@@ -635,7 +653,7 @@
 
 			<xsl:when test="./repositoryName = 'General Artemas Ward House Museum'">
 				<a target="_new">
-					<xsl:attribute name="href">http://hul.harvard.edu/cmtes/ulc/aac/via/desc-Ward.html</xsl:attribute>
+					<xsl:attribute name="href">http://library.harvard.edu/AWH</xsl:attribute>
 					<img class="extimg" >
 						<xsl:attribute name="src">libInfoPage.png</xsl:attribute>
 					</img>
@@ -644,7 +662,25 @@
 
 			<xsl:when test="./repositoryName = 'Harvard Art Museum'">
 				<a target="_new">
-					<xsl:attribute name="href">http://hul.harvard.edu/cmtes/ulc/aac/via/desc-HUAM.html</xsl:attribute>
+					<xsl:attribute name="href">http://library.harvard.edu/ART</xsl:attribute>
+					<img class="extimg" >
+						<xsl:attribute name="src">libInfoPage.png</xsl:attribute>
+					</img>
+				</a>
+			</xsl:when>
+			
+			<xsl:when test="./repositoryName = 'Harvard Art Museums'">
+				<a target="_new">
+					<xsl:attribute name="href">http://library.harvard.edu/ART</xsl:attribute>
+					<img class="extimg" >
+						<xsl:attribute name="src">libInfoPage.png</xsl:attribute>
+					</img>
+				</a>
+			</xsl:when>			
+
+			<xsl:when test="./repositoryName = 'Harvard University Art Museum'">
+				<a target="_new">
+					<xsl:attribute name="href">http://library.harvard.edu/ART</xsl:attribute>
 					<img class="extimg" >
 						<xsl:attribute name="src">libInfoPage.png</xsl:attribute>
 					</img>
@@ -653,7 +689,7 @@
 
 			<xsl:when test="./repositoryName = 'Harvard University Art Museums'">
 				<a target="_new">
-					<xsl:attribute name="href">http://hul.harvard.edu/cmtes/ulc/aac/via/desc-HUAM.html</xsl:attribute>
+					<xsl:attribute name="href">http://library.harvard.edu/ART</xsl:attribute>
 					<img class="extimg" >
 						<xsl:attribute name="src">libInfoPage.png</xsl:attribute>
 					</img>
@@ -662,7 +698,7 @@
 
 			<xsl:when test="./repositoryName = 'Harvard College Observatory Library'">
 				<a target="_new">
-					<xsl:attribute name="href">http://tdc-www.harvard.edu/plates/</xsl:attribute>
+					<xsl:attribute name="href">http://library.harvard.edu/WOL</xsl:attribute>
 					<img class="extimg" >
 						<xsl:attribute name="src">libInfoPage.png</xsl:attribute>
 					</img>
@@ -671,7 +707,7 @@
 
 			<xsl:when test="./repositoryName = 'Harvard Divinity School'">
 				<a target="_new">
-					<xsl:attribute name="href">http://hul.harvard.edu/cmtes/ulc/aac/via/desc-Divinity.html</xsl:attribute>
+					<xsl:attribute name="href">http://library.harvard.edu/DIV</xsl:attribute>
 					<img class="extimg" >
 						<xsl:attribute name="src">libInfoPage.png</xsl:attribute>
 					</img>
@@ -680,7 +716,7 @@
 
 			<xsl:when test="./repositoryName = 'Harvard Film Archive'">
 				<a target="_new">
-					<xsl:attribute name="href">http://hul.harvard.edu/cmtes/ulc/aac/via/desc-Film.html</xsl:attribute>
+					<xsl:attribute name="href">http://library.harvard.edu/HFA</xsl:attribute>
 					<img class="extimg" >
 						<xsl:attribute name="src">libInfoPage.png</xsl:attribute>
 					</img>
@@ -689,7 +725,7 @@
 
 			<xsl:when test="./repositoryName = 'Harvard Fine Arts Library, Visual Collections - Slides and Digital Images'">
 				<a target="_new">
-					<xsl:attribute name="href">http://hul.harvard.edu/cmtes/ulc/aac/via/desc-FAL-SDI.html</xsl:attribute>
+					<xsl:attribute name="href">http://library.harvard.edu/FAD</xsl:attribute>
 					<img class="extimg" >
 						<xsl:attribute name="src">libInfoPage.png</xsl:attribute>
 					</img>
@@ -698,7 +734,7 @@
 
 			<xsl:when test="./repositoryName = 'Harvard Fine Arts Library, Visual Collections - Historical Photographs'">
 				<a target="_new">
-					<xsl:attribute name="href">http://hul.harvard.edu/cmtes/ulc/aac/via/desc-FAL-HPSVC.html</xsl:attribute>
+					<xsl:attribute name="href">http://library.harvard.edu/FAL</xsl:attribute>
 					<img class="extimg" >
 						<xsl:attribute name="src">libInfoPage.png</xsl:attribute>
 					</img>
@@ -707,7 +743,7 @@
 
 			<xsl:when test="./repositoryName = 'Harvard Fine Arts Library, Special Collections'">
 				<a target="_new">
-					<xsl:attribute name="href">http://hul.harvard.edu/cmtes/ulc/aac/via/desc-FAL-HPSVC.html</xsl:attribute>
+					<xsl:attribute name="href">http://library.harvard.edu/FAL</xsl:attribute>
 					<img class="extimg" >
 						<xsl:attribute name="src">libInfoPage.png</xsl:attribute>
 					</img>
@@ -716,7 +752,7 @@
 
 			<xsl:when test="./repositoryName = 'Harvard Forest'">
 				<a target="_new">
-					<xsl:attribute name="href">http://hul.harvard.edu/cmtes/ulc/aac/via/desc-Forest.html</xsl:attribute>
+					<xsl:attribute name="href">http://library.harvard.edu/FOR</xsl:attribute>
 					<img class="extimg" >
 						<xsl:attribute name="src">libInfoPage.png</xsl:attribute>
 					</img>
@@ -725,7 +761,7 @@
 
 			<xsl:when test="./repositoryName = 'Harvard Law School Library'">
 				<a target="_new">
-					<xsl:attribute name="href">http://hul.harvard.edu/cmtes/ulc/aac/via/desc-Law.html</xsl:attribute>
+					<xsl:attribute name="href">http://library.harvard.edu/LAW</xsl:attribute>
 					<img class="extimg" >
 						<xsl:attribute name="src">libInfoPage.png</xsl:attribute>
 					</img>
@@ -734,7 +770,7 @@
 
 			<xsl:when test="./repositoryName = 'Harvard Portrait/Clock Collections'">
 				<a target="_new">
-					<xsl:attribute name="href">http://hul.harvard.edu/cmtes/ulc/aac/via/desc-HUPC.html</xsl:attribute>
+					<xsl:attribute name="href">http://library.harvard.edu/LAW</xsl:attribute>
 					<img class="extimg" >
 						<xsl:attribute name="src">libInfoPage.png</xsl:attribute>
 					</img>
@@ -743,7 +779,7 @@
 
 			<xsl:when test="./repositoryName = 'Harvard Theatre Collection'">
 				<a target="_new">
-					<xsl:attribute name="href">http://hul.harvard.edu/cmtes/ulc/aac/via/desc-Theatre.html</xsl:attribute>
+					<xsl:attribute name="href">http://library.harvard.edu/THE</xsl:attribute>
 					<img class="extimg" >
 						<xsl:attribute name="src">libInfoPage.png</xsl:attribute>
 					</img>
@@ -752,7 +788,7 @@
 
 			<xsl:when test="./repositoryName = 'Harvard University Archives'">
 				<a target="_new">
-					<xsl:attribute name="href">http://hul.harvard.edu/huarc/</xsl:attribute>
+					<xsl:attribute name="href">http://library.harvard.edu/HUA</xsl:attribute>
 					<img class="extimg" >
 						<xsl:attribute name="src">libInfoPage.png</xsl:attribute>
 					</img>
@@ -761,7 +797,7 @@
 
 			<xsl:when test="./repositoryName = 'Harvard-Yenching Library'">
 				<a target="_new">
-					<xsl:attribute name="href">http://hul.harvard.edu/cmtes/ulc/aac/via/desc-Yenching.html</xsl:attribute>
+					<xsl:attribute name="href">http://library.harvard.edu/HYL</xsl:attribute>
 					<img class="extimg" >
 						<xsl:attribute name="src">libInfoPage.png</xsl:attribute>
 					</img>
@@ -770,7 +806,7 @@
 
 			<xsl:when test="./repositoryName = 'Houghton Library, Department of Printing and Graphic Arts'">
 				<a target="_new">
-					<xsl:attribute name="href">http://hul.harvard.edu/cmtes/ulc/aac/via/desc-HoughtonPGA.html</xsl:attribute>
+					<xsl:attribute name="href">http://library.harvard.edu/HOU</xsl:attribute>
 					<img class="extimg" >
 						<xsl:attribute name="src">libInfoPage.png</xsl:attribute>
 					</img>
@@ -779,7 +815,7 @@
 
 			<xsl:when test="./repositoryName = 'Houghton Library, Manuscript Department'">
 				<a target="_new">
-					<xsl:attribute name="href">http://hul.harvard.edu/cmtes/ulc/aac/via/desc-HoughtonMBMSS.html</xsl:attribute>
+					<xsl:attribute name="href">http://library.harvard.edu/HOU</xsl:attribute>
 					<img class="extimg" >
 						<xsl:attribute name="src">libInfoPage.png</xsl:attribute>
 					</img>
@@ -788,7 +824,7 @@
 
 			<xsl:when test="./repositoryName = 'Houghton Library'">
 				<a target="_new">
-					<xsl:attribute name="href">http://hcl.harvard.edu/libraries/houghton/</xsl:attribute>
+					<xsl:attribute name="href">http://library.harvard.edu/HOU</xsl:attribute>
 					<img class="extimg" >
 						<xsl:attribute name="src">libInfoPage.png</xsl:attribute>
 					</img>
@@ -797,7 +833,7 @@
 
 			<xsl:when test="./repositoryName = 'Judaica Division, Widener Library'">
 				<a target="_new">
-					<xsl:attribute name="href">http://hul.harvard.edu/cmtes/ulc/aac/via/desc-Judaica.html</xsl:attribute>
+					<xsl:attribute name="href">http://library.harvard.edu/WID</xsl:attribute>
 					<img class="extimg" >
 						<xsl:attribute name="src">libInfoPage.png</xsl:attribute>
 					</img>
@@ -806,16 +842,34 @@
 
 			<xsl:when test="./repositoryName = 'Loeb Library, Harvard Design School'">
 				<a target="_new">
-					<xsl:attribute name="href">http://hul.harvard.edu/cmtes/ulc/aac/via/desc-Leob.html</xsl:attribute>
+					<xsl:attribute name="href">http://library.harvard.edu/DES</xsl:attribute>
 					<img class="extimg" >
 						<xsl:attribute name="src">libInfoPage.png</xsl:attribute>
 					</img>
 				</a>
 			</xsl:when>
+			
+			<xsl:when test="./repositoryName = 'Loeb Music Library'">
+				<a target="_new">
+					<xsl:attribute name="href">http://library.harvard.edu/MUS</xsl:attribute>
+					<img class="extimg" >
+						<xsl:attribute name="src">libInfoPage.png</xsl:attribute>
+					</img>
+				</a>
+			</xsl:when>		
+			
+			<xsl:when test="./repositoryName = 'Middle Eastern Division, Widener Library'">
+				<a target="_new">
+					<xsl:attribute name="href">http://library.harvard.edu/WID</xsl:attribute>
+					<img class="extimg" >
+						<xsl:attribute name="src">libInfoPage.png</xsl:attribute>
+					</img>
+				</a>
+			</xsl:when>						
 
 			<xsl:when test="./repositoryName = 'Milman Parry Collection of Oral Literature'">
 				<a target="_new">
-					<xsl:attribute name="href">http://chs119.harvard.edu/mpc/</xsl:attribute>
+					<xsl:attribute name="href">http://library.harvard.edu/ORA</xsl:attribute>
 					<img class="extimg" >
 						<xsl:attribute name="src">libInfoPage.png</xsl:attribute>
 					</img>
@@ -824,7 +878,7 @@
 
 			<xsl:when test="./repositoryName = 'Peabody Museum of Archaeology and Ethnology, Photographic Archives'">
 				<a target="_new">
-					<xsl:attribute name="href">http://hul.harvard.edu/cmtes/ulc/aac/via/desc-Peabody.html</xsl:attribute>
+					<xsl:attribute name="href">http://library.harvard.edu/PEA</xsl:attribute>
 					<img class="extimg" >
 						<xsl:attribute name="src">libInfoPage.png</xsl:attribute>
 					</img>
@@ -833,7 +887,7 @@
 
 			<xsl:when test="./repositoryName = 'Radcliffe Archives'">
 				<a target="_new">
-					<xsl:attribute name="href">http://hul.harvard.edu/cmtes/ulc/aac/via/desc-RadcliffeARCH.html</xsl:attribute>
+					<xsl:attribute name="href">http://library.harvard.edu/SCH</xsl:attribute>
 					<img class="extimg" >
 						<xsl:attribute name="src">libInfoPage.png</xsl:attribute>
 					</img>
@@ -842,7 +896,7 @@
 
 			<xsl:when test="./repositoryName = 'Schlesinger Library on the History of Women in America, Radcliffe Institute'">
 				<a target="_new">
-					<xsl:attribute name="href">http://hul.harvard.edu/cmtes/ulc/aac/via/desc-Schlesinger.html</xsl:attribute>
+					<xsl:attribute name="href">http://library.harvard.edu/SCH</xsl:attribute>
 					<img class="extimg" >
 						<xsl:attribute name="src">libInfoPage.png</xsl:attribute>
 					</img>
@@ -851,7 +905,7 @@
 
 			<xsl:when test="./repositoryName = 'Theodore Roosevelt Collection'">
 				<a target="_new">
-					<xsl:attribute name="href">http://hul.harvard.edu/cmtes/ulc/aac/via/desc-TR.html</xsl:attribute>
+					<xsl:attribute name="href">http://library.harvard.edu/TDR</xsl:attribute>
 					<img class="extimg" >
 						<xsl:attribute name="src">libInfoPage.png</xsl:attribute>
 					</img>
@@ -860,7 +914,7 @@
 
 			<xsl:when test="./repositoryName = 'Tozzer Library'">
 				<a target="_new">
-					<xsl:attribute name="href">http://hcl.harvard.edu/libraries/tozzer/</xsl:attribute>
+					<xsl:attribute name="href">http://library.harvard.edu/TOZ</xsl:attribute>
 					<img class="extimg" >
 						<xsl:attribute name="src">libInfoPage.png</xsl:attribute>
 					</img>
@@ -869,7 +923,7 @@
 
 			<xsl:when test="./repositoryName = 'Widener Library'">
 				<a target="_new">
-					<xsl:attribute name="href">http://hcl.harvard.edu/libraries/widener/</xsl:attribute>
+					<xsl:attribute name="href">http://library.harvard.edu/WID</xsl:attribute>
 					<img class="extimg" >
 						<xsl:attribute name="src">libInfoPage.png</xsl:attribute>
 					</img>
