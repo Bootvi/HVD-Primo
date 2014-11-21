@@ -288,7 +288,7 @@
 				</td>
 				<td class="VIAMetaDataValue">
 					<xsl:value-of select="../repository/repositoryName"/>
-					<xsl:text/>
+					<xsl:text> </xsl:text>
 					<xsl:value-of select="../repository/number"/>
 				</td>
 			</tr>
@@ -379,7 +379,7 @@
 				</td>
 				<td class="VIAMetaDataValue">
 					<xsl:value-of select="repository/repositoryName"/>
-					<xsl:text/>
+					<xsl:text> </xsl:text>
 					<xsl:value-of select="repository/number"/>
 				</td>
 			</tr>
