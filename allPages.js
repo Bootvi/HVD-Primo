@@ -74,6 +74,8 @@ $(document).ready(function() {
 		});
 		$(this).parents(".EXLResult").find("li.EXLViewOnlineTab ").css("display", "none");
 	});
+	$(".EXLFacet a:contains('Surrogate at Harvard')").parents("li.EXLFacet").hide();
+    $(".EXLFacet a:contains('Surrogate at Harvard')").parents("ol.EXLFacetsList").find(".EXLFacetsDisplayMore").hide();
 
 	//Change HELP link to custom file
 	$(".EXLMainMenuItem > span > a:contains('Help')").attr("href", "../uploaded_files/HVD/help.html");
