@@ -274,24 +274,24 @@
 }
 
 /* Alon B. Additions */
-.fancybox-type-iframe .fancybox-nav {
+.fancybox-nav {
     width: 80px;       
 }
 
-.fancybox-type-iframe .fancybox-nav span {
+.fancybox-nav span {
     visibility: visible;
     opacity: 0.5;
 }
 
-.fancybox-type-iframe .fancybox-nav:hover span {
+.fancybox-nav:hover span {
     opacity: 1;
 }
 
-.fancybox-type-iframe .fancybox-next {
+.fancybox-next {
     right: -80px;
 }
 
-.fancybox-type-iframe .fancybox-prev {
+.fancybox-prev {
     left: -80px;
 }
 
