@@ -12,7 +12,7 @@
 				</div>
 				<xsl:apply-templates/>
 				<div id="viaFooter">
-					<a href="http://nrs.harvard.edu/urn-3:hul.ois:portal_copyright">Copyright and Permissions</a>
+					<a href="http://nrs.harvard.edu/urn-3:hul.ois:portal_copyright_images">Copyright and Permissions</a>
 				</div>				
 			</body>
 		</html>
