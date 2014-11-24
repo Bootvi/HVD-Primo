@@ -40,6 +40,17 @@ function buildViaGallary() {
 
 		});
 
+		//If the user is signed out - switch to iframe for restricted images
+		if ($("#exlidSignOut").hasClass("EXLHidden")) {	
+			$(this).find(".VIAGallary a.fancybox").each(function (){
+				if ($(this).find(".VIARestrictedThumbnail").length) {
+					$(this).addClass("fancybox.iframe");
+					$(this).removeClass("fancybox.image");
+				}
+					
+			});
+		}
+
 		//Make it FANCYBOX, with MetaData function call to populate the information
 		$(this).find(".VIAGallary a.fancybox").fancybox({
 			openEffect: 'none',
@@ -47,7 +58,8 @@ function buildViaGallary() {
 			nextEffect: 'none',
 			prevEffect: 'none',
 			width: '1200',
-			height: '660',
+			height: 660,
+			maxHeight: 700,
 			margin: [20, 60, 20, 60],
 			helpers: {
 				title: {
@@ -58,12 +70,13 @@ function buildViaGallary() {
 				}
 			},
 			afterLoad: function(current, previous) {
-				addMetaData(current, previous);
+				modifyContents(current, previous);
+			},
+			onUpdate: function() {
+				resizeFancyBox();
+				
 			}
-
-
 		});
-
 	});
 }
 
@@ -82,18 +95,32 @@ function createHeader(element, numberOfImages) {
 }
 
 //Get the MetaData based on the Image URL (unique), and puts the title with that value
-function addMetaData(current, previous) {
+function modifyContents(current, previous) {
+	//Get the MetaData next to the thumbnail on the page below
 	var metaData = $("a.fancybox[href='" + current.href + "']").parents(".VIAThumbnail").find(".VIAMetaData").html();
 
+	//Get the parameters from the fancy box and the page URL
 	var recordId = $("a.fancybox[href='" + current.href + "']").attr("rel");
 	var imageId = current.href.replace(/^(.*[\/])/, "");
 	imageId = imageId.substr(0, imageId.indexOf("?"));
 
-
+	//Apply the metaData
 	if (metaData != null && metaData.length > 0) {
 		var componentId = $(metaData).find("tr.VIAComponentId td.VIAMetaDataValue").text()
 		metaData = metaData.replace("LinkPrintPlaceHolder", "../uploaded_files/HVD/viaPage.html?recordId=" + recordId + "&imageId=" + imageId + "&compId=" + componentId);
 		current.title = metaData;
 	}
+}
+
+function resizeFancyBox() {
+	//Resize the box if image is narrower than 800px
+	var width = $(".fancybox-type-image").css("width").replace("px","");
+	if (width < 1200) {
+		logJS("resizing");
+		$(".fancybox-type-image").css("width", "1200px");
+		$(".fancybox-inner").css("width", "1170px");
+		$.fancybox.reposition()	
+	}
+	
 
 }
