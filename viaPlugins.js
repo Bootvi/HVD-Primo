@@ -116,9 +116,11 @@ function resizeFancyBox() {
 	//Resize the box if image is narrower than 800px
 	var width = $(".fancybox-type-image").css("width").replace("px","");
 	if (width < 1200) {
-		logJS("resizing");
-		$(".fancybox-type-image").css("width", "1200px");
-		$(".fancybox-inner").css("width", "1170px");
+		var newWidth = 1200;
+		if (window.innerWidth < 1400) 
+			newWidth = window.innerWidth - 200;
+		$(".fancybox-type-image").css("width", newWidth + "px");
+		$(".fancybox-inner").css("width", (newWidth -30) + "px");
 		$.fancybox.reposition()	
 	}
 	
