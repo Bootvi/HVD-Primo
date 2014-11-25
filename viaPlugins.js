@@ -123,6 +123,22 @@ function resizeFancyBox() {
 		$(".fancybox-inner").css("width", (newWidth -30) + "px");
 		$.fancybox.reposition()	
 	}
-	
-
 }
+
+
+//Related Information modifications (lds25) due to Normalization Rules limitations
+function fixRelatedInformation() {
+	$(".EXLDetailsContent > ul > li[id^='Related Information']").each(function() {
+		var totalItems = $(this).find("span").length;
+		var totalLinks = $(this).find("span a").length;
+		if (totalItems / totalLinks == 2) {
+			for (var i = 0; i < totalLinks; i++) {
+				$(this).find("span:eq(" + (totalLinks) + ") a").text($(this).find("span:eq(0)").text());
+				$(this).find("span:eq(0)").remove();
+			}
+			$(this).find("br:lt(" + totalLinks + ")").remove();
+		}
+	});
+}
+
+

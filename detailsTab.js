@@ -126,10 +126,11 @@ function doDetailsTab() {
 	detailsHyperlinks();
 	removeTOCLinks();
 
-	//Build VRA support
-	buildViaGallary();
-
 	//Linkify here 
 	detailsSubfieldLinks();
 	detailsLanguagesSpaces();
+
+	//Build VRA support
+	fixRelatedInformation();
+	buildViaGallary();
 }
