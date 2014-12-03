@@ -75,7 +75,7 @@ $(document).ready(function() {
 		$(this).parents(".EXLResult").find("li.EXLViewOnlineTab ").css("display", "none");
 	});
 	$(".EXLFacet a:contains('Surrogate at Harvard')").parents("li.EXLFacet").hide();
-    $(".EXLFacet a:contains('Surrogate at Harvard')").parents("ol.EXLFacetsList").find(".EXLFacetsDisplayMore").hide();
+	$(".EXLFacet a:contains('Surrogate at Harvard')").parents("ol.EXLFacetsList").find(".EXLFacetsDisplayMore").hide();
 
 	//Change HELP link to custom file
 	$(".EXLMainMenuItem > span > a:contains('Help')").attr("href", "../uploaded_files/HVD/help.html");
@@ -94,6 +94,11 @@ $(document).ready(function() {
 
 	//Moving RSS, eShelf, etc to bottom of Facets
 	$('#exlidFacetTile').append($('.EXLFacetActionsV2').parent().parent());
+
+	//If coming from BorrowDirect, open Locations tab
+	if ((RegExp("dlDisplay").test(window.location.href)) && (RegExp("availabilityTab=true").test(window.location.href))) {
+		$(".EXLLocationsTab a:contains('Locations')").click();
+	}
 
 });
 
