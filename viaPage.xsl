@@ -22,13 +22,13 @@
 
 		<xsl:choose>
 			<xsl:when test="count(//image)=1">
-                <xsl:if test="//image/@xlink:href=//image/thumbnail/@xlink:href">
-                    <xsl:call-template name="iFrame"/>
-    			</xsl:if>
-                <xsl:if test="not(//image/@xlink:href=//image/thumbnail/@xlink:href)">
-                    <xsl:call-template name="standardImage"/>
-                </xsl:if>
-				
+				<xsl:if test="//image/@xlink:href=//image/thumbnail/@xlink:href">
+					<xsl:call-template name="iFrame"/>
+				</xsl:if>
+				<xsl:if test="not(//image/@xlink:href=//image/thumbnail/@xlink:href)">
+					<xsl:call-template name="standardImage"/>
+				</xsl:if>
+
 			</xsl:when>
 			<xsl:otherwise>
 				<xsl:call-template name="noImage"/>
@@ -544,7 +544,7 @@
 			</div>
 		</div>
 	</xsl:template>
-	
+
 	<xsl:template name="iFrame">
 		<div>
 			<div class="viaIFrame">
@@ -558,15 +558,15 @@
 			</div>
 		</div>
 	</xsl:template>
-	
+
 	<xsl:template name="noImage">
-	
-			<div class="imageNotDigitizedFullPage">
-				<img>
-					<xsl:attribute name="src">imageNotDigitizedLarge.png</xsl:attribute>
-					<xsl:attribute name="alt">Image Not Digitized</xsl:attribute>					
-				</img>
-			</div>
+
+		<div class="imageNotDigitizedFullPage">
+			<img>
+				<xsl:attribute name="src">imageNotDigitizedLarge.png</xsl:attribute>
+				<xsl:attribute name="alt">Image Not Digitized</xsl:attribute>					
+			</img>
+		</div>
 
 	</xsl:template>	
 
@@ -590,7 +590,7 @@
 					</img>
 				</a>
 			</xsl:when>
-			
+
 			<xsl:when test="./repositoryName = 'Berenson Art Collection, Villa I Tatti - The Harvard University Center for Italian Renaissance Studies'">
 				<a target="_new">
 					<xsl:attribute name="href">http://library.harvard.edu/BER</xsl:attribute>
@@ -617,7 +617,7 @@
 					</img>
 				</a>
 			</xsl:when>
-			
+
 			<xsl:when test="./repositoryName = 'Gray Herbarium Archives'">
 				<a target="_new">
 					<xsl:attribute name="href">http://library.harvard.edu/BOT</xsl:attribute>
@@ -689,7 +689,7 @@
 					</img>
 				</a>
 			</xsl:when>
-			
+
 			<xsl:when test="./repositoryName = 'Harvard Art Museums'">
 				<a target="_new">
 					<xsl:attribute name="href">http://library.harvard.edu/ART</xsl:attribute>
@@ -869,7 +869,7 @@
 					</img>
 				</a>
 			</xsl:when>
-			
+
 			<xsl:when test="./repositoryName = 'Loeb Music Library'">
 				<a target="_new">
 					<xsl:attribute name="href">http://library.harvard.edu/MUS</xsl:attribute>
@@ -878,7 +878,7 @@
 					</img>
 				</a>
 			</xsl:when>		
-			
+
 			<xsl:when test="./repositoryName = 'Middle Eastern Division, Widener Library'">
 				<a target="_new">
 					<xsl:attribute name="href">http://library.harvard.edu/WID</xsl:attribute>
