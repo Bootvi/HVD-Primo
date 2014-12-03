@@ -22,7 +22,13 @@
 
 		<xsl:choose>
 			<xsl:when test="count(//image)=1">
-				<xsl:call-template name="iFrame"/>
+                <xsl:if test="//image/@xlink:href=//image/thumbnail/@xlink:href">
+                    <xsl:call-template name="iFrame"/>
+    			</xsl:if>
+                <xsl:if test="not(//image/@xlink:href=//image/thumbnail/@xlink:href)">
+                    <xsl:call-template name="standardImage"/>
+                </xsl:if>
+				
 			</xsl:when>
 			<xsl:otherwise>
 				<xsl:call-template name="noImage"/>
@@ -525,6 +531,20 @@
 
 	</xsl:template>
 
+	<xsl:template name="standardImage">
+		<div>
+			<div class="viaImage">
+
+				<img class="viaImage">
+					<xsl:attribute name="src">
+						<xsl:value-of select="concat(//image/@xlink:href, '?height=500')" />						
+					</xsl:attribute>
+					<xsl:value-of select="//image/caption" />
+				</img>
+			</div>
+		</div>
+	</xsl:template>
+	
 	<xsl:template name="iFrame">
 		<div>
 			<div class="viaIFrame">
