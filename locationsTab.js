@@ -128,7 +128,7 @@ function createCountwaySerialsNote() {
 		if ($(this).text() == 'Russell Reading Room') {
 			var callno = $(this).siblings("cite").text();
 			var recordId = $(this).parents("form[name='locationsTabForm']").children("input[name='recIds']").val();
-			var url = "http://hollis.harvard.edu/availability.ashx?&skin=primo&itemid=|library/m/aleph|" + recordId.substr(("HVD_ALEPH").length);
+			var url = "http://lms01.harvard.edu/F/?func=item-global&doc_library=HVD01&doc_number=" + recordId.substr(("HVD_ALEPH").length) + "&year=&volume=&sub_library=MED" ;
 			if (callno.indexOf("Serial") >= 0) {
 				$(this).append('<br /><a href="' + url + '" target="_blank">Check for older vols.</a>');
 			}
