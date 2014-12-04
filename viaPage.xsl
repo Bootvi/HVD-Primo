@@ -6,7 +6,7 @@
 	<xsl:template  match="/">
 		<html>
 			<head>
-				<link rel="icon" type="image/png" href="../uploaded_files/HVD/favicon.ico" />
+				<link rel="shortcut icon" type="image/x-icon" href="../uploaded_files/HVD/favicon.ico" />
 			</head>
 			<body>
 				<div id="viaHeader">
