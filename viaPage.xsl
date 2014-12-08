@@ -52,7 +52,7 @@
 		<hr class="tableSeperator"/>
 		
 		<!-- CB 20141208 adding section for new image/component permalinks -->
-	    <div class="viaComponenetMetaData">
+	    <!-- <div class="viaComponenetMetaData">
 			<table class="VIAMetaDataTable">		
 				<tr>
 					<td class="VIAMetaDataKey">     
@@ -80,7 +80,7 @@
 					</td>                           
 				</tr>	
 			</table>
-		</div>
+		</div> -->
 
 		<!-- <br/> -->
 
