@@ -6,7 +6,7 @@
 	<xsl:template  match="/">
 		<html>
 			<head>
-				<link rel="shortcut icon" type="image/x-icon" href="../uploaded_files/HVD/favicon.ico" />
+				<link rel="shortcut icon" type="image/x-icon" href="../../uploaded_files/HVD/favicon.ico" />
 			</head>
 			<body>
 				<div id="viaHeader">
@@ -64,8 +64,6 @@
 			</div>
 		</xsl:for-each>
 
-
-
 	</xsl:template>
 
 	<xsl:template name="componentId">
@@ -78,6 +76,19 @@
 				<xsl:value-of select="@componentID"/>
 			</td>                           
 		</tr>
+		
+		<tr>
+			<td class="VIAMetaDataKey">     
+				<strong>Permalink:</strong>             
+			</td>                           
+			<td class="VIAMetaDataValueComponentId">   
+				<xsl:text>http://idtest.lib.harvard.edu:9020/via/</xsl:text>
+				<xsl:value-of select="//recordId"/>
+				<xsl:text>/</xsl:text>
+				<xsl:value-of select="@componentID"/>
+				<xsl:text>/catalog</xsl:text>
+			</td>                           
+		</tr>		
 
 	</xsl:template>
 
