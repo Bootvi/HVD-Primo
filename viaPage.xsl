@@ -5,9 +5,6 @@
 
 	<xsl:template  match="/">
 		<html>
-			<head>
-				<link rel="shortcut icon" type="image/x-icon" href="../../uploaded_files/HVD/favicon.ico" />
-			</head>
 			<body>
 				<div id="viaHeader">
 					<img src="../../uploaded_files/HVD/pennant_HOLLIS+beta.jpg" />
