@@ -7,7 +7,9 @@
 		<html>
 			<body>
 				<div id="viaHeader">
-					<img src="../../uploaded_files/HVD/pennant_HOLLIS+beta.jpg" />
+					<a href="http://nrs.harvard.edu/urn-3:hul.ois:bannerhollis+" title="HOLLIS+" alt="HOLLIS plus">
+						<img src="../../uploaded_files/HVD/pennant_HOLLIS+beta.jpg" />
+					</a>
 					<div>HOLLIS+ Image Detail</div>
 				</div>
 				<xsl:apply-templates/>
@@ -28,17 +30,16 @@
 				<xsl:if test="not(//image/@xlink:href=//image/thumbnail/@xlink:href)">
 					<xsl:call-template name="standardImage"/>
 				</xsl:if>
-
 			</xsl:when>
 			<xsl:otherwise>
 				<xsl:call-template name="noImage"/>
 			</xsl:otherwise>
 		</xsl:choose>
 
+		<!-- CB 20141208 : comment out later, adding permalink instead -->
 		<div class="viaWorkGroupMetaData">
 			<table class="VIAMetaDataTable">
 				<xsl:call-template name="metaData"/>
-
 				<tr>
 					<td class="VIAMetaDataKey">
 						<strong>Link to this record:</strong>
@@ -49,6 +50,37 @@
 		</div>
 
 		<hr class="tableSeperator"/>
+		
+		<!-- CB 20141208 adding section for new image/component permalinks -->
+	    <div class="viaComponenetMetaData">
+			<table class="VIAMetaDataTable">		
+				<tr>
+					<td class="VIAMetaDataKey">     
+						<strong>Permalink:</strong>             
+					</td>                           
+					<td class="VIAMetaDataValueComponentId">   
+						<a target="_blank">
+							<xsl:attribute name="href">								
+							</xsl:attribute>
+							<xsl:text>http://idtest.lib.harvard.edu:9020/via/</xsl:text>
+							<xsl:value-of select="//recordId"/>
+							<xsl:text>/</xsl:text>
+							<xsl:choose>
+								<xsl:when test="//image">
+									<xsl:value-of select="//image/@xlink:href" />
+									<xsl:text> test </xsl:text>
+									<xsl:value-of select="substring(//image/@xlink:href,24)," />
+								</xsl:when>
+								<xsl:otherwise>
+									<xsl:value-of select="@componentID"/>
+								</xsl:otherwise>
+							</xsl:choose>
+							<xsl:text>/catalog</xsl:text>
+						</a>
+					</td>                           
+				</tr>	
+			</table>
+		</div>
 
 		<!-- <br/> -->
 
@@ -72,20 +104,7 @@
 			<td class="VIAMetaDataValueComponentId">   
 				<xsl:value-of select="@componentID"/>
 			</td>                           
-		</tr>
-		
-		<tr>
-			<td class="VIAMetaDataKey">     
-				<strong>Permalink:</strong>             
-			</td>                           
-			<td class="VIAMetaDataValueComponentId">   
-				<xsl:text>http://idtest.lib.harvard.edu:9020/via/</xsl:text>
-				<xsl:value-of select="//recordId"/>
-				<xsl:text>/</xsl:text>
-				<xsl:value-of select="@componentID"/>
-				<xsl:text>/catalog</xsl:text>
-			</td>                           
-		</tr>		
+		</tr>				
 
 	</xsl:template>
 
