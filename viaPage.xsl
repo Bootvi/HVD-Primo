@@ -552,9 +552,8 @@
 						</xsl:if>
 						<xsl:for-each select="number">
 							<span class="collection">								
-								<!-- <br/> -->
-								<xsl:value-of select="." />
 								<xsl:text> </xsl:text>
+								<xsl:value-of select="." />								
 							</span>	
 						</xsl:for-each>
 						<xsl:if test="position()!=last()">
