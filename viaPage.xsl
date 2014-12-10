@@ -36,8 +36,8 @@
 			</xsl:otherwise>
 		</xsl:choose>
 
-		<!-- CB 20141208 : comment out later, adding permalink instead -->
-		<div class="viaWorkGroupMetaData">
+		<!-- CB 20141208 : commented out, adding permalink instead -->
+		<!-- <div class="viaWorkGroupMetaData">
 			<table class="VIAMetaDataTable">
 				<xsl:call-template name="metaData"/>
 				<tr>
@@ -47,7 +47,7 @@
 					<td class="VIAMetaDataValue VIAMetaDataValueLinkToRecord"/>
 				</tr>
 			</table>
-		</div>
+		</div> -->
 
 		<hr class="tableSeperator"/>
 		
@@ -59,7 +59,12 @@
 						<strong>Permalink:</strong>             
 					</td>                           
 					<td class="VIAMetaDataValue">   
-						<xsl:text>http://idtest.lib.harvard.edu:9020/via/</xsl:text>
+						<a>
+							<xsl:attribute name="href">
+								<xsl:text>http://idtest.lib.harvard.edu:9020/via/</xsl:text>
+							</xsl:attribute>
+							<xsl:text>http://idtest.lib.harvard.edu:9020/via/</xsl:text>
+						</a>
 						<!-- <a target="_blank">
 							<xsl:attribute name="href">								
 							</xsl:attribute>
