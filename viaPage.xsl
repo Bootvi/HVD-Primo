@@ -36,18 +36,17 @@
 			</xsl:otherwise>
 		</xsl:choose>
 
-		<!-- CB 20141208 : commented out, adding permalink instead -->
-		<!-- <div class="viaWorkGroupMetaData">
+		<div class="viaWorkGroupMetaData">
 			<table class="VIAMetaDataTable">
 				<xsl:call-template name="metaData"/>
-				<tr>
+				<!-- <tr>
 					<td class="VIAMetaDataKey">
 						<strong>Link to this record:</strong>
 					</td>
 					<td class="VIAMetaDataValue VIAMetaDataValueLinkToRecord"/>
-				</tr>
+				</tr> -->
 			</table>
-		</div> -->
+		</div> 
 
 		<hr class="tableSeperator"/>
 		
@@ -64,6 +63,7 @@
 								<xsl:text>http://idtest.lib.harvard.edu:9020/via/</xsl:text>
 							</xsl:attribute>
 							<xsl:text>http://idtest.lib.harvard.edu:9020/via/</xsl:text>
+							<xsl:value-of select="//recordId"/>
 						</a>
 						<!-- <a target="_blank">
 							<xsl:attribute name="href">								

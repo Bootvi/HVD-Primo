@@ -379,11 +379,9 @@
 				</td>
 				<td class="VIAMetaDataValue">
 					<xsl:value-of select="repository/repositoryName"/>
-					<xsl:for-each select="number">
-						<span class="collection">								
-							<xsl:text> </xsl:text>
-							<xsl:value-of select="." />								
-						</span>	
+					<xsl:for-each select="repository/number">
+						<xsl:text> </xsl:text>
+						<xsl:value-of select="." />		
 					</xsl:for-each>
 				</td>
 			</tr>
