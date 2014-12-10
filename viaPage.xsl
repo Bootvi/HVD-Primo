@@ -52,14 +52,15 @@
 		<hr class="tableSeperator"/>
 		
 		<!-- CB 20141208 adding section for new image/component permalinks -->
-	    <!-- <div class="viaComponenetMetaData">
+	     <div class="viaComponenetMetaData">
 			<table class="VIAMetaDataTable">		
 				<tr>
 					<td class="VIAMetaDataKey">     
 						<strong>Permalink:</strong>             
 					</td>                           
-					<td class="VIAMetaDataValueComponentId">   
-						<a target="_blank">
+					<td class="VIAMetaDataValue">   
+						<xsl:text>http://idtest.lib.harvard.edu:9020/via/</xsl:text>
+						<!-- <a target="_blank">
 							<xsl:attribute name="href">								
 							</xsl:attribute>
 							<xsl:text>http://idtest.lib.harvard.edu:9020/via/</xsl:text>
@@ -76,11 +77,11 @@
 								</xsl:otherwise>
 							</xsl:choose>
 							<xsl:text>/catalog</xsl:text>
-						</a>
+						</a> -->
 					</td>                           
 				</tr>	
 			</table>
-		</div> -->
+		</div>
 
 		<!-- <br/> -->
 
