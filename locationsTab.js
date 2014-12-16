@@ -115,8 +115,8 @@ function shortenLocationNotes() {
 		$(".EXLLocationsMoreInfo > strong").each(function() {
 			if ($(this).text().trim().length > 250 && $(this).children("a").length == 0) {
 				var part1 = $(this).text().trim().substr(0, $(this).text().trim().substr(0, 130).lastIndexOf(" "));
-				var recordId = $(this).parents("form[name='locationsTabForm']").children("input[name='recIds']").val();
-				var url = "http://lms01.harvard.edu/F?func=direct&local_base=HVD01&doc_number=" + recordId.substr(("HVD_ALEPH").length);
+				var recordId = $(this).parents("div.EXLSublocation").attr("id").substr(5, 9);
+				var url = "http://lms01.harvard.edu/F?func=direct&local_base=HVD01&doc_number=" + recordId;
 				$(this).html(part1 + '<a href="' + url + '" target="_blank">...more</a>');
 			}
 		});
