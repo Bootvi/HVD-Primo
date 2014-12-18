@@ -7,13 +7,14 @@ function linksModifications() {
 }
 
 //Moving LDS14 to the Title line in Details tab
-function title245cModification() {
+//20141210 CB comment out no longer relevant
+/* function title245cModification() {
 	$(".EXLDetailsContent > ul > li[id^='Statement']").each(function() {
 		var text245c = $(this).children("span").text();
 		$(this).parent().find(".EXLLinkedFieldTitle").append("<br> / " + text245c);
 		$(this).remove();
 	});
-}
+} */
 
 //Change all hyperlinks
 //For targets: anywhere = any, title = title, author = creator, subject = sub, ISSN = issn, ISBN = isbn
@@ -121,9 +122,9 @@ $(document).ajaxComplete(function(event, request, settings) {
 
 function doDetailsTab() {
 	linksModifications();
-	title245cModification();
+	//title245cModification();  20141210 CB no longer relevant
 
-	detailsHyperlinks();
+	//detailsHyperlinks();  20141210 CB commented out for testing new lds3x/lsr3x linking
 	removeTOCLinks();
 
 	//Linkify here 
