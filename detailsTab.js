@@ -106,6 +106,72 @@ function detailsLanguagesSpaces() {
 	});
 }
 
+//Handles lds3X links in Details tab
+function detailsLateralLinks() {
+	$(".EXLDetailsContent > ul > li[id^='Other title']").each(detailsLateralLinksFix); //lds33a
+	$(".EXLDetailsContent > ul > li[id^='Title']").each(detailsLateralLinksFix); //lds34
+	$(".EXLDetailsContent > ul > li[id^='Related titles']").each(detailsLateralLinksFix); //lds35
+	$(".EXLDetailsContent > ul > li[id^='In']").each(detailsLateralLinksFix); //lds36
+}
+
+//Handle the content links of lds3X
+function detailsLateralLinksFix() {
+	var newLine = true;
+	$(this).find("a, br").each(function () {
+		if (newLine) {
+			newLine = false;
+
+		        var lateralLink = $(this).attr("href");
+        		var lateralLinkText = $(this).text();
+
+			//Double check this is lateral link
+		        if (lateralLink.indexOf("lsr3") == -1)
+                		return;
+
+			//Remove anything inside <i> outside the link
+		        if ($(this).find("i").length) {
+				//Fix the link
+				lateralLink = lateralLink.substr(0, lateralLink.indexOf("%3ci%3e")) + lateralLink.substr(lateralLink.indexOf("%3c%2fi%3e") + 10)
+		                
+				//Move the text
+		                $(this).find("i").insertBefore($(this));
+                		lateralLinkText = $(this).text();
+			}
+
+		        //Change the link to point to the title
+		        lateralLink = lateralLink.replace(/lsr3[3-6]/g, "title");
+
+		        //Handling ISSN's, special identifier, etc..
+		        if (lateralLink.search(/([0-9]{4})-([0-9]{4})/g) > 0) {
+                		//Fix the link
+		                var issnStart = lateralLink.search(/([0-9]{4})-([0-9]{4})/g);
+                		var queryEnd = lateralLink.indexOf("&", lateralLink.indexOf(/([0-9]{4})-([0-9]{4})/g));
+		                lateralLink = lateralLink.substr(0, issnStart) + lateralLink.substr(queryEnd);
+
+                		//Fix the text ISSN only
+		                var issnStart = lateralLinkText.search(/([0-9]{4})-([0-9]{4})/g);
+	
+				var suffix = lateralLinkText.substring(issnStart);
+		                
+				lateralLinkText = lateralLinkText.substr(0, issnStart - 1);
+				$("<span>, ISSN: " + suffix + "</span>").insertAfter($(this));
+		        }
+			//logJS(lateralLinkText); logJS(lateralLink);
+		        //Finalize link and text
+		        $(this).attr("href", lateralLink);
+		        $(this).text(lateralLinkText);
+		} else {
+        	        if ($(this).is("br"))
+	                        newLine = true;
+			else 
+				$(this).replaceWith($(this).text());
+		}
+
+	});
+
+}
+
+
 //Incase direct link to Details tab, do these:
 $(document).ready(function() {
 	if ((RegExp("tabs=detailsTab").test(window.location.href)) || (RegExp("fn=permalink").test(window.location.href))) {
@@ -125,6 +191,9 @@ function doDetailsTab() {
 	//title245cModification();  20141210 CB no longer relevant
 
 	//detailsHyperlinks();  20141210 CB commented out for testing new lds3x/lsr3x linking
+	//
+	
+	detailsLateralLinks();
 	removeTOCLinks();
 
 	//Linkify here 
