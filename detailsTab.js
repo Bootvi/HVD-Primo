@@ -55,7 +55,7 @@ function detailsLanguagesSpaces() {
 function detailsLateralLinks() {
 
 	//lds30, lds31, lds32
-	var listOfFields = ["Form / genre", "Place", "Med. subject"];
+	var listOfFields = ["Place"];
 	for (var i = 0; i < listOfFields.length; i++) {
 		$(".EXLDetailsContent > ul > li[id^='" + listOfFields[i] + "'] a").each(function() {
 			$(this).attr("href", lateralRemoveItalicLink($(this), $(this).attr("href")));
