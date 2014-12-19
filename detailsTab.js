@@ -6,61 +6,6 @@ function linksModifications() {
 	});
 }
 
-//Moving LDS14 to the Title line in Details tab
-//20141210 CB comment out no longer relevant
-/* function title245cModification() {
-	$(".EXLDetailsContent > ul > li[id^='Statement']").each(function() {
-		var text245c = $(this).children("span").text();
-		$(this).parent().find(".EXLLinkedFieldTitle").append("<br> / " + text245c);
-		$(this).remove();
-	});
-} */
-
-//Change all hyperlinks
-//For targets: anywhere = any, title = title, author = creator, subject = sub, ISSN = issn, ISBN = isbn
-function detailsHyperlinks() {
-	buildDetailsHyperlinks("Med. Subject", "sub", true); //lds08
-	buildDetailsHyperlinks("Other subject", "sub", true); //lds10
-	buildDetailsHyperlinks("Other title", "title", true); //lds03
-	buildDetailsHyperlinks("Series", "title", true); //lds05 series
-	buildDetailsHyperlinks("Place", "any", true); //Place
-	buildDetailsHyperlinks("Linking notes", "title", true); // Relation (aka Linking notes)
-	buildDetailsHyperlinks("Title", "title", false); // Unititle (aka title in code tables)
-
-}
-
-
-//Hyperlinking building
-//Source = the <strong> element, target = the search field  
-function buildDetailsHyperlinks(source, target, split) {
-	$(".EXLDetailsContent li[id^='" + source + "']").children("span").each(function() {
-		var prefix = "";
-		var text = $(this).html();
-
-		//Incase there's a prefix subfield 
-		if ($(this).children("i").length) {
-			prefix = text.substr(0, text.indexOf("</i>") + 4);
-			text = text.substr(text.indexOf("</i>") + 4);
-		}
-
-		//For subject, split to different links according to semi-colon
-		if (split) {
-			var splittedText = text.split(";");
-			var listOfLinks = "";
-			for (var i = 0; i < splittedText.length; i++) {
-				listOfLinks = listOfLinks + '<a href="' + buildDeepURL(splittedText[i], target) + ' " class="EXLLinkedField" title="Find all records containing" target="_parent">' + splittedText[i] + '</a>';
-				if (i < splittedText.length) {
-					listOfLinks = listOfLinks + "; ";
-				}
-			}
-			$(this).replaceWith(prefix + listOfLinks);
-
-		} else {
-			$(this).replaceWith(prefix + '<a href="' + buildDeepURL(text, target) + ' " class="EXLLinkedField" title="Find all records containing" target="_parent">' + text + '</a>');
-		}
-	});
-}
-
 //Build DeepSearch for different searches
 function buildDeepURL(text, target) {
 	//Clean up the text
@@ -108,62 +53,65 @@ function detailsLanguagesSpaces() {
 
 //Handles lds3X links in Details tab
 function detailsLateralLinks() {
-	$(".EXLDetailsContent > ul > li[id^='Other title']").each(detailsLateralLinksFix); //lds33a
-	$(".EXLDetailsContent > ul > li[id^='Title']").each(detailsLateralLinksFix); //lds34
-	$(".EXLDetailsContent > ul > li[id^='Related titles']").each(detailsLateralLinksFix); //lds35
-	$(".EXLDetailsContent > ul > li[id^='In']").each(detailsLateralLinksFix); //lds36
+
+	//lds30, lds31, lds32
+	var listOfFields = ["Form / genre", "Place", "Med. subject"];
+	for (var i = 0; i < listOfFields.length; i++) {
+		$(".EXLDetailsContent > ul > li[id^='" + listOfFields[i] + "'] a").each(function() {
+			$(this).attr("href", lateralRemoveItalicLink($(this), $(this).attr("href")));
+			$(this).text(lateralRemoveItalicText($(this), $(this).text()));
+		});
+	}
+
+	//lds33, lds34, lds35, lds36
+	var listOfFields = ["Other title", "Title", "Related titles", "In"];
+	for (var i = 0; i < listOfFields.length; i++) {
+		$(".EXLDetailsContent > ul > li[id^='" + listOfFields[i] + "']").each(detailsLateralLinksFix);
+	}
+}
+
+//Handle the Preface of the links 
+function detailsLateralRemovePreface() {
+	var newLine = true;
+
 }
 
 //Handle the content links of lds3X
 function detailsLateralLinksFix() {
 	var newLine = true;
-	$(this).find("a, br").each(function () {
+	$(this).find("a, br").each(function() {
 		if (newLine) {
 			newLine = false;
 
-		        var lateralLink = $(this).attr("href");
-        		var lateralLinkText = $(this).text();
+			//Get the content
+			var lateralLink = $(this).attr("href");
+			var lateralLinkText = $(this).text();
 
 			//Double check this is lateral link
-		        if (lateralLink.indexOf("lsr3") == -1)
-                		return;
+			if (lateralLink.indexOf("lsr3") == -1)
+				return;
 
-			//Remove anything inside <i> outside the link
-		        if ($(this).find("i").length) {
-				//Fix the link
-				lateralLink = lateralLink.substr(0, lateralLink.indexOf("%3ci%3e")) + lateralLink.substr(lateralLink.indexOf("%3c%2fi%3e") + 10)
-		                
-				//Move the text
-		                $(this).find("i").insertBefore($(this));
-                		lateralLinkText = $(this).text();
+			lateralLink = lateralRemoveItalicLink($(this), lateralLink);
+			lateralLinkText = lateralRemoveItalicText($(this), lateralLinkText);
+
+			//Change the link to point to the title
+			lateralLink = lateralLink.replace(/lsr3[3-6]/g, "title");
+
+			//Handling ISSN's, special identifier, etc..a
+			var listOfIdentifiers = ["([0-9]{4})-([0-9]{4})", "\(DLC\)", "\(OCoLC\)", "\(MH\)", "\(CaOONL\)"];
+			for (var i = 0; i < listOfIdentifiers.length; i++) {
+				lateralLink = lateralIdentifiersLink(lateralLink, listOfIdentifiers[i]);
+				$(lateralIdentifiersSuffix(lateralLinkText, listOfIdentifiers[i])).insertAfter($(this));
+				lateralLinkText = lateralIdentifiersText(lateralLinkText, listOfIdentifiers[i]);
 			}
 
-		        //Change the link to point to the title
-		        lateralLink = lateralLink.replace(/lsr3[3-6]/g, "title");
-
-		        //Handling ISSN's, special identifier, etc..
-		        if (lateralLink.search(/([0-9]{4})-([0-9]{4})/g) > 0) {
-                		//Fix the link
-		                var issnStart = lateralLink.search(/([0-9]{4})-([0-9]{4})/g);
-                		var queryEnd = lateralLink.indexOf("&", lateralLink.indexOf(/([0-9]{4})-([0-9]{4})/g));
-		                lateralLink = lateralLink.substr(0, issnStart) + lateralLink.substr(queryEnd);
-
-                		//Fix the text ISSN only
-		                var issnStart = lateralLinkText.search(/([0-9]{4})-([0-9]{4})/g);
-	
-				var suffix = lateralLinkText.substring(issnStart);
-		                
-				lateralLinkText = lateralLinkText.substr(0, issnStart - 1);
-				$("<span>, ISSN: " + suffix + "</span>").insertAfter($(this));
-		        }
-			//logJS(lateralLinkText); logJS(lateralLink);
-		        //Finalize link and text
-		        $(this).attr("href", lateralLink);
-		        $(this).text(lateralLinkText);
+			//Finalize link and text
+			$(this).attr("href", lateralLink);
+			$(this).text(lateralLinkText);
 		} else {
-        	        if ($(this).is("br"))
-	                        newLine = true;
-			else 
+			if ($(this).is("br"))
+				newLine = true;
+			else
 				$(this).replaceWith($(this).text());
 		}
 
@@ -171,6 +119,64 @@ function detailsLateralLinksFix() {
 
 }
 
+function lateralRemoveItalicLink(element, link) {
+	//Remove anything inside <i> outside the link
+	if ($(element).find("i").length) {
+		//Fix the link
+		link = link.substr(0, link.indexOf("%3ci%3e")) + link.substr(link.indexOf("%3c%2fi%3e") + 10);
+	}
+
+	return link;
+}
+
+function lateralRemoveItalicText(element, text) {
+	if ($(element).find("i").length) {
+		//Move the text
+		$(element).find("i").insertBefore($(element));
+		text = $(element).text();
+	}
+	return text;
+}
+
+//Modify the search query
+function lateralIdentifiersLink(link, regexString) {
+	var identifierStart = findIdentifier(link, regexString);
+	if (identifierStart > 0) {
+		var queryEnd = link.indexOf("&", identifierStart);
+		link = link.substr(0, identifierStart - 1) + link.substr(queryEnd);
+	}
+	return link;
+}
+
+//Trims the text of the hyperlink up to the first identifier
+function lateralIdentifiersText(text, regexString) {
+	var identifierStart = findIdentifier(text, regexString);
+	if (identifierStart > 0)
+		text = text.substr(0, identifierStart - 1);
+
+	return text
+}
+
+//Extract the Identifiers into a "suffix" to add after the link has been trimmed
+function lateralIdentifiersSuffix(text, regexString) {
+	var identifierStart = findIdentifier(text, regexString);
+	var suffix = "";
+	if (identifierStart > 0) {
+		suffix = text.substring(identifierStart - 1);
+		if (regexString == "([0-9]{4})-([0-9]{4})")
+			suffix = "<span>, ISSN: " + suffix + "</span>";
+		else
+			suffix = "<span>" + suffix + "</span>";
+	}
+
+	return suffix;
+}
+
+//Translate to Regex object, and return the value
+function findIdentifier(str, regexString) {
+	var regex = new RegExp(regexString, "g");
+	return str.search(regex);
+}
 
 //Incase direct link to Details tab, do these:
 $(document).ready(function() {
@@ -187,20 +193,18 @@ $(document).ajaxComplete(function(event, request, settings) {
 });
 
 function doDetailsTab() {
+	//Links modifications 
 	linksModifications();
-	//title245cModification();  20141210 CB no longer relevant
-
-	//detailsHyperlinks();  20141210 CB commented out for testing new lds3x/lsr3x linking
-	//
-	
-	detailsLateralLinks();
 	removeTOCLinks();
-
-	//Linkify here 
+	
+  	//Details tab field link fixes
+	detailsLateralLinks();
+	
+	//Linkify some details fields
 	detailsSubfieldLinks();
 	detailsLanguagesSpaces();
 
-	//Build VRA support
+	//Build VIA support
 	fixRelatedInformation();
 	buildViaGallary();
 }
