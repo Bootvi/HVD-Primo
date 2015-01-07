@@ -92,10 +92,10 @@ function libInfoLink() {
 				"Weissman Preservation Ctr": "WEI",
 				"Widener": "WID",
 				"Wolbach Library": "WOL"
-			}
+			};
 			var libName = $(this).text().trim();
 			var libCode = libraryHash[libName];
-			$(this).append(' <span class="hvdLibInfo"><a href="' + baseUrl + libCode + '" target="_blank"><img alt="Library Information" src="../uploaded_files/HVD/libInfoPage.png" /></a><span>');
+			$(this).append(' <span class="hvdLibInfo"><a href="' + baseUrl + libCode + '" target="_blank"><img title="Library Information"  alt="Library Information" src="../uploaded_files/HVD/libInfoPage.png" /></a><span>');
 		}
 	});
 }

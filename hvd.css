@@ -309,6 +309,9 @@ select#exlidInput_scope_1, select#exlidInput_scope_2, select#exlidInput_scope_3,
 [id^="exlidInput_scope"] {
 min-width: 0%;
 }
+#exlidAdvancedSearchRibbon div.EXLAdvancedSearchFormRow fieldset span.EXLBooleanOperatorInput {
+	display:block;
+}
 .EXLSearchFieldRibbonFormSelectedBrowse {
 	background-color: #FFFFFF;
 	border:none;
@@ -564,6 +567,13 @@ body.EXLFullView div.EXLBackToResults {
 	padding-top: 10px;
 	margin-bottom: 7px;
 }
+.EXLLocationsTitle a.EXLLocationsIcon img {
+	padding-top: 3px;
+}
+.hvdLibInfo img {
+	margin-bottom: -3px;
+	margin-left: 6px;
+}
 .EXLLocationsTitle span.EXLLocationsTitleContainer {
 	float: left;
 	margin-left: 10px;
@@ -574,7 +584,7 @@ body.EXLFullView div.EXLBackToResults {
 }
 .EXLLocationInfo {
 	/* width: 70%; */
-	padding-top: 10px;
+	padding-top: 12px;
 	margin-left: 5px;
 	float: left;
 }
@@ -1020,6 +1030,7 @@ span.borrowDirectText {
 	display: block;
 	font-weight: bold;
 	margin-left: 10px;
+	margin-top: 5px;
 }
 
 /* Alon B: VRA search result thumbnails
