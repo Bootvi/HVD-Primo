@@ -24,14 +24,16 @@ function locationsTabModifications() {
 	$(".EXLLocationsIcon").click(handleLocationIconClick);
 
 	//If it is a single location, perform all changes immediately before attaching a listener
+	//20150107 CB added libInfoLink for library info links
 	shortenLocationNotes();
 	createCountwaySerialsNote();
+	libInfoLink();
 
 	//20140919 TEST: CB added text call number 
 	//textCallNo();
 
 	//Alon B: Adding BorrowDirect at the bottom of Locations tab
-	borrowDirect();
+	borrowDirect();	
 }
 
 //Handles when the EXLSublocation is updated, with condition when it contains the EXLLocationTableActions in it
@@ -41,8 +43,10 @@ function handleDomChanges() {
 	$(this).off();
 
 	//Modify contents of Holding
+	//20150107 CB added libInfoLink for library info links
 	shortenLocationNotes();
 	createCountwaySerialsNote();
+	libInfoLink();	
 
 	//20140919 TEST: CB added text call number 
 	//textCallNo();
@@ -215,3 +219,6 @@ $(document).ready(function() {
 		locationsTabModifications();
 	}
 });
+
+
+
