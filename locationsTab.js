@@ -33,7 +33,7 @@ function locationsTabModifications() {
 	//textCallNo();
 
 	//Alon B: Adding BorrowDirect at the bottom of Locations tab
-	borrowDirect();	
+	borrowDirect();
 }
 
 //Handles when the EXLSublocation is updated, with condition when it contains the EXLLocationTableActions in it
@@ -219,6 +219,3 @@ $(document).ready(function() {
 		locationsTabModifications();
 	}
 });
-
-
-

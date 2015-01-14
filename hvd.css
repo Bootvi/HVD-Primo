@@ -310,7 +310,7 @@ select#exlidInput_scope_1, select#exlidInput_scope_2, select#exlidInput_scope_3,
 min-width: 0%;
 }
 #exlidAdvancedSearchRibbon div.EXLAdvancedSearchFormRow fieldset span.EXLBooleanOperatorInput {
-	display:block;
+	display:none;
 }
 .EXLSearchFieldRibbonFormSelectedBrowse {
 	background-color: #FFFFFF;
@@ -546,7 +546,23 @@ body.EXLFullView div.EXLBackToResults {
 .EXLTabsRibbon div li.EXLResultFirstTab {
 	padding-left: 0.8em;	
 }
-
+/* changing default icons for resource types to local versions */
+.EXLResultMediaTYPEarchive_manuscript .multipleCoverImageContainer {
+   background-image: url(../HVD/icon_mss.png); 
+}
+.EXLResultMediaTYPEobject .multipleCoverImageContainer {
+   background-image: url(../HVD/icon_object.png); 
+}
+.EXLResultMediaTYPEscore .multipleCoverImageContainer {
+   background-image: url(../HVD/icon_score.png); 
+}
+/* changing default icons for resource types to different OTB icons */
+.EXLResultMediaTYPEsound_recording .multipleCoverImageContainer {
+   background-image: url(../../images/icon_audio.png); 
+}
+.EXLResultMediaTYPEcomputer_file .multipleCoverImageContainer {
+   background-image: url(../../images/icon_research_dataset.png); 
+}
 /* commenting out availability for now -- CB 20140607 */
 
 .EXLResultAvailability {
