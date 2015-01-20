@@ -1,5 +1,14 @@
 //Do all these Adjustments once page completes loading
 $(document).ready(function() {
+	
+        //In my eShelf - make Location tab open in a new tab to allow Location Tab hacks
+        $(".EXLEshelfDocumentDetailsIFrame").on("load", function () {
+                var recordId = $(this).contents().find(".EXLResultRecordId").attr("id");
+                $(this).contents().find(".EXLLocationsTab > a:contains('Locations')").attr({
+                        "href" : "/HVD:" + recordId + "&availabilityTab=true",
+                        "target" : "_blank"
+                });
+        });
 
 	//$('#exlidMainMenuRibbon li#exlidMainMenuItem0').insertAfter('#exlidMainMenuRibbon li#exlidMainMenuItem2');
 

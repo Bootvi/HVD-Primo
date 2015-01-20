@@ -33,7 +33,10 @@ function locationsTabModifications() {
 	//textCallNo();
 
 	//Alon B: Adding BorrowDirect at the bottom of Locations tab
-	borrowDirect();
+	borrowDirect();	
+
+	//Alon B: Adding Expand All feature
+	addExpandAll();
 }
 
 //Handles when the EXLSublocation is updated, with condition when it contains the EXLLocationTableActions in it
@@ -140,6 +143,36 @@ function createCountwaySerialsNote() {
 	});
 }
 
+//Add Expand All feature to locations tab
+function addExpandAll() {
+	//Find all open Location Tabs
+	$(".EXLLocationListContainer").each(function() {
+		//If modified already, return
+		if ($(this).find(".HVDExpandAll").length)
+                        return;
+
+		//If there is more than 1 location, add stuff
+		if ($(this).find(".EXLLocationsIcon").length > 1) {
+			//Add the link (style in the CSS)
+			$(this).prepend("<div class='HVDExpandAll'>Expand All</div>");
+		
+			//Add click event
+			$(this).find(".HVDExpandAll").on("click", function() {
+				$(this).parent().find(".EXLLocationsIcon").each(function() {   
+					$(this).click(); 
+					
+				});
+
+				//Change the link accordingly
+				if ($(this).text() == 'Expand All')
+					$(this).text("Collapse All");	
+				else 
+					$(this).text("Expand All");
+			});
+		}
+	});
+}
+
 function collectItemArgs(element) {
 	var itemArgs = {};
 
@@ -219,3 +252,6 @@ $(document).ready(function() {
 		locationsTabModifications();
 	}
 });
+
+
+

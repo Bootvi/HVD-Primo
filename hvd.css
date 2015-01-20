@@ -1029,6 +1029,14 @@ table#ilsFields #mail_attachement {display:none;}
 	padding-left: 10px;
 }
 
+.HVDExpandAll {
+	position: absolute;
+	right: 40px;
+	margin-top: 5px;
+	font-weight: bold;
+	cursor: pointer;
+}
+
 /* Alon B: Borrow Direct links: */
 div.borrowDirect {
 	float: left;
