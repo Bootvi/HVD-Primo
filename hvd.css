@@ -750,9 +750,6 @@ body.EXLFullView div.EXLTabContent{
 	border-top-color: #ffffff;
 	min-height: 30em;
 }
-.eadlinkicon {
-	margin-left: 5px;
-} /* CB added 20150121 for finding aid tab icon */
 
 /* Hide Request tab */
 .EXLTabsRibbon div li.EXLRequestTab {
@@ -1033,13 +1030,11 @@ table#ilsFields #mail_attachement {display:none;}
 }
 
 .HVDExpandAll {
-	position: relative;
-	left: 28px;
-	margin-top: 8px;
-	margin-bottom: 8px;
+	position: absolute;
+	right: 40px;
+	margin-top: 5px;
 	font-weight: bold;
 	cursor: pointer;
-	color: #A51C30;
 }
 
 /* Alon B: Borrow Direct links: */
