@@ -109,10 +109,34 @@ $(document).ready(function() {
 		$(".EXLLocationsTab a:contains('Locations')").click();
 	}
 
+	//Adding EAD tab for dedupMrg that have Finding Aids in their PNX
+	addEADTab();
+
 });
 
 //Overwrite the mogileDisplay.js function to avoid adding the languages to the mobile page
 function addLanguages() {}
+
+function addEADTab() {
+        //Adding EAD tab for dedupMrg that have Finding Aids in their PNX
+        $(".EXLResult").each(function() {
+                var recordId = $(this).find(".EXLResultRecordId").attr("id");
+                if (recordId.indexOf("dedupmrg") == 0) {
+			//Get PNX record from the DB
+                        var pnxXML = loadPNX(recordId);
+
+			//Obtain the EAD ID from the PNX
+                        var eadId = $(pnxXML).find("search > recordid:contains('HVD_EAD'):eq(0)").text().replace("HVD_EAD", "");
+                        if (eadId) {
+				//Build a link and add it to the tab list
+                                var findingAidLink = "http://oasistest.lib.harvard.edu:9003/oasis/deliver/primo?id=" + eadId + "&q=" + $("#search_field").val();;
+                                var findingAidTab = '<li class="EXLFindingAids EXLResultTab"><a target="_blank" href="' + findingAidLink +'">Finding Aids</a></li>';
+                                $(this).find(".EXLResultTabs").append(findingAidTab);
+
+                        }
+                }
+        });
+}
 
 function snippetToLink() {
 	//Snippets to TOC links - interim solution - not used 
