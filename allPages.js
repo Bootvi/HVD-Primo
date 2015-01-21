@@ -130,7 +130,7 @@ function addEADTab() {
                         if (eadId) {
 				//Build a link and add it to the tab list
                                 var findingAidLink = "http://oasistest.lib.harvard.edu:9003/oasis/primo?id=" + eadId + "&q=" + $("#search_field").val();;
-                                var findingAidTab = '<li class="EXLFindingAids EXLResultTab"><a target="_blank" href="' + findingAidLink +'">Finding Aid</a><img class="eadlinkicon" src="../images/icon_popout_tab.png" alt="Open in a new tab"></li>';
+                                var findingAidTab = '<li class="EXLFindingAids EXLResultTab"><a target="_blank" href="' + findingAidLink +'">Finding Aid<img class="eadlinkicon" src="../images/icon_popout_tab.png" alt="Open in a new tab"></a></li>';
                                 $(this).find(".EXLResultTabs").append(findingAidTab);
 
                         }
