@@ -212,9 +212,9 @@ body {
 #exlidSearchRibbon div.EXLSearchTabsContainer {
 	display:block;
 }/*container height when there are no predefined search tabs*/
-#exlidSearchTabs {
-	display:block;
-}
+ul#exlidSearchTabs {
+	display: block!important;
+} /* CB added Jan 2015 to display tabs on mobile devices */
 .EXLSearchFieldRibbonFormSelectedCollection {
 	display:none
 }
