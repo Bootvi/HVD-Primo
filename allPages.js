@@ -1,14 +1,14 @@
 //Do all these Adjustments once page completes loading
 $(document).ready(function() {
-	
-        //In my eShelf - make Location tab open in a new tab to allow Location Tab hacks
-        $(".EXLEshelfDocumentDetailsIFrame").on("load", function () {
-                var recordId = $(this).contents().find(".EXLResultRecordId").attr("id");
-                $(this).contents().find(".EXLLocationsTab > a:contains('Locations')").attr({
-                        "href" : "/HVD:" + recordId + "&availabilityTab=true",
-                        "target" : "_blank"
-                });
-        });
+
+	//In my eShelf - make Location tab open in a new tab to allow Location Tab hacks
+	$(".EXLEshelfDocumentDetailsIFrame").on("load", function() {
+		var recordId = $(this).contents().find(".EXLResultRecordId").attr("id");
+		$(this).contents().find(".EXLLocationsTab > a:contains('Locations')").attr({
+			"href": "/HVD:" + recordId + "&availabilityTab=true",
+			"target": "_blank"
+		});
+	});
 
 	//$('#exlidMainMenuRibbon li#exlidMainMenuItem0').insertAfter('#exlidMainMenuRibbon li#exlidMainMenuItem2');
 
@@ -118,24 +118,24 @@ $(document).ready(function() {
 function addLanguages() {}
 
 function addEADTab() {
-        //Adding EAD tab for dedupMrg that have Finding Aids in their PNX
-        $(".EXLResult").each(function() {
-                var recordId = $(this).find(".EXLResultRecordId").attr("id");
-                if (recordId.indexOf("dedupmrg") == 0) {
+	//Adding EAD tab for dedupMrg that have Finding Aids in their PNX
+	$(".EXLResult").each(function() {
+		var recordId = $(this).find(".EXLResultRecordId").attr("id");
+		if (recordId.indexOf("dedupmrg") == 0) {
 			//Get PNX record from the DB
-                        var pnxXML = loadPNX(recordId);
+			var pnxXML = loadPNX(recordId);
 
 			//Obtain the EAD ID from the PNX
-                        var eadId = $(pnxXML).find("search > recordid:contains('HVD_EAD'):eq(0)").text().replace("HVD_EAD", "");
-                        if (eadId) {
+			var eadId = $(pnxXML).find("search > recordid:contains('HVD_EAD'):eq(0)").text().replace("HVD_EAD", "");
+			if (eadId) {
 				//Build a link and add it to the tab list
-                                var findingAidLink = "http://oasistest.lib.harvard.edu:9003/oasis/primo?id=" + eadId + "&q=" + $("#search_field").val();;
-                                var findingAidTab = '<li class="EXLFindingAids EXLResultTab"><a target="_blank" href="' + findingAidLink +'">Finding Aid</a><img class="eadlinkicon" src="../images/icon_popout_tab.png" alt="Open in a new tab"></li>';
-                                $(this).find(".EXLResultTabs").append(findingAidTab);
+				var findingAidLink = "http://oasistest.lib.harvard.edu:9003/oasis/deliver/primo?id=" + eadId + "&q=" + $("#search_field").val();;
+				var findingAidTab = '<li class="EXLFindingAids EXLResultTab"><a target="_blank" href="' + findingAidLink + '">Finding Aids</a></li>';
+				$(this).find(".EXLResultTabs").append(findingAidTab);
 
-                        }
-                }
-        });
+			}
+		}
+	});
 }
 
 function snippetToLink() {
