@@ -40,6 +40,19 @@ function removeTOCLinks() {
 	});
 }
 
+//Add the current search query to the Finding Aids link within the details tab
+function modifyFindingAidsLink() {
+	$(".EXLFullDetailsOutboundLink:contains('Finding Aid')").each(function() {
+		var findingAidURL = $(this).attr("href");
+		if (findingAidURL.indexOf("http://oasis") == 0) {
+			findingAidURL = findingAidURL + "&q=" + $("#search_field").val();
+			$(this).attr("href", findingAidURL);
+		}
+	});
+
+}
+
+//Turn any text URL's to hyperlinks
 function detailsSubfieldLinks() {
 	$(".EXLDetailsContent > ul > li > span").linkify();
 }
@@ -196,10 +209,11 @@ function doDetailsTab() {
 	//Links modifications 
 	linksModifications();
 	removeTOCLinks();
-	
-  	//Details tab field link fixes
+	modifyFindingAidsLink();
+
+	//Details tab field link fixes
 	detailsLateralLinks();
-	
+
 	//Linkify some details fields
 	detailsSubfieldLinks();
 	detailsLanguagesSpaces();
