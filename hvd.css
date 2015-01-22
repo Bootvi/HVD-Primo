@@ -1030,11 +1030,13 @@ table#ilsFields #mail_attachement {display:none;}
 }
 
 .HVDExpandAll {
-	position: absolute;
-	right: 40px;
-	margin-top: 5px;
+	position: relative;
+	left: 28px;
+	margin-top: 8px;
+	margin-bottom: 8px;
 	font-weight: bold;
 	cursor: pointer;
+	color: #A51C30;
 }
 
 /* Alon B: Borrow Direct links: */
