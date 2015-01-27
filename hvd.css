@@ -191,6 +191,7 @@ a:hover {
 /* Search Tabs */
 #exlidSearchTabs {
 	height: 30px;
+	display: block!important;
 }
 #exlidSearchTabs li {
 	border: 0px;
