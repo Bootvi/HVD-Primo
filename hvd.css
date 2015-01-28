@@ -644,6 +644,7 @@ body.EXLFullView div.EXLBackToResults {
 
 .EXLLocationsTabContent div.EXLLocationList table.EXLLocationTable{
 	margin-top: 10px;
+		margin-left: 15px;
 }
 .EXLLocationsTabContent div.EXLLocationList table.EXLLocationTable td.EXLShowInfo a {
 	/* background-image:none; */
@@ -664,7 +665,27 @@ body.EXLFullView div.EXLBackToResults {
 .EXLLocationsTabContent div.EXLLocationList table.EXLLocationTable tr.EXLLocationTableRowBgColor {
 	background-color:#ffffff;
 }
-
+.EXLLocationsTabSummaryHoldings {
+	border: none;
+	background-color: #fff;
+}
+.EXLLocationsTabSummaryHoldingsContent {
+	padding: 5px 10px 5px 0px;
+}
+.EXLLocationsTabSummaryHoldingsContentLine {
+	margin-bottom: 2px;
+}
+.EXLLocationsTabSummaryHoldingsContentLineMoreLine {
+	padding-bottom: 3px;
+	padding-top: 3px;
+	border: 1px #a51c30 solid;
+	width: 154px;
+	padding-left: 5px;
+	margin-top: 5px;
+}
+.EXLLocationsTabSummaryHoldingsMoreLightBoxContainerOrangeBar {
+	border-bottom: 2px solid #a51c30;
+}
 /* Action Menu drop down adjustments */
 .EXLTabHeader div.EXLTabHeaderButtons li {
 	height: 22px;
