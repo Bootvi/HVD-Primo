@@ -777,6 +777,12 @@ body.EXLFullView div.EXLTabContent{
 .EXLTabsRibbon div li.EXLRequestTab {
 	display:none
 }
+/* Finding aids tab */
+.EXLFindingAids img {
+	margin-left: 5px;
+}
+
+
 /* Hide request options header, so ScanDel links etc. options don't appear */
 .EXLTabHeaderContent #HoldRequestBtn  {display:none;}
 .EXLTabHeaderContent #PhotocopyRequestBtn  {display:none;}
