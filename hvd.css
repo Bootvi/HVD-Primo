@@ -772,7 +772,10 @@ body.EXLFullView div.EXLTabContent{
 	border-top-color: #ffffff;
 	min-height: 30em;
 }
-
+/* Finding aids tab */
+.EXLFindingAids img {
+	margin-left: 5px;
+}
 /* Hide Request tab */
 .EXLTabsRibbon div li.EXLRequestTab {
 	display:none
