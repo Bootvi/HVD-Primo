@@ -27,6 +27,7 @@
 	20141110 HS added test comment using GitHub workflow
 	20141125 HS one more test comment to document workflow
 	20150112 HS added Scan & Deliver for LAW item status 95
+	20150129 HS add OR/RE requests for MCZ
 	-->				  
 
 	<sublibrary id="AJP">
@@ -404,6 +405,9 @@
 	<sublibrary id="MCZ">
 		<alephHoldRequest itemProcessStatus="BD;BP;CO;CT;MI;OR;RE">
 			<xserver loan-status="A" item-status="*"/>
+		</alephHoldRequest>
+		<alephHoldRequest itemProcessStatus="RE;OR">
+			<xserver loan-status="NULL;A" item-status="*"/>
 		</alephHoldRequest>
 		<alephHoldRequest itemProcessStatus="HD">
 			<xserver loan-status="NULL;A" item-status="01;02;61;62;63;64"/>
