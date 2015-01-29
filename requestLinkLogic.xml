@@ -403,7 +403,7 @@
 	</sublibrary>
 
 	<sublibrary id="MCZ">
-		<alephHoldRequest itemProcessStatus="BD;BP;CO;CT;MI;OR;RE">
+		<alephHoldRequest itemProcessStatus="BD;BP;CO;CT;MI">
 			<xserver loan-status="A" item-status="*"/>
 		</alephHoldRequest>
 		<alephHoldRequest itemProcessStatus="RE;OR">
