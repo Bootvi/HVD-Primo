@@ -193,7 +193,7 @@ function findIdentifier(str, regexString) {
 
 //Incase direct link to Details tab, do these:
 $(document).ready(function() {
-	if ((RegExp("tabs=detailsTab").test(window.location.href)) || (RegExp("fn=permalink").test(window.location.href))) {
+	if ((RegExp("tabs=detailsTab").test(window.location.href)) || (RegExp("fn=permalink").test(window.location.href)) || (RegExp("/display.do?").test(window.location.href))) {
 		doDetailsTab();
 	}
 });
