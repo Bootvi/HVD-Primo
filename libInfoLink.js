@@ -62,7 +62,7 @@ function libInfoLink() {
 				"Master Microforms": "MMF",
 				"McKay Applied Sci": "MCK",
 				"Medieval Studies Lib": "PAL",
-				"Microforms (Lamont)": "MIC",
+				"Microforms (Lamont)": "DOC",
 				"Murray Research Ctr": "GDC",  
 				"Museum Comp Zoology": "MCZ",
 				"National master micro": "NMM",

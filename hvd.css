@@ -311,7 +311,7 @@ select#exlidInput_scope_1, select#exlidInput_scope_2, select#exlidInput_scope_3,
 min-width: 0%;
 }
 #exlidAdvancedSearchRibbon div.EXLAdvancedSearchFormRow fieldset span.EXLBooleanOperatorInput {
-	display:block;
+	display:inline;
 }
 .EXLSearchFieldRibbonFormSelectedBrowse {
 	background-color: #FFFFFF;
