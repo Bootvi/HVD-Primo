@@ -1,0 +1,70 @@
+
+.mobilehide {
+	display:none;
+}
+
+/* search box */
+#exlidSearchRibbon input {
+	border: 1px solid #777676;
+	height:36px;
+}
+#exlidMainMenuTile div.EXLLanguagesContainer ul.EXLLanguageMenuShow li.EXLLanguageLink {
+	display:none;
+}
+
+.EXLHomeNewsContainer {
+	padding-left:0px;
+}
+/* Hide Request tab */
+body.EXLFullView div.EXLTabsRibbon div li.EXLRequestTab {
+	display: none;
+}
+
+/* hide the dot */
+.EXLTabsRibbon div li.EXLViewOnlineTab {
+	background-image: none;
+}
+
+/* Harvard Library Banner and other header area  - adjustments for Primo mobile */
+#hlp {
+	z-index:0;
+}
+#hlp ul li#hlp_log a {
+	margin-top: 12px;
+	height: 59px;
+	background: url("../uploaded_files/HVD/logo_v.png") no-repeat center center, #F3F3F1;
+}
+#hlp ul li#hlp_logo img{
+	top:1;
+	margin-top: 12px;
+	width: 80px;
+}
+
+#hlp ul li#hlp_pennant {
+	margin-top: 12px;
+}
+#hlp ul li#hlp_menu {
+	top:1;
+	margin-top: 12px;
+	height: 59px;
+}	
+#exlidHeaderTile img {
+	width: auto;
+}
+#exlidUserAreaRibbon.EXLEShelfTileGuest li span.EXLUserNameDisplay {
+	background-image:none;
+}
+#exlidUserAreaTile ul {
+	padding-top: 75px;
+}
+/* end Harvard Library Banner - adjustments for Primo mobile */
+
+
+#exlidSearchTile {
+	padding-top: 55px;
+}
+
+/* Search Tabs */
+#exlidSearchTabs {
+	display: block!important;
+}
