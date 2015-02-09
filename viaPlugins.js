@@ -41,13 +41,13 @@ function buildViaGallary() {
 		});
 
 		//If the user is signed out - switch to iframe for restricted images
-		if ($("#exlidSignOut").hasClass("EXLHidden")) {
-			$(this).find(".VIAGallary a.fancybox").each(function() {
+		if ($("#exlidSignOut").hasClass("EXLHidden")) {	
+			$(this).find(".VIAGallary a.fancybox").each(function (){
 				if ($(this).find(".VIARestrictedThumbnail").length) {
 					$(this).addClass("fancybox.iframe");
 					$(this).removeClass("fancybox.image");
 				}
-
+					
 			});
 		}
 
@@ -74,7 +74,7 @@ function buildViaGallary() {
 			},
 			onUpdate: function() {
 				resizeFancyBox();
-
+				
 			}
 		});
 	});
@@ -107,7 +107,7 @@ function modifyContents(current, previous) {
 	//Apply the metaData
 	if (metaData != null && metaData.length > 0) {
 		var componentId = $(metaData).find("tr.VIAComponentId td.VIAMetaDataValue").text();
-
+		
 		//PermaLink addition
 		metaData = metaData.replace("LinkPrintPlaceHolder", "../uploaded_files/HVD/viaPage.html?recordId=" + recordId + "&imageId=" + imageId + "&compId=" + componentId);
 
@@ -120,18 +120,16 @@ function modifyContents(current, previous) {
 	}
 }
 
-//Resize the box if image is narrower than 800px
 function resizeFancyBox() {
-	if ($(".fancybox-type-image").length) {
-		var width = $(".fancybox-type-image").css("width").replace("px", "");
-		if (width < 1200) {
-			var newWidth = 1200;
-			if (window.innerWidth < 1400)
-				newWidth = window.innerWidth - 200;
-			$(".fancybox-type-image").css("width", newWidth + "px");
-			$(".fancybox-inner").css("width", (newWidth - 30) + "px");
-			$.fancybox.reposition()
-		}
+	//Resize the box if image is narrower than 800px
+	var width = $(".fancybox-type-image").css("width").replace("px","");
+	if (width < 1200) {
+		var newWidth = 1200;
+		if (window.innerWidth < 1400) 
+			newWidth = window.innerWidth - 200;
+		$(".fancybox-type-image").css("width", newWidth + "px");
+		$(".fancybox-inner").css("width", (newWidth -30) + "px");
+		$.fancybox.reposition()	
 	}
 }
 
@@ -150,3 +148,5 @@ function fixRelatedInformation() {
 		}
 	});
 }
+
+
