@@ -29,11 +29,17 @@
 											&gt; <a href="LinkPrintPlaceHolder" target="_blank">View full image and record (use this for printing)</a>
 							</td>
 <<<<<<< HEAD
+<<<<<<< HEAD
 							<td lass="VIAMetaDataValue" id="XofY">
                                 Image <xsl:value-of select="position()" /> of <span class="VIATotalImages">numOfImages</span>
 							</td>
 =======
 >>>>>>> parent of c5f5af0... X of Y beginnings
+=======
+                            <td>
+                                Image <xsl:value-of select="position()" /> of <span class="VIATotalImages"/>
+                            </td>
+>>>>>>> parent of 12f0610... indent fix
 						</tr>
 					</table>
 				</div>
