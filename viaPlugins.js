@@ -106,8 +106,16 @@ function modifyContents(current, previous) {
 
 	//Apply the metaData
 	if (metaData != null && metaData.length > 0) {
-		var componentId = $(metaData).find("tr.VIAComponentId td.VIAMetaDataValue").text()
+		var componentId = $(metaData).find("tr.VIAComponentId td.VIAMetaDataValue").text();
+		
+		//PermaLink addition
 		metaData = metaData.replace("LinkPrintPlaceHolder", "../uploaded_files/HVD/viaPage.html?recordId=" + recordId + "&imageId=" + imageId + "&compId=" + componentId);
+
+		//X of Y feature
+		var numOfImages = $("a.fancybox[href='" + current.href + "']").parents(".EXLDetailsContent").find("li[id^='lds20'] .EXLDetailsDisplayVal").html();
+		metaData = metaData.replace("numOfImages", numOfImages);
+
+		//Applying the metaData to the fancybox from the thumbnail metaData HTML
 		current.title = metaData;
 	}
 }
