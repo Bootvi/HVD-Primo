@@ -28,7 +28,7 @@
 							<td class="VIAMetaDataValue" id="VIAbookmarkLink">										
 											&gt; <a href="LinkPrintPlaceHolder" class="LinkPrintPlaceHolder" target="_blank">View full image and record (use this for printing)</a>
 							</td>
-							<td lass="VIAMetaDataValue" id="XofY">
+							<td class="VIAMetaDataValue" id="XofY">
                                 Image <xsl:value-of select="position()" /> of <span class="VIATotalImages">numOfImages</span>
 							</td>
 						</tr>
