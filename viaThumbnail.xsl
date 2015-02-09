@@ -25,9 +25,13 @@
 					<!-- Link to the record -->
 					<table class="VIAMetaDataTable">
 						<tr>
-							<td colspan="2" class="VIAMetaDataValue" id="VIAbookmarkLink">										
+							<td class="VIAMetaDataValue" id="VIAbookmarkLink">										
 											&gt; <a href="LinkPrintPlaceHolder" target="_blank">View full image and record (use this for printing)</a>
 							</td>
+                            </td>
+                            <td>
+                                Image <xsl:value-of select="position()" /> of <span class="VIATotalImages"/>
+                            </td>
 						</tr>
 					</table>
 				</div>
