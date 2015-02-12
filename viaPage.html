@@ -54,10 +54,12 @@
 		//So if the remaining VIA XML has an image, transform using XSL, and modify 
 		//a. the HOLLIS id from the URL to remove HVD_VIA
 		//b. ada a URL to this page
+		//20150212 CB added primosViaStandardView to provide link back to Detail tab
 		if (matched) {
 			$("body").append(transformXSL(viaXML, "viaPage.xsl"));
 			
 			$(".VIAMetaDataValueHollisNumber").text(parameters['recordId'].replace("HVD_VIA", ""));
+			$("#primosViaStandardView").attr("href","http://id.lib.harvard.edu/via/"+parameters['recordId'].replace("HVD_VIA", "")+"/catalog");
 			$(".VIAMetaDataValueLinkToRecord").html('<a href="' + document.location + '">' + document.location + '</a>');
 
 		} else

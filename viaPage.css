@@ -58,6 +58,7 @@ iframe.viaIFrame {
 	margin-left: 0px;
 	margin-top: -10px;
 	float: left;
+	margin-bottom: 20px;
 }
 #viaHeader  div {
 	margin-left: 15px;
@@ -68,7 +69,11 @@ div#primomarcrecord {
 font-size: 14px;
 font-weight: normal;
 margin-left: 25px;
-margin-top: 16px;
+margin-top: 17px;
+}
+div#asklib {
+float: right;
+margin-right: 25px;
 }
 #viaFooter  {
 	font-size: 14px;

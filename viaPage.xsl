@@ -8,11 +8,14 @@
 			<body>
 				<div id="viaHeader">
 					<a href="http://nrs.harvard.edu/urn-3:hul.ois:bannerhollis+" title="HOLLIS+" alt="HOLLIS plus">
-						<img src="../../uploaded_files/HVD/pennant_HOLLIS+beta.jpg" />
+						<img src="../../uploaded_files/HVD/pennant_HOLLIS+.jpg" />
 					</a>
 					<div>HOLLIS+ Image Detail</div>
 					<div id="primomarcrecord">
-						<a href="http://id.lib.harvard.edu/aleph/000601672/catalog">(HOLLIS+ standard view)</a>
+						<a id="primosViaStandardView" href="">(HOLLIS+ standard view)</a>
+					</div>
+					<div id="asklib">
+						<a href="http://nrs.harvard.edu/urn-3:hul.ois:dsref">Ask a Librarian</a>
 					</div>
 				</div>
 				<xsl:apply-templates/>
