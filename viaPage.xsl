@@ -531,7 +531,7 @@
 			</tr>
 		</xsl:if>
 
-		<tr>
+		<tr class="VIAMetaDataHide">
 			<td class="VIAMetaDataKey">
 				<strong>HOLLIS Number:</strong>
 			</td>
