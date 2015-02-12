@@ -15,7 +15,7 @@
 					<xsl:if test="caption">
 						<xsl:call-template name="workGroupCaption"/>
 					</xsl:if>				
-	
+
 					<!-- Generic Group/Work metaData - 3 lines -->
 					<table class="VIAMetaDataTable">
 						<xsl:call-template name="workGroupData"/>
@@ -193,32 +193,32 @@
 				</td>
 			</tr>
 		</xsl:if>
-		<xsl:if test="../creator/nameElement">
+		<xsl:if test="/work/creator/nameElement|/group/creator/nameElement">
 			<tr>
 				<td class="VIAMetaDataKey">
 					<strong>Creator:</strong>
 				</td>
 				<td class="VIAMetaDataValue">
-					<xsl:value-of select="../creator/nameElement"/>
-					<xsl:if test="../creator/dates">
-												, <xsl:value-of select="../creator/dates"/>, 
+					<xsl:value-of select="/work/creator/nameElement|/group/creator/nameElement"/>
+					<xsl:if test="/work/creator/dates|/group/creator/dates">
+												, <xsl:value-of select="/work/creator/nameElement|/group/creator/dates"/>, 
 					</xsl:if>
-					<xsl:if test="../creator/nationality">
-												, <xsl:value-of select="../creator/nationality"/>
+					<xsl:if test="/work/creator/nationality|/group/creator/nationality">
+												, <xsl:value-of select="../../creator/nationality"/>
 					</xsl:if>
-					<xsl:if test="../creator/role">
-												, <xsl:value-of select="../creator/role"/>
+					<xsl:if test="/work/creator/role|/group/creator/role">
+												, <xsl:value-of select="/work/creator/role|/group/creator/role"/>
 					</xsl:if>
 				</td>
 			</tr>
 		</xsl:if>
-		<xsl:if test="../freeDate">
+		<xsl:if test="/work/freeDate|/group/freeDate">
 			<tr>
 				<td class="VIAMetaDataKey">
 					<strong>Date:</strong> 
 				</td>
 				<td class="VIAMetaDataValue">
-					<xsl:value-of select="../freeDate"/>
+					<xsl:value-of select="/work/freeDate|group/freeDate"/>
 				</td>
 			</tr>
 		</xsl:if>
