@@ -218,7 +218,7 @@
 					<strong>Date:</strong> 
 				</td>
 				<td class="VIAMetaDataValue">
-					<xsl:value-of select="/work/freeDate|group/freeDate"/>
+					<xsl:value-of select="/work/freeDate|/group/freeDate"/>
 				</td>
 			</tr>
 		</xsl:if>
