@@ -11,6 +11,9 @@
 						<img src="../../uploaded_files/HVD/pennant_HOLLIS+beta.jpg" />
 					</a>
 					<div>HOLLIS+ Image Detail</div>
+					<div id="primomarcrecord">
+						<a href="http://id.lib.harvard.edu/aleph/000601672/catalog">(HOLLIS+ standard view)</a>
+					</div>
 				</div>
 				<xsl:apply-templates/>
 				<div id="viaFooter">
