@@ -10,6 +10,13 @@
 
 				<!-- Hidden MetaData that is injected to the FancyBox when it opens. -->
 				<div class="VIAMetaData">
+					
+					<!-- First, the caption -->
+					<xsl:if test="caption">
+						<xsl:call-template name="workGroupCaption"/>
+					</xsl:if>				
+	
+					<!-- Generic Group/Work metaData - 3 lines -->
 					<table class="VIAMetaDataTable">
 						<xsl:call-template name="workGroupData"/>
 					</table>
@@ -17,6 +24,7 @@
 					<!-- Meta Data for the subworks/surrogates -->
 					<xsl:if test="parent::surrogate or parent::subwork">
 						<hr class="tableSeperator"/>
+						
 						<table class="VIAMetaDataSubTable">
 							<xsl:call-template name="subworkSurrogateData"/>
 						</table>
@@ -162,6 +170,17 @@
 		</table>
 	</xsl:template>
 
+	<!-- Caption under the fancybox full image, added to the metaData DIV -->
+	<xsl:template name="workGroupCaption">
+		<table class="VIAMetaDataTable VIAMetaCaption">
+			<tr>
+				<td>
+					Caption: <xsl:value-of select="caption" />
+				</td>
+			</tr>
+		</table>
+	</xsl:template>
+	
 	<!-- Meta Data for Works and Groups - 3 lines -->
 	<xsl:template name="workGroupData">
 		<xsl:if test="/work/title/textElement|/group/title/textElement">

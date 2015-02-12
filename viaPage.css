@@ -89,3 +89,9 @@ margin-right: 25px;
 .viaComponenetMetaData .VIAMetaDataHide {
 	display:none;
 }
+
+.VIAMetaCaption {
+	font-size: 0.8em!important;
+	margin-bottom: 14px;
+	margin-top: -10px;
+}

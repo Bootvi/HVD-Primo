@@ -43,6 +43,18 @@
 		</xsl:choose>
 
 		<div class="viaWorkGroupMetaData">
+			<!-- AB 20150212 Adding caption to the viaPage -->
+			<xsl:if test="//image/caption">
+				<table class="VIAMetaDataTable VIAMetaCaption">
+					<tr>
+						<td>
+							Caption: <xsl:value-of select="//image/caption" />
+						</td>
+					</tr>
+				</table>	
+			</xsl:if>
+		
+			<!-- The metaData table, top part -->
 			<table class="VIAMetaDataTable">
 				<xsl:call-template name="metaData"/>
 				<!-- <tr>

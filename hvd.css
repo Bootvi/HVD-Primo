@@ -1164,6 +1164,12 @@ tr.VIAThumbnailImage {
 	width: 100px;
 }
 
+.VIAMetaCaption {
+	font-size: 1em!important;
+	margin-bottom: 14px;
+	margin-top: -10px;
+}
+
 .VIAMetaDataTable {
 	width: 100%;
 	font-size: 14px;
