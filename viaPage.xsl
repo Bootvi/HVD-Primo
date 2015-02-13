@@ -10,9 +10,9 @@
 					<a href="http://nrs.harvard.edu/urn-3:hul.ois:bannerhollis+" title="HOLLIS+" alt="HOLLIS plus">
 						<img src="../../uploaded_files/HVD/pennant_HOLLIS+.jpg" />
 					</a>
-					<div>HOLLIS+ Image Detail</div>
+					<div>Image</div>
 					<div id="primomarcrecord">
-						<a id="primosViaStandardView" href="">(HOLLIS+ standard view)</a>
+						<a id="primosViaStandardView" href="">(View Details in HOLLIS+)</a>
 					</div>
 					<div id="asklib">
 						<a href="http://nrs.harvard.edu/urn-3:hul.ois:dsref">Ask a Librarian</a>
@@ -294,7 +294,7 @@
 				<td class="VIAMetaDataValue VIAMetaDataValueMaterialsTechniques">
 					<xsl:for-each select="materials">
 						<xsl:value-of select="."/>
-						<xsl:if test="position()!=last()">;</xsl:if>
+						<xsl:if test="position()!=last()">; </xsl:if>
 					</xsl:for-each>
 				</td>
 			</tr>
@@ -458,7 +458,7 @@
 						<xsl:value-of select="."/>
 						<xsl:if test="position()!=last()">
 							<br />
-						</xsl:if>
+						</xsl:if> 
 					</xsl:for-each>
 				</td>
 			</tr>
