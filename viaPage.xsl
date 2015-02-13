@@ -134,13 +134,19 @@
 
 
 	<xsl:template name="metaData">
-		<xsl:if test="title/textElement">
+		<xsl:if test="title">
 			<tr>
 				<td class="VIAMetaDataKey">
 					<strong>Title:</strong>
 				</td>
 				<td class="VIAMetaDataValue">
-					<xsl:value-of select="title/textElement"/>
+					<xsl:for-each select="title">
+						<xsl:if test="type">
+							<i>	<xsl:value-of select="type"/>: </i>
+						</xsl:if>               
+						<xsl:value-of select="textElement"/>						
+						<xsl:if test="position()!=last()"><br /></xsl:if>						
+					</xsl:for-each>
 				</td>
 			</tr>
 		</xsl:if>
