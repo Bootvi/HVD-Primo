@@ -311,7 +311,7 @@ select#exlidInput_scope_1, select#exlidInput_scope_2, select#exlidInput_scope_3,
 min-width: 0%;
 }
 #exlidAdvancedSearchRibbon div.EXLAdvancedSearchFormRow fieldset span.EXLBooleanOperatorInput {
-	display:block;
+	display:inline;
 }
 .EXLSearchFieldRibbonFormSelectedBrowse {
 	background-color: #FFFFFF;
@@ -1074,12 +1074,10 @@ span.borrowDirectHeader {
 	display: block;
 	font-size: 14px;
 	font-weight: bold;
-	color: #A51C30;
 }
 
 span.borrowDirectText {
 	display: block;
-	font-weight: bold;
 	margin-left: 10px;
 	margin-top: 5px;
 }
@@ -1164,6 +1162,12 @@ tr.VIAThumbnailImage {
 	padding-right: 10px;
 	vertical-align: top;
 	width: 100px;
+}
+
+.VIAMetaCaption {
+	font-size: 1em!important;
+	margin-bottom: 14px;
+	margin-top: -10px;
 }
 
 .VIAMetaDataTable {

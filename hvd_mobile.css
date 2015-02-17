@@ -68,3 +68,8 @@ body.EXLFullView div.EXLTabsRibbon div li.EXLRequestTab {
 #exlidSearchTabs {
 	display: block!important;
 }
+
+/* Fixing mobile overlaps */
+.EXLLocationInfo strong {
+	width: 35%;
+}
