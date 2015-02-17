@@ -57,17 +57,16 @@
 			<!-- The metaData table, top part -->
 			<table class="VIAMetaDataTable">
 				<xsl:call-template name="metaData"/>
-				<!-- <tr>
+				<tr>
 					<td class="VIAMetaDataKey">
 						<strong>Link to this record:</strong>
 					</td>
 					<td class="VIAMetaDataValue VIAMetaDataValueLinkToRecord"/>
-				</tr> -->
+				</tr>
 			</table>
 		</div> 
 
 		<hr class="tableSeperator"/>
-		
 		<!-- CB 20141208 adding section for new image/component permalinks -->
 	    <!-- <div class="viaComponenetMetaData">
 			<table class="VIAMetaDataTable">		
