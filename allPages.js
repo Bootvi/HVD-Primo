@@ -129,7 +129,7 @@ function addEADTab() {
 			var eadId = $(pnxXML).find("search > recordid:contains('HVD_EAD'):eq(0)").text().replace("HVD_EAD", "");
 			if (eadId) {
 				//Build a link and add it to the tab list
-				var findingAidLink = "http://oasistest.lib.harvard.edu:9003/oasis/deliver/primo?id=" + eadId + "&q=" + $("#search_field").val();;
+				var findingAidLink = "http://oasis.lib.harvard.edu/oasis/deliver/primo?id=" + eadId + "&q=" + $("#search_field").val();;
 				var findingAidTab = '<li class="EXLFindingAids EXLResultTab"><a target="_blank" href="' + findingAidLink + '">Finding Aids</a></li>';
 				$(this).find(".EXLResultTabs").append(findingAidTab);
 
