@@ -85,7 +85,7 @@ $(document).ready(function() {
 	});
 	$(".EXLFacet a:contains('Surrogate at Harvard')").parents("li.EXLFacet").hide(); // 20150218 after next week renorm this line will be obsolete
 	$(".EXLFacet a:contains('All VIA records')").parents("li.EXLFacet").hide();
-	$(".EXLFacet a:contains('Surrogate at Harvard')").parents("ol.EXLFacetsList").find(".EXLFacetsDisplayMore").hide();
+	$(".EXLFacet a:contains('Visual works')").parents("ol.EXLFacetsList").find(".EXLFacetsDisplayMore").hide();
 
 	//Change HELP link to custom file
 	$(".EXLMainMenuItem > span > a:contains('Help')").attr("href", "../uploaded_files/HVD/help.html");
