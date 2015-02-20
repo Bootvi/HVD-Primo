@@ -51,14 +51,14 @@ body.EXLFullView div.EXLTabsRibbon div li.EXLBrowseshelfTab  {
 .EXLLocationsTabContent div.EXLLocationList table.EXLLocationTable tr.EXLLocationTitlesRow {
 	display: none;
 }
-.EXLLocationsTabContent div.EXLLocationList table.EXLLocationTable td {
-	display: block; 
-}
 .EXLLocationsTabContent div.EXLLocationList table.EXLLocationTable .EXLLocationTableMargin {
 	padding-left: 0em;
 }
+.EXLLocationsTabContent div.EXLLocationList table.EXLLocationTable td {
+	display: block; 
+}
 /* hide barcode */
-.EXLLocationsTabContent div.EXLLocationList table.EXLLocationTable td .EXLLocationTableColumn3 {
+.EXLLocationsTabContent div.EXLLocationList table.EXLLocationTable td.EXLLocationTableColumn3 {
 	display: none; 
 }
 .EXLResultsList em.EXLResultStatusAvailable {
