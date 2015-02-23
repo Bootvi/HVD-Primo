@@ -1206,7 +1206,7 @@ div.EXLBriefResultsDisplayCoverImageNUM0 img.EXLBriefResultsCover {
 	position: relative;
 }
 
-.coverImageDiv {
+.EXLThumbnail div.coverImageDiv {
 	overflow: hidden;
 	width: 43px;
 }
