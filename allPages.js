@@ -70,7 +70,14 @@ $(document).ready(function() {
 
 	//Change Details tab for VIA records
 	$(".EXLResultRecordId[id^='HVD_VIA']").each(function() {
-		$(this).parents(".EXLResult").find(".EXLDetailsTab a:contains('Details')").text("Details & Gallery (View Online)");
+		var viaTabTitle = "Details & Gallery (View Online)";
+
+		//In case of numberOfImages="0"
+		if ($(this).parents(".EXLResult").find(".EXLResultFourthLine:contains('no digitized images')").length) {
+			$(this).parents(".EXLResult").find(".EXLResultFourthLine:contains('no digitized images')").text("");
+			viaTabTitle = "Details & Gallery";
+		}
+		$(this).parents(".EXLResult").find(".EXLDetailsTab a:contains('Details')").text(viaTabTitle);
 		$(this).parents(".EXLResult").find(".EXLDetailsTab a:contains('Details')").css({
 			"font-weight": "bold",
 			"color": "#52854C"
