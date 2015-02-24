@@ -97,11 +97,17 @@ $(document).ready(function() {
 	//Change HELP link to custom file
 	$(".EXLMainMenuItem > span > a:contains('Help')").attr("href", "../uploaded_files/HVD/help.html");
 
-	//Adding the Sign-in Prompt on Brief results only
-	if ($('#exlidSignOut').hasClass('EXLHidden') && $("#exlidFacetTile").length != 0) {
-		var signInLink = $('#exlidSignIn a').attr('href');
-		var msg = "You don't know what you're missing. <a href='" + signInLink + "'>Sign in<a/> to get results from all available resources.";
-		$('#exlidHeaderSystemFeedback').append('<div id="exlidHeaderSystemFeedbackContent" class="EXLSystemFeedback"><strong>' + msg + '</strong></div>');
+	//When users are signed out - change some links, add content, etc..
+	if ($('#exlidSignOut').hasClass('EXLHidden')) {
+		//Change the My Account link
+		$(".EXLMyAccount a").attr("href", "login.do?loginFn=signin&vid=HVD&targetURL=myAccountMenu.do%3Fvid%3DHVD");
+
+		//For Brief results add the yellow ribbon
+		if ($("#exlidFacetTile").length) {
+			var signInLink = $('#exlidSignIn a').attr('href');
+			var msg = "You don't know what you're missing. <a href='" + signInLink + "'>Sign in<a/> to get results from all available resources.";
+			$('#exlidHeaderSystemFeedback').append('<div id="exlidHeaderSystemFeedbackContent" class="EXLSystemFeedback"><strong>' + msg + '</strong></div>');
+		}
 	}
 
 	//Hiding the Sign-blurb from the main page if signed in
