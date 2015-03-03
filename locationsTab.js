@@ -154,7 +154,7 @@ function repositionWhiteBox() {
 	console.log("repositioninig");
 	$("#exliWhiteContent").css({
 		"position":"fixed", 
-		"top":"35%"
+		"top":"20%"
 	});
 }
 
