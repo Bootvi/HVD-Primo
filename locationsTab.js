@@ -156,6 +156,11 @@ function repositionWhiteBox() {
 		"position":"fixed", 
 		"top":"20%"
 	});
+	$("table.EXLLocationsTabSummaryHoldingsMoreLightBox").parent().css({
+		"overflow-y": "auto",
+		"overflow-x": "hidden",
+		"max-height": "400px"
+	});
 }
 
 //Corinna B. added test for temporary Countway serials workaround due to AVA bug; backfiles don't display
