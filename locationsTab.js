@@ -10,6 +10,9 @@ function locationsTabModifications() {
 		//Modify all the Items in this single Holding record
 		modifyHoldItems();
 
+		//Modify the Holding note action link
+		modifyHoldingNoteLink($(this));
+
 		//Put a listener on the Sublibrary DIV which contains the Request options to catch when it is populated, or more items are added
 		$(this).on("DOMSubtreeModified propertychange", handleDomChanges);
 
@@ -57,7 +60,10 @@ function handleDomChanges() {
 	//Modify all items in this Holding that was just changed in the DOM.
 	if ($(this).find(".EXLLocationTableActions").length)
 		modifyHoldItems();
-
+	
+	//Change holding note action:
+	modifyHoldingNoteLink($(this));
+	
 	//Resume listening (if there are more items, RTA changes, Primo OTB changes
 	$(this).on("DOMSubtreeModified propertychange", handleDomChanges);
 
@@ -103,6 +109,9 @@ function modifyHoldItems() {
 			$(this).find("ul").append('<li><a href="' + url + '" target="_blank">Scan & Deliver</a></li>');
 		}
 
+		//Modify Holding note action:
+	//	console.log($(".EXLLocationsTabSummaryHoldingsContentLineMoreLine a").text());
+
 		//MapIt feature - per item
 		stacksMap(itemArgs, $(this));
 	});
@@ -119,15 +128,35 @@ function handleLocationIconClick() {
 
 //If the Location note is too long, make it a link "more..."
 function shortenLocationNotes() {
-		$(".EXLLocationsMoreInfo > strong").each(function() {
-			if ($(this).text().trim().length > 250 && $(this).children("a").length == 0) {
-				var part1 = $(this).text().trim().substr(0, $(this).text().trim().substr(0, 130).lastIndexOf(" "));
-				var recordId = $(this).parents("div.EXLSublocation").attr("id").substr(5, 9);
-				var url = "http://lms01.harvard.edu/F?func=direct&local_base=HVD01&doc_number=" + recordId;
-				$(this).html(part1 + '<a href="' + url + '" target="_blank">...more</a>');
-			}
-		});
-	}
+	$(".EXLLocationsMoreInfo > strong").each(function() {
+		if ($(this).text().trim().length > 250 && $(this).children("a").length == 0) {
+			var part1 = $(this).text().trim().substr(0, $(this).text().trim().substr(0, 130).lastIndexOf(" "));
+			var recordId = $(this).parents("div.EXLSublocation").attr("id").substr(5, 9);
+			var url = "http://lms01.harvard.edu/F?func=direct&local_base=HVD01&doc_number=" + recordId;
+			$(this).html(part1 + '<a href="' + url + '" target="_blank">...more</a>');
+		}
+	});
+}
+
+//Adding another function for the onclick and the onKeyUp attributes;
+function modifyHoldingNoteLink(element) {
+	$(element).find(".EXLLocationsTabSummaryHoldingsContentLineMoreLine a").each(function () {
+		if ($(this).attr("onclick").indexOf("repositionWhiteBox") > 0)
+			return;
+
+		$(this).attr("onclick","addLightBoxDivsNoLoading(event, this); repositionWhiteBox();");
+		$(this).attr("onkeyup","addLightBoxDivsNoLoading(event, this); repositionWhiteBox();");
+	});
+}
+
+//Once the holding note has been popped out - it will be modified CSS wise only.
+function repositionWhiteBox() {
+	console.log("repositioninig");
+	$("#exliWhiteContent").css({
+		"position":"fixed", 
+		"top":"35%"
+	});
+}
 
 //Corinna B. added test for temporary Countway serials workaround due to AVA bug; backfiles don't display
 function createCountwaySerialsNote() {
