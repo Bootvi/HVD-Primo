@@ -95,7 +95,13 @@ function createHeader(element, numberOfImages) {
 }
 
 //Get the MetaData based on the Image URL (unique), and puts the title with that value
-function modifyContents(current, previous) {
+function modifyContents(current, previous) {	
+//	console.log(current.content);
+//	if (current.content != null && current.content.indexOf("fancybox-error")) {
+//		console.log("bad image");
+//		current.type = "iframe";
+//		current.content = '<p class="fancybox-error">The requested content cannot be loaded.<br/>Please sign in.</p>';
+//	}
 	//Get the parameters from the fancy box and the page URL
 	var recordId = $("a.fancybox[href='" + current.href + "']").attr("rel");
 	var imageId = current.href.replace(/^(.*[\/])/, "");
@@ -152,3 +158,26 @@ function fixRelatedInformation() {
 		}
 	});
 }
+
+
+//Fixing brief results thumbnails, shifting the pan and overflow from fixed height to fixed width
+function fixThinThumbnails() {
+	var maxWidth = $(this).parents(".EXLBriefResultsDisplayCoverImages").find(".EXLBriefResultsDisplayCoverImageBackup").width();
+        var maxheight = $(this).parents(".EXLBriefResultsDisplayCoverImages").find(".EXLBriefResultsDisplayCoverImageBackup").height();
+        if ($(this).width() < maxWidth) {
+		//Update the image SRC to the be the width limited
+		$(this).attr("src", $(this).attr("src").replace("height=65", "width=43"));
+        	
+		//Change the CSS attributes of the Div and image to reflect narrow thin images
+		$(this).parents("div.coverImageDiv").css("height", "65px");
+		$(this).css({
+			"width": maxWidth + "px",
+			"height": "auto",
+			"top": "50%",
+			"transform": "translate(-50%, -50%)",
+			"-ms-transform": "translate(-50%, -50%)",
+			"-webkit-transform": "translate(-50%, -50%)"
+		});
+	}
+}
+
