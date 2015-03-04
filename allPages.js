@@ -89,6 +89,10 @@ $(document).ready(function() {
 			"padding-left": "15px"
 		});
 		$(this).parents(".EXLResult").find("li.EXLViewOnlineTab ").css("display", "none");
+
+		//Detect 'thin' images:
+		$(this).parents(".EXLThumbnail").find(".EXLBriefResultsCover").on('load', fixThinThumbnails);
+
 	});
 	$(".EXLFacet a:contains('Surrogate at Harvard')").parents("li.EXLFacet").hide(); // 20150218 after next week renorm this line will be obsolete
 	$(".EXLFacet a:contains('All VIA records')").parents("li.EXLFacet").hide();
