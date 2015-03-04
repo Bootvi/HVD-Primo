@@ -607,6 +607,9 @@ body.EXLFullView div.EXLBackToResults {
 }
 .EXLLocationInfo strong {
 	width: 35%; 
+	font-size: 14px;
+	font-weight: bold;
+	color: #A51C30;
 }
 .EXLLocationInfo cite {
 	width: 35%; 
