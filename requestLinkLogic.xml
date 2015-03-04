@@ -28,6 +28,7 @@
 	20141125 HS one more test comment to document workflow
 	20150112 HS added Scan & Deliver for LAW item status 95
 	20150129 HS add OR/RE requests for MCZ
+	20150304 HS added Harvard Direct requests for GUT, MUS, TOZ - item status 01, IPS NULL
 	-->				  
 
 	<sublibrary id="AJP">
@@ -247,6 +248,9 @@
 		</alephHoldRequest>
 		<alephHoldRequest itemProcessStatus="NULL">
 			<xserver on-hold="Y" item-status="01;61;"/>
+		</alephHoldRequest>
+		<alephHoldRequest itemProcessStatus="NULL">
+			<xserver loan-status="NULL" on-hold="N" item-status="01"/>
 		</alephHoldRequest>
 
 		<scanDeliver itemProcessStatus="HD;NULL">
@@ -492,6 +496,9 @@
 		<alephHoldRequest itemProcessStatus="NULL">
 			<xserver on-hold="Y" item-status="01;61"/>
 		</alephHoldRequest>
+		<alephHoldRequest itemProcessStatus="NULL">
+			<xserver loan-status="NULL" on-hold="N" item-status="01"/>
+		</alephHoldRequest>
 
 		<scanDeliver itemProcessStatus="HD;NULL">
 			<xserver loan-status="NULL" on-hold="N" item-status="01;02"/>
@@ -593,6 +600,9 @@
 		</alephHoldRequest>
 		<alephHoldRequest itemProcessStatus="NULL">
 			<xserver on-hold="Y" item-status="01;61"/>
+		</alephHoldRequest>
+		<alephHoldRequest itemProcessStatus="NULL">
+			<xserver loan-status="NULL" on-hold="N" item-status="01"/>
 		</alephHoldRequest>
 
 		<scanDeliver itemProcessStatus="BP;CO;CT;RE;">
