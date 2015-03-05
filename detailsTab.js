@@ -191,6 +191,31 @@ function findIdentifier(str, regexString) {
 	return str.search(regex);
 }
 
+//Add link to jump to Locations tab
+function viewLocationsLink() {	
+	$(".EXLDetailsContent ul").each(function() {
+		//Check that it's ALEPH data only
+		if ($(this).find("li[id^='Source'] span:contains('HVD ALEPH')").length < 0)
+			return;
+	
+		//Confirm non modified
+		if ($(this).find("li.detailsViewLocation").length)
+			return;
+		
+		//Create a new li item with small script
+		var linkHtml = $('<li class="detailsViewLocation"></li>');
+		$(linkHtml).append($('<a href="javascript:void(0)" onclick="viewLocationsClick($(this))">View Locations & Availability</a>'));
+		$(this).append(linkHtml);
+	});
+}
+
+//Simulate a click
+function viewLocationsClick(element) {
+	$(element).parents(".EXLSummary").find(".EXLLocationsTab a").click();
+}
+
+
+
 //Incase direct link to Details tab, do these:
 $(document).ready(function() {
 	if ((RegExp("tabs=detailsTab").test(window.location.href)) || (RegExp("fn=permalink").test(window.location.href)) || (RegExp("/display.do?").test(window.location.href))) {
@@ -211,8 +236,9 @@ function doDetailsTab() {
 	removeTOCLinks();
 	modifyFindingAidsLink();
 
-	//Details tab field link fixes
+	//Details tab fields
 	detailsLateralLinks();
+	viewLocationsLink();
 
 	//Linkify some details fields
 	detailsSubfieldLinks();

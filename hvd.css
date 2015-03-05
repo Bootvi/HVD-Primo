@@ -826,6 +826,12 @@ body.EXLFullView div.EXLTabContent{
     width: 10em;
     text-align: right;
 }
+.EXLDetailsContent .detailsViewLocation {
+	margin-top: 30px;
+	font-size: 14px;
+	font-weight: bold;
+	margin-left: -10em;
+}
 
 
 /* Links and Electronic Book Plates */
@@ -1215,7 +1221,6 @@ div.EXLBriefResultsDisplayCoverImageNUM0 img.EXLBriefResultsCover {
 }
 
 /* -------------------------------------- */
-
 	    		
 
   	
