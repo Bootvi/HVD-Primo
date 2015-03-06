@@ -204,7 +204,7 @@ function viewLocationsLink() {
 		
 		//Create a new li item with small script
 		var linkHtml = $('<li class="detailsViewLocation"></li>');
-		$(linkHtml).append($('<a href="javascript:void(0)" onclick="viewLocationsClick($(this))">View Locations & Availability</a>'));
+		$(linkHtml).append($('<a href="javascript:void(0)" onclick="viewLocationsClick($(this))">Locations & Availability</a>'));
 		$(this).append(linkHtml);
 	});
 }
