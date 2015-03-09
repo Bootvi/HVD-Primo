@@ -62,7 +62,7 @@ $(document).ready(function() {
 	$("li > a:contains('Find It @ Harvard')").css({
 		"color": "#8C8179",
 		"font-weight": "normal",
-		"background-position": "110px 2px"
+		"background-position": "108px 2px"
 	});
 	$("li > a:contains('Find It @ Harvard')").parent().css({
 		"background-image": "none",
