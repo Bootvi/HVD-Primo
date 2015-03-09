@@ -807,7 +807,7 @@ body.EXLFullView div.EXLTabContent{
 .EXLTabsRibbon div li.EXLViewOnlineTab  a {	
 	font-weight:bold;
 	color:#52854C;
-	background-image: url(../images/icon_popout_tab.png);
+	background-image: url(../../images/icon_popout_tab.png);
 	background-repeat: no-repeat;
 	background-position: 80px 2px;
 	padding-right: 30px;

@@ -61,7 +61,8 @@ $(document).ready(function() {
 	//Change CSS for GetIt! Tab1 (view online) when there is no full-text
 	$("li > a:contains('Find It @ Harvard')").css({
 		"color": "#8C8179",
-		"font-weight": "normal"
+		"font-weight": "normal",
+		"background-position": "110px 2px"
 	});
 	$("li > a:contains('Find It @ Harvard')").parent().css({
 		"background-image": "none",
