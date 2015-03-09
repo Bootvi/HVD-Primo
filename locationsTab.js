@@ -10,6 +10,9 @@ function locationsTabModifications() {
 		//Modify all the Items in this single Holding record
 		modifyHoldItems();
 
+		//Fixed the semicolon issue
+		modifyHoldingLinks($(this));
+
 		//Modify the Holding note action link
 		modifyHoldingNoteLink($(this));
 
@@ -149,6 +152,23 @@ function modifyHoldingNoteLink(element) {
 	});
 }
 
+//Workaround to fix the semicolon issue with the notes/links
+function modifyHoldingLinks(element) {
+	$(element).find(".EXLLocationsTabSummaryHoldingsContent a[href*=\\;]").each(function () {
+		if (RegExp(/^(http|https)(:\/\/)([^;]*)/).test($(this).attr("href"))) {
+			//Fixing the href
+			var url =  RegExp(/^(http|https)(:\/\/)([^;]*)/).exec($(this).attr("href"))[0];
+			$(this).attr("href", url);
+
+			//Fixing the text
+			var url =  RegExp(/^(http|https)(:\/\/)([^;]*)/).exec($(this).text())[0];
+			var restOfString = $(this).text().substr(url.length);
+			$(this).text(url)
+			$(this).parent().append("; " + restOfString.substr(1));
+		}
+	});
+}
+
 //Once the holding note has been popped out - it will be modified CSS wise only.
 function repositionWhiteBox() {
 	console.log("repositioninig");
@@ -206,6 +226,7 @@ function addExpandAll() {
 		}
 	});
 }
+
 
 function collectItemArgs(element) {
 	var itemArgs = {};
