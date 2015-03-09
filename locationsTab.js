@@ -31,12 +31,7 @@ function locationsTabModifications() {
 
 	//If it is a single location, perform all changes immediately before attaching a listener
 	//20150107 CB added libInfoLink for library info links
-	shortenLocationNotes();
-	createCountwaySerialsNote();
 	libInfoLink();
-
-	//20140919 TEST: CB added text call number 
-	//textCallNo();
 
 	//Alon B: Adding BorrowDirect at the bottom of Locations tab
 	borrowDirect();	
@@ -53,13 +48,8 @@ function handleDomChanges() {
 
 	//Modify contents of Holding
 	//20150107 CB added libInfoLink for library info links
-	shortenLocationNotes();
-	createCountwaySerialsNote();
 	libInfoLink();	
 
-	//20140919 TEST: CB added text call number 
-	//textCallNo();
-	
 	//Modify all items in this Holding that was just changed in the DOM.
 	if ($(this).find(".EXLLocationTableActions").length)
 		modifyHoldItems();
@@ -129,18 +119,6 @@ function handleLocationIconClick() {
 	$(this).parents(".EXLLocationsTitle").append(loadingWheel);
 }
 
-//If the Location note is too long, make it a link "more..."
-function shortenLocationNotes() {
-	$(".EXLLocationsMoreInfo > strong").each(function() {
-		if ($(this).text().trim().length > 250 && $(this).children("a").length == 0) {
-			var part1 = $(this).text().trim().substr(0, $(this).text().trim().substr(0, 130).lastIndexOf(" "));
-			var recordId = $(this).parents("div.EXLSublocation").attr("id").substr(5, 9);
-			var url = "http://lms01.harvard.edu/F?func=direct&local_base=HVD01&doc_number=" + recordId;
-			$(this).html(part1 + '<a href="' + url + '" target="_blank">...more</a>');
-		}
-	});
-}
-
 //Adding another function for the onclick and the onKeyUp attributes;
 function modifyHoldingNoteLink(element) {
 	$(element).find(".EXLLocationsTabSummaryHoldingsContentLineMoreLine a").each(function () {
@@ -180,20 +158,6 @@ function repositionWhiteBox() {
 		"overflow-y": "auto",
 		"overflow-x": "hidden",
 		"max-height": "400px"
-	});
-}
-
-//Corinna B. added test for temporary Countway serials workaround due to AVA bug; backfiles don't display
-function createCountwaySerialsNote() {
-	$(".EXLLocationInfo > strong").each(function() {
-		if ($(this).text() == 'Russell Reading Room') {
-			var callno = $(this).siblings("cite").text();
-			var recordId = $(this).parents("form[name='locationsTabForm']").children("input[name='recIds']").val();
-			var url = "http://lms01.harvard.edu/F/?func=item-global&doc_library=HVD01&doc_number=" + recordId.substr(("HVD_ALEPH").length) + "&year=&volume=&sub_library=MED" ;
-			if (callno.indexOf("Serial") >= 0) {
-				$(this).append('<br /><a href="' + url + '" target="_blank">Check for older vols.</a>');
-			}
-		}
 	});
 }
 
