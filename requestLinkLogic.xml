@@ -29,6 +29,7 @@
 	20150112 HS added Scan & Deliver for LAW item status 95
 	20150129 HS add OR/RE requests for MCZ
 	20150304 HS added Harvard Direct requests for GUT, MUS, TOZ - item status 01, IPS NULL
+	20150310 HS added IPS TD to WID OR;RE section
 	-->				  
 
 	<sublibrary id="AJP">
@@ -621,7 +622,7 @@
 		<alephHoldRequest itemProcessStatus="BD;BP;CO;CT;MI">
 			<xserver loan-status="A" item-status="*"/>
 		</alephHoldRequest>
-		<alephHoldRequest itemProcessStatus="RE;OR">
+		<alephHoldRequest itemProcessStatus="RE;OR;TD">
 			<xserver loan-status="NULL;A" item-status="*"/>
 		</alephHoldRequest>
 		<alephHoldRequest itemProcessStatus="HD">
