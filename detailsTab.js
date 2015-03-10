@@ -195,7 +195,7 @@ function findIdentifier(str, regexString) {
 function viewLocationsLink() {	
 	$(".EXLDetailsContent ul").each(function() {
 		//Check that it's ALEPH data only
-		if ($(this).find("li[id^='Source'] span:contains('HVD ALEPH')").length < 0)
+		if (!$(this).find("li[id^='Source'] span:contains('HVD ALEPH')").length)
 			return;
 	
 		//Confirm non modified
