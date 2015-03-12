@@ -31,15 +31,6 @@ function buildDeepURL(text, target) {
 	return url;
 }
 
-//Table of Content link removal
-function removeTOCLinks() {
-	$(".EXLFullDetailsOutboundLink:contains('Table of Contents')").each(function() {
-		if ($(this).parents(".EXLSummary").find(".EXLResultSnippet").text().length == 0 && window.location.pathname.indexOf("display.do") == -1) {
-			$(this).parents("li").remove();
-		}
-	});
-}
-
 //Add the current search query to the Finding Aids link within the details tab
 function modifyFindingAidsLink() {
 	$(".EXLFullDetailsOutboundLink:contains('Finding Aid')").each(function() {
@@ -233,7 +224,6 @@ $(document).ajaxComplete(function(event, request, settings) {
 function doDetailsTab() {
 	//Links modifications 
 	linksModifications();
-	removeTOCLinks();
 	modifyFindingAidsLink();
 
 	//Details tab fields
