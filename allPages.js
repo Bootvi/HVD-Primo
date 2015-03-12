@@ -165,9 +165,31 @@ function snippetToLink() {
 		}
 
 	});
+}
 
+//Overwritting Primo default function to call openPrimoLightBox with the additional modifyPermaLink
+function openPermaLinkLbox(action,parameters,recordIndex,recordId){
+	var recordElement = $('#exlidResult'+recordIndex);
+	if (isFullDisplay())
+                var recordElement = $('#resultsListNoId');
 
+	openPrimoLightBox(action, 'plGo', 'permalinkResultsXml', null, parameters, modifyPermaLink, true, recordElement);
+ 
+	$('#exliWhiteContent').css('z-index','2');
+	$('#exliWhiteContent').css('outline','none');
+	$('#exliGreyOverlay').hide();
+}
 
+//Change the permalink content itself
+function modifyPermaLink() {
+	if (RegExp("HVD:HVD_ALEPH").test($("#exlidURL").attr("value"))) {
+		var url = "http://id.lib.harvard.edu/aleph/" + $("#exlidURL").attr("value").replace(/(.*)(HVD:HVD_ALEPH)/, "") + "/catalog";
+		$("#exlidURL").attr("value", url);
+	}
+	else if (RegExp("HVD:HVD_VIA").test($("#exlidURL").attr("value"))) {
+                var url = "http://id.lib.harvard.edu/via/" + $("#exlidURL").attr("value").replace(/(.*)(HVD:HVD_VIA)/, "") + "/catalog";    
+                $("#exlidURL").attr("value", url);
+        }
 }
 
 
@@ -274,6 +296,8 @@ function getURLParams(qs) {
 
 	return params;
 }
+
+
 
 //Debugger for the customer JS
 debugJS = false
@@ -486,3 +510,4 @@ jQuery(function($) {
 	}
 });
 //end code for ND for Date Slider;
+
