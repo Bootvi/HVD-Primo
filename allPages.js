@@ -61,7 +61,8 @@ $(document).ready(function() {
 	//Change CSS for GetIt! Tab1 (view online) when there is no full-text
 	$("li > a:contains('Find It @ Harvard')").css({
 		"color": "#8C8179",
-		"font-weight": "normal"
+		"font-weight": "normal",
+		"background-position": "108px 2px"
 	});
 	$("li > a:contains('Find It @ Harvard')").parent().css({
 		"background-image": "none",
@@ -70,7 +71,14 @@ $(document).ready(function() {
 
 	//Change Details tab for VIA records
 	$(".EXLResultRecordId[id^='HVD_VIA']").each(function() {
-		$(this).parents(".EXLResult").find(".EXLDetailsTab a:contains('Details')").text("Details & Gallery (View Online)");
+		var viaTabTitle = "Details & Gallery (View Online)";
+
+		//In case of numberOfImages="0"
+		if ($(this).parents(".EXLResult").find(".EXLResultFourthLine:contains('no digitized images')").length) {
+			$(this).parents(".EXLResult").find(".EXLResultFourthLine:contains('no digitized images')").text("");
+			viaTabTitle = "Details & Gallery";
+		}
+		$(this).parents(".EXLResult").find(".EXLDetailsTab a:contains('Details')").text(viaTabTitle);
 		$(this).parents(".EXLResult").find(".EXLDetailsTab a:contains('Details')").css({
 			"font-weight": "bold",
 			"color": "#52854C"
@@ -82,18 +90,29 @@ $(document).ready(function() {
 			"padding-left": "15px"
 		});
 		$(this).parents(".EXLResult").find("li.EXLViewOnlineTab ").css("display", "none");
+
+		//Detect 'thin' images:
+		$(this).parents(".EXLThumbnail").find(".EXLBriefResultsCover").on('load', fixThinThumbnails);
+
 	});
-	$(".EXLFacet a:contains('Surrogate at Harvard')").parents("li.EXLFacet").hide();
-	$(".EXLFacet a:contains('Surrogate at Harvard')").parents("ol.EXLFacetsList").find(".EXLFacetsDisplayMore").hide();
+	$(".EXLFacet a:contains('Surrogate at Harvard')").parents("li.EXLFacet").hide(); // 20150218 after next week renorm this line will be obsolete
+	$(".EXLFacet a:contains('All VIA records')").parents("li.EXLFacet").hide();
+	$(".EXLFacet a:contains('Visual works')").parents("ol.EXLFacetsList").find(".EXLFacetsDisplayMore").hide();
 
 	//Change HELP link to custom file
 	$(".EXLMainMenuItem > span > a:contains('Help')").attr("href", "../uploaded_files/HVD/help.html");
 
-	//Adding the Sign-in Prompt on Brief results only
-	if ($('#exlidSignOut').hasClass('EXLHidden') && $("#exlidFacetTile").length != 0) {
-		var signInLink = $('#exlidSignIn a').attr('href');
-		var msg = "You don't know what you're missing. <a href='" + signInLink + "'>Sign in<a/> to get results from all available resources.";
-		$('#exlidHeaderSystemFeedback').append('<div id="exlidHeaderSystemFeedbackContent" class="EXLSystemFeedback"><strong>' + msg + '</strong></div>');
+	//When users are signed out - change some links, add content, etc..
+	if ($('#exlidSignOut').hasClass('EXLHidden')) {
+		//Change the My Account link
+		$(".EXLMyAccount a").attr("href", "login.do?loginFn=signin&vid=HVD&targetURL=myAccountMenu.do%3Fvid%3DHVD");
+
+		//For Brief results add the yellow ribbon
+		if ($("#exlidFacetTile").length) {
+			var signInLink = $('#exlidSignIn a').attr('href');
+			var msg = "You don't know what you're missing. <a href='" + signInLink + "'>Sign in<a/> to get results from all available resources.";
+			$('#exlidHeaderSystemFeedback').append('<div id="exlidHeaderSystemFeedbackContent" class="EXLSystemFeedback"><strong>' + msg + '</strong></div>');
+		}
 	}
 
 	//Hiding the Sign-blurb from the main page if signed in
@@ -129,8 +148,8 @@ function addEADTab() {
 			var eadId = $(pnxXML).find("search > recordid:contains('HVD_EAD'):eq(0)").text().replace("HVD_EAD", "");
 			if (eadId) {
 				//Build a link and add it to the tab list
-				var findingAidLink = "http://oasistest.lib.harvard.edu:9003/oasis/deliver/primo?id=" + eadId + "&q=" + $("#search_field").val();;
-				var findingAidTab = '<li class="EXLFindingAids EXLResultTab"><a target="_blank" href="' + findingAidLink + '">Finding Aids</a></li>';
+				var findingAidLink = "http://id.lib.harvard.edu/ead/" + eadId + "/catalog" + "&q=" + $("#search_field").val();;
+				var findingAidTab = '<li class="EXLFindingAids EXLResultTab"><a target="_blank" href="' + findingAidLink + '">Finding Aids<img class="eadlinkicon" src="../images/icon_popout_tab.png" alt="Open in a new tab"></a></li>';
 				$(this).find(".EXLResultTabs").append(findingAidTab);
 
 			}
@@ -146,9 +165,31 @@ function snippetToLink() {
 		}
 
 	});
+}
 
+//Overwritting Primo default function to call openPrimoLightBox with the additional modifyPermaLink
+function openPermaLinkLbox(action,parameters,recordIndex,recordId){
+	var recordElement = $('#exlidResult'+recordIndex);
+	if (isFullDisplay())
+                var recordElement = $('#resultsListNoId');
 
+	openPrimoLightBox(action, 'plGo', 'permalinkResultsXml', null, parameters, modifyPermaLink, true, recordElement);
+ 
+	$('#exliWhiteContent').css('z-index','2');
+	$('#exliWhiteContent').css('outline','none');
+	$('#exliGreyOverlay').hide();
+}
 
+//Change the permalink content itself
+function modifyPermaLink() {
+	if (RegExp("HVD:HVD_ALEPH").test($("#exlidURL").attr("value"))) {
+		var url = "http://id.lib.harvard.edu/aleph/" + $("#exlidURL").attr("value").replace(/(.*)(HVD:HVD_ALEPH)/, "") + "/catalog";
+		$("#exlidURL").attr("value", url);
+	}
+	else if (RegExp("HVD:HVD_VIA").test($("#exlidURL").attr("value"))) {
+                var url = "http://id.lib.harvard.edu/via/" + $("#exlidURL").attr("value").replace(/(.*)(HVD:HVD_VIA)/, "") + "/catalog";    
+                $("#exlidURL").attr("value", url);
+        }
 }
 
 
@@ -255,6 +296,8 @@ function getURLParams(qs) {
 
 	return params;
 }
+
+
 
 //Debugger for the customer JS
 debugJS = false
@@ -467,3 +510,4 @@ jQuery(function($) {
 	}
 });
 //end code for ND for Date Slider;
+

@@ -31,15 +31,6 @@ function buildDeepURL(text, target) {
 	return url;
 }
 
-//Table of Content link removal
-function removeTOCLinks() {
-	$(".EXLFullDetailsOutboundLink:contains('Table of Contents')").each(function() {
-		if ($(this).parents(".EXLSummary").find(".EXLResultSnippet").text().length == 0 && window.location.pathname.indexOf("display.do") == -1) {
-			$(this).parents("li").remove();
-		}
-	});
-}
-
 //Add the current search query to the Finding Aids link within the details tab
 function modifyFindingAidsLink() {
 	$(".EXLFullDetailsOutboundLink:contains('Finding Aid')").each(function() {
@@ -191,6 +182,31 @@ function findIdentifier(str, regexString) {
 	return str.search(regex);
 }
 
+//Add link to jump to Locations tab
+function viewLocationsLink() {	
+	$(".EXLDetailsContent ul").each(function() {
+		//Check that it's ALEPH data only
+		if (!$(this).find("li[id^='Source'] span:contains('HVD ALEPH')").length)
+			return;
+	
+		//Confirm non modified
+		if ($(this).find("li.detailsViewLocation").length)
+			return;
+		
+		//Create a new li item with small script
+		var linkHtml = $('<li class="detailsViewLocation"></li>');
+		$(linkHtml).append($('<a href="javascript:void(0)" onclick="viewLocationsClick($(this))">Locations & Availability</a>'));
+		$(this).append(linkHtml);
+	});
+}
+
+//Simulate a click
+function viewLocationsClick(element) {
+	$(element).parents(".EXLSummary").find(".EXLLocationsTab a").click();
+}
+
+
+
 //Incase direct link to Details tab, do these:
 $(document).ready(function() {
 	if ((RegExp("tabs=detailsTab").test(window.location.href)) || (RegExp("fn=permalink").test(window.location.href)) || (RegExp("/display.do?").test(window.location.href))) {
@@ -208,11 +224,11 @@ $(document).ajaxComplete(function(event, request, settings) {
 function doDetailsTab() {
 	//Links modifications 
 	linksModifications();
-	removeTOCLinks();
 	modifyFindingAidsLink();
 
-	//Details tab field link fixes
+	//Details tab fields
 	detailsLateralLinks();
+	viewLocationsLink();
 
 	//Linkify some details fields
 	detailsSubfieldLinks();

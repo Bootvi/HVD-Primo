@@ -8,14 +8,16 @@ function locationsTabModifications() {
 	//Each DIV has it's own variables and listener, so no conflict should happen.
 	$(".EXLSublocation").each(function() {
 		//Modify all the Items in this single Holding record
-		modifyHoldItems();
+		modifyItems();
+
+		//Modify the Holding note action link, semicolon fix
+		modifyHoldingLinks($(this));
 
 		//Put a listener on the Sublibrary DIV which contains the Request options to catch when it is populated, or more items are added
 		$(this).on("DOMSubtreeModified propertychange", handleDomChanges);
-
 	});
 
-
+	
 	//If full display, let Locations tab extend like Details tab.
 	if ((RegExp("display.do").test(window.location.href)) || (RegExp("dlDisplay.do").test(window.location.href)))
 		$(".EXLLocationListContainer").css("height", "auto");
@@ -25,12 +27,7 @@ function locationsTabModifications() {
 
 	//If it is a single location, perform all changes immediately before attaching a listener
 	//20150107 CB added libInfoLink for library info links
-	shortenLocationNotes();
-	createCountwaySerialsNote();
 	libInfoLink();
-
-	//20140919 TEST: CB added text call number 
-	//textCallNo();
 
 	//Alon B: Adding BorrowDirect at the bottom of Locations tab
 	borrowDirect();	
@@ -47,17 +44,15 @@ function handleDomChanges() {
 
 	//Modify contents of Holding
 	//20150107 CB added libInfoLink for library info links
-	shortenLocationNotes();
-	createCountwaySerialsNote();
 	libInfoLink();	
 
-	//20140919 TEST: CB added text call number 
-	//textCallNo();
-	
 	//Modify all items in this Holding that was just changed in the DOM.
 	if ($(this).find(".EXLLocationTableActions").length)
-		modifyHoldItems();
-
+		modifyItems();
+	
+	//Change holding note action and semicolon:
+	modifyHoldingLinks($(this));
+	
 	//Resume listening (if there are more items, RTA changes, Primo OTB changes
 	$(this).on("DOMSubtreeModified propertychange", handleDomChanges);
 
@@ -68,7 +63,7 @@ function handleDomChanges() {
 
 //Full solution implementation, e.g. HVD_ALEPH008190450
 //Uses functions inside requestOptions.js, mapIt.js to modify request options and enable other features
-function modifyHoldItems() {
+function modifyItems() {
 	$(".EXLLocationTableActions").each(function() {
 		//Check if this Item was modified already
 		if ($(this).find(".EXLLocationModified").length)
@@ -117,30 +112,54 @@ function handleLocationIconClick() {
 	$(this).parents(".EXLLocationsTitle").append(loadingWheel);
 }
 
-//If the Location note is too long, make it a link "more..."
-function shortenLocationNotes() {
-		$(".EXLLocationsMoreInfo > strong").each(function() {
-			if ($(this).text().trim().length > 250 && $(this).children("a").length == 0) {
-				var part1 = $(this).text().trim().substr(0, $(this).text().trim().substr(0, 130).lastIndexOf(" "));
-				var recordId = $(this).parents("div.EXLSublocation").attr("id").substr(5, 9);
-				var url = "http://lms01.harvard.edu/F?func=direct&local_base=HVD01&doc_number=" + recordId;
-				$(this).html(part1 + '<a href="' + url + '" target="_blank">...more</a>');
+//Fixing the links, including the "More holdings information" link
+//Adding another function for the onclick and the onKeyUp attributes
+function modifyHoldingLinks(element) {
+	//Workaround to fix the semicolon issue with the notes/links
+        $(element).find(".EXLLocationsTabSummaryHoldingsContentLine a, .EXLLocationsTabSummaryHoldingsContentLine span").each(function () {
+	        content = $(this).text();
+                if (RegExp(/((;)(http|https)(:\/\/)(.*))|((http|https)(:\/\/)(.*)(;))/).test(content)) {
+                        $(this).parent().html(breakHyperlinksOnSemicolons(content));
+                }
+        });
+
+	//Modify the "More holdings information" link
+	$(element).find(".EXLLocationsTabSummaryHoldingsContentLineMoreLine a").each(function () {
+		if ($(this).attr("onclick").indexOf("modifyHoldingInformationWhiteBox") > 0)
+			return;
+
+		$(this).attr("onclick","addLightBoxDivsNoLoading(event, this); modifyHoldingInformationWhiteBox();");
+		$(this).attr("onkeyup","addLightBoxDivsNoLoading(event, this); modifyHoldingInformationWhiteBox();");
+	});
+}
+
+
+//Once the holding note has been popped out - it will be modified CSS wise only.
+//Modifying the links and applying workaround....
+function modifyHoldingInformationWhiteBox() {
+	//Check if whitebox has been popped
+	if ($("#exliWhiteContent").css("display") != 'none') {
+		
+		//Update the notes
+		$("#exliWhiteContent .EXLLocationsTabSummaryHoldingsMoreLightBoxContainerValue").each(function() {
+			var content = $(this).attr("title");
+			if (RegExp(/((;)(http|https)(:\/\/)(.*))|((http|https)(:\/\/)(.*)(;))/).test(content)){
+				$(this).html(breakHyperlinksOnSemicolons(content));
+				
 			}
 		});
+		
+		//Reposition the box to be fixed postion...
+		$("#exliWhiteContent").css({
+			"position":"fixed", 
+			"top":"20%"
+		});	
+		$("table.EXLLocationsTabSummaryHoldingsMoreLightBox").parent().css({
+			"overflow-y": "auto",
+			"overflow-x": "hidden",
+			"max-height": "400px"
+		});
 	}
-
-//Corinna B. added test for temporary Countway serials workaround due to AVA bug; backfiles don't display
-function createCountwaySerialsNote() {
-	$(".EXLLocationInfo > strong").each(function() {
-		if ($(this).text() == 'Russell Reading Room') {
-			var callno = $(this).siblings("cite").text();
-			var recordId = $(this).parents("form[name='locationsTabForm']").children("input[name='recIds']").val();
-			var url = "http://lms01.harvard.edu/F/?func=item-global&doc_library=HVD01&doc_number=" + recordId.substr(("HVD_ALEPH").length) + "&year=&volume=&sub_library=MED" ;
-			if (callno.indexOf("Serial") >= 0) {
-				$(this).append('<br /><a href="' + url + '" target="_blank">Check for older vols.</a>');
-			}
-		}
-	});
 }
 
 //Add Expand All feature to locations tab
@@ -171,6 +190,18 @@ function addExpandAll() {
 			});
 		}
 	});
+}
+
+//Takes a text with URL inside of, builds a cleaner version with semicolons as delimeters
+function breakHyperlinksOnSemicolons(urlText) {
+        var regexSearch = "(http|https)(:\/\/)([^;]*)";
+        var url = RegExp(regexSearch).exec(urlText)[0];
+        var prefix = urlText.substr(0, urlText.search(regexSearch));
+        var suffix = urlText.substr(prefix.length + url.length + 1);
+
+        var fixedHtml = prefix + ' <a target="_blank" href="' + url + '">' + url + '</a>; ' + suffix;
+
+        return fixedHtml;
 }
 
 function collectItemArgs(element) {

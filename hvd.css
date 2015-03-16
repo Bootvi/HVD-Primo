@@ -311,7 +311,7 @@ select#exlidInput_scope_1, select#exlidInput_scope_2, select#exlidInput_scope_3,
 min-width: 0%;
 }
 #exlidAdvancedSearchRibbon div.EXLAdvancedSearchFormRow fieldset span.EXLBooleanOperatorInput {
-	display:block;
+	display:inline;
 }
 .EXLSearchFieldRibbonFormSelectedBrowse {
 	background-color: #FFFFFF;
@@ -320,7 +320,7 @@ min-width: 0%;
 }
 .EXLSearchFieldRibbonFormBrowseSearchFor {
 	border: none;
-	width: 70%;
+	width: 50%;
 }
 
 /* end advanced search and browse */
@@ -607,6 +607,9 @@ body.EXLFullView div.EXLBackToResults {
 }
 .EXLLocationInfo strong {
 	width: 35%; 
+	font-size: 14px;
+	font-weight: bold;
+	color: #A51C30;
 }
 .EXLLocationInfo cite {
 	width: 35%; 
@@ -804,6 +807,10 @@ body.EXLFullView div.EXLTabContent{
 .EXLTabsRibbon div li.EXLViewOnlineTab  a {	
 	font-weight:bold;
 	color:#52854C;
+	background-image: url(../../images/icon_popout_tab.png);
+	background-repeat: no-repeat;
+	background-position: 80px 2px;
+	padding-right: 30px;
 }
 .EXLTabsRibbon div li.EXLLocationsTab {	
 	background-image: url(../../uploaded_files/HVD/locations_icon.png);
@@ -823,8 +830,17 @@ body.EXLFullView div.EXLTabContent{
     width: 10em;
     text-align: right;
 }
-
-
+.EXLDetailsContent .detailsViewLocation {
+	margin-top: 30px;
+	font-weight: bold;
+}
+.EXLDetailsTabContent div.EXLDetailsContent .detailsViewLocation > ul > li {
+	margin-left: -10em;
+	background-image: url(../../uploaded_files/HVD/locations_icon.png);
+	background-repeat: no-repeat;
+	background-position: -2px -2px;
+	padding-left: 21px;
+}
 /* Links and Electronic Book Plates */
 .EXLDetailsTabContent div.EXLDetailsLinks li span.EXLDetailsLinksTitle a:link, a:visited, a:active {
 	color: #a51c30;
@@ -1074,12 +1090,10 @@ span.borrowDirectHeader {
 	display: block;
 	font-size: 14px;
 	font-weight: bold;
-	color: #A51C30;
 }
 
 span.borrowDirectText {
 	display: block;
-	font-weight: bold;
 	margin-left: 10px;
 	margin-top: 5px;
 }
@@ -1166,6 +1180,12 @@ tr.VIAThumbnailImage {
 	width: 100px;
 }
 
+.VIAMetaCaption {
+	font-size: 1em!important;
+	margin-bottom: 14px;
+	margin-top: -10px;
+}
+
 .VIAMetaDataTable {
 	width: 100%;
 	font-size: 14px;
@@ -1202,13 +1222,12 @@ div.EXLBriefResultsDisplayCoverImageNUM0 img.EXLBriefResultsCover {
 	position: relative;
 }
 
-.coverImageDiv {
+.EXLThumbnail div.coverImageDiv {
 	overflow: hidden;
 	width: 43px;
 }
 
 /* -------------------------------------- */
-
 	    		
 
   	

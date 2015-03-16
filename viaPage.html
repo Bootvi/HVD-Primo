@@ -2,7 +2,8 @@
 
 <head>
 	<link rel="stylesheet" type="text/css" href="viaPage.css" media="all" />
-	<link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+	<link rel="shortcut icon" type="image/x-icon" href="../HVD/favicon.ico" />
+	<title>H+ Image Detail</title>
 
 </head>
 
@@ -17,6 +18,7 @@
 	$(document).ready(function() {
 		var parameters = getURLParams(document.location.search);
 		generatePrintabePage(parameters);
+
 	});
 
 	//This is the main function to build the page
@@ -54,12 +56,15 @@
 		//So if the remaining VIA XML has an image, transform using XSL, and modify 
 		//a. the HOLLIS id from the URL to remove HVD_VIA
 		//b. ada a URL to this page
+		//20150212 CB added primosViaStandardView to provide link back to Detail tab
 		if (matched) {
 			$("body").append(transformXSL(viaXML, "viaPage.xsl"));
-			
-			$(".VIAMetaDataValueHollisNumber").text(parameters['recordId'].replace("HVD_VIA", ""));
-			$(".VIAMetaDataValueLinkToRecord").html('<a href="' + document.location + '">' + document.location + '</a>');
 
+			$(".VIAMetaDataValueHollisNumber").text(parameters['recordId'].replace("HVD_VIA", ""));
+			$("#primosViaStandardView").attr("href", "http://id.lib.harvard.edu/via/" + parameters['recordId'].replace("HVD_VIA", "") + "/catalog");
+			
+			$(".VIAMetaDataValueLinkToRecord").html('<a href="' + buildCatalogLink(parameters) + '">' + buildCatalogLink(parameters) + '</a>');
+			
 		} else
 			$("body").append("The URL is not valid, please try again from the main collection on Hollis Plus");
 
@@ -74,6 +79,16 @@
 		recursiveCleanup(element.parent());
 
 
+	}
+
+	//Build a permalink to the full page of the record, based on the URL parameters
+	function buildCatalogLink(parameters) {
+		var urltest = "http://id.lib.harvard.edu/via/" + parameters['recordId'].replace("HVD_VIA", "");
+		if (parameters['imageId'] != "" && parameters['imageId'] != null && parameters['imageId'] != "imageNotDigitizedLarge.png")
+			urltest = urltest + "/" + parameters['imageId'] + "/catalog";
+		else
+			urltest = urltest + "/" + parameters['compId'] + "/catalog";
+		return urltest;
 	}
 </script>
 

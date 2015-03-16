@@ -10,6 +10,13 @@
 
 				<!-- Hidden MetaData that is injected to the FancyBox when it opens. -->
 				<div class="VIAMetaData">
+					
+					<!-- First, the caption -->
+					<xsl:if test="caption">
+						<xsl:call-template name="workGroupCaption"/>
+					</xsl:if>				
+
+					<!-- Generic Group/Work metaData - 3 lines -->
 					<table class="VIAMetaDataTable">
 						<xsl:call-template name="workGroupData"/>
 					</table>
@@ -17,6 +24,7 @@
 					<!-- Meta Data for the subworks/surrogates -->
 					<xsl:if test="parent::surrogate or parent::subwork">
 						<hr class="tableSeperator"/>
+						
 						<table class="VIAMetaDataSubTable">
 							<xsl:call-template name="subworkSurrogateData"/>
 						</table>
@@ -25,8 +33,11 @@
 					<!-- Link to the record -->
 					<table class="VIAMetaDataTable">
 						<tr>
-							<td colspan="2" class="VIAMetaDataValue" id="VIAbookmarkLink">										
-											&gt; <a href="LinkPrintPlaceHolder" target="_blank">View full image and record (use this for printing)</a>
+							<td class="VIAMetaDataValue" id="VIAbookmarkLink">										
+											&gt; <a href="LinkPrintPlaceHolder" class="LinkPrintPlaceHolder" target="_blank">View full image and record (use this for printing)</a>
+							</td>
+							<td class="VIAMetaDataValue" id="XofY">
+                                Image <xsl:value-of select="position()" /> of <span class="VIATotalImages">numOfImages</span>
 							</td>
 						</tr>
 					</table>
@@ -56,7 +67,7 @@
 						<table class="VIAMetaDataTable">
 							<tr>
 								<td colspan="2" class="VIAMetaDataValue" id="VIAbookmarkLink">										
-												&gt; <a href="LinkPrintPlaceHolder" target="_blank">View full record (use this for printing / bookmarking)</a>
+												&gt; <a href="LinkPrintPlaceHolder" class="LinkPrintPlaceHolder" target="_blank">View full record (use this for printing / bookmarking)</a>
 								</td>
 							</tr>
 						</table>
@@ -159,6 +170,17 @@
 		</table>
 	</xsl:template>
 
+	<!-- Caption under the fancybox full image, added to the metaData DIV -->
+	<xsl:template name="workGroupCaption">
+		<table class="VIAMetaDataTable VIAMetaCaption">
+			<tr>
+				<td>
+					Caption: <xsl:value-of select="caption" />
+				</td>
+			</tr>
+		</table>
+	</xsl:template>
+	
 	<!-- Meta Data for Works and Groups - 3 lines -->
 	<xsl:template name="workGroupData">
 		<xsl:if test="/work/title/textElement|/group/title/textElement">
@@ -171,32 +193,32 @@
 				</td>
 			</tr>
 		</xsl:if>
-		<xsl:if test="../creator/nameElement">
+		<xsl:if test="/work/creator/nameElement|/group/creator/nameElement">
 			<tr>
 				<td class="VIAMetaDataKey">
 					<strong>Creator:</strong>
 				</td>
 				<td class="VIAMetaDataValue">
-					<xsl:value-of select="../creator/nameElement"/>
-					<xsl:if test="../creator/dates">
-												, <xsl:value-of select="../creator/dates"/>, 
+					<xsl:value-of select="/work/creator/nameElement|/group/creator/nameElement"/>
+					<xsl:if test="/work/creator/dates|/group/creator/dates">
+												, <xsl:value-of select="/work/creator/nameElement|/group/creator/dates"/>, 
 					</xsl:if>
-					<xsl:if test="../creator/nationality">
-												, <xsl:value-of select="../creator/nationality"/>
+					<xsl:if test="/work/creator/nationality|/group/creator/nationality">
+												, <xsl:value-of select="../../creator/nationality"/>
 					</xsl:if>
-					<xsl:if test="../creator/role">
-												, <xsl:value-of select="../creator/role"/>
+					<xsl:if test="/work/creator/role|/group/creator/role">
+												, <xsl:value-of select="/work/creator/role|/group/creator/role"/>
 					</xsl:if>
 				</td>
 			</tr>
 		</xsl:if>
-		<xsl:if test="../freeDate">
+		<xsl:if test="/work/freeDate|/group/freeDate">
 			<tr>
 				<td class="VIAMetaDataKey">
 					<strong>Date:</strong> 
 				</td>
 				<td class="VIAMetaDataValue">
-					<xsl:value-of select="../freeDate"/>
+					<xsl:value-of select="/work/freeDate|/group/freeDate"/>
 				</td>
 			</tr>
 		</xsl:if>

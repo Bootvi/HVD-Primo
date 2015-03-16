@@ -8,9 +8,15 @@
 			<body>
 				<div id="viaHeader">
 					<a href="http://nrs.harvard.edu/urn-3:hul.ois:bannerhollis+" title="HOLLIS+" alt="HOLLIS plus">
-						<img src="../../uploaded_files/HVD/pennant_HOLLIS+beta.jpg" />
+						<img src="../../uploaded_files/HVD/pennant_HOLLIS+.jpg" />
 					</a>
-					<div>HOLLIS+ Image Detail</div>
+					<div>Image</div>
+					<div id="primomarcrecord">
+						<a id="primosViaStandardView" href="">(View Details in HOLLIS+)</a>
+					</div>
+					<div id="asklib">
+						<a href="http://nrs.harvard.edu/urn-3:hul.ois:dsref">Ask a Librarian</a>
+					</div>
 				</div>
 				<xsl:apply-templates/>
 				<div id="viaFooter">
@@ -37,19 +43,30 @@
 		</xsl:choose>
 
 		<div class="viaWorkGroupMetaData">
+			<!-- AB 20150212 Adding caption to the viaPage -->
+			<xsl:if test="//image/caption">
+				<table class="VIAMetaDataTable VIAMetaCaption">
+					<tr>
+						<td>
+							Caption: <xsl:value-of select="//image/caption" />
+						</td>
+					</tr>
+				</table>	
+			</xsl:if>
+		
+			<!-- The metaData table, top part -->
 			<table class="VIAMetaDataTable">
 				<xsl:call-template name="metaData"/>
-				<!-- <tr>
+				<tr>
 					<td class="VIAMetaDataKey">
 						<strong>Link to this record:</strong>
 					</td>
 					<td class="VIAMetaDataValue VIAMetaDataValueLinkToRecord"/>
-				</tr> -->
+				</tr>
 			</table>
 		</div> 
 
 		<hr class="tableSeperator"/>
-		
 		<!-- CB 20141208 adding section for new image/component permalinks -->
 	    <!-- <div class="viaComponenetMetaData">
 			<table class="VIAMetaDataTable">		
@@ -116,13 +133,19 @@
 
 
 	<xsl:template name="metaData">
-		<xsl:if test="title/textElement">
+		<xsl:if test="title">
 			<tr>
 				<td class="VIAMetaDataKey">
 					<strong>Title:</strong>
 				</td>
 				<td class="VIAMetaDataValue">
-					<xsl:value-of select="title/textElement"/>
+					<xsl:for-each select="title">
+						<xsl:if test="type">
+							<i>	<xsl:value-of select="type"/>: </i>
+						</xsl:if>               
+						<xsl:value-of select="textElement"/>						
+						<xsl:if test="position()!=last()"><br /></xsl:if>						
+					</xsl:for-each>
 				</td>
 			</tr>
 		</xsl:if>
@@ -276,7 +299,7 @@
 				<td class="VIAMetaDataValue VIAMetaDataValueMaterialsTechniques">
 					<xsl:for-each select="materials">
 						<xsl:value-of select="."/>
-						<xsl:if test="position()!=last()">;</xsl:if>
+						<xsl:if test="position()!=last()">; </xsl:if>
 					</xsl:for-each>
 				</td>
 			</tr>
@@ -440,7 +463,7 @@
 						<xsl:value-of select="."/>
 						<xsl:if test="position()!=last()">
 							<br />
-						</xsl:if>
+						</xsl:if> 
 					</xsl:for-each>
 				</td>
 			</tr>
@@ -525,7 +548,7 @@
 			</tr>
 		</xsl:if>
 
-		<tr>
+		<tr class="VIAMetaDataHide">
 			<td class="VIAMetaDataKey">
 				<strong>HOLLIS Number:</strong>
 			</td>

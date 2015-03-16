@@ -1,8 +1,6 @@
-
 .mobilehide {
 	display:none;
 }
-
 /* search box */
 #exlidSearchRibbon input {
 	border: 1px solid #777676;
@@ -11,7 +9,13 @@
 #exlidMainMenuTile div.EXLLanguagesContainer ul.EXLLanguageMenuShow li.EXLLanguageLink {
 	display:none;
 }
-
+#exlidSearchTile {
+	padding-top: 55px;
+}
+/* Search Tabs */
+#exlidSearchTabs {
+	display: block!important;
+}
 .EXLHomeNewsContainer {
 	padding-left:0px;
 }
@@ -19,12 +23,64 @@
 body.EXLFullView div.EXLTabsRibbon div li.EXLRequestTab {
 	display: none;
 }
-
+/* Hide Virtual Browse tab */
+body.EXLFullView div.EXLTabsRibbon div li.EXLBrowseshelfTab  {
+	display: none;
+}
 /* hide the dot */
 .EXLTabsRibbon div li.EXLViewOnlineTab {
 	background-image: none;
 }
-
+/* Locations tab */
+.EXLLocationsTitle {
+	width: 100%;
+}
+.EXLLocationInfo {
+	width: 100%;
+	padding-top: 0px;
+}
+.EXLLocationInfo strong {
+	width: 100%;
+}
+.EXLLocationInfo cite {
+	display: none;
+}
+.EXLLocationsMoreInfo {
+	margin-left: 1em;
+}
+.EXLLocationsTabContent div.EXLLocationList table.EXLLocationTable tr.EXLLocationTitlesRow {
+	display: none;
+}
+.EXLLocationsTabContent div.EXLLocationList table.EXLLocationTable .EXLLocationTableMargin {
+	padding-left: 0em;
+}
+.EXLLocationsTabContent div.EXLLocationList table.EXLLocationTable td {
+	display: block; 
+}
+/* hide barcode */
+.EXLLocationsTabContent div.EXLLocationList table.EXLLocationTable td.EXLLocationTableColumn3 {
+	display: none; 
+}
+.EXLResultsList em.EXLResultStatusAvailable {
+	width: 95%;
+}
+.EXLResultsList em.EXLResultStatusNotAvailable {
+	width: 95%;
+}
+/* hide reset button on request form */
+.EXLRequestTabContent form span.reset {
+	display: none;
+}
+/* Details tab */
+.EXLDetailsTabContent div.EXLDetailsContent li strong {
+	position: relative;
+	left: 0em;
+	width: 0em;
+	text-align: left;
+}
+.EXLDetailsTabContent div.EXLDetailsContent > ul > li {
+	margin-left: 0em;
+}
 /* Harvard Library Banner and other header area  - adjustments for Primo mobile */
 #hlp {
 	z-index:0;
@@ -39,7 +95,6 @@ body.EXLFullView div.EXLTabsRibbon div li.EXLRequestTab {
 	margin-top: 12px;
 	width: 80px;
 }
-
 #hlp ul li#hlp_pennant {
 	margin-top: 12px;
 }
@@ -58,13 +113,3 @@ body.EXLFullView div.EXLTabsRibbon div li.EXLRequestTab {
 	padding-top: 75px;
 }
 /* end Harvard Library Banner - adjustments for Primo mobile */
-
-
-#exlidSearchTile {
-	padding-top: 55px;
-}
-
-/* Search Tabs */
-#exlidSearchTabs {
-	display: block!important;
-}

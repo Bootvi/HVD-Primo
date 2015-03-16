@@ -41,13 +41,13 @@ function buildViaGallary() {
 		});
 
 		//If the user is signed out - switch to iframe for restricted images
-		if ($("#exlidSignOut").hasClass("EXLHidden")) {	
-			$(this).find(".VIAGallary a.fancybox").each(function (){
+		if ($("#exlidSignOut").hasClass("EXLHidden")) {
+			$(this).find(".VIAGallary a.fancybox").each(function() {
 				if ($(this).find(".VIARestrictedThumbnail").length) {
 					$(this).addClass("fancybox.iframe");
 					$(this).removeClass("fancybox.image");
 				}
-					
+
 			});
 		}
 
@@ -74,7 +74,7 @@ function buildViaGallary() {
 			},
 			onUpdate: function() {
 				resizeFancyBox();
-				
+
 			}
 		});
 	});
@@ -95,33 +95,51 @@ function createHeader(element, numberOfImages) {
 }
 
 //Get the MetaData based on the Image URL (unique), and puts the title with that value
-function modifyContents(current, previous) {
-	//Get the MetaData next to the thumbnail on the page below
-	var metaData = $("a.fancybox[href='" + current.href + "']").parents(".VIAThumbnail").find(".VIAMetaData").html();
-
+function modifyContents(current, previous) {	
+//	console.log(current.content);
+//	if (current.content != null && current.content.indexOf("fancybox-error")) {
+//		console.log("bad image");
+//		current.type = "iframe";
+//		current.content = '<p class="fancybox-error">The requested content cannot be loaded.<br/>Please sign in.</p>';
+//	}
 	//Get the parameters from the fancy box and the page URL
 	var recordId = $("a.fancybox[href='" + current.href + "']").attr("rel");
 	var imageId = current.href.replace(/^(.*[\/])/, "");
 	imageId = imageId.substr(0, imageId.indexOf("?"));
 
-	//Apply the metaData
-	if (metaData != null && metaData.length > 0) {
-		var componentId = $(metaData).find("tr.VIAComponentId td.VIAMetaDataValue").text()
-		metaData = metaData.replace("LinkPrintPlaceHolder", "../uploaded_files/HVD/viaPage.html?recordId=" + recordId + "&imageId=" + imageId + "&compId=" + componentId);
-		current.title = metaData;
+        //Get the MetaData next to the thumbnail on the page below, make it an HTML tree
+        var metaDataTree = $("<div>" + $("a.fancybox[href='" + current.href + "']").parents(".VIAThumbnail").find(".VIAMetaData").html() + "</div>");
+
+	//Process the metaData
+	if (metaDataTree != null && metaDataTree.length > 0) {
+		var componentId = $(metaDataTree).find("tr.VIAComponentId td.VIAMetaDataValue").text();
+
+		//PermaLink addition
+		$(metaDataTree).find(".LinkPrintPlaceHolder").attr("href", "../uploaded_files/HVD/viaPage.html?recordId=" + recordId + "&imageId=" + imageId + "&compId=" + componentId);
+
+		//X of Y feature
+		var numOfImages = $("a.fancybox[href='" + current.href + "']").parents(".EXLDetailsContent").find("li[id^='lds20'] .EXLDetailsDisplayVal").html();
+		$(metaDataTree).find(".VIATotalImages").text(numOfImages);
+		if (numOfImages == '1')
+			$(metaDataTree).find("#XofY").remove();
+
+		//Applying the metaData to the fancybox from the thumbnail metaData HTML
+		current.title = $(metaDataTree).html();
 	}
 }
 
+//Resize the box if image is narrower than 800px
 function resizeFancyBox() {
-	//Resize the box if image is narrower than 800px
-	var width = $(".fancybox-type-image").css("width").replace("px","");
-	if (width < 1200) {
-		var newWidth = 1200;
-		if (window.innerWidth < 1400) 
-			newWidth = window.innerWidth - 200;
-		$(".fancybox-type-image").css("width", newWidth + "px");
-		$(".fancybox-inner").css("width", (newWidth -30) + "px");
-		$.fancybox.reposition()	
+	if ($(".fancybox-type-image").length) {
+		var width = $(".fancybox-type-image").css("width").replace("px", "");
+		if (width < 1200) {
+			var newWidth = 1200;
+			if (window.innerWidth < 1400)
+				newWidth = window.innerWidth - 200;
+			$(".fancybox-type-image").css("width", newWidth + "px");
+			$(".fancybox-inner").css("width", (newWidth - 30) + "px");
+			$.fancybox.reposition()
+		}
 	}
 }
 
@@ -141,4 +159,25 @@ function fixRelatedInformation() {
 	});
 }
 
+
+//Fixing brief results thumbnails, shifting the pan and overflow from fixed height to fixed width
+function fixThinThumbnails() {
+	var maxWidth = $(this).parents(".EXLBriefResultsDisplayCoverImages").find(".EXLBriefResultsDisplayCoverImageBackup").width();
+        var maxheight = $(this).parents(".EXLBriefResultsDisplayCoverImages").find(".EXLBriefResultsDisplayCoverImageBackup").height();
+        if ($(this).width() < maxWidth) {
+		//Update the image SRC to the be the width limited
+		$(this).attr("src", $(this).attr("src").replace("height=65", "width=43"));
+        	
+		//Change the CSS attributes of the Div and image to reflect narrow thin images
+		$(this).parents("div.coverImageDiv").css("height", "65px");
+		$(this).css({
+			"width": maxWidth + "px",
+			"height": "auto",
+			"top": "50%",
+			"transform": "translate(-50%, -50%)",
+			"-ms-transform": "translate(-50%, -50%)",
+			"-webkit-transform": "translate(-50%, -50%)"
+		});
+	}
+}
 

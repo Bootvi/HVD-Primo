@@ -26,7 +26,7 @@ function stacksMap(itemArgs, element) {
 				range = data[0]['range'];
 				floordisplay = floor.replace("E", " East");
 				floordisplay = floordisplay.replace("W", " West");
-				var htmlCode = '<br><strong>Map It beta:</strong> <a target="_blank" href="' + data[0].maplink + '">' + 'Floor ' + floordisplay + ' Row ' + range + '</a>';
+				var htmlCode = '<br><strong>Map It: </strong><a target="_blank" href="' + data[0].maplink + '">' + 'Floor ' + floordisplay + ' Row ' + range + '</a>';
 
 				if (element.parents("table.EXLLocationTable").find(".EXLLocationTableColumn1").html().indexOf("<br>") == -1)
 					element.parents("table.EXLLocationTable").find(".EXLLocationTableColumn1").append(htmlCode);
