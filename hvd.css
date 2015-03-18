@@ -870,6 +870,9 @@ body.EXLFullView div.EXLTabContent{
 	margin-top: -5px;
 	margin-left: -5px;
 }
+.EXLDetailsTabContent div.EXLDetailsLinks li div.ebkplate_img  {
+	text-align: center;
+}
 .EXLDetailsTabContent div.EXLDetailsLinks li div.ebkplate_img img {
 	margin-top: 5px;
 }
