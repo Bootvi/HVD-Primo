@@ -842,9 +842,6 @@ body.EXLFullView div.EXLTabContent{
 	padding-left: 21px;
 }
 /* Links and Electronic Book Plates */
-.EXLDetailsTabContent div.EXLDetailsLinks li {
-	padding-bottom: 5px;
-}
 .EXLDetailsTabContent div.EXLDetailsLinks li span.EXLDetailsLinksTitle a:link, a:visited, a:active {
 	color: #a51c30;
 }
@@ -878,6 +875,7 @@ body.EXLFullView div.EXLTabContent{
 }
 .EXLDetailsTabContent div.EXLDetailsLinks li span.EXLDetailsLinksTitle a {
 	width: 90%;
+	margin-bottom: 3px;
 }
 
 
