@@ -1115,8 +1115,10 @@ span.borrowDirectText {
 .EXLDetailsContent li[id^='lds22'] {
         display: none;
 }
-
-
+/* CB SKC indicator */
+.EXLDetailsContent li[id^='lds41'] {
+        display: none;
+}
 .VIAGallary { 
 	display: block; 
 	width: 135%;
