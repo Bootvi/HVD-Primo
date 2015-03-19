@@ -596,7 +596,7 @@ body.EXLFullView div.EXLBackToResults {
 	margin-left: 10px;
 	font-size: 14px;
 	font-weight: bold;
-	color: #A51C30;
+	color: #1E1E1E;
 	width:auto;
 }
 .EXLLocationInfo {
@@ -609,7 +609,7 @@ body.EXLFullView div.EXLBackToResults {
 	width: 35%; 
 	font-size: 14px;
 	font-weight: bold;
-	color: #A51C30;
+	color: #1E1E1E;
 }
 .EXLLocationInfo cite {
 	width: 35%; 
