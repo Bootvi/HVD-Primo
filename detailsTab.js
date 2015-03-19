@@ -58,7 +58,8 @@ function detailsLanguagesSpaces() {
 //Handles lds3X links in Details tab
 function detailsLateralLinks() {
 
-	//lds30, lds31, lds32
+	//lds30 and lds32 require no js mods; they search lsr30, lsr32
+	//lds31, remove italic text from search string
 	var listOfFields = ["Place"];
 	for (var i = 0; i < listOfFields.length; i++) {
 		$(".EXLDetailsContent > ul > li[id^='" + listOfFields[i] + "'] a").each(function() {
@@ -72,6 +73,7 @@ function detailsLateralLinks() {
 	for (var i = 0; i < listOfFields.length; i++) {
 		$(".EXLDetailsContent > ul > li[id^='" + listOfFields[i] + "']").each(detailsLateralLinksFix);
 	}
+
 }
 
 //Handle the Preface of the links 
@@ -80,7 +82,7 @@ function detailsLateralRemovePreface() {
 
 }
 
-//Handle the content links of lds3X
+//Handle the content links of lds3X (remove italics from search string, search title index, handle identifiers)
 function detailsLateralLinksFix() {
 	var newLine = true;
 	$(this).find("a, br").each(function() {
@@ -102,11 +104,14 @@ function detailsLateralLinksFix() {
 			lateralLink = lateralLink.replace(/lsr3[3-6]/g, "title");
 
 			//Handling ISSN's, special identifier, etc..a
-			var listOfIdentifiers = ["([0-9]{4})-([0-9]{4})", "\(DLC\)", "\(OCoLC\)", "\(MH\)", "\(CaOONL\)"];
-			for (var i = 0; i < listOfIdentifiers.length; i++) {
-				lateralLink = lateralIdentifiersLink(lateralLink, listOfIdentifiers[i]);
-				$(lateralIdentifiersSuffix(lateralLinkText, listOfIdentifiers[i])).insertAfter($(this));
-				lateralLinkText = lateralIdentifiersText(lateralLinkText, listOfIdentifiers[i]);
+			//except for lsr34, uniform title, due to musical work numbers that have same syntax as ISSNs
+			if (lateralLink.indexOf("lsr34") == -1) {
+				var listOfIdentifiers = ["([0-9]{4})-([0-9]{4})", "\(DLC\)", "\(OCoLC\)", "\(MH\)", "\(CaOONL\)"];
+				for (var i = 0; i < listOfIdentifiers.length; i++) {
+					lateralLink = lateralIdentifiersLink(lateralLink, listOfIdentifiers[i]);
+					$(lateralIdentifiersSuffix(lateralLinkText, listOfIdentifiers[i])).insertAfter($(this));
+					lateralLinkText = lateralIdentifiersText(lateralLinkText, listOfIdentifiers[i]);
+				};
 			}
 
 			//Finalize link and text
@@ -237,4 +242,7 @@ function doDetailsTab() {
 	//Build VIA support
 	fixRelatedInformation();
 	buildViaGallary();
+	
+	//SKC support 
+	buildSKCgallery();
 }
