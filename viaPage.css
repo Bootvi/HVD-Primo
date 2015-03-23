@@ -90,3 +90,7 @@ margin-right: 25px;
 .VIAMetaDataValueRepositoryElement img {
 	margin-top: -6px;
 }
+
+img.viaImage {
+	display: none;
+}
