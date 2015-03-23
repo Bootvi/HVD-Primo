@@ -1,9 +1,10 @@
 function buildSKCgallery() {
 	$(".EXLDetailsContent li[id^='lds41']").parents(".EXLDetailsContent").each(function() {
+		
 		//Avoid duplicate work
-		if ($(this).find(".SKCgallery").length)
+		if ($(this).find("#SKCgallery").length)
 			return;
-
+		
 		//Make this details tab larger
 		if ((RegExp("tabs=detailsTab").test(window.location.href)) || (RegExp("fn=permalink").test(window.location.href)))
 			$(this).parents(".EXLDetailsTabContent").css("height", "auto");
@@ -13,17 +14,28 @@ function buildSKCgallery() {
 				"max-height": "38em"
 			});
 		}
-
-		//Get the SKC data from the PNX record
-		var recordId = $(this).parents(".EXLResult").find(".EXLResultRecordId").attr("id");
-		var pnxXML = loadPNX(recordId);
-		var skcXML = $.parseXML($(pnxXML).find("addata > mis2").text().replace(/&/g, "&amp;"));
-
+	
 		//Create Gallery header
-		//createHeader($(this), $(pnxXML).find("lds41").text());
+		var galleryHeaderHTML = '<div id="skcGalleryHeader">SKC TEST header: (Click on an image to enlarge)</div>';
+		$(this).append(galleryHeaderHTML);
 
 		//Create a gallery area
-		$(this).append('<div class="SKCgallery">SKC TEST<br /><span></span></div>');
+		$(this).append('<div id="skcGallery">SKC content test</div>');
+		
+		//Get the SKC data from the PNX record
+		var recordId = $(this).parents(".EXLResult").find(".EXLResultRecordId").attr("id");
+		var pnxXML = loadPNX(recordId);				
+		var skcXML = $(pnxXML).find("addata > mis2");
+		var skcHTML = "";
+		for	(index = 0; index < skcXML.length ; index++) {
+			//split elements into labels and URLs, append to make gallery with thumbnails
+			var entry = skcXML[index].textContent;
+			var split = entry.split(";",2);
+			skcHTML += '<div class="skcItem"><a href="'+split[1]+'?buttons=y" target="_blank"><img src="'+split[1]+'?height=375" height="375px" /></a><br /><span class="skcLabel">'+split[0]+'</span></div>';
+		} 
+
+		document.getElementById("skcGallery").innerHTML = skcHTML;
+
 		
 		// THIS IS WHERE I STOPPED
 

@@ -1235,6 +1235,26 @@ div.EXLBriefResultsDisplayCoverImageNUM0 img.EXLBriefResultsCover {
 	width: 43px;
 }
 
+/* Scanned Key Content , SKC*/
+#skcGalleryHeader {
+	margin-top: 10px;
+	margin-bottom: 10px;
+	font-weight:bold;
+}
+#skcGallery {
+
+}
+.skcItem {
+  float: left;
+  margin-right: 20px;
+  margin-bottom: 15px;
+}
+.skcItem  img {
+  border-style: solid;
+}
+.skcLabel {
+
+}
 /* -------------------------------------- */
 	    		
 
