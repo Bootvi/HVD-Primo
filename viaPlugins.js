@@ -44,8 +44,13 @@ function buildViaGallary() {
 		if ($("#exlidSignOut").hasClass("EXLHidden")) {
 			$(this).find(".VIAGallary a.fancybox").each(function() {
 				if ($(this).find(".VIARestrictedThumbnail").length) {
-					$(this).addClass("fancybox.iframe");
+					$(this).removeClass("fancybox.iframe");
 					$(this).removeClass("fancybox.image");
+
+					var signInLink = $('#exlidSignIn a').attr('href');
+					var dlDisplayUrl = $(this).parents(".EXLResultTabContainer").find(".EXLTabHeaderButtonPopout a").attr("href");
+					var correctUrl = signInLink.substr(0, signInLink.indexOf("targetURL=") + 10) + encodeURIComponent(dlDisplayUrl);
+					$(this).attr("href", correctUrl);
 				}
 
 			});
