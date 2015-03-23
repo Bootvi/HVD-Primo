@@ -1237,12 +1237,12 @@ div.EXLBriefResultsDisplayCoverImageNUM0 img.EXLBriefResultsCover {
 
 /* Scanned Key Content , SKC*/
 #skcGalleryHeader {
-	margin-top: 10px;
+	margin-top: 20px;
 	margin-bottom: 10px;
 	font-weight:bold;
 }
 #skcGallery {
-
+	width: 160%;
 }
 .skcItem {
   float: left;
@@ -1250,7 +1250,7 @@ div.EXLBriefResultsDisplayCoverImageNUM0 img.EXLBriefResultsCover {
   margin-bottom: 15px;
 }
 .skcItem  img {
-  border-style: solid;
+
 }
 .skcLabel {
 
