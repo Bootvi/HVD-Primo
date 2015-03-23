@@ -36,6 +36,9 @@ function buildSKCgallery() {
 
 		document.getElementById("skcGallery").innerHTML = skcHTML;
 
+	});
+}
+
 
 
 //REMOVE? 
@@ -58,4 +61,3 @@ function buildSKCgallery() {
 // NA here b/c already in via plugins? 
 //Fixing brief results thumbnails, shifting the pan and overflow from fixed height to fixed width
 //function fixThinThumbnails() 
-
