@@ -92,7 +92,11 @@ $(document).ready(function() {
 		$(this).parents(".EXLResult").find("li.EXLViewOnlineTab ").css("display", "none");
 
 		//Detect 'thin' images:
-		$(this).parents(".EXLThumbnail").find(".EXLBriefResultsCover").on('load', fixThinThumbnails);
+		$(this).parents(".EXLThumbnail").find("img.EXLBriefResultsCover").each(function() {
+				$(this).one('load', fixThinThumbnails);
+				if ($(this).width() > 0)
+						$(this).trigger('load')
+		});
 
 	});
 	$(".EXLFacet a:contains('Surrogate at Harvard')").parents("li.EXLFacet").hide(); // 20150218 after next week renorm this line will be obsolete
