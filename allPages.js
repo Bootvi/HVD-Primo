@@ -68,6 +68,12 @@ $(document).ready(function() {
 		"background-image": "none",
 		"padding-left": "0px"
 	});
+	//Fix thin thumbnail images
+	$("img.EXLBriefResultsCover").each(function() {
+		$(this).one('load', fixThinThumbnails);
+		if ($(this).width() > 0)
+			$(this).trigger('load')
+        });
 
 	//Change Details tab for VIA records
 	$(".EXLResultRecordId[id^='HVD_VIA']").each(function() {
@@ -91,12 +97,6 @@ $(document).ready(function() {
 		});
 		$(this).parents(".EXLResult").find("li.EXLViewOnlineTab ").css("display", "none");
 
-		//Detect 'thin' images:
-		$(this).parents(".EXLThumbnail").find("img.EXLBriefResultsCover").each(function() {
-				$(this).one('load', fixThinThumbnails);
-				if ($(this).width() > 0)
-						$(this).trigger('load')
-		});
 
 	});
 	$(".EXLFacet a:contains('Surrogate at Harvard')").parents("li.EXLFacet").hide(); // 20150218 after next week renorm this line will be obsolete
@@ -136,6 +136,27 @@ $(document).ready(function() {
 	addEADTab();
 
 });
+
+//Fixing brief results thumbnails, shifting the pan and overflow from fixed height to fixed width
+function fixThinThumbnails() {
+	var maxWidth = $(this).parents(".EXLBriefResultsDisplayCoverImages").find(".EXLBriefResultsDisplayCoverImageBackup").width();
+	var maxheight = $(this).parents(".EXLBriefResultsDisplayCoverImages").find(".EXLBriefResultsDisplayCoverImageBackup").height();
+	if ($(this).width() < maxWidth) {
+		//Update the image SRC to the be the width limited
+		$(this).attr("src", $(this).attr("src").replace("height=65", "width=43"));
+
+		//Change the CSS attributes of the Div and image to reflect narrow thin images
+		$(this).parents("div.coverImageDiv").css("height", "65px");
+		$(this).css({
+			"width": maxWidth + "px",
+			"height": "auto",
+			"top": "50%",
+			"transform": "translate(-50%, -50%)",
+			"-ms-transform": "translate(-50%, -50%)",
+			"-webkit-transform": "translate(-50%, -50%)"
+		});
+	}
+}
 
 //Overwrite the mogileDisplay.js function to avoid adding the languages to the mobile page
 function addLanguages() {}
