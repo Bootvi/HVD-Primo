@@ -1241,7 +1241,7 @@ div.EXLBriefResultsDisplayCoverImageNUM0 img.EXLBriefResultsCover {
 	margin-bottom: 10px;
 	font-weight:bold;
 }
-#skcGallery {
+div.[id^='skcGallery-'] { 
 	width: 160%;
 }
 .skcItem {
