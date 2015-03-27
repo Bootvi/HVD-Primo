@@ -1,5 +1,6 @@
+//Written by Alon Botvinik and Corinna Baksik
 function buildViaGallary() {
-	$(".EXLDetailsContent li[id^='lds20']").parents(".EXLDetailsContent").each(function() {
+	 $(this).find(".EXLDetailsContent li[id^='lds20']").parents(".EXLDetailsContent").each(function() {
 		//Avoid duplicate work
 		if ($(this).find(".VIAGallary").length)
 			return;
@@ -18,7 +19,7 @@ function buildViaGallary() {
 		var recordId = $(this).parents(".EXLResult").find(".EXLResultRecordId").attr("id");
 		var pnxXML = loadPNX(recordId);
 		var viaXML = $.parseXML($(pnxXML).find("addata > mis1").text().replace(/&/g, "&amp;"));
-
+		
 		//Create Gallary header
 		createHeader($(this), $(pnxXML).find("lds20").text());
 
@@ -61,7 +62,7 @@ function buildViaGallary() {
 			});
 		}
 
-		//Make it FANCYBOX, with MetaData function call to populate the information
+		//Make it FANCYBOX, with MetaData function call to populate the informationa
 		$(this).find(".VIAGallary a.fancybox").fancybox({
 			openEffect: 'none',
 			closeEffect: 'none',
@@ -87,9 +88,33 @@ function buildViaGallary() {
 
 			}
 		});
+		
+		//If coming with a CLICK command like from My Research, open the FancyBox on it
+		if (window.location.href.indexOf("&click=") > 0) {
+			var whatToClick = window.location.href.substr(window.location.href.indexOf("&click=") + 7);
+			setTimeout(function() {
+				$(".VIAGallary").find("a[href*='" + whatToClick + "']").click();
+			}, 200);
+		}
 	});
 }
 
+//Handle an eShelf (My Research) scenario, that contains an iFrame
+function buildViaGalleryMyResearch() {
+	//Build gallery on the body of the iFrame
+        $(".EXLEshelfDocumentDetailsIFrame").contents().find("body").each(buildViaGallary);
+
+	//Update the TABs to match Brief / Full details looks
+        $(".EXLEshelfDocumentDetailsIFrame").contents().find(".EXLResultRecordId[id^='HVD_VIA']").each(changeVIATabTitle);
+
+	//Change the Hyperlinks to open a new window, cannot run Fancy Box within the iFrame
+        $(".EXLEshelfDocumentDetailsIFrame").contents().find("a.fancybox").each(function() {
+                var imageId = $(this).attr("href").replace(/^(.*[\/])/, "").replace("?buttons=Y", "");;
+                var recordId = $(this).parents(".EXLResult").find(".EXLResultRecordId").attr("id");
+                $(this).attr("href", "dlDisplay.do?vid=HVD&docId=" + recordId + "&click=" + imageId);
+                $(this).attr("target", "_blank");
+        });
+}
 
 //Builds a header based on lds20
 function createHeader(element, numberOfImages) {

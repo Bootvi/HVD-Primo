@@ -214,7 +214,7 @@ function viewLocationsClick(element) {
 
 //Incase direct link to Details tab, do these:
 $(document).ready(function() {
-	if ((RegExp("tabs=detailsTab").test(window.location.href)) || (RegExp("fn=permalink").test(window.location.href)) || (RegExp("/display.do?").test(window.location.href))) {
+	if ((RegExp("tabs=detailsTab").test(window.location.href)) || (RegExp("fn=permalink").test(window.location.href)) || (RegExp("/display.do?").test(window.location.href)) || (RegExp("/dlDisplay.do?").test(window.location.href))) {
 		doDetailsTab();
 	}
 });
@@ -241,7 +241,7 @@ function doDetailsTab() {
 
 	//Build VIA support
 	fixRelatedInformation();
-	buildViaGallary();
+	$("body").each(buildViaGallary);
 	
 	//SKC support 
 	buildSKCgallery();

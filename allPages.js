@@ -4,11 +4,17 @@ $(document).ready(function() {
 	//In my eShelf - make Location tab open in a new tab to allow Location Tab hacks
 	$(".EXLEshelfDocumentDetailsIFrame").on("load", function() {
 		var recordId = $(this).contents().find(".EXLResultRecordId").attr("id");
+		//Handle records with Locations tab
 		$(this).contents().find(".EXLLocationsTab > a:contains('Locations')").attr({
 			"href": "/HVD:" + recordId + "&availabilityTab=true",
 			"target": "_blank"
 		});
+		//For VIA records
+		if (recordId.indexOf("HVD_VIA") == 0)
+			buildViaGalleryMyResearch();
+
 	});
+	
 
 	//$('#exlidMainMenuRibbon li#exlidMainMenuItem0').insertAfter('#exlidMainMenuRibbon li#exlidMainMenuItem2');
 
@@ -76,29 +82,8 @@ $(document).ready(function() {
         });
 
 	//Change Details tab for VIA records
-	$(".EXLResultRecordId[id^='HVD_VIA']").each(function() {
-		var viaTabTitle = "Details & Gallery (View Online)";
-
-		//In case of numberOfImages="0"
-		if ($(this).parents(".EXLResult").find(".EXLResultFourthLine:contains('no digitized images')").length) {
-			$(this).parents(".EXLResult").find(".EXLResultFourthLine:contains('no digitized images')").text("");
-			viaTabTitle = "Details & Gallery";
-		}
-		$(this).parents(".EXLResult").find(".EXLDetailsTab a:contains('Details')").text(viaTabTitle);
-		$(this).parents(".EXLResult").find(".EXLDetailsTab a:contains('Details')").css({
-			"font-weight": "bold",
-			"color": "#52854C"
-		});
-		$(this).parents(".EXLResult").find("li.EXLDetailsTab").css({
-			"background-image": "url(../images/icon_available.png)",
-			"background-repeat": "no-repeat",
-			"background-position": "2px 2px",
-			"padding-left": "15px"
-		});
-		$(this).parents(".EXLResult").find("li.EXLViewOnlineTab ").css("display", "none");
-
-
-	});
+	$(".EXLResultRecordId[id^='HVD_VIA']").each(changeVIATabTitle);
+	
 	$(".EXLFacet a:contains('Surrogate at Harvard')").parents("li.EXLFacet").hide(); // 20150218 after next week renorm this line will be obsolete
 	$(".EXLFacet a:contains('All VIA records')").parents("li.EXLFacet").hide();
 	$(".EXLFacet a:contains('Visual works')").parents("ol.EXLFacetsList").find(".EXLFacetsDisplayMore").hide();
@@ -136,6 +121,30 @@ $(document).ready(function() {
 	addEADTab();
 
 });
+
+function changeVIATabTitle() {
+                var viaTabTitle = "Details & Gallery (View Online)";
+
+                //In case of numberOfImages="0"
+                if ($(this).parents(".EXLResult").find(".EXLResultFourthLine:contains('no digitized images')").length) {
+                        $(this).parents(".EXLResult").find(".EXLResultFourthLine:contains('no digitized images')").text("");
+                        viaTabTitle = "Details & Gallery";
+                }
+                $(this).parents(".EXLResult").find(".EXLDetailsTab a:contains('Details')").text(viaTabTitle);
+                $(this).parents(".EXLResult").find(".EXLDetailsTab a:contains('Details')").css({
+                        "font-weight": "bold",
+                        "color": "#52854C"
+                });
+                $(this).parents(".EXLResult").find("li.EXLDetailsTab").css({
+                        "background-image": "url(../images/icon_available.png)",
+                        "background-repeat": "no-repeat",
+                        "background-position": "2px 2px",
+                        "padding-left": "15px"
+                });
+                $(this).parents(".EXLResult").find("li.EXLViewOnlineTab ").css("display", "none");
+
+
+}
 
 //Fixing brief results thumbnails, shifting the pan and overflow from fixed height to fixed width
 function fixThinThumbnails() {
