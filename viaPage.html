@@ -61,18 +61,15 @@
 			$("body").append(transformXSL(viaXML, "viaPage.xsl"));
 
 			//If an Image, and not signed in, change content
-			$("img.viaImage").on('load', function() {
+			if (!getLoginStatus()) {
+                                $("div.viaImage").remove();
+                                $("div.viaIFrame").remove();
+				$(".viaContents").append('<a href="/primo_library/libweb/action/login.do?loginFn=signin&vid=HVD&targetURL=' + encodeURIComponent(document.location) +  '">Please sign in to see image</a>');
+			}
+			else {
 				$("img.viaImage").show();
-			});
-			$("img.viaImage").on('error', function() { 
-				$("div.viaImage").append('<a href="/primo_library/libweb/action/login.do?loginFn=signin&vid=HVD&targetURL=' + encodeURIComponent(document.location) +  '">Please sign in to see image</a>');
-			});
-
-			//If an iFrame and not signed in, change content as well
-			$("iframe.viaIFrame").on('load', function() {
-				alert(this.contentWindow.location);
-	
-			});
+				$("iframe.viaIFrame").show();
+			}
 
 			$(".VIAMetaDataValueHollisNumber").text(parameters['recordId'].replace("HVD_VIA", ""));
 			$("#primosViaStandardView").attr("href", "http://id.lib.harvard.edu/via/" + parameters['recordId'].replace("HVD_VIA", "") + "/catalog");

@@ -590,7 +590,7 @@
 	</xsl:template>
 
 	<xsl:template name="standardImage">
-		<div>
+		<div class="viaContents">
 			<div class="viaImage">
 
 				<img class="viaImage">
@@ -604,7 +604,7 @@
 	</xsl:template>
 
 	<xsl:template name="iFrame">
-		<div>
+		<div class="viaContents">
 			<div class="viaIFrame">
 
 				<iframe class="viaIFrame" frameborder="0" vspace="0" hspace="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen="" scrolling="auto">

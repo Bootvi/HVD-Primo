@@ -217,6 +217,24 @@ function modifyPermaLink() {
         }
 }
 
+//Call to Primo's login.do to get Login Status
+function getLoginStatus() {
+	var loginStatus = false;
+	$.ajax({
+		url: "/primo_library/libweb/action/login.do?afterPDS=true&ajaxSSO=true&vid=HVD",
+		dataType:'json',
+		async: false,
+		success: function(result) {
+			if (result["status"] != "failure") 
+				loginStatus = true;
+		},
+		error: function(request,errorType,exceptionOcurred) {
+			console.log("Login Check Ajax failed");
+			console.log(errorType);
+		}
+	});
+	return loginStatus;
+}
 
 function loadXMLDoc(filename) {
 	if (window.ActiveXObject) {

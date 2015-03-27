@@ -41,14 +41,19 @@ function buildViaGallary() {
 		});
 
 		//If the user is signed out - switch to iframe for restricted images
-		if ($("#exlidSignOut").hasClass("EXLHidden")) {
+		if (!getLoginStatus()) {
 			$(this).find(".VIAGallary a.fancybox").each(function() {
 				if ($(this).find(".VIARestrictedThumbnail").length) {
 					$(this).removeClass("fancybox.iframe");
 					$(this).removeClass("fancybox.image");
 
 					var signInLink = $('#exlidSignIn a').attr('href');
-					var dlDisplayUrl = $(this).parents(".EXLResultTabContainer").find(".EXLTabHeaderButtonPopout a").attr("href");
+					var dlDisplayUrl;
+					if ((RegExp("fn=permalink").test(window.location.href)) || (RegExp("/display.do?").test(window.location.href)))
+						dlDisplayUrl = window.location.href;
+					else
+						dlDisplayUrl = $(this).parents(".EXLResultTabContainer").find(".EXLTabHeaderButtonPopout a").attr("href");
+
 					var correctUrl = signInLink.substr(0, signInLink.indexOf("targetURL=") + 10) + encodeURIComponent(dlDisplayUrl);
 					$(this).attr("href", correctUrl);
 				}
@@ -101,12 +106,6 @@ function createHeader(element, numberOfImages) {
 
 //Get the MetaData based on the Image URL (unique), and puts the title with that value
 function modifyContents(current, previous) {	
-//	console.log(current.content);
-//	if (current.content != null && current.content.indexOf("fancybox-error")) {
-//		console.log("bad image");
-//		current.type = "iframe";
-//		current.content = '<p class="fancybox-error">The requested content cannot be loaded.<br/>Please sign in.</p>';
-//	}
 	//Get the parameters from the fancy box and the page URL
 	var recordId = $("a.fancybox[href='" + current.href + "']").attr("rel");
 	var imageId = current.href.replace(/^(.*[\/])/, "");
