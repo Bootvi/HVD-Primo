@@ -27,7 +27,7 @@ function buildSKCgallery() {
 		//split elements into labels and URLs, append to make gallery with thumbnails
 		for	(index = 0; index < skcArray.length ; index++) {			
 			var entry = skcArray[index];
-			var split = entry.split(": ",2);	
+			var split = entry.split(" -- ",2);	
 			skcHTML += '<div class="skcItem"><a href="'+split[1]+'?buttons=y" target="_blank"><img src="'+split[1]+'?height=375" height="375px" /></a><br /><span class="skcLabel">'+split[0]+'</span></div>';
 		}  
 		//Create a gallery area
@@ -37,25 +37,3 @@ function buildSKCgallery() {
 	});
 }
 
-
-
-//REMOVE? 
-//Resize the box if image is narrower than 800px
-/* function resizeFancyBox() {
-	if ($(".fancybox-type-image").length) {
-		var width = $(".fancybox-type-image").css("width").replace("px", "");
-		if (width < 1200) {
-			var newWidth = 1200;
-			if (window.innerWidth < 1400)
-				newWidth = window.innerWidth - 200;
-			$(".fancybox-type-image").css("width", newWidth + "px");
-			$(".fancybox-inner").css("width", (newWidth - 30) + "px");
-			$.fancybox.reposition()
-		}
-	}
-} */
-
-
-// NA here b/c already in via plugins? 
-//Fixing brief results thumbnails, shifting the pan and overflow from fixed height to fixed width
-//function fixThinThumbnails() 
