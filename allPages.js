@@ -246,7 +246,7 @@ function getLoginStatus() {
 }
 
 function loadXMLDoc(filename) {
-	if (window.ActiveXObject) {
+	if (window.ActiveXObject || window.navigator.userAgent.indexOf("Trident/7.0") > 0) {
 		xhttp = new ActiveXObject("Msxml2.XMLHTTP");
 	} else {
 		xhttp = new XMLHttpRequest();
@@ -278,7 +278,7 @@ function loadXML(url) {
 
 function transformXSL(viaXML, fileName) {
 	//Code for IE
-	if (window.ActiveXObject) {
+	if (window.ActiveXObject || window.navigator.userAgent.indexOf("Trident/7.0") > 0) {
 		//Initialize all the XSLT methods
 		var xslt = new ActiveXObject("Msxml2.XSLTemplate.3.0");
 		var xslDoc = new ActiveXObject("Msxml2.FreeThreadedDOMDocument.3.0");
