@@ -276,6 +276,17 @@ function loadXML(url) {
 	return xml;
 }
 
+//Support both IE10 and IE11
+function serializeXmlNode(xmlNode) {
+	if (typeof window.XMLSerializer != "undefined") {
+		return (new window.XMLSerializer()).serializeToString(xmlNode);
+	} else if (typeof xmlNode.xml != "undefined") {
+		return xmlNode.xml;
+	}
+	return "";
+}
+
+//Transforms the VIA original XML with the XSL on uploaded folder
 function transformXSL(viaXML, fileName) {
 	//Code for IE
 	if (window.ActiveXObject || window.navigator.userAgent.indexOf("Trident/7.0") > 0) {
@@ -286,8 +297,9 @@ function transformXSL(viaXML, fileName) {
 		xslDoc.load(fileName);
 
 		//Load the XML
+		console.log(typeof window.XMLSerializer != "undefined");
 		var xmlDoc = new ActiveXObject("Msxml2.DOMDocument.6.0");
-		xmlDoc.loadXML('<?xml version="1.0"?>' + (new XMLSerializer()).serializeToString(viaXML));
+		xmlDoc.loadXML('<?xml version="1.0"?>' + serializeXmlNode(viaXML));
 
 		if (xslDoc.parseError.errorCode != 0) {
 			var myErr = xslDoc.parseError;
