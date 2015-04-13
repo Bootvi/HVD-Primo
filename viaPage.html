@@ -64,7 +64,7 @@
 			if (!getLoginStatus()) {
                                 $("div.viaImage").remove();
                                 $("div.viaIFrame").remove();
-				$(".viaContents").append('<a href="/primo_library/libweb/action/login.do?loginFn=signin&vid=HVD&targetURL=' + encodeURIComponent(document.location) +  '">Please sign in to see image</a>');
+				$(".viaContents").append('<a class="viaPageSignIn" href="/primo_library/libweb/action/login.do?loginFn=signin&vid=HVD&targetURL=' + encodeURIComponent(document.location) +  '"><img src="lock.png" />Please sign in to see image</a>');
 			}
 			else {
 				$("img.viaImage").show();
