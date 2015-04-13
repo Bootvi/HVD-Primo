@@ -99,4 +99,18 @@ margin-right: 25px;
 .VIAMetaDataValueRepositoryElement img {
 	margin-top: -6px;
 }
+.viaPageSignIn {
+	background-color: #F3F3F1;
+	border:0px;    
+    text-decoration: none;
+    margin : 15px;
+    padding: 30px;
+    display: inline-block;
+	width:275px;
+}
+.viaPageSignIn img {
+	padding-right: 15px;
+	vertical-align: middle;
+	margin-bottom: 5px;
+}
 
