@@ -591,6 +591,9 @@
 
 	<xsl:template name="standardImage">
 		<div class="viaContents">
+            <xsl:if test="//image/@restrictedImage='true'">
+                <xsl:attribute name="class">viaContents restricted</xsl:attribute>
+            </xsl:if>
 			<div class="viaImage">
 
 				<img class="viaImage">
@@ -605,6 +608,9 @@
 
 	<xsl:template name="iFrame">
 		<div class="viaContents">
+			<xsl:if test="//image/@restrictedImage='true'">
+            	<xsl:attribute name="class">viaContents restricted</xsl:attribute>
+            </xsl:if>
 			<div class="viaIFrame">
 
 				<iframe class="viaIFrame" frameborder="0" vspace="0" hspace="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen="" scrolling="auto">

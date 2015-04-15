@@ -61,7 +61,7 @@
 			$("body").append(transformXSL(viaXML, "viaPage.xsl"));
 
 			//If an Image, and not signed in, change content
-			if (!getLoginStatus()) {
+			if (!getLoginStatus() && $(".viaContents").hasClass("restricted")) {
                                 $("div.viaImage").remove();
                                 $("div.viaIFrame").remove();
 				$(".viaContents").append('<a class="viaPageSignIn" href="/primo_library/libweb/action/login.do?loginFn=signin&vid=HVD&targetURL=' + encodeURIComponent(document.location) +  '"><img src="lock.png" />Please sign in to see image</a>');
