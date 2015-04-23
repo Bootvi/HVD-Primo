@@ -457,6 +457,9 @@ body.EXLFullView div.EXLBackToResults {
 .EXLFacetContainer div.EXLFacetActionsV2 li.EXLFacetSaveToEShelfActionOn  {
 	background-image: url(../HVD/icon_checkbox_on.png);
 } */
+.EXLFacetContainer div.EXLFacetActionsV2 li.EXLFacetRSSAction {
+	display:none;
+}
 .EXLFacetTile {
 	border: solid 1px #ededed;
 	margin-left: 5px;
