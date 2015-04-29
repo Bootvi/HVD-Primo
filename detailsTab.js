@@ -100,9 +100,6 @@ function detailsLateralLinksFix() {
 			lateralLink = lateralRemoveItalicLink($(this), lateralLink);
 			lateralLinkText = lateralRemoveItalicText($(this), lateralLinkText);
 
-			//Change the link to point to the title
-			lateralLink = lateralLink.replace(/lsr3[3-6]/g, "title");
-
 			//Handling ISSN's, special identifier, etc..a
 			//except for lsr34, uniform title, due to musical work numbers that have same syntax as ISSNs
 			if (lateralLink.indexOf("lsr34") == -1) {
@@ -113,6 +110,9 @@ function detailsLateralLinksFix() {
 					lateralLinkText = lateralIdentifiersText(lateralLinkText, listOfIdentifiers[i]);
 				};
 			}
+			
+			//Change the link to point to the title
+			lateralLink = lateralLink.replace(/lsr3[3-6]/g, "title");			
 
 			//Finalize link and text
 			$(this).attr("href", lateralLink);
