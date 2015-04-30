@@ -245,4 +245,7 @@ function doDetailsTab() {
 	
 	//SKC support 
 	buildSKCgallery();
+
+	//HGL support
+	buildHGLLinks();
 }
