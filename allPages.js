@@ -225,7 +225,7 @@ function openPermaLinkLbox(action,parameters,recordIndex,recordId){
 
 //Change the permalink content itself
 function modifyPermaLink() {
-	if (!window.location.href.indexOf("harvard-primosb") && window.location.href.indexOf("stage.pd.dc04")) {
+	if (window.location.href.indexOf("harvard-primosb") == -1 && window.location.href.indexOf("stage.pd.dc04") == -1) {
 		if (RegExp("HVD:HVD_ALEPH").test($("#exlidURL").attr("value"))) {
 			var url = "http://id.lib.harvard.edu/aleph/" + $("#exlidURL").attr("value").replace(/(.*)(HVD:HVD_ALEPH)/, "") + "/catalog";
 			$("#exlidURL").attr("value", url);
