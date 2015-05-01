@@ -1049,9 +1049,9 @@ table#ilsFields #telephone_4 {display:none;}
 table#ilsFields #sms_authorized {display:none;}
 table#ilsFields #mail_attachement {display:none;}
 /* hide cancel option in requests list */
-#requestList.EXLMyAccountTableActions {
+#requestList .EXLMyAccountTableActions {
 	display:none;
-}
+} 
 .MyAccount_Requests_cancel {
 	display:none;
 }
