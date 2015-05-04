@@ -506,6 +506,9 @@ body.EXLFullView div.EXLBackToResults {
 #slider-range .ui-state-default {
 	color:#000;
 }
+.EXLAdditionalFacetEXLHiddenFacetCreationDate {
+	display:none;
+}
 
 
 /* Removing Search Suggestions */
