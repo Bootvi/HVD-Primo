@@ -1058,7 +1058,12 @@ table#ilsFields #mail_attachement {display:none;}
 .MyAccount_Requests_cancel {
 	display:none;
 }
-
+.EXLMyAccountTableRSS  {
+	display:none;
+}
+.EXLMyAccountTableRSSLink {
+	display:none;
+}
 /* end user area customization - My Account etc. */
 
 /* begin My Databases */
