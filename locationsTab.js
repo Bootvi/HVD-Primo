@@ -99,7 +99,7 @@ function modifyItems() {
 		}
 
 		//MapIt feature - per item
-		stacksMap(itemArgs, $(this));
+		stacksMap(itemArgs, $(this)); 
 	});
 }
 
