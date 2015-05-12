@@ -11,10 +11,6 @@ function stacksMap(itemArgs, element) {
 
 	if (itemArgs["subLibraryCode"] == 'LAM')
 		if (['GEN', 'GEN', 'REF', 'MRSV', 'MRSAU', 'MRSCD', 'MRSDV'].indexOf(itemArgs["collectionCode"]) > -1)
-			
-			if (itemArgs["loanStatus"] == 'A') console.log("A2"+itemArgs["barcode"] );
-			if (itemArgs["loanStatus"] == 'NULL') console.log("NULL2" + itemArgs["barcode"]);
-			if (!itemArgs["loanStatus"]) console.log("not" + itemArgs["barcode"]);
 			proceedWithMapIt = true;		
 
 	if (itemArgs["loanStatus"] == 'A')
@@ -33,7 +29,7 @@ function stacksMap(itemArgs, element) {
 				range = data[0]['range'];
 				floordisplay = floor.replace("E", " East");
 				floordisplay = floordisplay.replace("W", " West");
-				var htmlCode = '<br><strong>Map It: </strong><a target="_blank" href="' + data[0].maplink + '">' + itemArgs["loanStatus"] + 'Floor ' + floordisplay + ' Row ' + range + '</a>';
+				var htmlCode = '<br><strong>Map It: </strong><a target="_blank" href="' + data[0].maplink + '">' + 'Floor ' + floordisplay + ' Row ' + range + '</a>';
 				
 				if (element.parent().siblings(".EXLLocationTableColumn1").html().indexOf("<br>") == -1)
 					element.parent().siblings(".EXLLocationTableColumn1").append(htmlCode);
