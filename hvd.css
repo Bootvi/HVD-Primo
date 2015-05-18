@@ -715,8 +715,9 @@ body.EXLFullView div.EXLBackToResults {
 padding-left: 0.5em;
 padding-right: 0.4em;
 }
-
-
+.EXLTabHeaderButtons ol.EXLTabHeaderButtonSendToList li.EXLButtonSendToEasyBib {
+	display:none;
+}
 /* Facet Title changes
 .EXLFacetContainer h4 {
 	font-size: 14px;
