@@ -211,7 +211,7 @@ function snippetToLink() {
 }
 
 //Overwritting Primo default function to call openPrimoLightBox with the additional modifyPermaLink
-function openPermaLinkLbox(action,parameters,recordIndex,recordId){
+function openPermaLinkLbox(action,parameters,recordIndex,recordId) {
 	var recordElement = $('#exlidResult'+recordIndex);
 	if (isFullDisplay())
                 var recordElement = $('#resultsListNoId');
@@ -226,12 +226,12 @@ function openPermaLinkLbox(action,parameters,recordIndex,recordId){
 //Change the permalink content itself
 function modifyPermaLink() {
 	if (window.location.href.indexOf("harvard-primosb") == -1 && window.location.href.indexOf("stage.pd.dc04") == -1) {
-		if (RegExp("HVD:HVD_ALEPH").test($("#exlidURL").attr("value"))) {
-			var url = "http://id.lib.harvard.edu/aleph/" + $("#exlidURL").attr("value").replace(/(.*)(HVD:HVD_ALEPH)/, "") + "/catalog";
+		if (RegExp("HVD_ALEPH").test($("#exlidURL").attr("value"))) {
+			var url = "http://id.lib.harvard.edu/aleph/" + $("#exlidURL").attr("value").replace(/(.*)(HVD)(.*)(:HVD_ALEPH)/, "") + "/catalog";
 			$("#exlidURL").attr("value", url);
 		}
-		else if (RegExp("HVD:HVD_VIA").test($("#exlidURL").attr("value"))) {
-                	var url = "http://id.lib.harvard.edu/via/" + $("#exlidURL").attr("value").replace(/(.*)(HVD:HVD_VIA)/, "") + "/catalog";    
+		else if (RegExp("HVD_VIA").test($("#exlidURL").attr("value"))) {
+                	var url = "http://id.lib.harvard.edu/via/" + $("#exlidURL").attr("value").replace(/(.*)(HVD)(.*)(:HVD_VIA)/, "") + "/catalog";    
 	                $("#exlidURL").attr("value", url);
         	}
 	}
