@@ -1,6 +1,6 @@
 //Written by Alon Botvinik and Corinna Baksik
 function buildViaGallary() {
-	 $(this).find(".EXLDetailsContent li[id^='lds20']").parents(".EXLDetailsContent").each(function() {
+	 $(this).find(".EXLDetailsContent li:matchField(lds20)").parents(".EXLDetailsContent").each(function() {
 		//Avoid duplicate work
 		if ($(this).find(".VIAGallary").length)
 			return;
@@ -147,7 +147,7 @@ function modifyContents(current, previous) {
 		$(metaDataTree).find(".LinkPrintPlaceHolder").attr("href", "../uploaded_files/HVD/viaPage.html?recordId=" + recordId + "&imageId=" + imageId + "&compId=" + componentId);
 
 		//X of Y feature
-		var numOfImages = $("a.fancybox[href='" + current.href + "']").parents(".EXLDetailsContent").find("li[id^='lds20'] .EXLDetailsDisplayVal").html();
+		var numOfImages = $("a.fancybox[href='" + current.href + "']").parents(".EXLDetailsContent").find("li:matchField(lds20)").find(".EXLDetailsDisplayVal").html();
 		$(metaDataTree).find(".VIATotalImages").text(numOfImages);
 		if (numOfImages == '1')
 			$(metaDataTree).find("#XofY").remove();
@@ -175,7 +175,7 @@ function resizeFancyBox() {
 
 //Related Information modifications (lds25) due to Normalization Rules limitations
 function fixRelatedInformation() {
-	$(".EXLDetailsContent > ul > li[id^='Related Information']").each(function() {
+	$(".EXLDetailsContent li:matchField(Related Information)").each(function() {
 		var totalItems = $(this).find("span").length;
 		var totalLinks = $(this).find("span a").length;
 		if (totalItems / totalLinks == 2) {

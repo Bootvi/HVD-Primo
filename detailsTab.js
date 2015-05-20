@@ -45,11 +45,11 @@ function modifyFindingAidsLink() {
 
 //Turn any text URL's to hyperlinks
 function detailsSubfieldLinks() {
-	$(".EXLDetailsContent > ul > li > span").linkify();
+	$(".EXLDetailsContent li > span").linkify();
 }
 
 function detailsLanguagesSpaces() {
-	$(".EXLDetailsContent > ul > li[id^='Language']").html(function(i, val) {
+	$(".EXLDetailsContent li:matchField(Language)").html(function(i, val) {
 		if (val.indexOf(";&nbsp;") == -1)
 			return val.replace(/[;]/g, ";&nbsp;");
 	});
@@ -62,7 +62,7 @@ function detailsLateralLinks() {
 	//lds31, remove italic text from search string
 	var listOfFields = ["Place"];
 	for (var i = 0; i < listOfFields.length; i++) {
-		$(".EXLDetailsContent > ul > li[id^='" + listOfFields[i] + "'] a").each(function() {
+		$(".EXLDetailsContent li:matchField(" + listOfFields[i] + ")").find("a").each(function() {
 			$(this).attr("href", lateralRemoveItalicLink($(this), $(this).attr("href")));
 			$(this).text(lateralRemoveItalicText($(this), $(this).text()));
 		});
@@ -71,7 +71,7 @@ function detailsLateralLinks() {
 	//lds33, lds34, lds35, lds36
 	var listOfFields = ["Other title", "Title", "Related titles", "In"];
 	for (var i = 0; i < listOfFields.length; i++) {
-		$(".EXLDetailsContent > ul > li[id^='" + listOfFields[i] + "']").each(detailsLateralLinksFix);
+		$(".EXLDetailsContent li:matchField(" + listOfFields[i] + ")").each(detailsLateralLinksFix);
 	}
 
 }

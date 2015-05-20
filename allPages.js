@@ -389,5 +389,12 @@ function logJS(msg) {
 	}
 }
 
+//Customer JQuery expression selector for finding Display fields. Matches StringXX where XX are digits (e.g. -1, 5, 29)
+jQuery.expr[':'].matchField = function(elem, index, match) {
+	var matchParams = match[3],
+		regexFlags = 'g',
+		regex = new RegExp("^" + matchParams.trim() + "\(\\d|-\\d\)", regexFlags);
+	return regex.test(jQuery(elem)["attr"]("id"));
+}
 
 

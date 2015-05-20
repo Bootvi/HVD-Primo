@@ -21,7 +21,7 @@ function buildSKCgallery() {
 		
 		//Get the SKC data from lds41
 		var recordId = $(this).parents(".EXLResult").find(".EXLResultRecordId").attr("id");
-		var skcArray = $("li[id^='lds41'] .EXLDetailsDisplayVal").map(function() { return $(this).text() }).get();
+		var skcArray = $("li:matchField(lds41)").find(".EXLDetailsDisplayVal").map(function() { return $(this).text() }).get();
 		var skcHTML = "";
 		//console.log(skcArray.length);
 		//split elements into labels and URLs, append to make gallery with thumbnails
