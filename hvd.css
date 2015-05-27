@@ -68,7 +68,7 @@ a:hover {
 #exlidUserAreaRibbon li a{
 	color: #a51c30;
 }
-#exlidUserAreaRibbon li a:link a:visited{
+#exlidUserAreaRibbon li a:link a:visited {
 	color: #a51c30;
 }
 #exlidUserAreaRibbon li a:hover {
@@ -1273,9 +1273,31 @@ div[id^='skcGallery-'] {
 .skcLabel {
 
 }
+
+/* HGL STUFF */
+.EXLDetailsTabContent div.EXLDetailsMap {
+  width: 225px;
+  float: right;
+  border: 1px solid #e1e1e1;
+  margin: 1em;
+  background-image: none;
+  background-color: #F3F3F3;
+  background-repeat: repeat-x;
+  background-position: bottom;
+  height: auto;
+  padding: 0.5em;
+  padding-bottom: 1em;
+}
 /* -------------------------------------- */
 	    		
+.detailsLinksAndMap {
+  width: 225px;
+  float: right;
+}
 
+.leaflet-container {
+	margin-top: 5px;
+}
   	
 
 	    		

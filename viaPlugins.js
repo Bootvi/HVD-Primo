@@ -6,14 +6,7 @@ function buildViaGallary() {
 			return;
 
 		//Make this details tab larger
-		if ((RegExp("tabs=detailsTab").test(window.location.href)) || (RegExp("fn=permalink").test(window.location.href)))
-			$(this).parents(".EXLDetailsTabContent").css("height", "auto");
-		else {
-			$(this).parents(".EXLDetailsTabContent").css({
-				"height": "auto",
-				"max-height": "38em"
-			});
-		}
+		enlargeDetailsTab($(this));
 
 		//Get the VIA XML from the PNX record
 		var recordId = $(this).parents(".EXLResult").find(".EXLResultRecordId").attr("id");

@@ -205,6 +205,18 @@ function viewLocationsLink() {
 	});
 }
 
+//Enlarging the details tab whenever needed
+function enlargeDetailsTab(element) {
+	if ((RegExp("tabs=detailsTab").test(window.location.href)) || (RegExp("fn=permalink").test(window.location.href)))
+		element.parents(".EXLDetailsTabContent").css("height", "auto");
+	else {
+		element.parents(".EXLDetailsTabContent").css({
+			"height": "auto",
+			"max-height": "38em"
+		});
+	}	
+}
+
 //Simulate a click
 function viewLocationsClick(element) {
 	$(element).parents(".EXLSummary").find(".EXLLocationsTab a").click();
@@ -248,4 +260,5 @@ function doDetailsTab() {
 
 	//HGL support
 	buildHGLLinks();
+	osmItegration();
 }
