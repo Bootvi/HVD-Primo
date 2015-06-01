@@ -212,8 +212,8 @@
 .leaflet-bar a:hover {
 	background-color: #fff;
 	border-bottom: 1px solid #ccc;
-	width: 26px;
-	height: 26px;
+	width: 22px;
+	height: 22px;
 	line-height: 26px;
 	display: block;
 	text-align: center;
@@ -476,3 +476,19 @@
 	background: #fff;
 	border: 1px solid #666;
 	}
+
+
+.leaflet-control-defaultextent {
+
+}
+
+.leaflet-control-defaultextent-toggle {
+  text-indent: -9999px;
+  white-space: nowrap;
+  background-image: url('leaflet.defaultextent.png');
+  width: 16px;
+  height: 16px;
+  display: block;
+}
+
+

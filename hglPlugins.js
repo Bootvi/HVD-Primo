@@ -47,7 +47,13 @@ function osmItegration() {
 		}).addTo(map);
 
 		//Setting the Box bounderies
-		mapWKTBbox(map, coordinates, "Extent of data set.");
+		if (coordinates[0] == coordinates[1] && coordinates[2] == coordinates[3])
+			mapWKTPoint(map, coordinates, "Center of data set coverage area.");
+		else 
+			mapWKTBbox(map, coordinates, "Extent of data set.");
+
+		L.control.defaultExtent().addTo(map);
+
 	});
 
 
@@ -55,15 +61,12 @@ function osmItegration() {
 
 //This function is used to center and zoom the map based on WKT POINT(x y)
 function mapWKTPoint(map, wkt, popupText) {
-	console.log(wkt);
 	if (popupText === "") {
 		popupText = "<b>Center of data set coverage area.</b>";
 	}
 
-	wkt = wkt.replace("POINT(", "").replace(")", "");
-	var res = wkt.split(" ");
-	var y = res[0];
-	var x = res[1];
+	var y = wkt[0];
+	var x = wkt[2];
 
 	// create a marker symbol on the map    		
 	L.marker([x, y]).addTo(map).bindPopup(popupText);
@@ -83,7 +86,6 @@ function mapWKTBbox(map, wkt, popupText) {
 		[wkt[2], wkt[0]],
 		[wkt[3], wkt[1]]
 	];
-	console.log(bounds);
 
 	// create an orange rectangle
 	L.rectangle(bounds, {
