@@ -30,9 +30,9 @@ function locationsTabModifications() {
 	libInfoLink();
 
 	//Add note to Show More items that it is loading; this will disappear when items load b/c Primo already hides that row after items load
-	$(".EXLLocationViewAllLink").click(function() {
+	/*$(".EXLLocationViewAllLink").click(function() {
 		$(this).append('&nbsp;Loading...');
-	});		
+	});		*/
 
 	//Alon B: Adding BorrowDirect at the bottom of Locations tab
 	borrowDirect();	
@@ -52,9 +52,9 @@ function handleDomChanges() {
 	libInfoLink();	
 	
 	//Add note to Show More items that it is loading; this will disappear when items load b/c Primo already hides that row after items load
-	$(".EXLLocationViewAllLink").click(function() {
+	/*$(".EXLLocationViewAllLink").click(function() {
 		$(this).append('&nbsp;Loading...');
-	});	
+	});	*/
 
 	//Modify all items in this Holding that was just changed in the DOM.
 	if ($(this).find(".EXLLocationTableActions").length)
