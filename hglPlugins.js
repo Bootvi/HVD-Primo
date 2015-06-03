@@ -6,10 +6,32 @@ function buildHGLLinks() {
 
 			var newHtml = '<a href="http://' + window.location.host + '/HVD:HVD_FGDC' + fgdcId + '">' + title + '</a>';
 			$(this).html(newHtml);
+
 		});
+
+		//Hiding lists longer than 15	
+		if ($(this).find("span.EXLDetailsDisplayVal").length > 15) {
+			var i = 0;
+			$(this).find("span.EXLDetailsDisplayVal, br").each(function() {
+				if (i > 15*2) {
+					$(this).addClass("EXLDetailsDisplayValHidden");
+				}
+				i++;
+			});
+			$(this).append('<br><b><a href="javascript:void(0)" onclick="showLongLayerList($(this))">Show more layers</a></b>');
+		}
 
 	});
 }
+
+
+function showLongLayerList(element) {
+        $(element).parents("li:matchField(Includes layers)").find("span.EXLDetailsDisplayVal, br").each(function() {
+                $(this).removeClass("EXLDetailsDisplayValHidden");
+        });
+	$(element).remove();
+}
+
 
 function osmItegration() {
 	$(".EXLDetailsContent li:matchField(lds40)").find("span").each(function() {
