@@ -18,7 +18,7 @@ function buildHGLLinks() {
 				}
 				i++;
 			});
-			$(this).append('<br><b><a href="javascript:void(0)" onclick="showLongLayerList($(this))">Show more layers</a></b>');
+			$(this).append('<br><b><a class="EXLDetailsDisplayValShowMore" href="javascript:void(0)" onclick="showLongLayerList($(this))">Show more layers</a></b>');
 		}
 
 	});
