@@ -22,6 +22,18 @@ function buildHGLLinks() {
 		}
 
 	});
+
+	$(".EXLDetailsContent li:matchField(Collection)").find("span.EXLDetailsDisplayVal").each(function() {
+		var hollisId = $(this).text();
+		var url;
+		if (window.location.href.indexOf("harvard-primosb") == -1 && window.location.href.indexOf("stage.pd.dc04") == -1) 
+			url = "http://id.lib.harvard.edu/aleph/" + hollidId + "/catalog"
+		else
+			url = "/HVD:everything:HVD_ALEPH" + hollisId;
+		var html = '<a href="' + url + '">See other data layers in this series</a>';
+
+		$(this).html(html);
+	});
 }
 
 
