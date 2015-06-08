@@ -1153,6 +1153,9 @@ span.borrowDirectText {
 .EXLDetailsContent li[id^='lds40'] {
         display: none;
 }
+li[id^='Summary'] i {
+  display: block;
+}
 .VIAGallary { 
 	display: block; 
 	width: 135%;
