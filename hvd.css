@@ -852,6 +852,14 @@ body.EXLFullView div.EXLTabContent{
 	background-position: -2px -2px;
 	padding-left: 21px;
 }
+/* Shore more layers for HGL FGDC layers, CB 20150608 */
+.EXLDetailsDisplayValShowMore {
+	background-image: url(../../uploaded_files/HVD/icon_locations_plus_hvd.png);
+	background-repeat: no-repeat;
+	margin: 5px 0px;
+	padding-left: 25px;
+	display: block;
+}
 /* Links and Electronic Book Plates */
 .EXLDetailsTabContent div.EXLDetailsLinks li span.EXLDetailsLinksTitle a:link, a:visited, a:active {
 	color: #a51c30;
@@ -1139,6 +1147,10 @@ span.borrowDirectText {
 }
 /* CB SKC indicator */
 .EXLDetailsContent li[id^='lds41'] {
+        display: none;
+}
+/* CB HGL layers */
+.EXLDetailsContent li[id^='lds40'] {
         display: none;
 }
 .VIAGallary { 
