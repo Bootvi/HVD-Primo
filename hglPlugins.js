@@ -23,20 +23,24 @@ function buildHGLLinks() {
 
 	});
 
+	//Back to collection level
 	$(".EXLDetailsContent li:matchField(Collection)").find("span.EXLDetailsDisplayVal").each(function() {
 		var hollisId = $(this).text();
 		var url;
+
+		//If we're in the sandbox, link to Sandbox only.
 		if (window.location.href.indexOf("harvard-primosb") == -1 && window.location.href.indexOf("stage.pd.dc04") == -1) 
 			url = "http://id.lib.harvard.edu/aleph/" + hollidId + "/catalog"
 		else
 			url = "/HVD:everything:HVD_ALEPH" + hollisId;
 		var html = '<a href="' + url + '">See other data layers in this series</a>';
 
+		//Change link
 		$(this).html(html);
 	});
 }
 
-
+//Show more for the FGDC layers
 function showLongLayerList(element) {
         $(element).parents("li:matchField(Includes layers)").find("span.EXLDetailsDisplayVal, br").each(function() {
                 $(this).removeClass("EXLDetailsDisplayValHidden");
@@ -45,6 +49,7 @@ function showLongLayerList(element) {
 }
 
 
+//Map component integration
 function osmItegration() {
 	$(".EXLDetailsContent li:matchField(lds40)").find("span").each(function() {
 		//Avoid duplications
@@ -62,11 +67,20 @@ function osmItegration() {
 		var centerLongitude = (coordinates[0] + coordinates[1]) / 2;
 		var centerLatitude = (coordinates[2] + coordinates[3]) / 2;
 
-		//Building of the HTML to inject to the page
+		//Creating a right side wrapper to put both existing links and the new map in
 		var rightPanel = '<div class="detailsLinksAndMap"></div>';
-		var mapHtml = '<div class="EXLDetailsMap"><em>Location Info</em><div id="hglMap' + recordId + '" style="width: 225px; height: 225px"></div></div>';
 
-		//Inject the HTML to the page
+		//Building of the HTML to inject to the right panel
+		var mapHtml = $('<div class="EXLDetailsMap"><em>Geographic coverage</em>');
+
+		if ($(this).parents(".EXLSummary").find(".EXLViewOnlineTab").length > 0) 
+			$(mapHtml).append("Click View Online to access resource");
+		else 
+			$(mapHtml).append("Consult holding library");
+		
+		$(mapHtml).append('<div id="hglMap' + recordId + '" style="width: 225px; height: 225px"></div></div>');
+
+		//Inject the HTML to the page, through the right panel.
 		$(this).parents(".EXLDetailsTabContent").append(rightPanel);
 		$(this).parents(".EXLDetailsTabContent").find(".detailsLinksAndMap").append(mapHtml, $(this).parents(".EXLDetailsTabContent").find(".EXLDetailsLinks"));
 

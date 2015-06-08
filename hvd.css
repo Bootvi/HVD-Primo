@@ -1307,6 +1307,11 @@ div[id^='skcGallery-'] {
   padding: 0.5em;
   padding-bottom: 1em;
 }
+
+.EXLDetailsMap em {
+	margin-bottom: 5px;
+	display: block;
+}
 /* -------------------------------------- */
 	    		
 .detailsLinksAndMap {
