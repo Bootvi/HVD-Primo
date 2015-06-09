@@ -1,7 +1,11 @@
 // display patron notes if item status is on order or ordered received
-
-function displayPatronNotesHoldRequest() {
-	/* jquery here */
+function displayPatronNotesHoldRequest() {	
+	if ($("td:contains('Item status: On order')").length) {
+		$("label[for^='exlidRequestTabFormInputComment']").show()
+		console.log("on order");
+	} else {
+		console.log("NOT on order");
+	}
 }
 
 //Ajax finishes - Opening the Request tab
