@@ -1,10 +1,7 @@
 // display patron notes if item status is on order or ordered received
 
 function displayPatronNotesHoldRequest() {
-	$("a[class='outsider EXLFullDetailsOutboundLink']").each(function() {
-		$(this).attr('target', '_blank');
-		$(this).attr('onclick', '');
-	});
+	/* jquery here */
 }
 
 //Ajax finishes - Opening the Request tab
