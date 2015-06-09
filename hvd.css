@@ -800,11 +800,14 @@ body.EXLFullView div.EXLTabContent{
 .EXLTabHeaderContent #BookingRequestBtn  {display:none;}
 .EXLTabHeaderContent #BookingRequestBtn  {display:none;}
 .EXLRefreshRequestLink {display:none;}
+.EXLRequestTabContent form table td {
+	height: 10px; 
+}
 /* hiding hold request patron notes 1 and 2, using jquery to display for OR,RE */
-.label[for^='exlidRequestTabFormInputComment'] {
+.EXLRequestTabContent label[for^='exlidRequestTabFormInputComment'] {
 	display:none;
 }
-.input[id^='exlidRequestTabFormInputComment'] {
+.EXLRequestTabContent input[id^='exlidRequestTabFormInputComment'] {
 	display:none;
 }
 /* Hide the More tab */
