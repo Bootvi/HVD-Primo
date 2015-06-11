@@ -102,6 +102,7 @@ function detailsLateralLinksFix() {
 
 			//Handling ISSN's, special identifier, etc..a
 			//except for lsr34, uniform title, due to musical work numbers that have same syntax as ISSNs
+			// sometimes dddd-dddd is a year range and not ISSN (e.g. bib 000446127), need more robust solution here
 			if (lateralLink.indexOf("lsr34") == -1) {
 				var listOfIdentifiers = ["([0-9]{4})-([0-9]{4})", "\(DLC\)", "\(OCoLC\)", "\(MH\)", "\(CaOONL\)"];
 				for (var i = 0; i < listOfIdentifiers.length; i++) {
@@ -173,7 +174,9 @@ function lateralIdentifiersSuffix(text, regexString) {
 	if (identifierStart > 0) {
 		suffix = text.substring(identifierStart - 1);
 		if (regexString == "([0-9]{4})-([0-9]{4})")
-			suffix = "<span>, ISSN: " + suffix + "</span>";
+			//suffix = "<span>, ISSN: " + suffix + "</span>";
+			// need to remove ISSN prefix b/c is applied to years span too, need more robust solution
+			suffix = "<span>" + suffix + "</span>";
 		else
 			suffix = "<span>" + suffix + "</span>";
 	}
