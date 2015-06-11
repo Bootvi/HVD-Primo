@@ -176,7 +176,7 @@ function lateralIdentifiersSuffix(text, regexString) {
 		if (regexString == "([0-9]{4})-([0-9]{4})")
 			//suffix = "<span>, ISSN: " + suffix + "</span>";
 			// need to remove ISSN prefix b/c is applied to years span too, need more robust solution
-			suffix = "<span>" + suffix + "</span>";
+			suffix = "<span> ; " + suffix + "</span>";
 		else
 			suffix = "<span>" + suffix + "</span>";
 	}
