@@ -32,11 +32,15 @@
 	20150310 HS added IPS TD to WID OR;RE section
 	20150325 HS added OR/RE requests for BAK
 	20150537 HS added Harvard Direct requests for BAK and HYL - item status 01, IPS NULL
+	20150522 HS added Depository requests for AJP - item status 01 & 02
 	-->				  
 
 	<sublibrary id="AJP">
 		<alephHoldRequest itemProcessStatus="BD;BP;CO;CT;MI;OR;RE">
 			<xserver loan-status="A" item-status="*"/>
+		</alephHoldRequest>
+		<alephHoldRequest itemProcessStatus="HD">
+			<xserver loan-status="NULL;A" item-status="01;02"/>
 		</alephHoldRequest>
 		<alephHoldRequest itemProcessStatus="NULL">
 			<xserver loan-status="A" item-status="01"/>
