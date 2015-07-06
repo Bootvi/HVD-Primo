@@ -9,18 +9,18 @@ function buildHGLLinks() {
 
 		});
 
-		//Hiding lists longer than 15	
+		//Hiding lists longer than 15
+		// CB commenting this out for now. Browser chokes on long lists, e.g. 007417959  which has 1,400 layers
 		if ($(this).find("span.EXLDetailsDisplayVal").length > 15) {
-			var i = 0;
+			/*var i = 0;
 			$(this).find("span.EXLDetailsDisplayVal, br").each(function() {
 				if (i > 15*2) {
 					$(this).addClass("EXLDetailsDisplayValHidden");
 				}
 				i++;
 			});
-			$(this).append('<br><b><a class="EXLDetailsDisplayValShowMore" href="javascript:void(0)" onclick="showLongLayerList($(this))">Show more layers</a></b>');
+			$(this).append('<br><b><a class="EXLDetailsDisplayValShowMore" href="javascript:void(0)" onclick="showLongLayerList($(this))">Show more layers</a></b>');*/		
 		}
-
 	});
 
 	//Back to collection level
