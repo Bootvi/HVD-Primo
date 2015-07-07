@@ -30,7 +30,7 @@ function buildHGLLinks() {
 
 		//If we're in the sandbox, link to Sandbox only.
 		if (window.location.href.indexOf("harvard-primosb") == -1 && window.location.href.indexOf("stage.pd.dc04") == -1) 
-			url = "http://id.lib.harvard.edu/aleph/" + hollidId + "/catalog"
+			url = "http://id.lib.harvard.edu/aleph/" + hollisId + "/catalog"
 		else
 			url = "/HVD:everything:HVD_ALEPH" + hollisId;
 		var html = '<a href="' + url + '">See other data layers in this series</a>';
