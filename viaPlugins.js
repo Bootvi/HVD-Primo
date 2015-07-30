@@ -1,24 +1,18 @@
+//Written by Alon Botvinik and Corinna Baksik
 function buildViaGallary() {
-	$(".EXLDetailsContent li[id^='lds20']").parents(".EXLDetailsContent").each(function() {
+	 $(this).find(".EXLDetailsContent li:matchField(lds20)").parents(".EXLDetailsContent").each(function() {
 		//Avoid duplicate work
 		if ($(this).find(".VIAGallary").length)
 			return;
 
 		//Make this details tab larger
-		if ((RegExp("tabs=detailsTab").test(window.location.href)) || (RegExp("fn=permalink").test(window.location.href)))
-			$(this).parents(".EXLDetailsTabContent").css("height", "auto");
-		else {
-			$(this).parents(".EXLDetailsTabContent").css({
-				"height": "auto",
-				"max-height": "38em"
-			});
-		}
+		enlargeDetailsTab($(this));
 
 		//Get the VIA XML from the PNX record
 		var recordId = $(this).parents(".EXLResult").find(".EXLResultRecordId").attr("id");
 		var pnxXML = loadPNX(recordId);
 		var viaXML = $.parseXML($(pnxXML).find("addata > mis1").text().replace(/&/g, "&amp;"));
-
+		
 		//Create Gallary header
 		createHeader($(this), $(pnxXML).find("lds20").text());
 
@@ -41,17 +35,27 @@ function buildViaGallary() {
 		});
 
 		//If the user is signed out - switch to iframe for restricted images
-		if ($("#exlidSignOut").hasClass("EXLHidden")) {
+		if (!getLoginStatus()) {
 			$(this).find(".VIAGallary a.fancybox").each(function() {
 				if ($(this).find(".VIARestrictedThumbnail").length) {
-					$(this).addClass("fancybox.iframe");
+					$(this).removeClass("fancybox.iframe");
 					$(this).removeClass("fancybox.image");
+
+					var signInLink = $('#exlidSignIn a').attr('href');
+					var dlDisplayUrl;
+					if ((RegExp("fn=permalink").test(window.location.href)) || (RegExp("/display.do?").test(window.location.href)))
+						dlDisplayUrl = window.location.href;
+					else
+						dlDisplayUrl = $(this).parents(".EXLResultTabContainer").find(".EXLTabHeaderButtonPopout a").attr("href");
+
+					var correctUrl = signInLink.substr(0, signInLink.indexOf("targetURL=") + 10) + encodeURIComponent(dlDisplayUrl);
+					$(this).attr("href", correctUrl);
 				}
 
 			});
 		}
 
-		//Make it FANCYBOX, with MetaData function call to populate the information
+		//Make it FANCYBOX, with MetaData function call to populate the informationa
 		$(this).find(".VIAGallary a.fancybox").fancybox({
 			openEffect: 'none',
 			closeEffect: 'none',
@@ -77,9 +81,33 @@ function buildViaGallary() {
 
 			}
 		});
+		
+		//If coming with a CLICK command like from My Research, open the FancyBox on it
+		if (window.location.href.indexOf("&click=") > 0) {
+			var whatToClick = window.location.href.substr(window.location.href.indexOf("&click=") + 7);
+			setTimeout(function() {
+				$(".VIAGallary").find("a[href*='" + whatToClick + "']").click();
+			}, 200);
+		}
 	});
 }
 
+//Handle an eShelf (My Research) scenario, that contains an iFrame
+function buildViaGalleryMyResearch() {
+	//Build gallery on the body of the iFrame
+        $(".EXLEshelfDocumentDetailsIFrame").contents().find("body").each(buildViaGallary);
+
+	//Update the TABs to match Brief / Full details looks
+        $(".EXLEshelfDocumentDetailsIFrame").contents().find(".EXLResultRecordId[id^='HVD_VIA']").each(changeVIATabTitle);
+
+	//Change the Hyperlinks to open a new window, cannot run Fancy Box within the iFrame
+        $(".EXLEshelfDocumentDetailsIFrame").contents().find("a.fancybox").each(function() {
+                var imageId = $(this).attr("href").replace(/^(.*[\/])/, "").replace("?buttons=Y", "");;
+                var recordId = $(this).parents(".EXLResult").find(".EXLResultRecordId").attr("id");
+                $(this).attr("href", "dlDisplay.do?vid=HVD&docId=" + recordId + "&click=" + imageId);
+                $(this).attr("target", "_blank");
+        });
+}
 
 //Builds a header based on lds20
 function createHeader(element, numberOfImages) {
@@ -96,12 +124,6 @@ function createHeader(element, numberOfImages) {
 
 //Get the MetaData based on the Image URL (unique), and puts the title with that value
 function modifyContents(current, previous) {	
-//	console.log(current.content);
-//	if (current.content != null && current.content.indexOf("fancybox-error")) {
-//		console.log("bad image");
-//		current.type = "iframe";
-//		current.content = '<p class="fancybox-error">The requested content cannot be loaded.<br/>Please sign in.</p>';
-//	}
 	//Get the parameters from the fancy box and the page URL
 	var recordId = $("a.fancybox[href='" + current.href + "']").attr("rel");
 	var imageId = current.href.replace(/^(.*[\/])/, "");
@@ -118,7 +140,7 @@ function modifyContents(current, previous) {
 		$(metaDataTree).find(".LinkPrintPlaceHolder").attr("href", "../uploaded_files/HVD/viaPage.html?recordId=" + recordId + "&imageId=" + imageId + "&compId=" + componentId);
 
 		//X of Y feature
-		var numOfImages = $("a.fancybox[href='" + current.href + "']").parents(".EXLDetailsContent").find("li[id^='lds20'] .EXLDetailsDisplayVal").html();
+		var numOfImages = $("a.fancybox[href='" + current.href + "']").parents(".EXLDetailsContent").find("li:matchField(lds20)").find(".EXLDetailsDisplayVal").html();
 		$(metaDataTree).find(".VIATotalImages").text(numOfImages);
 		if (numOfImages == '1')
 			$(metaDataTree).find("#XofY").remove();
@@ -146,7 +168,7 @@ function resizeFancyBox() {
 
 //Related Information modifications (lds25) due to Normalization Rules limitations
 function fixRelatedInformation() {
-	$(".EXLDetailsContent > ul > li[id^='Related Information']").each(function() {
+	$(".EXLDetailsContent li:matchField(Related Information)").each(function() {
 		var totalItems = $(this).find("span").length;
 		var totalLinks = $(this).find("span a").length;
 		if (totalItems / totalLinks == 2) {
@@ -159,25 +181,4 @@ function fixRelatedInformation() {
 	});
 }
 
-
-//Fixing brief results thumbnails, shifting the pan and overflow from fixed height to fixed width
-function fixThinThumbnails() {
-	var maxWidth = $(this).parents(".EXLBriefResultsDisplayCoverImages").find(".EXLBriefResultsDisplayCoverImageBackup").width();
-        var maxheight = $(this).parents(".EXLBriefResultsDisplayCoverImages").find(".EXLBriefResultsDisplayCoverImageBackup").height();
-        if ($(this).width() < maxWidth) {
-		//Update the image SRC to the be the width limited
-		$(this).attr("src", $(this).attr("src").replace("height=65", "width=43"));
-        	
-		//Change the CSS attributes of the Div and image to reflect narrow thin images
-		$(this).parents("div.coverImageDiv").css("height", "65px");
-		$(this).css({
-			"width": maxWidth + "px",
-			"height": "auto",
-			"top": "50%",
-			"transform": "translate(-50%, -50%)",
-			"-ms-transform": "translate(-50%, -50%)",
-			"-webkit-transform": "translate(-50%, -50%)"
-		});
-	}
-}
 

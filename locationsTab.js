@@ -29,6 +29,11 @@ function locationsTabModifications() {
 	//20150107 CB added libInfoLink for library info links
 	libInfoLink();
 
+	//Add note to Show More items that it is loading; this will disappear when items load b/c Primo already hides that row after items load
+	/*$(".EXLLocationViewAllLink").click(function() {
+		$(this).append('&nbsp;Loading...');
+	});		*/
+
 	//Alon B: Adding BorrowDirect at the bottom of Locations tab
 	borrowDirect();	
 
@@ -45,6 +50,11 @@ function handleDomChanges() {
 	//Modify contents of Holding
 	//20150107 CB added libInfoLink for library info links
 	libInfoLink();	
+	
+	//Add note to Show More items that it is loading; this will disappear when items load b/c Primo already hides that row after items load
+	/*$(".EXLLocationViewAllLink").click(function() {
+		$(this).append('&nbsp;Loading...');
+	});	*/
 
 	//Modify all items in this Holding that was just changed in the DOM.
 	if ($(this).find(".EXLLocationTableActions").length)
@@ -99,7 +109,7 @@ function modifyItems() {
 		}
 
 		//MapIt feature - per item
-		stacksMap(itemArgs, $(this));
+		stacksMap(itemArgs, $(this)); 
 	});
 }
 

@@ -68,7 +68,7 @@ a:hover {
 #exlidUserAreaRibbon li a{
 	color: #a51c30;
 }
-#exlidUserAreaRibbon li a:link a:visited{
+#exlidUserAreaRibbon li a:link a:visited {
 	color: #a51c30;
 }
 #exlidUserAreaRibbon li a:hover {
@@ -206,6 +206,8 @@ a:hover {
 	border-right-color: #293352;
 	border-right-style: solid;
 	border-right-width: 2px;
+	padding-left: 20px;
+	padding-right: 20px;
 }
 #exlidSearchTabs li.EXLSearchTabSelected {
 	border: 0px;
@@ -217,6 +219,8 @@ a:hover {
 	border-bottom-width: 2px;
 	border-bottom-color: #F3F3F1;
 	border-bottom-style: solid;
+	padding-left: 20px;
+	padding-right: 20px;	
 }
 #exlidSearchTabs li.EXLSearchTabSelected a:link, a:visited {
 	color: #000000;
@@ -457,6 +461,9 @@ body.EXLFullView div.EXLBackToResults {
 .EXLFacetContainer div.EXLFacetActionsV2 li.EXLFacetSaveToEShelfActionOn  {
 	background-image: url(../HVD/icon_checkbox_on.png);
 } */
+.EXLFacetContainer div.EXLFacetActionsV2 li.EXLFacetRSSAction {
+	display:none;
+}
 .EXLFacetTile {
 	border: solid 1px #ededed;
 	margin-left: 5px;
@@ -502,6 +509,9 @@ body.EXLFullView div.EXLBackToResults {
 }
 #slider-range .ui-state-default {
 	color:#000;
+}
+.EXLAdditionalFacetEXLHiddenFacetCreationDate {
+	display:none;
 }
 
 
@@ -596,7 +606,7 @@ body.EXLFullView div.EXLBackToResults {
 	margin-left: 10px;
 	font-size: 14px;
 	font-weight: bold;
-	color: #A51C30;
+	color: #1E1E1E;
 	width:auto;
 }
 .EXLLocationInfo {
@@ -609,7 +619,7 @@ body.EXLFullView div.EXLBackToResults {
 	width: 35%; 
 	font-size: 14px;
 	font-weight: bold;
-	color: #A51C30;
+	color: #1E1E1E;
 }
 .EXLLocationInfo cite {
 	width: 35%; 
@@ -709,8 +719,9 @@ body.EXLFullView div.EXLBackToResults {
 padding-left: 0.5em;
 padding-right: 0.4em;
 }
-
-
+.EXLTabHeaderButtons ol.EXLTabHeaderButtonSendToList li.EXLButtonSendToEasyBib {
+	display:none;
+}
 /* Facet Title changes
 .EXLFacetContainer h4 {
 	font-size: 14px;
@@ -789,7 +800,16 @@ body.EXLFullView div.EXLTabContent{
 .EXLTabHeaderContent #BookingRequestBtn  {display:none;}
 .EXLTabHeaderContent #BookingRequestBtn  {display:none;}
 .EXLRefreshRequestLink {display:none;}
-
+.EXLRequestTabContent form table td {
+	height: 10px; 
+}
+/* hiding hold request patron notes 1 and 2, using jquery to display for OR,RE */
+.EXLRequestTabContent label[for^='exlidRequestTabFormInputComment'] {
+	display:none;
+}
+.EXLRequestTabContent input[id^='exlidRequestTabFormInputComment'] {
+	display:none;
+}
 /* Hide the More tab */
 .EXLTabsRibbon div li.EXLMoreTab {
 	display:none
@@ -841,6 +861,14 @@ body.EXLFullView div.EXLTabContent{
 	background-position: -2px -2px;
 	padding-left: 21px;
 }
+/* Shore more layers for HGL FGDC layers, CB 20150608 */
+.EXLDetailsDisplayValShowMore {
+	background-image: url(../../uploaded_files/HVD/icon_locations_plus_hvd.png);
+	background-repeat: no-repeat;
+	margin: 5px 0px;
+	padding-left: 25px;
+	display: block;
+}
 /* Links and Electronic Book Plates */
 .EXLDetailsTabContent div.EXLDetailsLinks li span.EXLDetailsLinksTitle a:link, a:visited, a:active {
 	color: #a51c30;
@@ -857,7 +885,7 @@ body.EXLFullView div.EXLTabContent{
 }
 .EXLDetailsTabContent div.EXLDetailsLinks li div.ebkplate {
 	align-content: center;
-	text-align: center;
+	/* text-align: center; */
 	width: 186px;
 	/* background-color: #F3F3F3; */
 	padding: 5px;
@@ -865,12 +893,18 @@ body.EXLFullView div.EXLTabContent{
 }
 .EXLDetailsTabContent div.EXLDetailsLinks li div.ebkplate_text {
 	margin-top: -5px;
+	margin-left: -5px;
 }
-
+.EXLDetailsTabContent div.EXLDetailsLinks li div.ebkplate_img  {
+	text-align: center;
+}
+.EXLDetailsTabContent div.EXLDetailsLinks li div.ebkplate_img img {
+	margin-top: 5px;
+}
 .EXLDetailsTabContent div.EXLDetailsLinks li span.EXLDetailsLinksTitle a {
 	width: 90%;
+	margin-bottom: 3px;
 }
-
 
 
 /*---Removing Languages drop-down from main menu---*/
@@ -1039,8 +1073,19 @@ table#ilsFields #telephone_3 {display:none;}
 table#ilsFields #telephone_4 {display:none;}
 table#ilsFields #sms_authorized {display:none;}
 table#ilsFields #mail_attachement {display:none;}
-
-
+/* hide cancel option in requests list */
+#requestList .EXLMyAccountTableActions {
+	display:none;
+} 
+.MyAccount_Requests_cancel {
+	display:none;
+}
+.EXLMyAccountTableRSS  {
+	display:none;
+}
+.EXLMyAccountTableRSSLink {
+	display:none;
+}
 /* end user area customization - My Account etc. */
 
 /* begin My Databases */
@@ -1109,8 +1154,17 @@ span.borrowDirectText {
 .EXLDetailsContent li[id^='lds22'] {
         display: none;
 }
-
-
+/* CB SKC indicator */
+.EXLDetailsContent li[id^='lds41'] {
+        display: none;
+}
+/* CB HGL layers */
+.EXLDetailsContent li[id^='lds40'] {
+        display: none;
+}
+li[id^='Summary'] i {
+  display: block;
+}
 .VIAGallary { 
 	display: block; 
 	width: 135%;
@@ -1227,9 +1281,60 @@ div.EXLBriefResultsDisplayCoverImageNUM0 img.EXLBriefResultsCover {
 	width: 43px;
 }
 
+/* Scanned Key Content , SKC*/
+#skcGalleryHeader {
+	margin-top: 20px;
+	margin-bottom: 10px;
+	font-weight:bold;
+}
+div[id^='skcGallery-'] { 
+	width: 160%;
+}
+.skcItem {
+  float: left;
+  margin-right: 20px;
+  margin-bottom: 15px;
+}
+.skcItem  img {
+  margin-bottom: 5px;
+}
+.skcLabel {
+
+}
+
+/* HGL STUFF */
+.EXLDetailsTabContent div.EXLDetailsMap {
+  width: 225px;
+  float: right;
+  border: 1px solid #e1e1e1;
+  margin: 1em;
+  background-image: none;
+  background-color: #F3F3F3;
+  background-repeat: repeat-x;
+  background-position: bottom;
+  height: auto;
+  padding: 0.5em;
+  padding-bottom: 1em;
+}
+
+.EXLDetailsMap em {
+	margin-bottom: 5px;
+	display: block;
+}
 /* -------------------------------------- */
 	    		
+.detailsLinksAndMap {
+  width: 225px;
+  float: right;
+}
 
+.leaflet-container {
+	margin-top: 5px;
+}
+
+.EXLDetailsDisplayValHidden {
+	display: none;
+}
   	
 
 	    		

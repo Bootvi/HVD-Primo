@@ -45,11 +45,11 @@ function modifyFindingAidsLink() {
 
 //Turn any text URL's to hyperlinks
 function detailsSubfieldLinks() {
-	$(".EXLDetailsContent > ul > li > span").linkify();
+	$(".EXLDetailsContent li > span").linkify();
 }
 
 function detailsLanguagesSpaces() {
-	$(".EXLDetailsContent > ul > li[id^='Language']").html(function(i, val) {
+	$(".EXLDetailsContent li:matchField(Language)").html(function(i, val) {
 		if (val.indexOf(";&nbsp;") == -1)
 			return val.replace(/[;]/g, ";&nbsp;");
 	});
@@ -58,10 +58,11 @@ function detailsLanguagesSpaces() {
 //Handles lds3X links in Details tab
 function detailsLateralLinks() {
 
-	//lds30, lds31, lds32
+	//lds30 and lds32 require no js mods; they search lsr30, lsr32
+	//lds31, remove italic text from search string
 	var listOfFields = ["Place"];
 	for (var i = 0; i < listOfFields.length; i++) {
-		$(".EXLDetailsContent > ul > li[id^='" + listOfFields[i] + "'] a").each(function() {
+		$(".EXLDetailsContent li:matchField(" + listOfFields[i] + ")").find("a").each(function() {
 			$(this).attr("href", lateralRemoveItalicLink($(this), $(this).attr("href")));
 			$(this).text(lateralRemoveItalicText($(this), $(this).text()));
 		});
@@ -70,8 +71,9 @@ function detailsLateralLinks() {
 	//lds33, lds34, lds35, lds36
 	var listOfFields = ["Other title", "Title", "Related titles", "In"];
 	for (var i = 0; i < listOfFields.length; i++) {
-		$(".EXLDetailsContent > ul > li[id^='" + listOfFields[i] + "']").each(detailsLateralLinksFix);
+		$(".EXLDetailsContent li:matchField(" + listOfFields[i] + ")").each(detailsLateralLinksFix);
 	}
+
 }
 
 //Handle the Preface of the links 
@@ -80,7 +82,7 @@ function detailsLateralRemovePreface() {
 
 }
 
-//Handle the content links of lds3X
+//Handle the content links of lds3X (remove italics from search string, search title index, handle identifiers)
 function detailsLateralLinksFix() {
 	var newLine = true;
 	$(this).find("a, br").each(function() {
@@ -98,16 +100,20 @@ function detailsLateralLinksFix() {
 			lateralLink = lateralRemoveItalicLink($(this), lateralLink);
 			lateralLinkText = lateralRemoveItalicText($(this), lateralLinkText);
 
-			//Change the link to point to the title
-			lateralLink = lateralLink.replace(/lsr3[3-6]/g, "title");
-
 			//Handling ISSN's, special identifier, etc..a
-			var listOfIdentifiers = ["([0-9]{4})-([0-9]{4})", "\(DLC\)", "\(OCoLC\)", "\(MH\)", "\(CaOONL\)"];
-			for (var i = 0; i < listOfIdentifiers.length; i++) {
-				lateralLink = lateralIdentifiersLink(lateralLink, listOfIdentifiers[i]);
-				$(lateralIdentifiersSuffix(lateralLinkText, listOfIdentifiers[i])).insertAfter($(this));
-				lateralLinkText = lateralIdentifiersText(lateralLinkText, listOfIdentifiers[i]);
+			//except for lsr34, uniform title, due to musical work numbers that have same syntax as ISSNs
+			// sometimes dddd-dddd is a year range and not ISSN (e.g. bib 000446127), need more robust solution here
+			if (lateralLink.indexOf("lsr34") == -1) {
+				var listOfIdentifiers = ["([0-9]{4})-([0-9]{4})", "\(DLC\)", "\(OCoLC\)", "\(MH\)", "\(CaOONL\)"];
+				for (var i = 0; i < listOfIdentifiers.length; i++) {
+					lateralLink = lateralIdentifiersLink(lateralLink, listOfIdentifiers[i]);
+					$(lateralIdentifiersSuffix(lateralLinkText, listOfIdentifiers[i])).insertAfter($(this));
+					lateralLinkText = lateralIdentifiersText(lateralLinkText, listOfIdentifiers[i]);
+				};
 			}
+			
+			//Change the link to point to the title
+			lateralLink = lateralLink.replace(/lsr3[3-6]/g, "title");			
 
 			//Finalize link and text
 			$(this).attr("href", lateralLink);
@@ -168,7 +174,9 @@ function lateralIdentifiersSuffix(text, regexString) {
 	if (identifierStart > 0) {
 		suffix = text.substring(identifierStart - 1);
 		if (regexString == "([0-9]{4})-([0-9]{4})")
-			suffix = "<span>, ISSN: " + suffix + "</span>";
+			//suffix = "<span>, ISSN: " + suffix + "</span>";
+			// need to remove ISSN prefix b/c is applied to years span too, need more robust solution
+			suffix = "<span> ; " + suffix + "</span>";
 		else
 			suffix = "<span>" + suffix + "</span>";
 	}
@@ -200,6 +208,18 @@ function viewLocationsLink() {
 	});
 }
 
+//Enlarging the details tab whenever needed
+function enlargeDetailsTab(element) {
+	if ((RegExp("tabs=detailsTab").test(window.location.href)) || (RegExp("fn=permalink").test(window.location.href)))
+		element.parents(".EXLDetailsTabContent").css("height", "auto");
+	else {
+		element.parents(".EXLDetailsTabContent").css({
+			"height": "auto",
+			"max-height": "38em"
+		});
+	}	
+}
+
 //Simulate a click
 function viewLocationsClick(element) {
 	$(element).parents(".EXLSummary").find(".EXLLocationsTab a").click();
@@ -209,7 +229,7 @@ function viewLocationsClick(element) {
 
 //Incase direct link to Details tab, do these:
 $(document).ready(function() {
-	if ((RegExp("tabs=detailsTab").test(window.location.href)) || (RegExp("fn=permalink").test(window.location.href)) || (RegExp("/display.do?").test(window.location.href))) {
+	if ((RegExp("tabs=detailsTab").test(window.location.href)) || (RegExp("fn=permalink").test(window.location.href)) || (RegExp("/display.do?").test(window.location.href)) || (RegExp("/dlDisplay.do?").test(window.location.href))) {
 		doDetailsTab();
 	}
 });
@@ -236,5 +256,12 @@ function doDetailsTab() {
 
 	//Build VIA support
 	fixRelatedInformation();
-	buildViaGallary();
+	$("body").each(buildViaGallary);
+	
+	//SKC support 
+	buildSKCgallery();
+
+	//HGL support
+	buildHGLLinks();
+	osmItegration();
 }
