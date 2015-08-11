@@ -12,6 +12,7 @@ function borrowDirect() {
 
 		var firstISBN = $(pnxRecord).find("isbn").eq(0).text();
 		var recordTitle = $(pnxRecord).find("display > title").text();
+		var resourceType = $(pnxRecord).find("display > type").text();
 
 		var borrowDirectHTML = '<div class="borrowDirect">';
 		borrowDirectHTML += '<span class="borrowDirectHeader">Not available at Harvard ?</span>';
@@ -19,14 +20,19 @@ function borrowDirect() {
 		borrowDirectHTML += '<span class="borrowDirectText">';
 
 		if (firstISBN.length > 0)
-			borrowDirectHTML += '<a href="http://access.harvard.edu/access/servlet/access?__hulaccess_gateway=bdirect&__hulaccess_resource=&query=' + encodeURIComponent('isbn=' + firstISBN) + '" target="_blank">';
+			borrowDirectHTML += 'Check <a href="http://access.harvard.edu/access/servlet/access?__hulaccess_gateway=bdirect&__hulaccess_resource=&query=' + encodeURIComponent('isbn=' + firstISBN) + '" target="_blank">';
 		else
-			borrowDirectHTML += '<a href="http://access.harvard.edu/access/servlet/access?__hulaccess_gateway=bdirect&__hulaccess_resource=&query=' + encodeURIComponent(recordTitle) + '" target="_blank">';
+			borrowDirectHTML += 'Check <a href="http://access.harvard.edu/access/servlet/access?__hulaccess_gateway=bdirect&__hulaccess_resource=&query=' + encodeURIComponent(recordTitle) + '" target="_blank">';
 
-		borrowDirectHTML += 'Request item</a> for 4-day delivery through Borrow Direct. Or, see <a href="http://nrs.harvard.edu/urn-3:hul.eother:GetIt" target="_blank">Get It</a> for other options.</span>';
+		borrowDirectHTML += 'Borrow Direct</a> for 4-day delivery availability. Or, see <a href="http://nrs.harvard.edu/urn-3:hul.eother:GetIt" target="_blank">Get It</a> for other options.</span>';
 		borrowDirectHTML += '</div>';
 
-		$(this).find(".EXLLocationListContainer").append(borrowDirectHTML);
+		//$(this).find(".EXLLocationListContainer").append(borrowDirectHTML);
+		//console.log(resourceType);
+		
+		if (resourceType == 'book' || resourceType == 'score' )  {
+			$(this).find(".EXLLocationListContainer").append(borrowDirectHTML);
+		}
 
 	});
 
