@@ -405,6 +405,9 @@ body.EXLFullView div.EXLBackToResults {
 }
 
 /* Top level Facet above Brief results */
+.EXLMyAccountRanking {
+	display: none;
+}
 #exlidTopLevelFacetsTile div.EXLToplevelFacetsContainer strong {
         margin-top: 0.15em;
 		padding-left:0;
@@ -586,11 +589,10 @@ body.EXLFullView div.EXLBackToResults {
 
 /* Locations fixes */
 .EXLLocationList {
-	padding-bottom: 7px;
+	padding-bottom: 20px;
 }
-.EXLLocationsTitle {
-	/* width: 25%; */
-	width: 250px;
+.EXLLocationsTitle {	
+	width: 27%;
 	padding-top: 10px;
 	margin-bottom: 7px;
 }
@@ -610,23 +612,29 @@ body.EXLFullView div.EXLBackToResults {
 	width:auto;
 }
 .EXLLocationInfo {
-	/* width: 70%; */
+	width: 70%;
 	padding-top: 12px;
 	margin-left: 5px;
 	float: left;
 }
 .EXLLocationInfo strong {
-	width: 35%; 
+	width: 27%;
 	font-size: 14px;
 	font-weight: bold;
 	color: #1E1E1E;
 }
 .EXLLocationInfo cite {
-	width: 35%; 
+	width: 43%;
 	/* display:none; */
 }
+.852zlink {
+	line-height: 100%;
+}
+.EXLLocationInfo cite a {
+	line-height: 100%;
+}
 .EXLLocationInfo em {
-	width: 20%; 
+	width: 21%;
 	float: right;
 }
 .EXLLocationsMoreInfo strong {
@@ -641,7 +649,6 @@ body.EXLFullView div.EXLBackToResults {
 	font-weight: bold;
 	margin-left: 8px;
 }
-
 .EXLResultsList em.EXLResultStatusAvailable {
 	float: right;
 }
@@ -654,23 +661,105 @@ body.EXLFullView div.EXLBackToResults {
 .EXLLocationsTabContent div.EXLLocationViewAllLink {
 	background-color: #C3D7A4;
 }
-
+/* start lightbox area */
+.EXLLocationsTabSummaryHoldingsMoreLightBox {
+	display:block;
+	margin-right:15px;
+	padding-top: 2px;
+}
+.EXLLocationsTabSummaryHoldingsMoreLightBoxContainerWhiteFrameBorder {
+	border: 0px none #fff;
+}
+.EXLLocationsTabSummaryHoldingsMoreLightBoxContainerGreyFrameBorder {
+	border: 0px none #fff;
+}
+.EXLLocationsTabSummaryHoldingsMoreLightBoxContainerOrangeBar {
+	display: none;
+}
+table.EXLLocationsTabSummaryHoldingsMoreLightBox tr {
+	font-size: 100%;
+	color: #000;
+	line-height: 12px;
+}
+table.EXLLocationsTabSummaryHoldingsMoreLightBox tr span{
+	line-height: 14px;
+}
+table.EXLLocationsTabSummaryHoldingsMoreLightBox td {
+	border-bottom: 0px none #000;
+	padding-bottom: 2px;
+}
+.EXLLocationsTabSummaryHoldingsMoreLightBoxContainerDataLabel {
+	padding-left: 0px;
+	padding-bottom: 0px;
+}
+.EXLLocationsMoreInfo strong {
+    font-weight: bold;
+	padding-bottom: 0px;
+}
+.EXLLocationsTabSummaryHoldingsMoreLightBoxContainerValue {
+    padding-top: 0px; 
+    padding-bottom: 3px; 
+}
+table.EXLLocationsTabSummaryHoldingsMoreLightBox tr:nth-child(even) {
+	background-color: #fff;
+}
+/* end lightbox area */
 .EXLLocationsTabContent div.EXLLocationList table.EXLLocationTable{
 	margin-top: 10px;
-		margin-left: 15px;
+	margin-left: 15px;
+	table-layout:fixed
 }
 .EXLLocationsTabContent div.EXLLocationList table.EXLLocationTable td.EXLShowInfo a {
 	/* background-image:none; */
 	color:#000;
 }
+/* this is the items table collection column */
+.EXLLocationsTabContent div.EXLLocationList table.EXLLocationTable th.EXLLocationTableHeaderColumn0  {
+	width: 160px;
+	padding-right:7px;
+}
 .EXLLocationsTabContent div.EXLLocationList table.EXLLocationTable .EXLLocationTableMargin {
 	padding-left: 1.4em;
+	width: 160px;
+	padding-right:7px;
+	word-wrap:break-word
+}
+/* call no desc */
+.EXLLocationsTabContent div.EXLLocationList table.EXLLocationTable th.EXLLocationTableHeaderColumn1  {
+	width: 180px;
+	padding-right:12px;
+}
+.EXLLocationsTabContent div.EXLLocationList table.EXLLocationTable td.EXLLocationTableColumn1 {
+	width: 180px;
+	padding-right:12px;
+	word-wrap:break-word
+}
+/* item status */
+.EXLLocationsTabContent div.EXLLocationList table.EXLLocationTable th.EXLLocationTableHeaderColumn2  {
+	width: 260px;
+	padding-right:7px;
+}
+.EXLLocationsTabContent div.EXLLocationList table.EXLLocationTable td.EXLLocationTableColumn2 {
+	width: 260px;
+	padding-right:7px;
+	word-wrap:break-word
+}
+/* barcode */
+.EXLLocationsTabContent div.EXLLocationList table.EXLLocationTable th.EXLLocationTableHeaderColumn3  {
+	width: 115px;
+}
+.EXLLocationsTabContent div.EXLLocationList table.EXLLocationTable td.EXLLocationTableColumn3 {
+	width: 115px;
+	color:#BAC5C6;
 }
 .EXLLocationsTabContent div.EXLLocationList table.EXLLocationTable th {
 	padding-bottom: 0.4em;
 	border-bottom: none;
 	color: #293352;
 	background-color:#ffffff;
+}
+.EXLLocationsTabContent div.EXLLocationList table.EXLLocationTable th.EXLLocationTableHeaderColumn3 {
+	color:#BAC5C6;
 }
 .EXLLocationsTabContent div.EXLLocationList table.EXLLocationTable tr {
 	background-color:#f3f3f3;

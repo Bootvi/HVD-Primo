@@ -1,17 +1,27 @@
 //Written by Alon Botvinik
 //Location tab related functions.
 //Processing starts here (after page load, or Ajax, see bottom of file)
+
+// locationsTabModifications is called when the Loc tab is loaded
+// when there is only 1 AVA, it is auto expanded and subroutines can be called here
+// when there is more than 1 AVA, Loc tab displays summaries, and a diff function is needed below
+// to call subroutines after an AVA has been expanded
 function locationsTabModifications() {
 	//Create a global variable for the XML, no need to read it million of times
 	xmlDoc = loadXML("../uploaded_files/HVD/requestLinkLogic.xml");
+	
+	//console.log("function locationsTabModifications");
 
 	//Each DIV has it's own variables and listener, so no conflict should happen.
 	$(".EXLSublocation").each(function() {
+		//20150825 get coll display name to pass on to next function, null values = GEN coll
+		colldisplayname = '';
+		//console.log($(this).siblings("span.EXLLocationInfo").children("strong").html());
+		colldisplayname = $(this).siblings("span.EXLLocationInfo").children("strong").html().trim();
+		//console.log(colldisplayname);
+		
 		//Modify all the Items in this single Holding record
-		modifyItems();
-
-		//Modify the Holding note action link, semicolon fix
-		modifyHoldingLinks($(this));
+		modifyItems(colldisplayname);
 
 		//Put a listener on the Sublibrary DIV which contains the Request options to catch when it is populated, or more items are added
 		$(this).on("DOMSubtreeModified propertychange", handleDomChanges);
@@ -28,6 +38,9 @@ function locationsTabModifications() {
 	//If it is a single location, perform all changes immediately before attaching a listener
 	//20150107 CB added libInfoLink for library info links
 	libInfoLink();
+	
+	//20150819 CB displaying more holdings info instead of hidden behind lightbox	
+	holdingsandlightbox();	
 
 	//Add note to Show More items that it is loading; this will disappear when items load b/c Primo already hides that row after items load
 	/*$(".EXLLocationViewAllLink").click(function() {
@@ -41,9 +54,14 @@ function locationsTabModifications() {
 	addExpandAll();
 }
 
+// handleDomChanges is needed when there is more than 1 AVA becuase they are collapsed by default
+// this function will call subroutines when each AVA is expanded 
 //Handles when the EXLSublocation is updated, with condition when it contains the EXLLocationTableActions in it
-//Place functions here needed per Holding when expended (Request Options, Notes, MapIt, etc...)
+//Place functions here needed per Holding when expanded (Request Options, Notes, MapIt, etc...)
 function handleDomChanges() {
+	
+	//console.log("function handleDomChanges");
+	
 	//Remove the listener before changing
 	$(this).off();
 
@@ -51,17 +69,22 @@ function handleDomChanges() {
 	//20150107 CB added libInfoLink for library info links
 	libInfoLink();	
 	
+	//20150819 CB displaying more holdings info instead of hidden behind lightbox	
+	holdingsandlightbox();	
+	
 	//Add note to Show More items that it is loading; this will disappear when items load b/c Primo already hides that row after items load
 	/*$(".EXLLocationViewAllLink").click(function() {
 		$(this).append('&nbsp;Loading...');
 	});	*/
 
 	//Modify all items in this Holding that was just changed in the DOM.
-	if ($(this).find(".EXLLocationTableActions").length)
-		modifyItems();
-	
-	//Change holding note action and semicolon:
-	modifyHoldingLinks($(this));
+	//20150825 get coll display name to pass on to modifyItems, null values = GEN coll
+	if ($(this).find(".EXLLocationTableActions").length) {		
+		//console.log($(this).siblings("span.EXLLocationInfo").children("strong").html());
+		colldisplayname = '';
+		colldisplayname = $(this).siblings("span.EXLLocationInfo").children("strong").html().trim();
+		modifyItems(colldisplayname);
+	}
 	
 	//Resume listening (if there are more items, RTA changes, Primo OTB changes
 	$(this).on("DOMSubtreeModified propertychange", handleDomChanges);
@@ -73,7 +96,9 @@ function handleDomChanges() {
 
 //Full solution implementation, e.g. HVD_ALEPH008190450
 //Uses functions inside requestOptions.js, mapIt.js to modify request options and enable other features
-function modifyItems() {
+function modifyItems(colldisplayname) {
+	
+	// EXLLocationTableActions is a hidden div under each item rec
 	$(".EXLLocationTableActions").each(function() {
 		//Check if this Item was modified already
 		if ($(this).find(".EXLLocationModified").length)
@@ -110,6 +135,35 @@ function modifyItems() {
 
 		//MapIt feature - per item
 		stacksMap(itemArgs, $(this)); 
+		
+		//20150819 CB hide items if their collection does not match AVA line
+		// with Aleph SP 22.1.2 and Primo July 2015 SP, there is now a separate AVA for temp loc.
+		// there is no longer an AVA for "ghost" holding if all items are temp loc'd.
+		// if a holding has multiple items and only one is temp loc'd to the same library, the item shows up twice, 
+		// once under linked hol and once under new AVA for temp location.
+		// to prevent this, use jquery to hide item if it doesn't match coll of AVA.
+		// this is only an issue if temp loc is to same library as hol
+		
+		// determine item collection display text and test if it's same as AVA line, if not hide item	
+		var itemcolldisplay = '';
+		itemcolldisplay = $(this).parent().parent().children("td:first").children("a").html().trim();	
+		// GEN colls yield value of &nbsp;
+		if (itemcolldisplay == '&nbsp;') {
+			itemcolldisplay = '';
+		}		
+		//console.log("coll name from item line : " + $(this).parent().parent().children("td:first").children("a").html());	
+		//console.log($(this).children(".EXLLocationItemBarcode").attr("value"));
+		if (colldisplayname !== itemcolldisplay) {
+			$(this).parent("td").parent("tr").css("display","none");
+			//console.log("not same coll: " + colldisplayname + " vs. " + itemcolldisplay);
+		} /* else {
+			console.log("same coll: "+ colldisplayname + " vs. " + itemcolldisplay);
+		} */
+		
+		// if we hid all items, hide table header too, only a prob for MED and MCZ where we are explicitly adding |e to show original hol 
+		// because they don't have items for their backfiles, not a prob for libs who create items for backfiles
+		// this is  hard because there are two tr's for each item, one of which is already hidden by system with class EXLAdditionalFieldsRow
+		// among other classes
 	});
 }
 
@@ -122,45 +176,105 @@ function handleLocationIconClick() {
 	$(this).parents(".EXLLocationsTitle").append(loadingWheel);
 }
 
+// show lightbox contents right away, hide default 3-line display , fix hyperlinks
+function holdingsandlightbox() {
+	$("div.EXLLocationsTabSummaryHoldingsMoreLightBox").each(function() {
+		$(this).css("display", "block");
+		$(this).siblings(".EXLLocationsTabSummaryHoldings").css("display", "none");
+	});
+	// fix hyperlinks when there is subfield 3 or z with semicolon
+	$("div.EXLLocationsTabSummaryHoldingsContainer").each(function() {		
+		//Check if this div was modified already
+		if ($(this).find(".HoldingsNotesModified").length)
+			return;
+		//Mark this as modified
+		$(this).prepend('<span class="HoldingsNotesModified"></span');
+		// fix for cases where subfield z was present when 856 u was linkified already and it became part of href
+		$(this).find("a:visible").each(function() {			
+			if ($(this).text().indexOf(';') > 0) {
+				content = $(this).text();
+				contenthref = content.substring(0, content.indexOf(';'));
+				contentsuffix = content.substring(content.indexOf(';')+1);
+				$(this).attr("href",contenthref);						
+				$(this).text(contenthref);						
+				$("<span> "+contentsuffix+"</span>").insertAfter($(this));
+			}
+		});	
+		// fix for caes where 856 u was not linkified due to subfield 3
+		$(this).find("span:visible").each(function() {			
+			content = $(this).text();
+            if (RegExp(/((;)(http|https)(:\/\/)(.*))|((http|https)(:\/\/)(.*)(;))/).test(content)) {
+				$(this).parent().html(breakHyperlinksOnSemicolons(content));
+            }
+		});		
+	});	
+	// rm no items note for NET and CRL
+	$("span.noItemsNote").each(function() {	
+		var libname = $(this).parents(".EXLLocationList").find(".EXLLocationsTitleContainer").text().trim();
+		if (libname == 'Networked Resource' || libname == 'CRL (Ctr for Research Libs)') {
+			$(this).css('display','none');
+		}
+	});		
+	//Modify Judaica notes, add hyperlinks, applies to about 280K holdings which makes it significant enough for special handling
+	// 20150826 ultimately they will use Aeon and this will be unnecessary; doing it for usability so patrons don't get to dead end	
+	$(".EXLLocationInfo cite").each(function() {	
+		if ($(this).text().indexOf('Consult Judaica') > -1  && !($(this).children("a").text()) ) {
+			var judlink = '<a class="852zlink" href="http://library.harvard.edu/judaica-request" target="_blank">Consult Judaica Division</a>';
+			var judrewrite = $(this).text();
+			if (judrewrite.indexOf('[Consult Judaica Division') > -1) {
+				judrewrite = judrewrite.replace("Consult Judaica Division", judlink);
+				$(this).html(judrewrite);
+			} else if (judrewrite.indexOf('[Consult Judaica Div') > -1) {
+				judrewrite = judrewrite.replace("Consult Judaica Div", judlink);
+				$(this).html(judrewrite);
+			} else {
+				return;
+			}		
+		}	
+	});			
+}
+
+
 //Fixing the links, including the "More holdings information" link
 //Adding another function for the onclick and the onKeyUp attributes
-function modifyHoldingLinks(element) {
+//function modifyHoldingLinks(element) {
 	//Workaround to fix the semicolon issue with the notes/links
-        $(element).find(".EXLLocationsTabSummaryHoldingsContentLine a, .EXLLocationsTabSummaryHoldingsContentLine span").each(function () {
+	// this worked for lines exposed before lightbox
+       /* $(element).find(".EXLLocationsTabSummaryHoldingsContentLine a, .EXLLocationsTabSummaryHoldingsContentLine span").each(function () {
 	        content = $(this).text();
                 if (RegExp(/((;)(http|https)(:\/\/)(.*))|((http|https)(:\/\/)(.*)(;))/).test(content)) {
                         $(this).parent().html(breakHyperlinksOnSemicolons(content));
                 }
-        });
+        }); */
 
 	//Modify the "More holdings information" link
-	$(element).find(".EXLLocationsTabSummaryHoldingsContentLineMoreLine a").each(function () {
+	/*$(element).find(".EXLLocationsTabSummaryHoldingsContentLineMoreLine a").each(function () {
 		if ($(this).attr("onclick").indexOf("modifyHoldingInformationWhiteBox") > 0)
 			return;
 
 		$(this).attr("onclick","addLightBoxDivsNoLoading(event, this); modifyHoldingInformationWhiteBox();");
 		$(this).attr("onkeyup","addLightBoxDivsNoLoading(event, this); modifyHoldingInformationWhiteBox();");
-	});
-}
+	});*/	
+//}
 
-
+// n/a now that we are exposing light box automatically
 //Once the holding note has been popped out - it will be modified CSS wise only.
 //Modifying the links and applying workaround....
-function modifyHoldingInformationWhiteBox() {
+//function modifyHoldingInformationWhiteBox() {
 	//Check if whitebox has been popped
-	if ($("#exliWhiteContent").css("display") != 'none') {
+	//if ($("#exliWhiteContent").css("display") != 'none') {
 		
 		//Update the notes
-		$("#exliWhiteContent .EXLLocationsTabSummaryHoldingsMoreLightBoxContainerValue").each(function() {
+		/*$("#exliWhiteContent .EXLLocationsTabSummaryHoldingsMoreLightBoxContainerValue").each(function() {
 			var content = $(this).attr("title");
 			if (RegExp(/((;)(http|https)(:\/\/)(.*))|((http|https)(:\/\/)(.*)(;))/).test(content)){
 				$(this).html(breakHyperlinksOnSemicolons(content));
 				
 			}
-		});
+		}); */
 		
 		//Reposition the box to be fixed postion...
-		$("#exliWhiteContent").css({
+		/* $("#exliWhiteContent").css({
 			"position":"fixed", 
 			"top":"20%"
 		});	
@@ -168,9 +282,9 @@ function modifyHoldingInformationWhiteBox() {
 			"overflow-y": "auto",
 			"overflow-x": "hidden",
 			"max-height": "400px"
-		});
-	}
-}
+		}); */
+	//}
+//}
 
 //Add Expand All feature to locations tab
 function addExpandAll() {
