@@ -47,9 +47,9 @@ a:hover {
 	width:auto;
 }
 .EXLHomeNewsContainer {
-	padding-left:70px;
+	padding-left:10px;
+	font-size: 14px;
 } 
-
 /* Positioning of the Main Menu and User Menu */
 #exlidUserAreaTile {
     position: absolute;
@@ -655,6 +655,14 @@ body.EXLFullView div.EXLBackToResults {
 .EXLResultsList em.EXLResultStatusMaybeAvailable{
 	display:none;
 }
+/* 20150830 CB commenting avail status facet for now due to bug see case 00164999
+.EXLFacetContainer  li.EXLFacet a[href*="fctV=available"] {
+	display:none;
+}
+.EXLFacetContainer  li.EXLFacet a[href*="fctV=available"] + span.EXLParenthesis {
+	display:none;
+}
+ end temp section for bug case  00164999*/
 .EXLLocationsTabContent h4 {
 	display:none;
 }	
