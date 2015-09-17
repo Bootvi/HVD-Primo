@@ -106,7 +106,7 @@ $(document).ready(function() {
 
 	//Hiding the Sign-blurb from the main page if signed in
 	if ($("#exlidSignIn").hasClass("EXLHidden")) {
-		$("#signInHomeBody strong").hide();
+		$("#signInHomeBodyWrapper").hide();
 	}
 
 	//Moving RSS, eShelf, etc to bottom of Facets
@@ -157,23 +157,27 @@ function changeVIATabTitle() {
 
 //Fixing brief results thumbnails, shifting the pan and overflow from fixed height to fixed width
 function fixThinThumbnails() {
+	// this = $("img.EXLBriefResultsCover")
 	var maxWidth = $(this).parents(".EXLBriefResultsDisplayCoverImages").find(".EXLBriefResultsDisplayCoverImageBackup").width();
 	var maxheight = $(this).parents(".EXLBriefResultsDisplayCoverImages").find(".EXLBriefResultsDisplayCoverImageBackup").height();
-	if ($(this).width() < maxWidth) {
-		//Update the image SRC to the be the width limited
-		$(this).attr("src", $(this).attr("src").replace("height=65", "width=43"));
+	//console.log("maxWidth " + maxWidth);
+	//console.log("maxheight " + maxheight);
+	//console.log("this width " + $(this).width());
+	//if ($(this).width() < maxWidth) {
+		////Update the image SRC to the be the width limited
+		//$(this).attr("src", $(this).attr("src").replace("height=65", "width=43"));
 
 		//Change the CSS attributes of the Div and image to reflect narrow thin images
-		$(this).parents("div.coverImageDiv").css("height", "65px");
-		$(this).css({
+		//$(this).parents("div.coverImageDiv").css("height", "65px");
+		/*$(this).css({
 			"width": maxWidth + "px",
 			"height": "auto",
 			"top": "50%",
 			"transform": "translate(-50%, -50%)",
 			"-ms-transform": "translate(-50%, -50%)",
 			"-webkit-transform": "translate(-50%, -50%)"
-		});
-	}
+		});*/
+	//}
 }
 
 //Overwrite the mogileDisplay.js function to avoid adding the languages to the mobile page

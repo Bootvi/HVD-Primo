@@ -4,6 +4,7 @@
 
 // locationsTabModifications is called when the Loc tab is loaded
 // when there is only 1 AVA, it is auto expanded and subroutines can be called here
+// important: this is also called when user expands an AVA from Loc tab of brief results then clicks show more items
 // when there is more than 1 AVA, Loc tab displays summaries, and a diff function is needed below
 // to call subroutines after an AVA has been expanded
 function locationsTabModifications() {
@@ -15,13 +16,12 @@ function locationsTabModifications() {
 	//Each DIV has it's own variables and listener, so no conflict should happen.
 	$(".EXLSublocation").each(function() {
 		//20150825 get coll display name to pass on to next function, null values = GEN coll
-		colldisplayname = '';
-		//console.log($(this).siblings("span.EXLLocationInfo").children("strong").html());
-		colldisplayname = $(this).siblings("span.EXLLocationInfo").children("strong").html().trim();
-		//console.log(colldisplayname);
-		
-		//Modify all the Items in this single Holding record
-		modifyItems(colldisplayname);
+		//need to find which AVA is open to items table, in case users came from loc tab in brief results
+		if ($(this).find(".EXLLocationTable").length > 0) {
+			colldisplaynm = $(this).find(".EXLLocationTable").parents(".EXLLocationList").children(".EXLLocationInfo").children("strong").html().trim();
+			//Modify all the Items in this single Holding record
+			modifyItems(colldisplaynm);			
+		}			
 
 		//Put a listener on the Sublibrary DIV which contains the Request options to catch when it is populated, or more items are added
 		$(this).on("DOMSubtreeModified propertychange", handleDomChanges);
@@ -81,9 +81,9 @@ function handleDomChanges() {
 	//20150825 get coll display name to pass on to modifyItems, null values = GEN coll
 	if ($(this).find(".EXLLocationTableActions").length) {		
 		//console.log($(this).siblings("span.EXLLocationInfo").children("strong").html());
-		colldisplayname = '';
-		colldisplayname = $(this).siblings("span.EXLLocationInfo").children("strong").html().trim();
-		modifyItems(colldisplayname);
+		colldisplaynm = '';
+		colldisplaynm = $(this).siblings("span.EXLLocationInfo").children("strong").html().trim();
+		modifyItems(colldisplaynm);
 	}
 	
 	//Resume listening (if there are more items, RTA changes, Primo OTB changes
@@ -152,7 +152,10 @@ function modifyItems(colldisplayname) {
 			itemcolldisplay = '';
 		}		
 		//console.log("coll name from item line : " + $(this).parent().parent().children("td:first").children("a").html());	
+		//console.log(colldisplayname);
+		//console.log(itemcolldisplay);
 		//console.log($(this).children(".EXLLocationItemBarcode").attr("value"));
+		//console.log("------");
 		if (colldisplayname !== itemcolldisplay) {
 			$(this).parent("td").parent("tr").css("display","none");
 			//console.log("not same coll: " + colldisplayname + " vs. " + itemcolldisplay);
