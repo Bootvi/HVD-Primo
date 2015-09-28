@@ -132,6 +132,11 @@ function modifyItems(colldisplayname) {
 			var url = "http://sfx.hul.harvard.edu/sfx_local?sid=HOLLIS:ILL&pid=DocNumber=" + itemArgs["admDocNumer"] + ",ItemSequence=" + itemArgs["itemSequence"] + "&sfx.skip_augmentation=1";
 			$(this).find("ul").append('<li><a href="' + url + '" target="_blank">Scan & Deliver</a></li>');
 		}
+		
+		//change display for pseudopatron due dates for staff workflows
+		if ($(this).children(".EXLLocationItemLoanStatus").val() == 'Checked out: due 12/31/99 12:00 PM') {	
+			$(this).parent("td").parent("tr").children(".EXLLocationTableColumn2").html("Not on shelf - in processing");
+		}		
 
 		//MapIt feature - per item
 		stacksMap(itemArgs, $(this)); 
