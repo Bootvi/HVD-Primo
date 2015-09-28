@@ -90,21 +90,26 @@ function detailsLateralLinks() {
 	}		
 	
 	// author links with relator terms in square brackets
+	// and handling of non-author subfields like t, placed after -- with NR change
 	var listOfFields = ["Author / Creator"];
 	for (var i = 0; i < listOfFields.length; i++) {
 		$(".EXLDetailsContent li:matchField(" + listOfFields[i] + ")").find("a").each(function() {
-			if ($(this).attr("href").search(/\+%5b.+%5d&/) > 0) {	
-				//console.log("authortest: "+ $(this).attr("href"));
-				//console.log("authortestreplace: "+ $(this).attr("href").replace(/\+%5b.+%5d&/,"&"));
-				$(this).attr("href",$(this).attr("href").replace(/\+%5b.+%5d&/,"&"));
-				//console.log("authortesttext: "+ $(this).text());
-				//console.log("authortestreplacetext: "+ $(this).text().replace(/ \[.+\]$/,""));
-				//console.log("authortestreplacetextsuffix2: "+ $(this).text().replace(/.+( \[.+\])/,"$1"));
-				var relator = $(this).text().replace(/.+( \[.+\])/,"$1");
-				//console.log(relator);
-				$("<span>"+relator+"</span>").insertAfter($(this));
-				$(this).text($(this).text().replace(/ \[.+\]$/,""));
-			} 
+			if ($(this).attr("href").search(/\+%5b.+%5d&/) > 0) {	 //ampersand etc are remaining parameters in href search
+				$(this).attr("href",$(this).attr("href").replace(/\+%5b.+%5d&/,"&")); //take relator out of href
+				var relator = $(this).text().replace(/.+( \[.+\])/,"$1");	//capture relator term from a text			
+				$("<span>"+relator+"</span>").insertAfter($(this));  // insert after a text
+				$(this).text($(this).text().replace(/ \[.+\]$/,"")); // remove from within a text
+			} else if ($(this).attr("href").search(/\+%5b.+%5d\+--.+--&/) > 0) { // handle cases with both relator and -- 
+				$(this).attr("href",$(this).attr("href").replace(/\+%5b.+%5d\+--.+--&/,"&")); //take term out of href
+				var relandmore = $(this).text().replace(/.+( \[.+\] )--(.+)--/,"$1. $2");	//capture term from a text		
+				$("<span> "+relandmore+"</span>").insertAfter($(this));  // insert after a text
+				$(this).text($(this).text().replace(/\[.+--$/,"")); // remove from within a text						
+			} else if ($(this).attr("href").search(/\+--.+--&/) > 0) { // handle cases with -- and no relator
+				$(this).attr("href",$(this).attr("href").replace(/\+--.+--&/,"&")); //take term out of href
+				var nonauthor = $(this).text().replace(/.+ --(.+)--/,"$1");	//capture term from a text			
+				$("<span> "+nonauthor+"</span>").insertAfter($(this));  // insert after a text
+				$(this).text($(this).text().replace(/ --.+--$/,"")); // remove from within a text				
+			}
 		});
 	}		
 }
