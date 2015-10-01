@@ -758,7 +758,7 @@ table.EXLLocationsTabSummaryHoldingsMoreLightBox tr:nth-child(even) {
 }
 .EXLLocationsTabContent div.EXLLocationList table.EXLLocationTable td.EXLLocationTableColumn3 {
 	width: 115px;
-	color:#BAC5C6;
+	/* color:#BAC5C6; */
 }
 .EXLLocationsTabContent div.EXLLocationList table.EXLLocationTable th {
 	padding-bottom: 0.4em;
@@ -767,7 +767,7 @@ table.EXLLocationsTabSummaryHoldingsMoreLightBox tr:nth-child(even) {
 	background-color:#ffffff;
 }
 .EXLLocationsTabContent div.EXLLocationList table.EXLLocationTable th.EXLLocationTableHeaderColumn3 {
-	color:#BAC5C6;
+	/* color:#BAC5C6; */
 }
 .EXLLocationsTabContent div.EXLLocationList table.EXLLocationTable tr {
 	background-color:#f3f3f3;

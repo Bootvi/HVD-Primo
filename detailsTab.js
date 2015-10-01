@@ -90,8 +90,8 @@ function detailsLateralLinks() {
 	}		
 	
 	// author links with relator terms in square brackets
-	// and handling of non-author subfields like t, placed after -- with NR change
-	var listOfFields = ["Author / Creator"];
+	// and handling of non-author subfields like t, placed after -- with NR change (also had to change ; to , in NRs)
+	var listOfFields = ["Author / Creator","Associated Name"];
 	for (var i = 0; i < listOfFields.length; i++) {
 		$(".EXLDetailsContent li:matchField(" + listOfFields[i] + ")").find("a").each(function() {
 			if ($(this).attr("href").search(/\+%5b.+%5d&/) > 0) {	 //ampersand etc are remaining parameters in href search
