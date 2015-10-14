@@ -20,7 +20,7 @@ function locationsTabModifications() {
 		if ($(this).find(".EXLLocationTable").length > 0) {
 			colldisplaynm = $(this).find(".EXLLocationTable").parents(".EXLLocationList").children(".EXLLocationInfo").children("strong").html().trim();
 			//Modify all the Items in this single Holding record
-			modifyItems(colldisplaynm);			
+			modifyItems(colldisplaynm);	
 		}			
 
 		//Put a listener on the Sublibrary DIV which contains the Request options to catch when it is populated, or more items are added
