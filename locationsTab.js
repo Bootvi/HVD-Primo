@@ -216,12 +216,26 @@ function holdingsandlightbox() {
             }
 		});		
 	});	
-	// rm no items note for NET and CRL
+	// rm no items note for NET and CRL, or when H77 is present 
 	$("span.noItemsNote").each(function() {	
 		var libname = $(this).parents(".EXLLocationList").find(".EXLLocationsTitleContainer").text().trim();
 		if (libname == 'Networked Resource' || libname == 'CRL (Ctr for Research Libs)') {
 			$(this).css('display','none');
 		}
+		if ($(this).parents(".EXLLocationsMoreInfo").find("span:contains(';HOLLIS no.')")) {
+				$(this).css('display','none');		
+		}					
+	});		
+	// convert H77 to link
+	$("span:contains(';HOLLIS no.')").each(function() {	
+		var h77 = $(this).text();
+		var h77hnum = h77.replace(/.+;HOLLIS no\.(\d{9})/,"$1");
+		var h77hnumlink = 'http://id.lib.harvard.edu/aleph/'+h77hnum+'/catalog&availabilityTab=true';
+		$(this).text($(this).text().replace(/;HOLLIS no.\d{9}/," "));
+		if (h77hnum.length == 9) {
+			$("<a target='_blank' href='" + h77hnumlink + "'>HOLLIS no. " + h77hnum + " <img src='../images/icon_popout_tab.png'/></a>").insertAfter($(this));
+		}
+		//console.log(h77hnum);
 	});		
 	//Modify Judaica notes, add hyperlinks, applies to about 280K holdings which makes it significant enough for special handling
 	// 20150826 ultimately they will use Aeon and this will be unnecessary; doing it for usability so patrons don't get to dead end	
