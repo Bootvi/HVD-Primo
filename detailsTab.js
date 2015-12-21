@@ -6,6 +6,78 @@ function linksModifications() {
 	});
 }
 
+// if there is a link to WorldCat (OTB feature), call Hathi API
+// 20151210 CB added 
+function hathi() {
+	//console.log("calling hathi fx");
+	var hathiApiUrl = '';
+	// example http://catalog.hathitrust.org/api/volumes/brief/oclc/359173.json	
+	// example http://catalog.hathitrust.org/api/volumes/brief/isbn/9780061132599.json	
+	$("a[class='outsider EXLFullDetailsOutboundLink']").each(function() {
+		var hathioclc = '';
+		var hathiisbn = '';
+		if ($(this).attr("href").indexOf("worldcat.org") >= 0) {
+			//if hathi link exists in ul, quit
+			if (!($(this).parents("ul").children("li:first").attr("class"))) {
+				//handle oclc number then isbn, otherwise don't do anything
+				if ($(this).attr("href").indexOf("worldcat.org/search?q=no") >= 0) {
+					hathioclc = $(this).attr("href").replace("http://www.worldcat.org/search?q=no%3A","");
+					hathiApiUrl = "http://catalog.hathitrust.org/api/volumes/brief/oclc/" + hathioclc + ".json"		
+				} else if ($(this).attr("href").indexOf("worldcat.org/search?q=isbn") >= 0) {
+					hathiisbn = $(this).attr("href").replace("http://www.worldcat.org/search?q=isbn%3A","");
+					hathiApiUrl = "http://catalog.hathitrust.org/api/volumes/brief/isbn/" + hathiisbn + ".json"		
+				}
+				if (hathioclc || hathiisbn) {
+					//console.log("hathiisbn: " + hathiisbn );
+					//console.log(hathiApiUrl);
+					hathiAjax($(this),hathiApiUrl);
+				}
+			}
+		}
+	});	
+}
+
+function hathiAjax(pointer,hathiApiUrl) {
+	//console.log("calling hathiAjax fx");
+	var hathiFTlink = '';
+	var hathiLimitedLink = '';
+	var hathiListItem = '';
+	$.ajax({						
+		url: hathiApiUrl,
+		dataType: 'jsonp',
+		success: function(hathijson) {	 
+			//console.log("success");
+			itemArray = hathijson.items;
+			//console.log("printing item array");
+			//console.log(itemArray);
+			for (var i = 0; i < itemArray.length; i++) {
+				if ((itemArray[i].orig == "Harvard University") && (itemArray[i].usRightsString == "Full view")) {
+					hathiFTlink = itemArray[i].itemURL;	
+					break;
+				} else if (itemArray[i].usRightsString == "Full view") {
+					hathiFTlink = itemArray[i].itemURL;	
+				} else if (itemArray[i].usRightsString == "Limited (search-only)") {
+					hathiLimitedLink = itemArray[i].itemURL;
+				}
+			}
+			if (hathiFTlink) {
+				// removing class='hvd_hathi'
+				hathiListItem = "<li><span class='EXLDetailsLinksBullet'></span><span class='EXLDetailsLinksTitle'><a target='_blank' href='" + hathiFTlink + "'>View online in HathiTrust</a></span></li>";
+				//pointer.parents("ul").children("li:first").before(hathiListItem);		
+				pointer.parents("li").prev().before(hathiListItem);				
+			}  else if (hathiLimitedLink) {
+				hathiListItem = "<li><span class='EXLDetailsLinksBullet'></span><span class='EXLDetailsLinksTitle'><a target='_blank' href='" + hathiLimitedLink + "'>Limited search in HathiTrust</a></span></li>";
+				//pointer.parents("ul").children("li:first").before(hathiListItem);				
+				pointer.parents("li").prev().before(hathiListItem);				
+			}
+		},
+		//error: function(error) {
+			//console.log("error");
+			// api throws an error object with statusText "success"
+		//}
+	});	
+}					
+
 // 20150818 CB I don't think we use this function anymore, not since we re-implementing linking with lsr's
 //Build DeepSearch for different searches
 function buildDeepURL(text, target) {
@@ -388,6 +460,7 @@ $(document).ajaxComplete(function(event, request, settings) {
 	}
 });
 
+
 function doDetailsTab() {
 	//Links modifications 
 	linksModifications();
@@ -411,4 +484,7 @@ function doDetailsTab() {
 	//HGL support
 	buildHGLLinks();
 	osmItegration();
+
+	//Hathi API
+	hathi();
 }

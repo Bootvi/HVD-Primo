@@ -464,9 +464,15 @@ body.EXLFullView div.EXLBackToResults {
 .EXLFacetContainer div.EXLFacetActionsV2 li.EXLFacetSaveToEShelfActionOn  {
 	background-image: url(../HVD/icon_checkbox_on.png);
 } */
+/* making RSS an easter egg so staff can help test */
 .EXLFacetContainer div.EXLFacetActionsV2 li.EXLFacetRSSAction {
-	display:none;
+	background-image:none;
+	margin-bottom: 10px;
 }
+.EXLFacetContainer div.EXLFacetActionsV2 li.EXLFacetRSSAction a {
+	color:#f8f8f8;
+}
+/* end RSS easter egg */
 .EXLFacetTile {
 	border: solid 1px #ededed;
 	margin-left: 5px;
@@ -967,10 +973,13 @@ body.EXLFullView div.EXLTabContent{
 	display: block;
 }
 /* Links and Electronic Book Plates */
+.EXLDetailsTabContent div.EXLDetailsLinks em {
+	display: block;
+    padding-bottom: 5px;
+}
 .EXLDetailsTabContent div.EXLDetailsLinks li span.EXLDetailsLinksTitle a:link, a:visited, a:active {
 	color: #a51c30;
 }
-
 .EXLDetailsTabContent div.EXLDetailsLinks {
 	width: 225px;
 	background-image:none;
@@ -979,6 +988,10 @@ body.EXLFullView div.EXLTabContent{
 .EXLDetailsTabContent div.EXLDetailsContent {
 	width: 55%;
 	margin: 1em 1em 1em 1em;
+}
+.EXLDetailsTabContent div.EXLDetailsLinks li {
+	height:16px;
+	padding-left: 4px;
 }
 .EXLDetailsTabContent div.EXLDetailsLinks li div.ebkplate {
 	align-content: center;
@@ -1002,8 +1015,21 @@ body.EXLFullView div.EXLTabContent{
 	width: 90%;
 	margin-bottom: 3px;
 }
-
-
+.EXLDetailsTabContent div.EXLDetailsLinks li span.EXLDetailsLinksBullet {
+	height:16px;
+}
+.EXLDetailsTabContent div.EXLDetailsLinks li.EXLFullDetailsGoogleBookItem {
+	margin-top: 5px;
+    display: block;
+}
+.EXLDetailsTabContent div.EXLDetailsLinks li.hvd_hathi {
+    background-image: url(../../images/icon_available.png);
+    background-repeat: no-repeat;
+    background-position: 0px 2px;
+}
+.EXLDetailsTabContent div.EXLDetailsLinks li.hvd_hathi span.EXLDetailsLinksBullet {
+    padding-left:1px;
+}
 /*---Removing Languages drop-down from main menu---*/
 #exlidMainMenuTile div.EXLLanguagesContainer {
     display: none
