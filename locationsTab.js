@@ -229,13 +229,15 @@ function holdingsandlightbox() {
 	// convert H77 to link
 	$("span:contains(';HOLLIS no.')").each(function() {	
 		var h77 = $(this).text();
-		var h77hnum = h77.replace(/.+;HOLLIS no\.(\d{9})/,"$1");
-		var h77hnumlink = 'http://id.lib.harvard.edu/aleph/'+h77hnum+'/catalog&availabilityTab=true';
-		$(this).text($(this).text().replace(/;HOLLIS no.\d{9}/," "));
-		if (h77hnum.length == 9) {
-			$("<a target='_blank' href='" + h77hnumlink + "'>HOLLIS no. " + h77hnum + " <img src='../images/icon_popout_tab.png'/></a>").insertAfter($(this));
+		//get H num and truncate in case staff added check-digit
+		var h77f = h77.replace(/.+;HOLLIS no\.(.+)$/,"$1").substring(0,9); 
+		// now pad with leading zeroes in case staff didn't add them
+		while (h77f.length < 9) {
+			h77f = '0' + h77f;
 		}
-		//console.log(h77hnum);
+		var h77hnumlink = 'http://id.lib.harvard.edu/aleph/'+h77f+'/catalog&availabilityTab=true';
+		$(this).text($(this).text().replace(/;HOLLIS no..+$/," "));
+		$("<a class='h77link' target='_blank' href='" + h77hnumlink + "'>HOLLIS no. " + h77f + " <img src='../images/icon_popout_tab.png'/></a>").insertAfter($(this));
 	});		
 	//Modify Judaica notes, add hyperlinks, applies to about 280K holdings which makes it significant enough for special handling
 	// 20150826 ultimately they will use Aeon and this will be unnecessary; doing it for usability so patrons don't get to dead end	
