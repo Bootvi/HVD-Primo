@@ -89,7 +89,9 @@ $(document).ready(function() {
 	$(".EXLFacet a:contains('Visual works')").parents("ol.EXLFacetsList").find(".EXLFacetsDisplayMore").hide();
 
 	//Change HELP link to custom file
-	$(".EXLMainMenuItem > span > a:contains('Help')").attr("href", "../uploaded_files/HVD/help.html");
+	//$(".EXLMainMenuItem > span > a:contains('Help')").attr("href", "../uploaded_files/HVD/help.html");
+	$(".EXLMainMenuItem > span > a:contains('Help')").attr("href", "http://guides.library.harvard.edu/hollisplus_quicktips");
+	$(".EXLMainMenuItem > span > a:contains('Help')").attr("target", "_blank");
 
 	//When users are signed out - change some links, add content, etc..
 	if ($('#exlidSignOut').hasClass('EXLHidden')) {
