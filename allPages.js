@@ -121,6 +121,24 @@ $(document).ready(function() {
 
 	//Adding EAD tab for dedupMrg that have Finding Aids in their PNX
 	addEADTab();
+	
+	//20160218 CB added analytics for capturing clicks on TOC link in results page, and toplevel facets
+	$(".EXLTocLink").click(function() {
+		 ga('send', 'event','Table of Contents');
+	});
+	$("#facetListTopLevel").find("a[href*='fctV=available&']").click(function() {
+		 ga('send', 'event','Top level facet','In library or depository');
+	});
+	$("#facetListTopLevel").find("a[href*='fctV=available_onsite&']").click(function() {
+		 ga('send', 'event','Top level facet','In library');
+	});	
+	$("#facetListTopLevel").find("a[href*='fctV=online_resources&']").click(function() {
+		 ga('send', 'event','Top level facet','Online');
+	});		
+	$("#facetListTopLevel").find("a[href*='fctV=peer_reviewed&']").click(function() {
+		 ga('send', 'event','Top level facet','Peer-reviewed articles');
+	});		
+	
 
 });
 
