@@ -1196,6 +1196,7 @@ table#ilsFields #telephone_3 {display:none;}
 table#ilsFields #telephone_4 {display:none;}
 table#ilsFields #sms_authorized {display:none;}
 table#ilsFields #mail_attachement {display:none;}
+table#ilsFields #email {display:none;}
 /* hide cancel option in requests list */
 #requestList .EXLMyAccountTableActions {
 	display:none;
