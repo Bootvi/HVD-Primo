@@ -328,13 +328,22 @@ min-width: 0%;
 }
 
 /* end advanced search and browse */
-
+#exlidHeaderSystemFeedback  {
+	border-bottom:0px;
+}
 #exlidHeaderSystemFeedback strong {
 	background-color:#FFDB6D;
 	background-image: none;
 	border-top:0px;
 	border-bottom:0px;
 }
+#exlidHeaderSystemFeedback .HVD_results_signin_reminder strong {
+	background-color:#fff;
+	background-image: none;
+	border-top:0px;
+	border-bottom:0px;
+}
+
 
 /* Result titles */
 .EXLResultsList h2 {

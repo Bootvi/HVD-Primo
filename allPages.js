@@ -74,6 +74,10 @@ $(document).ready(function() {
 		"background-image": "none",
 		"padding-left": "0px"
 	});
+	//20160229 CB changed View Online for HathiTrust to "limited search" b/c only 25% of HT content in PCI coll is FT right now
+	// waiting for changed PCI activation to take effect so this is temporary fix, changing activation to HT open access only
+	// 20160304 reversed, PCI refreshed
+	//$(".EXLResultRecordId[id^='TN_hathi_trust']").each(changeHathiTabTitle);
 	//Fix thin thumbnail images
 	$("img.EXLBriefResultsCover").each(function() {
 		$(this).one('load', fixThinThumbnails);
@@ -98,17 +102,18 @@ $(document).ready(function() {
 		//Change the My Account link
 		$(".EXLMyAccount a").attr("href", "login.do?loginFn=signin&vid=HVD&targetURL=myAccountMenu.do%3Fvid%3DHVD");
 
-		//For Brief results add the yellow ribbon
-		if ($("#exlidFacetTile").length) {
+		//For results list add sign-in reminder
+		if ($("#exlidFacetTile").length && (window.location.href.indexOf("&tab=books") == -1)) {
 			var signInLink = $('#exlidSignIn a').attr('href');
-			var msg = "You don't know what you're missing. <a href='" + signInLink + "'>Sign in<a/> to get results from all available resources.";
-			$('#exlidHeaderSystemFeedback').append('<div id="exlidHeaderSystemFeedbackContent" class="EXLSystemFeedback"><strong>' + msg + '</strong></div>');
+			var msg = "<img style='vertical-align:top;' src='../uploaded_files/HVD/exclamation_hvd_bluebonnet.png' alt='!' /><span style='margin-left: 5px;margin-top: 3px;display: inline-block;'>Harvard users: <a href='" + signInLink + "'>sign in<a/> to find more articles</span>";
+			$('#exlidHeaderSystemFeedback').append('<div class="HVD_results_signin_reminder"><strong>' + msg + '</strong></div>');
 		}
 	}
 
 	//Hiding the Sign-blurb from the main page if signed in
 	if ($("#exlidSignIn").hasClass("EXLHidden")) {
 		$("#signInHomeBodyWrapper").hide();
+		$("#signInHomeBodyWrapper").after("you’ve signed in for complete access to articles");
 	}
 
 	//Moving RSS, eShelf, etc to bottom of Facets
@@ -148,6 +153,20 @@ $(document).ready(function() {
 	
 
 });
+
+/*function changeHathiTabTitle() {
+	var hathiTabTitle = "May be online at HathiTrust";	
+	$(this).parents(".EXLResult").find(".EXLViewOnlineTab a:contains('View Online')").css({
+		"font-weight": "normal",
+		"color": "#293352",
+		"background-image": "none"
+	});
+    $(this).parents(".EXLResult").find("li.EXLViewOnlineTab").css({
+		"background-image": "none",
+		"padding-left": "15px"
+	});	
+	$(this).parents(".EXLResult").find(".EXLViewOnlineTab a:contains('View Online')").text(hathiTabTitle);	
+}*/
 
 function changeVIATabTitle() {
                 var viaTabTitle = "Details & Gallery (View Online)";

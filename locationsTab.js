@@ -19,6 +19,7 @@ function locationsTabModifications() {
 		//need to find which AVA is open to items table, in case users came from loc tab in brief results
 		if ($(this).find(".EXLLocationTable").length > 0) {
 			colldisplaynm = $(this).find(".EXLLocationTable").parents(".EXLLocationList").children(".EXLLocationInfo").children("strong").html().trim();
+			//
 			//Modify all the Items in this single Holding record
 			modifyItems(colldisplaynm);	
 		}			
@@ -162,11 +163,12 @@ function modifyItems(colldisplayname) {
 		//console.log($(this).children(".EXLLocationItemBarcode").attr("value"));
 		//console.log("------");
 		if (colldisplayname !== itemcolldisplay) {
-			$(this).parent("td").parent("tr").css("display","none");
-			//console.log("not same coll: " + colldisplayname + " vs. " + itemcolldisplay);
-		} /* else {
+			//20160311 CB commenting this out. Is hiding other items when mult loc tabs open in results view. See FP 9145
+			//$(this).parent("td").parent("tr").css("display","none");			
+			console.log("not same coll: " + colldisplayname + " vs. " + itemcolldisplay);
+		}  else {
 			console.log("same coll: "+ colldisplayname + " vs. " + itemcolldisplay);
-		} */
+		} 
 		
 		// if we hid all items, hide table header too, only a prob for MED and MCZ where we are explicitly adding |e to show original hol 
 		// because they don't have items for their backfiles, not a prob for libs who create items for backfiles
