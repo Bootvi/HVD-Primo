@@ -81,6 +81,48 @@ body.EXLFullView div.EXLTabsRibbon div li.EXLBrowseshelfTab  {
 .EXLDetailsTabContent div.EXLDetailsContent > ul > li {
 	margin-left: 0em;
 }
+/* My Account */
+.EXLMyAccountMainMenuContainer ol {
+	min-height: 0.5em;
+}
+.EXLMyAccountMainContainer table thead tr:nth-child(2){
+	display: none;
+}
+/*.EXLMyAccountMainContainer table th.EXLMyAccountTable {
+	display: none;
+} */
+.EXLMyAccountMainContainer table td {
+	display: block;
+}
+.EXLMyAccountMainContainer table td.MyAccount_Loans_1.MyAccount_Loans_select {
+	margin-top: 20px;
+    margin-bottom: 20px;
+}
+.EXLMyAccountMainContainer table td.MyAccount_Loans_1.MyAccount_Loans_select input {
+	height: 20px;
+    width: 20px;
+	border: 1px solid black;
+    outline: black;
+}
+.EXLMyAccountMainContainer table td.MyAccount_Loans_2.MyAccount_Loans_title {
+	display: block;
+}
+.EXLMyAccountMainContainer table td.MyAccount_Loans_3.MyAccount_Loans_author {
+	display: none;
+}
+.EXLMyAccountMainContainer table td.MyAccount_Loans_4.MyAccount_Loans_dueDate {
+	display: block;
+}
+.EXLMyAccountMainContainer table td.MyAccount_Loans_6.MyAccount_Loans_fine {
+	display: none;
+}
+.EXLMyAccountMainContainer table td.MyAccount_Loans_7.MyAccount_Loans_location {
+	display: none;
+}
+.EXLMyAccountMainContainer table td.MyAccount_Loans_8.MyAccount_Loans_renewal {
+	display: block;
+}
+
 /* Harvard Library Banner and other header area  - adjustments for Primo mobile */
 #hlp {
 	z-index:0;
