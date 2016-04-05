@@ -150,6 +150,16 @@ $(document).ready(function() {
 	$("#facetListTopLevel").find("a[href*='fctV=peer_reviewed&']").click(function() {
 		 ga('send', 'event','Top level facet','Peer-reviewed articles');
 	});		
+	//201600405 CB adding analytics for clicks on Limit to dropdowns below search box
+	$("#exlidInput_mediaType_1").change(function(evt) {		 		 
+		 ga('send', 'event','Basic Search Limit','Resource type',evt.target.value);
+	});		
+	$("#exlidInput_precisionOperator_1").change(function(evt) {		 
+		 ga('send', 'event','Basic search limit','Precision operator',evt.target.value);
+	});			
+	$("#exlidInput_scope_1").change(function(evt) {		 
+		 ga('send', 'event','Basic search limit','Scope',evt.target.value);
+	});		
 	
 
 });
