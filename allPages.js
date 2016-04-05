@@ -151,14 +151,14 @@ $(document).ready(function() {
 		 ga('send', 'event','Top level facet','Peer-reviewed articles');
 	});		
 	//201600405 CB adding analytics for clicks on Limit to dropdowns below search box
-	$("#exlidInput_mediaType_1").change(function(evt) {		 		 
-		 ga('send', 'event','Basic Search Limit','Resource type',evt.target.value);
+	$("#exlidHeaderSearchLimits").find("#exlidInput_mediaType_1").change(function(evt) {		 		 
+		 ga('send', 'event','Basic search limit: Resource type',evt.timeStamp);
 	});		
-	$("#exlidInput_precisionOperator_1").change(function(evt) {		 
-		 ga('send', 'event','Basic search limit','Precision operator',evt.target.value);
+	$("#exlidHeaderSearchLimits").find("#exlidInput_precisionOperator_1").change(function(evt) {		 
+		 ga('send', 'event','Basic search limit: Precision operator',evt.timeStamp);
 	});			
-	$("#exlidInput_scope_1").change(function(evt) {		 
-		 ga('send', 'event','Basic search limit','Scope',evt.target.value);
+	$("#exlidHeaderSearchLimits").find("#exlidInput_scope_1").change(function(evt) {		 
+		 ga('send', 'event','Basic search limit: Field (scope)',evt.timeStamp);
 	});		
 	
 
