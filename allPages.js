@@ -66,9 +66,12 @@ $(document).ready(function() {
 
 	//Change CSS for GetIt! Tab1 (view online) when there is no full-text
 	$("li > a:contains('Find It @ Harvard')").css({
-		"color": "#8C8179",
+		"color": "#293352",
 		"font-weight": "normal",
-		"background-position": "108px 2px"
+		"border": "none",
+		"background-color": "#fff",
+		"background-position": "114px 4px",
+		"background-image": "url(../uploaded_files/HVD/icon_popout_tab_hvdindigo.png)"
 	});
 	$("li > a:contains('Find It @ Harvard')").parent().css({
 		"background-image": "none",
@@ -87,8 +90,6 @@ $(document).ready(function() {
 
 	//Change Details tab for VIA records
 	$(".EXLResultRecordId[id^='HVD_VIA']").each(changeVIATabTitle);
-	
-	$(".EXLFacet a:contains('Surrogate at Harvard')").parents("li.EXLFacet").hide(); // 20150218 after next week renorm this line will be obsolete
 	$(".EXLFacet a:contains('All VIA records')").parents("li.EXLFacet").hide();
 	$(".EXLFacet a:contains('Visual works')").parents("ol.EXLFacetsList").find(".EXLFacetsDisplayMore").hide();
 
@@ -179,36 +180,39 @@ $(document).ready(function() {
 }*/
 
 function changeVIATabTitle() {
-                var viaTabTitle = "Details & Gallery (View Online)";
-				
-                $(this).parents(".EXLResult").find(".EXLDetailsTab a:contains('Details')").css({
-                        "font-weight": "bold",
-                        "color": "#52854C"
-                });
-                $(this).parents(".EXLResult").find("li.EXLDetailsTab").css({
-                        "background-image": "url(../images/icon_available.png)",
-                        "background-repeat": "no-repeat",
-                        "background-position": "2px 2px",
-                        "padding-left": "15px"
-                });				
-
-                //In case of numberOfImages="0"
-                if ($(this).parents(".EXLResult").find(".EXLResultFourthLine:contains('no digitized images')").length) {
-                        $(this).parents(".EXLResult").find(".EXLResultFourthLine:contains('no digitized images')").text("");
-                        viaTabTitle = "Details";
-						 $(this).parents(".EXLResult").find("li.EXLDetailsTab").css({
-							"background-image": "",
-						});
-						 $(this).parents(".EXLResult").find(".EXLDetailsTab a:contains('Details')").css({
-							"font-weight": "normal",
-							"color": "#293352"                
-						});		
-                }
-                $(this).parents(".EXLResult").find(".EXLDetailsTab a:contains('Details')").text(viaTabTitle);
-
-                $(this).parents(".EXLResult").find("li.EXLViewOnlineTab ").css("display", "none");
-
-
+	var viaTabTitle = "Details & Gallery (View Online)";
+	//In case of numberOfImages="0"
+	if ($(this).parents(".EXLResult").find(".EXLResultFourthLine:contains('no digitized images')").length) {
+			$(this).parents(".EXLResult").find(".EXLResultFourthLine:contains('no digitized images')").text("");
+			//viaTabTitle = "Details";
+			/* $(this).parents(".EXLResult").find("li.EXLDetailsTab").css({
+				"background-image": "",
+			});
+			 $(this).parents(".EXLResult").find(".EXLDetailsTab a:contains('Details')").css({
+				"font-weight": "normal",
+				"color": "#293352",
+				"background-color": "none",		
+				"border": "none",			
+				"margin-left": "-1em"	
+			});		*/
+	} else if ($(this).parents(".EXLResult").find(".EXLResultSelectedTab").length) {
+		$(this).parents(".EXLResult").find(".EXLDetailsTab a:contains('Details')").text(viaTabTitle);
+	}	
+	else {					
+		$(this).parents(".EXLResult").find(".EXLDetailsTab a:contains('Details')").css({
+			"font-weight": "bold",
+			"color": "#a51c30",
+			"margin-left": "-0.8em",
+			"border": "1px solid #8c8179",
+			"border-radius": "5px",
+			"background-color": "#f8f8f8",
+			"padding": "5px"
+		});
+		//$(this).parents(".EXLResult").find("li.EXLDetailsTab").css({						
+		//});
+		$(this).parents(".EXLResult").find(".EXLDetailsTab a:contains('Details')").text(viaTabTitle);		
+	}           
+	$(this).parents(".EXLResult").find("li.EXLViewOnlineTab ").css("display", "none");
 }
 
 //Fixing brief results thumbnails, shifting the pan and overflow from fixed height to fixed width

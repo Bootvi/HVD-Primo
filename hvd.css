@@ -867,29 +867,42 @@ padding-right: 0.4em;
 	font-size: 15px;	
 }
 
-/* tabs ribbon in brief results */
+/* TABS RIBBON */
 
+.EXLTabsRibbon {
+    height: 2em;
+    border-bottom: none;	
+}
+.EXLTabsRibbon div li.EXLResultFirstTab {
+	padding-left: 0em;
+}
 .EXLTabsRibbon div li.EXLResultTab {
-
+	padding-top: 10px;
 }
 .EXLTabsRibbon div li.EXLResultTab a {
 	color:#293352;
 }
+.EXLTabsRibbon div li.EXLResultTab a:hover {
+	color:#a51c30;
+	text-decoration:none;
+}
 .EXLTabsRibbon div li.EXLResultSelectedTab {
-	border: 1px solid #BAC5C6;
-	border-bottom: 2px solid #fff;
+	border: 1px solid #e4e4e4;
+	border-bottom: 2px solid #f1f1f1;
 	background-image:none;
-
+	height: 1.9em;
+	background-color: #f1f1f1;
+	margin-left:0px;
 }
 .EXLTabsRibbon div li.EXLResultSelectedTab a {
 
 }
 .EXLResultTabContainer div.EXLTabHeader {
-	border-left: 1px solid #BAC5C6;
-	border-right: 1px solid #BAC5C6;
+	background-image:none;
+	border: 1px solid #e4e4e4;
 }
 .EXLTabContent {
-	border: 1px solid #BAC5C6;
+	border: 1px solid #e4e4e4;
 	border-top-color: #ffffff;
 	box-shadow: 5px 5px 2px #888888;
 }
@@ -931,27 +944,72 @@ body.EXLFullView div.EXLTabContent{
 	display:none
 }
 .EXLTabsRibbon div li.EXLViewOnlineTab {	
-	background-image: url(../../images/icon_available.png);
+	background-image: none;
+	margin-right: 7px;
+	/* background-image: url(../../images/icon_available.png); 	
 	background-repeat: no-repeat;
 	background-position: 0px 2px;
-	padding-left:15px;
+	padding-left:15px;*/
 }
 .EXLTabsRibbon div li.EXLViewOnlineTab  a {	
 	font-weight:bold;
-	color:#52854C;
-	background-image: url(../../images/icon_popout_tab.png);
+	color:#a51c30;
+	background-image: url(../../uploaded_files/HVD/icon_popout_tab_hvdcrimson.png);
 	background-repeat: no-repeat;
-	background-position: 80px 2px;
+	background-position: 86px 4px;
 	padding-right: 30px;
+    border: 1px solid #8C8179;
+    border-radius: 5px;
+    background-color: #f8f8f8;
+    padding: 5px 25px 5px 5px;	
+}
+.EXLTabsRibbon div li.EXLViewOnlineTab  a:hover {	
+	color:#000;
+	text-decoration:none;
+	background-image: url(../../uploaded_files/HVD/icon_popout_tab_hvdblack.png);
+}
+.EXLTabsRibbon div li.EXLViewOnlineTab.EXLResultSelectedTab  a {	
+	border: none;
+	background-color: #f1f1f1;
+	color:#293352;
+	background-image:none;
+	padding: 5px;
+}
+.EXLTabsRibbon div li.EXLViewOnlineTab.EXLResultSelectedTab  a:hover {	
+	background-image:none;
+}
+.EXLViewOnlineTabContent div.EXLViewOnlineLinks li span.EXLViewOnlineLinksTitle a {
+	background-image: url(../../uploaded_files/HVD/icon_popout_tab_hvdcrimsonWhiteBkg.png);
+}
+.EXLTabsRibbon div li.EXLResultTabIconPopout {
+	background-image: none;
 }
 .EXLTabsRibbon div li.EXLLocationsTab {	
 	background-image: url(../../uploaded_files/HVD/locations_icon.png);
 	background-repeat: no-repeat;
-	background-position: -2px -2px;
-	padding-left:21px;
+	background-position: -1px 7px;
+	padding-left:22px;
 }
-
+.EXLTabsRibbon div li.EXLLocationsTab.EXLResultSelectedTab {
+	background-position: 2px 7px;
+    padding-left: 24px;
+}
+/* Details tab TOC */
+.EXLTabHeader div.EXLTabHeaderContent {
+	color:#f1f1f1;
+}
+.EXLTabHeader div.EXLTabHeaderContent a:hover{
+	text-decoration:none;
+	color:#a51c30;
+}
+.EXLTabHeader div.EXLTabHeaderContent span.selected{
+	padding: 3px;
+	border: 1px solid #8C8179;
+}
 /* Details tab (Alon B modified first line */
+body.EXLFullView div.EXLResultsList h1.EXLResultTitle {
+	padding-top: 20px;
+}
 .EXLDetailsTabContent div.EXLDetailsContent  > ul > li {
     position: relative;
     margin-left: 11em;
