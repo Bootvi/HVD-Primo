@@ -30,6 +30,7 @@ function hathi() {
 				if (hathioclc || hathiisbn) {
 					//console.log("hathiisbn: " + hathiisbn );
 					//console.log(hathiApiUrl);
+					//console.log($(this));
 					hathiAjax($(this),hathiApiUrl);
 				}
 			}
@@ -72,7 +73,7 @@ function hathiAjax(pointer,hathiApiUrl) {
 			}
 		},
 		//error: function(error) {
-			//console.log("error");
+			//console.log("API error");
 			// api throws an error object with statusText "success"
 		//}
 	});	
