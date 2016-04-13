@@ -47,14 +47,18 @@ $(document).ready(function() {
 	});
 
 	//Trim long results titles
-	$(".EXLResultsList h2 a").each(function() {
-		var tlength = $(this).text().length;
+	// 20160412 CB commenting this out. Problematic becuase of use of <span class="searchword"> in result titles 
+	// for search term matches, which increase length of string significantly 
+	// and <span> elements may get truncated resulting in invalid markup. cf FP 8598 
+	/*$(".EXLResultsList h2 a").each(function() {
+		var tlength = $(this).text().length;		
 		if (tlength > 150) {
 			$(this).attr("title", $(this).text());
 			var text = $(this).html().substr(0, 150);
+			console.log(text);
 			$(this).html(text.substr(0, text.lastIndexOf(" ")) + "...");
 		}
-	});
+	});*/
 
 	$(".EXLResultsList h3").each(function() {
 		var tlength = $(this).text().length;
