@@ -1278,7 +1278,22 @@ table#ilsFields #email {display:none;}
 	display:none;
 }
 /* end user area customization - My Account etc. */
-
+/* begin e-shelf, My Research */
+.folders_new .folderActions {
+	background-color:#f6f6f6;
+	font-weight: bold;	
+	font-family: Arial,verdana;
+	padding-top: 10px;
+}
+.folders_new .folderActions::before {
+	content:"Folder actions: ";	
+	padding-left: 18px;
+}
+.folders_new .folderActions LI A.deleteFolder_but {
+	background:url(../../uploaded_files/HVD/folders_delete_but_hvd_excl.png) repeat-y left top;
+	width: 35px;
+}
+/* end e-shelf, My Research */
 /* begin My Databases */
 #exlidFindDBContainer input.EXLSubmit {
 	background-color: #a51c30;
