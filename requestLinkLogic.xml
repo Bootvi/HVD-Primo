@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <requestlinkconfig>
 
-	<!-- Some notes on how this relates to Aleph tab15.eng config switches:
+	<!-- Some notes on how this relates to Aleph tab15.eng config switches (CB):
 	col 6 can be loaned [ n/a for ab]
 	col 7 can be renewed [ n/a for ab]
 	col 8 hold req: Y = present req link if on loan
@@ -111,6 +111,9 @@
 		</alephHoldRequest>
 		<alephHoldRequest itemProcessStatus="NULL">
 			<xserver on-hold="Y" item-status="08;26;28;61"/>
+		</alephHoldRequest>
+		<alephHoldRequest itemProcessStatus="NULL">
+			<xserver loan-status="NULL" on-hold="N" item-status="28"/>
 		</alephHoldRequest>
 
 		<scanDeliver itemProcessStatus="HD;NULL">
