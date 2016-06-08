@@ -1541,8 +1541,23 @@ div[id^='skcGallery-'] {
 .EXLDetailsDisplayValHidden {
 	display: none;
 }
-  	
-
+/* Citation Trail */
+cite.EXLCitationTrailsIndicationContainer {
+	display:none;
+	margin-top: 19px;
+}
+div[id^='citationTrails_'] { 
+    background:url(../../uploaded_files/HVD/beta_sticker_44px.png) no-repeat 0px 0px;
+}
+.citeBtn a:link, .citeBtn a:visited {
+	border: 1px solid #4E84C4;
+	color:#4E84C4;
+	padding: 5px;
+}
+.citeBtn a:hover, .citeBtn a:active {
+	background-color: #4E84C4;
+	color:#FFFFFF;
+}
 	    		
 
   	

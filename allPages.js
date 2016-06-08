@@ -81,6 +81,7 @@ $(document).ready(function() {
 		"background-image": "none",
 		"padding-left": "0px"
 	});
+	
 	//20160229 CB changed View Online for HathiTrust to "limited search" b/c only 25% of HT content in PCI coll is FT right now
 	// waiting for changed PCI activation to take effect so this is temporary fix, changing activation to HT open access only
 	// 20160304 reversed, PCI refreshed
