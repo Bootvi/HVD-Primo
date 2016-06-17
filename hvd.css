@@ -529,7 +529,7 @@ body.EXLFullView div.EXLBackToResults {
 	color:#000;
 }
 .EXLAdditionalFacetEXLHiddenFacetCreationDate {
-	display:none;
+	display:none; 
 }
 
 
@@ -1412,7 +1412,10 @@ tr.VIAThumbnailImage {
 
 .VIAThumbnail img {
 	padding: 0px;
-
+	max-width: 150px;
+	max-height: 150px;
+	height: auto;
+	width: auto;
 }
 
 .VIAThumbnailImageWrapper {
