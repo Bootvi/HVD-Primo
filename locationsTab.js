@@ -15,13 +15,10 @@ function locationsTabModifications() {
 
 	//Each DIV has it's own variables and listener, so no conflict should happen.
 	$(".EXLSublocation").each(function() {
-		//20150825 get coll display name to pass on to next function, null values = GEN coll
 		//need to find which AVA is open to items table, in case users came from loc tab in brief results
-		if ($(this).find(".EXLLocationTable").length > 0) {
-			colldisplaynm = $(this).find(".EXLLocationTable").parents(".EXLLocationList").children(".EXLLocationInfo").children("strong").html().trim();
-			//
+		if ($(this).find(".EXLLocationTable").length > 0) {			
 			//Modify all the Items in this single Holding record
-			modifyItems(colldisplaynm);	
+			modifyItems();	
 		}			
 
 		//Put a listener on the Sublibrary DIV which contains the Request options to catch when it is populated, or more items are added
@@ -79,12 +76,8 @@ function handleDomChanges() {
 	});	*/
 
 	//Modify all items in this Holding that was just changed in the DOM.
-	//20150825 get coll display name to pass on to modifyItems, null values = GEN coll
 	if ($(this).find(".EXLLocationTableActions").length) {		
-		//console.log($(this).siblings("span.EXLLocationInfo").children("strong").html());
-		colldisplaynm = '';
-		colldisplaynm = $(this).siblings("span.EXLLocationInfo").children("strong").html().trim();
-		modifyItems(colldisplaynm);
+		modifyItems();
 	}
 	
 	//Resume listening (if there are more items, RTA changes, Primo OTB changes
@@ -147,33 +140,29 @@ function modifyItems(colldisplayname) {
 		// there is no longer an AVA for "ghost" holding if all items are temp loc'd.
 		// if a holding has multiple items and only one is temp loc'd to the same library, the item shows up twice, 
 		// once under linked hol and once under new AVA for temp location.
-		// to prevent this, use jquery to hide item if it doesn't match coll of AVA.
-		// this is only an issue if temp loc is to same library as hol
+		// to prevent this, use jquery to hide item if it doesn't match coll of its AVA.
+		// this is only an issue if temp loc is to same library as holding
 		
-		// determine item collection display text and test if it's same as AVA line, if not hide item	
+		// determine item collection display text and test if it's same as its AVA line, if not hide item	
 		var itemcolldisplay = '';
 		itemcolldisplay = $(this).parent().parent().children("td:first").children("a").html().trim();	
+		avacolldisplay = $(this).parents(".EXLLocationList").children("span.EXLLocationInfo").children("strong").html().trim();	
 		// GEN colls yield value of &nbsp;
 		if (itemcolldisplay == '&nbsp;') {
 			itemcolldisplay = '';
-		}		
-		//console.log("coll name from item line : " + $(this).parent().parent().children("td:first").children("a").html());	
-		//console.log(colldisplayname);
-		//console.log(itemcolldisplay);
-		//console.log($(this).children(".EXLLocationItemBarcode").attr("value"));
-		//console.log("------");
-		if (colldisplayname !== itemcolldisplay) {
-			//20160311 CB commenting this out. Is hiding other items when mult loc tabs open in results view. See FP 9145
-			//$(this).parent("td").parent("tr").css("display","none");			
-			console.log("not same coll: " + colldisplayname + " vs. " + itemcolldisplay);
+		}	
+		//console.log("itemcolldisplay: " + itemcolldisplay);
+		//console.log("avacolldisplay: " + avacolldisplay);
+		if (avacolldisplay !== itemcolldisplay) {
+			//20160311 Be wary of caes when user stays in result list and open multiple loc tabs, see FP 9145
+			$(this).parent("td").parent("tr").css("display","none");			
+			//console.log("not same coll: " + avacolldisplay + " vs. " + itemcolldisplay);
 		}  else {
-			console.log("same coll: "+ colldisplayname + " vs. " + itemcolldisplay);
-		} 
-		
-		// if we hid all items, hide table header too, only a prob for MED and MCZ where we are explicitly adding |e to show original hol 
-		// because they don't have items for their backfiles, not a prob for libs who create items for backfiles
-		// this is  hard because there are two tr's for each item, one of which is already hidden by system with class EXLAdditionalFieldsRow
-		// among other classes
+			//console.log("same coll: "+ avacolldisplay + " vs. " + itemcolldisplay);
+		} 		
+		// note: in some caess all items are hidden and table header remains (e.g MED use's of temp locs). 
+		// Not worth addressing due to challenge of there being two tr's for each item, 
+		// one of which is already hidden by system with class EXLAdditionalFieldsRow
 	});
 }
 
