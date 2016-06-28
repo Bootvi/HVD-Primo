@@ -9,6 +9,10 @@
 #exlidMainMenuTile div.EXLLanguagesContainer ul.EXLLanguageMenuShow li.EXLLanguageLink {
 	display:none;
 }
+#exlidSearchTileWrapper {
+	position: relative;
+    z-index: 0;
+}
 #exlidSearchTile {
 	padding-top: 55px;
 }
@@ -124,8 +128,12 @@ body.EXLFullView div.EXLTabsRibbon div li.EXLBrowseshelfTab  {
 }
 
 /* Harvard Library Banner and other header area  - adjustments for Primo mobile */
+/* note there are also settings in banner.css */
 #hlp {
-	z-index:0;
+	position:absolute;
+	z-index:99;
+	left: 0px;
+    top: 0px;
 }
 #hlp ul li#hlp_log a {
 	margin-top: 12px;
