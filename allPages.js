@@ -15,6 +15,10 @@ $(document).ready(function() {
 
 	});
 	
+	// add prompt on use of "Save page to My Research" to let users know something happened
+	/*$(".EXLFacetSaveToEShelfAction ").children("a").click(function() {
+		$("<div>Test message</div>").dialog();
+	});	*/
 
 	//$('#exlidMainMenuRibbon li#exlidMainMenuItem0').insertAfter('#exlidMainMenuRibbon li#exlidMainMenuItem2');
 
@@ -167,6 +171,11 @@ $(document).ready(function() {
 		 ga('send', 'event','Basic search limit: Field (scope)',evt.timeStamp);
 	});		
 	
+	//if on adv search page, add barcode search box
+	var barcodeHtml = "<div class='barcodeSearchRow'><label for='barcodeInput'>Barcode (beta)</label><input type='text' id='barcodeInput' value=''/><div id='search_barcode' onclick='submitBarcode()'>Find barcode</div></div>";
+	if ((RegExp("mode=Advanced").test(window.location.href))) {
+		$(".EXLSearchFieldRibbonFormLinks").append(barcodeHtml);
+	} 	
 
 });
 
@@ -221,28 +230,32 @@ function changeVIATabTitle() {
 }
 
 //Fixing brief results thumbnails, shifting the pan and overflow from fixed height to fixed width
+// 20160629 CB this fix stopped working after a release late 2015
 function fixThinThumbnails() {
-	// this = $("img.EXLBriefResultsCover")
+	//note: this = $("img.EXLBriefResultsCover")
 	var maxWidth = $(this).parents(".EXLBriefResultsDisplayCoverImages").find(".EXLBriefResultsDisplayCoverImageBackup").width();
 	var maxheight = $(this).parents(".EXLBriefResultsDisplayCoverImages").find(".EXLBriefResultsDisplayCoverImageBackup").height();
 	//console.log("maxWidth " + maxWidth);
 	//console.log("maxheight " + maxheight);
 	//console.log("this width " + $(this).width());
-	//if ($(this).width() < maxWidth) {
-		////Update the image SRC to the be the width limited
-		//$(this).attr("src", $(this).attr("src").replace("height=65", "width=43"));
+	//console.log($("img.EXLBriefResultsCover").width());
+	//console.log($(this));
+	if ($(this).width() < maxWidth) {
+		//Update the image SRC to the be the width limited
+		//console.log("skinny ");
+		$(this).attr("src", $(this).attr("src").replace("height=65", "width=43"));
 
 		//Change the CSS attributes of the Div and image to reflect narrow thin images
-		//$(this).parents("div.coverImageDiv").css("height", "65px");
-		/*$(this).css({
+		$(this).parents("div.coverImageDiv").css("height", "65px");
+		$(this).css({
 			"width": maxWidth + "px",
 			"height": "auto",
 			"top": "50%",
 			"transform": "translate(-50%, -50%)",
 			"-ms-transform": "translate(-50%, -50%)",
 			"-webkit-transform": "translate(-50%, -50%)"
-		});*/
-	//}
+		});
+	}
 }
 
 //Overwrite the mogileDisplay.js function to avoid adding the languages to the mobile page
@@ -441,6 +454,52 @@ function getURLParams(qs) {
 	return params;
 }
 
+//20160629 CB testing barcode search using API
+	function submitBarcode() {
+			var bc = $('#barcodeInput').val();
+			//var bc = '32044018056622';
+			//HW6P17
+			if (!bc || bc.length < 6 || bc.length > 14) {
+				$("#exlidHomeContainer").html("<div id='apiCitation'><h2>Please enter a valid barcode.</h2></div>");
+				return;
+			}
+			var prestoAPIurl = 'http://webservices.lib.harvard.edu/rest/classic/barcode/cite/';
+			var callBackparam = '?jsonp=ws_results';			
+			$.ajax({
+				url: prestoAPIurl + bc + callBackparam,
+				dataType: 'jsonp',
+				jsonpCallback: "ws_results",
+				success: function(json) {	
+					barcodeResults(json);
+				},
+				error: function(json) {	
+					barcodeError(json.status);	
+				}
+			});	
+	}
+	function barcodeResults(json) {
+	   var bib = json.rlistFormat.hollis.hollisId.split('-')[0];
+	   var permalink = "http://id.lib.harvard.edu/aleph/"+bib+"/catalog";
+	   var title = json.rlistFormat.hollis.title;	
+	   var ed = json.rlistFormat.hollis.edition;
+	   var pub = json.rlistFormat.hollis.pubInfo;
+	   var year = json.rlistFormat.hollis.year;
+	   var header = "<h2 class='barcodeSearchHeader'>Barcode found</h2>";
+	   var citation = header+"<a href='"+permalink+"'>"+title+"</a> "+pub+", "+year+". ";
+	   if (ed) {
+		 citation =+ ed;
+	   }
+		$("#exlidHomeContainer").html("<div id='apiCitation'>"+citation+"</div>");
+	   //#exlidResultsContainer
+	   //#exlidHomeContainer
+	}
+	function barcodeError(status) {
+		if (status == '404') {
+			$("#exlidHomeContainer").html("<div id='apiCitation'><h2>Barcode not found.</h2></div>");
+		} else {
+			$("#exlidHomeContainer").html("<div id='apiCitation'>There has been a system error. Please let us know by <a href='http://nrs.harvard.edu/urn-3:HUL.eother:hplus-feedback'>reporting the problem</a>.</div>");
+		}
+	}	
 
 
 //Debugger for the customer JS
