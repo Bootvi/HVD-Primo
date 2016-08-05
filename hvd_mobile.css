@@ -23,6 +23,12 @@
 .EXLHomeNewsContainer {
 	padding-left:0px;
 }
+body.EXLFullView div.EXLTabsRibbon {
+	border-bottom:none;
+}
+body.EXLFullView div.EXLTabsRibbon div ul {
+	margin-left:0px;
+}
 /* Hide Request tab */
 body.EXLFullView div.EXLTabsRibbon div li.EXLRequestTab {
 	display: none;
@@ -35,9 +41,18 @@ body.EXLFullView div.EXLTabsRibbon div li.EXLBrowseshelfTab  {
 .EXLTabsRibbon div li.EXLViewOnlineTab {
 	background-image: none;
 }
+.EXLTabsRibbon div li.EXLViewOnlineTab a {
+	font-size: 13px;
+}
 /* Locations tab */
 .EXLLocationsTitle {
 	width: 100%;
+}
+.EXLLocationsTitle span.EXLLocationsTitleContainer {
+	margin-left: 10px;
+}
+.EXLLocationsTitle span.EXLLocationsTitleContainer a {
+	margin-right: 0px;
 }
 .EXLLocationInfo {
 	width: 100%;

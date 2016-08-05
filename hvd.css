@@ -620,11 +620,14 @@ body.EXLFullView div.EXLBackToResults {
 }
 .EXLLocationsTitle span.EXLLocationsTitleContainer {
 	float: left;
-	margin-left: 10px;
+	margin-left: 25px;
 	font-size: 14px;
 	font-weight: bold;
 	color: #1E1E1E;
 	width:auto;
+}
+.EXLLocationsTitle a.EXLLocationsIcon {
+	margin-right: -11px;
 }
 .EXLLocationInfo {
 	width: 70%;
