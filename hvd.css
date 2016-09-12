@@ -467,15 +467,15 @@ body.EXLFullView div.EXLBackToResults {
 	margin-bottom: 3px;	
 }
 /* selecting Add page doens't change class to On, so checkbox is always empty */
-.EXLFacetContainer div.EXLFacetActionsV2 li.EXLFacetSaveToEShelfActionOff  {
-	/*background-image: url(../HVD/icon_checkbox_off.png);*/
+/*.EXLFacetContainer div.EXLFacetActionsV2 li.EXLFacetSaveToEShelfActionOff  {
+	background-image: url(../HVD/icon_checkbox_off.png);
 	background-image: none;
 	margin-left: -10px;
 }
 .EXLFacetContainer div.EXLFacetActionsV2 li.EXLFacetSaveToEShelfActionOn  {
-	/*background-image: url(../HVD/icon_checkbox_on.png);*/
+	background-image: url(../HVD/icon_checkbox_on.png);
 	background-image: none;
-} 
+} */
 /* making RSS an easter egg so staff can help test */
 .EXLFacetContainer div.EXLFacetActionsV2 li.EXLFacetRSSAction {
 	background-image:none;
