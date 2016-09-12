@@ -118,12 +118,12 @@ function modifyItems(colldisplayname) {
 		
 		//AEON request
 		if (requestOptions.indexOf("aeon") > -1) {
-			var url = "http://sfx.hul.harvard.edu/sfx_local?sid=HOLLIS:AEON&pid=DocNumber=" + itemArgs["admDocNumer"] + ",ItemSequence=" + itemArgs["itemSequence"] + "&sfx.skip_augmentation=1";
+			var url = "http://sfx.hul.harvard.edu/hvd?sid=HOLLIS:AEON&pid=DocNumber=" + itemArgs["admDocNumer"] + ",ItemSequence=" + itemArgs["itemSequence"] + "&sfx.skip_augmentation=1";
 			$(this).find("ul").append('<li><a href="' + url + '" target="_blank">Request Item</a></li>');
 		}
 		//Scan & Deliver request
 		if (requestOptions.indexOf("scandeliver") > -1) {
-			var url = "http://sfx.hul.harvard.edu/sfx_local?sid=HOLLIS:ILL&pid=DocNumber=" + itemArgs["admDocNumer"] + ",ItemSequence=" + itemArgs["itemSequence"] + "&sfx.skip_augmentation=1";
+			var url = "http://sfx.hul.harvard.edu/hvd?sid=HOLLIS:ILL&pid=DocNumber=" + itemArgs["admDocNumer"] + ",ItemSequence=" + itemArgs["itemSequence"] + "&sfx.skip_augmentation=1";
 			$(this).find("ul").append('<li><a href="' + url + '" target="_blank">Scan & Deliver</a></li>');
 		}
 		

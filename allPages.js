@@ -15,10 +15,10 @@ $(document).ready(function() {
 
 	});
 	
-	// add prompt on use of "Save page to My Research" to let users know something happened
-	/*$(".EXLFacetSaveToEShelfAction ").children("a").click(function() {
-		$("<div>Test message</div>").dialog();
-	});	*/
+	//add prompt on use of "Save page to My Research" to let users know something happened
+	$(".EXLFacetSaveToEShelfAction ").children("a").click(function() {
+		alert("This page of results has been added to My Research. Sign-in to save permanently.");
+	});	
 
 	//$('#exlidMainMenuRibbon li#exlidMainMenuItem0').insertAfter('#exlidMainMenuRibbon li#exlidMainMenuItem2');
 
