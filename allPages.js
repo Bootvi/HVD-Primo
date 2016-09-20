@@ -172,10 +172,10 @@ $(document).ready(function() {
 	});		
 	
 	//if on adv search page, add barcode search box
-	var barcodeHtml = "<div class='barcodeSearchRow'><label for='barcodeInput'>Barcode (beta)</label><input type='text' id='barcodeInput' value=''/><div id='search_barcode' onclick='submitBarcode()'>Find barcode</div></div>";
+	/*var barcodeHtml = "<div class='barcodeSearchRow'><label for='barcodeInput'>Barcode (beta)</label><input type='text' id='barcodeInput' value=''/><div id='search_barcode' onclick='submitBarcode()'>Find barcode</div></div>";
 	if ((RegExp("mode=Advanced").test(window.location.href))) {
 		$(".EXLSearchFieldRibbonFormLinks").append(barcodeHtml);
-	} 	
+	} 	*/
 
 });
 
