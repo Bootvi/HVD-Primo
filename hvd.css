@@ -1274,9 +1274,9 @@ table#ilsFields #email {display:none;}
 #requestList .EXLMyAccountTableActions {
 	display:none;
 } 
-/*.MyAccount_Requests_cancel {
+.MyAccount_Requests_cancel {
 	display:none;
-}*/
+}
 .EXLMyAccountTableRSS  {
 	display:none;
 }
