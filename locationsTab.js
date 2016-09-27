@@ -153,9 +153,9 @@ function modifyItems(colldisplayname) {
 		}	
 		//console.log("itemcolldisplay: " + itemcolldisplay);
 		//console.log("avacolldisplay: " + avacolldisplay);
-		if (avacolldisplay !== itemcolldisplay) {
-			//20160311 Be wary of caes when user stays in result list and open multiple loc tabs, see FP 9145
-			$(this).parent("td").parent("tr").css("display","none");			
+		//20160311 Be wary of caes when user stays in result list and open multiple loc tabs, see FP 9145
+		if (avacolldisplay !== itemcolldisplay) {			
+			//$(this).parent("td").parent("tr").css("display","none");			
 			//console.log("not same coll: " + avacolldisplay + " vs. " + itemcolldisplay);
 		}  else {
 			//console.log("same coll: "+ avacolldisplay + " vs. " + itemcolldisplay);
