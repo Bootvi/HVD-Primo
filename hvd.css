@@ -1551,19 +1551,25 @@ div[id^='skcGallery-'] {
 	display: none;
 }
 /* Citation Trail */
+/* 20161012 CB display none stopped working here because they put css in line */
 cite.EXLCitationTrailsIndicationContainer {
 	display:none;
 	margin-top: 19px;
+}
+cite.EXLCitationTrailsIndicationContainer span.EXLCitationTrailsIndication a{
+	display:none;
 }
 div[id^='citationTrails_'] { 
     background:url(../../uploaded_files/HVD/beta_sticker_44px.png) no-repeat 0px 0px;
 }
 .citeBtn a:link, .citeBtn a:visited {
+	display:none;
 	border: 1px solid #4E84C4;
 	color:#4E84C4;
 	padding: 5px;
 }
 .citeBtn a:hover, .citeBtn a:active {
+	display:none;
 	background-color: #4E84C4;
 	color:#FFFFFF;
 }
