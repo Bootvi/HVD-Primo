@@ -33,6 +33,7 @@
 	20150325 HS added OR/RE requests for BAK
 	20150537 HS added Harvard Direct requests for BAK and HYL - item status 01, IPS NULL
 	20150522 HS added Depository requests for AJP - item status 01 & 02
+	20160722 KY added Harvard Direct requests for LAM- item status 28, IPS NULL
 	-->				  
 
 	<sublibrary id="AJP">
@@ -598,9 +599,15 @@
 		<aeonrequest itemProcessStatus="HD;NULL">
 			<xserver loan-status="NULL" on-hold="N" item-status="92"/>
 		</aeonrequest>
-	
+
 	</sublibrary>
 
+	<sublibrary id="SCH">
+		<alephHoldRequest itemProcessStatus="HD;NULL">
+		</alephHoldRequest>
+	</sublibrary>
+
+	
 	<sublibrary id="THE">
 		<aeonrequest itemProcessStatus="HD;NULL">
 			<xserver loan-status="NULL" on-hold="N" item-status="02;92"/>
