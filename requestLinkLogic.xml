@@ -35,6 +35,7 @@
 	20150522 HS added Depository requests for AJP - item status 01 & 02
 	20160722 KY added Harvard Direct requests for LAM- item status 28, IPS NULL
 	20161019 KY added Harvard Direct requests for SCH- item status 62, items delivered to SCH ONLY
+        20161108 KY added RD IPS for RECAP (LAW, HYL, WID for now)
 	-->				  
 
 	<sublibrary id="AJP">
@@ -325,11 +326,11 @@
 			<xserver loan-status="NULL" on-hold="N" item-status="01"/>
 		</alephHoldRequest>
 
-		<scanDeliver itemProcessStatus="HD">
+		<scanDeliver itemProcessStatus="HD;RD">
 			<xserver loan-status="NULL" on-hold="N" item-status="01;02;26"/>
 		</scanDeliver>
 
-		<aeonrequest itemProcessStatus="HD;NULL">
+		<aeonrequest itemProcessStatus="HD;RD;NULL">
 			<xserver loan-status="NULL" on-hold="N" item-status="92"/>
 		</aeonrequest>
 	</sublibrary>
@@ -668,7 +669,7 @@
 			<xserver loan-status="NULL" on-hold="N" item-status="01"/>
 		</alephHoldRequest>
 
-		<scanDeliver itemProcessStatus="HD">
+		<scanDeliver itemProcessStatus="HD;RD">
 			<xserver loan-status="NULL" on-hold="N" item-status="01;02;93;94"/>
 		</scanDeliver>
 		<scanDeliver itemProcessStatus="NULL">
