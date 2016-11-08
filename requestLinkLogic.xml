@@ -34,6 +34,7 @@
 	20150537 HS added Harvard Direct requests for BAK and HYL - item status 01, IPS NULL
 	20150522 HS added Depository requests for AJP - item status 01 & 02
 	20160722 KY added Harvard Direct requests for LAM- item status 28, IPS NULL
+	20161019 KY added Harvard Direct requests for SCH- item status 62, items delivered to SCH ONLY
 	-->				  
 
 	<sublibrary id="AJP">
@@ -311,7 +312,7 @@
 		<alephHoldRequest itemProcessStatus="RE;OR">
 			<xserver loan-status="NULL;A" item-status="*"/>
 		</alephHoldRequest>
-		<alephHoldRequest itemProcessStatus="HD">
+		<alephHoldRequest itemProcessStatus="HD;RD">
 			<xserver loan-status="NULL;A" item-status="01;02;22;24;26;61;62;63;64"/>
 		</alephHoldRequest>
 		<alephHoldRequest itemProcessStatus="NULL">
@@ -387,7 +388,7 @@
 		<alephHoldRequest itemProcessStatus="RE;OR">
 			<xserver loan-status="NULL;A" item-status="01;02;04;20;22;24;61;62;63;64;92;93;98"/>
 		</alephHoldRequest>
-		<alephHoldRequest itemProcessStatus="HD">
+		<alephHoldRequest itemProcessStatus="HD;RD">
 			<xserver loan-status="NULL;A" item-status="01;02;04;10;61;62;63;64"/>
 		</alephHoldRequest>
 		<alephHoldRequest itemProcessStatus="NULL">
@@ -604,6 +605,7 @@
 
 	<sublibrary id="SCH">
 		<alephHoldRequest itemProcessStatus="HD;NULL">
+			<xserver loan-status="NULL;A" item-status="62"/>
 		</alephHoldRequest>
 	</sublibrary>
 
@@ -653,7 +655,7 @@
 		<alephHoldRequest itemProcessStatus="RE;OR;TD">
 			<xserver loan-status="NULL;A" item-status="*"/>
 		</alephHoldRequest>
-		<alephHoldRequest itemProcessStatus="HD">
+		<alephHoldRequest itemProcessStatus="HD;RD">
 			<xserver loan-status="NULL;A" item-status="01;02;24;96;61;62;63;64"/>
 		</alephHoldRequest>
 		<alephHoldRequest itemProcessStatus="NULL">
