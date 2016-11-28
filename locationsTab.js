@@ -359,6 +359,8 @@ function collectItemArgs(element) {
 	itemArgs["barcode"] = element.find(".EXLLocationItemBarcode").val();
 	itemArgs["callNumber"] = element.find(".EXLLocationCallNumber").val();
 	itemArgs["collectionCode"] = element.find(".EXLLocationSecondaryLocationCode").val();
+	//20161121 adding material type so we can turn off Map It for serials, which many have hundreds of items
+	itemArgs["materialType"] = element.find(".EXLLocationItemMaterial").val();
 
 	return itemArgs;
 }

@@ -13,9 +13,9 @@ function stacksMap(itemArgs, element) {
 		if (['GEN', 'GEN', 'REF', 'MRSV', 'MRSAU', 'MRSCD', 'MRSDV'].indexOf(itemArgs["collectionCode"]) > -1)
 			proceedWithMapIt = true;		
 
-	if (itemArgs["loanStatus"] == 'A')
+	if (itemArgs["materialType"].startsWith('Issue'))
 		proceedWithMapIt = false;
-
+	
 	if (proceedWithMapIt) {
 
 		var lawApiUrl = 'http://mapit.library.harvard.edu/map-it/api/locate/';
