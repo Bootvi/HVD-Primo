@@ -35,7 +35,7 @@ function libInfoLink() {
 				"Development Office": "DEV",
 				"Documents (Lamont)": "DOC",
 				"Dumbarton Oaks": "DDO",
-				"Dumbarton Oaks ICFA": "DCA",
+				"Dumbarton Oaks ICFA": "DDO",
 				"Environmental Information Ctr": "ENV",
 				"Fine Arts": "FAL",
 				"Fung Library": "FUN",
