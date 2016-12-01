@@ -27,12 +27,11 @@ function borrowDirect() {
 		borrowDirectHTML += 'Borrow Direct</a> for 4-day delivery availability. Or, see <a href="http://nrs.harvard.edu/urn-3:hul.eother:GetIt" target="_blank">Get It</a> for other options.</span>';
 		borrowDirectHTML += '</div>';
 
-		//$(this).find(".EXLLocationListContainer").append(borrowDirectHTML);
-		//console.log(resourceType);
+		$(this).find(".EXLLocationListContainer").append(borrowDirectHTML);
 		
-		if (resourceType == 'book' || resourceType == 'score' )  {
+		/*if (resourceType == 'book' || resourceType == 'score' )  {
 			$(this).find(".EXLLocationListContainer").append(borrowDirectHTML);
-		}
+		}*/
 
 	});
 
