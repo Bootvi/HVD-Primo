@@ -16,7 +16,6 @@ function borrowDirect() {
 
 		var borrowDirectHTML = '<div class="borrowDirect">';
 		borrowDirectHTML += '<span class="borrowDirectHeader">Not available at Harvard ?</span>';
-
 		borrowDirectHTML += '<span class="borrowDirectText">';
 
 		if (firstISBN.length > 0)
@@ -26,12 +25,16 @@ function borrowDirect() {
 
 		borrowDirectHTML += 'Borrow Direct</a> for 4-day delivery availability. Or, see <a href="http://nrs.harvard.edu/urn-3:hul.eother:GetIt" target="_blank">Get It</a> for other options.</span>';
 		borrowDirectHTML += '</div>';
-
-		$(this).find(".EXLLocationListContainer").append(borrowDirectHTML);
 		
-		/*if (resourceType == 'book' || resourceType == 'score' )  {
+		var serialsText = '<div class="borrowDirect"><span class="borrowDirectHeader">Not available at Harvard ?</span><span class="borrowDirectText">Make an <a href="http://nrs.harvard.edu/urn-3:hul.eresource:illhulha">Interlibrary Loan request</a></span</div>';
+
+		//$(this).find(".EXLLocationListContainer").append(borrowDirectHTML);
+		
+		if (resourceType != 'journal' )  {
 			$(this).find(".EXLLocationListContainer").append(borrowDirectHTML);
-		}*/
+		} else {
+			$(this).find(".EXLLocationListContainer").append(serialsText);
+		}
 
 	});
 

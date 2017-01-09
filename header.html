@@ -9,14 +9,19 @@ The existing link: "../images/imageName.gif" must be changed into: "../locale/sp
 
 
 <!-- 20140612 CB added code for favicon as per Primo mailing list -->
+<!-- 20170104 CB adding referrer meta tag -->
 <script type="text/javascript">
 	(function() {
 		var favicon = document.createElement('link');
 		favicon.type = 'image/x-icon';
 		favicon.rel = 'shortcut icon';
-		favicon.href = '../uploaded_files/HVD/favicon.ico'; 
-		//favicon.href = 'http://ois.harvard.edu/~corinna/primo/favicon.ico';		
+		//favicon.href = '../uploaded_files/HVD/favicon.png';  sandbox
+		favicon.href = '../uploaded_files/HVD/favicon.ico';  
 		document.getElementsByTagName('head')[0].appendChild(favicon);
+		var metarefer = document.createElement('meta');
+		metarefer.name = 'referrer';
+		metarefer.content = 'origin';
+		document.getElementsByTagName('head')[0].appendChild(metarefer);
 	}());
 </script>
 <!-- GA tracking code added 20160222 -->
