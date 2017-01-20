@@ -36,7 +36,9 @@
 	20160722 KY added Harvard Direct requests for LAM- item status 28, IPS NULL
 	20161019 KY added Harvard Direct requests for SCH- item status 62, items delivered to SCH ONLY
         20161108 KY added RD IPS for RECAP (LAW, HYL, WID for now)
-	-->				  
+	20170120 KY added Scan & Deliver requests for RD materials (same as HD)
+        -->				  
+
 
 	<sublibrary id="AJP">
 		<alephHoldRequest itemProcessStatus="BD;BP;CO;CT;MI;OR;RE">
@@ -119,7 +121,7 @@
 			<xserver loan-status="NULL" on-hold="N" item-status="28"/>
 		</alephHoldRequest>
 
-		<scanDeliver itemProcessStatus="HD;NULL">
+		<scanDeliver itemProcessStatus="HD;RD;NULL">
 			<xserver loan-status="NULL" on-hold="N" item-status="02;11;28"/>
 		</scanDeliver>
 	</sublibrary>
@@ -138,7 +140,7 @@
 			<xserver on-hold="Y" item-status="01;61"/>
 		</alephHoldRequest>
 
-		<scanDeliver itemProcessStatus="HD;NULL">
+		<scanDeliver itemProcessStatus="HD;RD;NULL">
 			<xserver loan-status="NULL" on-hold="N" item-status="01;02"/>
 		</scanDeliver>
 	</sublibrary>
@@ -169,7 +171,7 @@
 			<xserver loan-status="NULL" on-hold="N" item-status="01"/>
 		</alephHoldRequest>
 
-		<scanDeliver itemProcessStatus="HD;NULL">
+		<scanDeliver itemProcessStatus="HD;RD;NULL">
 			<xserver loan-status="NULL" on-hold="N" item-status="01;02;20"/>
 		</scanDeliver>
 	</sublibrary>
@@ -197,7 +199,7 @@
 		<scanDeliver itemProcessStatus="NULL">
 			<xserver loan-status="NULL" on-hold="N" item-status="01;02"/>
 		</scanDeliver>
-		<scanDeliver itemProcessStatus="HD">
+		<scanDeliver itemProcessStatus="HD;BD">
 			<xserver loan-status="NULL" on-hold="N" item-status="01;02"/>
 		</scanDeliver>
 	</sublibrary>
@@ -216,7 +218,7 @@
 			<xserver on-hold="Y" item-status="01;61"/>
 		</alephHoldRequest>
 
-		<scanDeliver itemProcessStatus="HD;NULL">
+		<scanDeliver itemProcessStatus="HD;RD;NULL">
 			<xserver loan-status="NULL" on-hold="N" item-status="01"/>
 		</scanDeliver>
 	</sublibrary>
@@ -241,7 +243,7 @@
 			<xserver loan-status="NULL" on-hold="N" item-status="01"/>
 		</alephHoldRequest>
 
-		<scanDeliver itemProcessStatus="HD;NULL">
+		<scanDeliver itemProcessStatus="HD;RD;NULL">
 			<xserver loan-status="NULL" on-hold="N" item-status="01;02"/>
 		</scanDeliver>
 
@@ -272,7 +274,7 @@
 			<xserver loan-status="NULL" on-hold="N" item-status="01"/>
 		</alephHoldRequest>
 
-		<scanDeliver itemProcessStatus="HD;NULL">
+		<scanDeliver itemProcessStatus="HD;RD;NULL">
 			<xserver loan-status="NULL" on-hold="N" item-status="01;02"/>
 		</scanDeliver>
 	</sublibrary>
@@ -355,7 +357,7 @@
 			<xserver loan-status="NULL" on-hold="N" item-status="01"/>
 		</alephHoldRequest>
 
-		<scanDeliver itemProcessStatus="HD;NULL">
+		<scanDeliver itemProcessStatus="HD;RD;NULL">
 			<xserver loan-status="NULL" on-hold="N" item-status="01;02"/>
 		</scanDeliver>
 	</sublibrary>
@@ -402,7 +404,7 @@
 			<xserver loan-status="NULL" on-hold="N" item-status="01"/>
 		</alephHoldRequest>
 
-		<scanDeliver itemProcessStatus="HD;NULL">
+		<scanDeliver itemProcessStatus="HD;RD;NULL">
 			<xserver loan-status="NULL" on-hold="N" item-status="01;02;04;95"/>
 		</scanDeliver>
 	</sublibrary>
@@ -451,10 +453,10 @@
 			<xserver loan-status="NULL" on-hold="N" item-status="01"/>
 		</alephHoldRequest>
 		
-		<scanDeliver itemProcessStatus="HD;NULL">
+		<scanDeliver itemProcessStatus="HD;RD;NULL">
 			<xserver loan-status="NULL" on-hold="N" item-status="01"/>
 		</scanDeliver>
-		<scanDeliver itemProcessStatus="HD">
+		<scanDeliver itemProcessStatus="HD;RD">
 			<xserver loan-status="NULL" on-hold="N" item-status="92"/>
 		</scanDeliver>
 		<scanDeliver itemProcessStatus="NULL">
@@ -482,7 +484,7 @@
 			<xserver loan-status="NULL" on-hold="N" item-status="28"/>
 		</alephHoldRequest>
 
-		<scanDeliver itemProcessStatus="HD;NULL">
+		<scanDeliver itemProcessStatus="HD;RD;NULL">
 			<xserver loan-status="NULL" on-hold="N" item-status="28"/>
 		</scanDeliver>
 		<scanDeliver itemProcessStatus="HD">
@@ -525,7 +527,7 @@
 			<xserver loan-status="NULL" on-hold="N" item-status="01"/>
 		</alephHoldRequest>
 
-		<scanDeliver itemProcessStatus="HD;NULL">
+		<scanDeliver itemProcessStatus="HD;RD;NULL">
 			<xserver loan-status="NULL" on-hold="N" item-status="01;02"/>
 		</scanDeliver>
 
@@ -549,7 +551,7 @@
 			<xserver on-hold="Y" item-status="28;61"/>
 		</alephHoldRequest>
 
-		<scanDeliver itemProcessStatus="HD;NULL">
+		<scanDeliver itemProcessStatus="HD;RD;NULL">
 			<xserver loan-status="NULL" on-hold="N" item-status="02;28"/>
 		</scanDeliver>
 	</sublibrary>
@@ -569,7 +571,7 @@
 			<xserver on-hold="Y" item-status="01;24;61"/>
 		</alephHoldRequest>
 
-		<scanDeliver itemProcessStatus="HD;NULL">
+		<scanDeliver itemProcessStatus="HD;RD;NULL">
 			<xserver loan-status="NULL" on-hold="N" item-status="01"/>
 		</scanDeliver>
 	</sublibrary>
@@ -594,7 +596,7 @@
 			<xserver loan-status="NULL" on-hold="N" item-status="01"/>
 		</alephHoldRequest>
 
-		<scanDeliver itemProcessStatus="HD;NULL">
+		<scanDeliver itemProcessStatus="HD;RD;NULL">
 			<xserver loan-status="NULL" on-hold="N" item-status="01;02"/>
 		</scanDeliver>
 
@@ -640,7 +642,7 @@
 		<scanDeliver itemProcessStatus="BP;CO;CT;RE;">
 			<xserver loan-status="NULL" on-hold="N" item-status="01;02;04"/>
 		</scanDeliver>
-		<scanDeliver itemProcessStatus="HD;NULL">
+		<scanDeliver itemProcessStatus="HD;RD;NULL">
 			<xserver loan-status="NULL" on-hold="N" item-status="01;04"/>
 		</scanDeliver>
 
