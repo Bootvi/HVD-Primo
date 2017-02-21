@@ -312,7 +312,7 @@ function addExpandAll() {
 		//If there is more than 1 location, add stuff
 		if ($(this).find(".EXLLocationsIcon").length > 1) {
 			//Add the link (style in the CSS)
-			$(this).prepend("<div class='HVDExpandAll'>Expand All</div>");
+			$(this).prepend("<div class='HVDExpandAll'><button>+ Expand all locations</button></div>");
 		
 			//Add click event
 			$(this).find(".HVDExpandAll").on("click", function() {
@@ -322,10 +322,10 @@ function addExpandAll() {
 				});
 
 				//Change the link accordingly
-				if ($(this).text() == 'Expand All')
-					$(this).text("Collapse All");	
+				if ($(this).text() == '+ Expand all locations')
+					$(this).html("<button>- Collapse all locations</button>");	
 				else 
-					$(this).text("Expand All");
+					$(this).html("<button>+ Expand all locations</button>");
 			});
 		}
 	});

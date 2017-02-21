@@ -170,6 +170,14 @@ $(document).ready(function() {
 	$("#exlidHeaderSearchLimits").find("#exlidInput_scope_1").change(function(evt) {		 
 		 ga('send', 'event','Basic search limit: Field (scope)',evt.timeStamp);
 	});		
+	//20170209 CB adding analytics for lib info link
+	$(".hvdLibInfo").find("a").click(function(evt) {
+		 //console.log(evt.currentTarget.pathname);
+		 ga('send', 'event','Library info link',evt.currentTarget.pathname);
+		 
+	});			
+
+	
 	
 	//if on adv search page, add barcode search box
 	/*var barcodeHtml = "<div class='barcodeSearchRow'><label for='barcodeInput'>Barcode (beta)</label><input type='text' id='barcodeInput' value=''/><div id='search_barcode' onclick='submitBarcode()'>Find barcode</div></div>";

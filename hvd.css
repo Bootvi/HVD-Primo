@@ -578,6 +578,10 @@ body.EXLFullView div.EXLBackToResults {
 .EXLTabsRibbon div li.EXLResultFirstTab {
 	padding-left: 0.8em;	
 }
+/* 20170221 CB hiding browse shelf b/c it's broken */
+.EXLTabsRibbon div li.EXLResultTab.EXLBrowseshelfTab  {
+	display:none;
+}
 /* changing default icons for resource types to local versions */
 .EXLResultMediaTYPEarchive_manuscript .multipleCoverImageContainer {
    background-image: url(../HVD/icon_mss.png); 
@@ -615,11 +619,13 @@ body.EXLFullView div.EXLBackToResults {
 	margin-bottom: 7px;
 }
 .EXLLocationsTitle a.EXLLocationsIcon img {
-	padding-top: 3px;
+	padding-top: 1px;
+	width: 20px;
 }
 .hvdLibInfo img {
 	margin-bottom: -3px;
 	margin-left: 6px;
+	width: 12px;
 }
 .EXLLocationsTitle span.EXLLocationsTitleContainer {
 	float: left;
@@ -739,13 +745,16 @@ table.EXLLocationsTabSummaryHoldingsMoreLightBox tr:nth-child(even) {
 	table-layout:fixed
 }
 .EXLLocationsTabContent div.EXLLocationList table.EXLLocationTable td.EXLShowInfo a {
-	/* background-image:none; */
+	background-image:none;
 	color:#000;
+	padding-left: 0px; 
 }
 /* this is the items table collection column */
 .EXLLocationsTabContent div.EXLLocationList table.EXLLocationTable th.EXLLocationTableHeaderColumn0  {
 	width: 160px;
 	padding-right:7px;
+	font-weight:normal;
+	font-style: italic;
 }
 .EXLLocationsTabContent div.EXLLocationList table.EXLLocationTable .EXLLocationTableMargin {
 	padding-left: 1.4em;
@@ -757,6 +766,8 @@ table.EXLLocationsTabSummaryHoldingsMoreLightBox tr:nth-child(even) {
 .EXLLocationsTabContent div.EXLLocationList table.EXLLocationTable th.EXLLocationTableHeaderColumn1  {
 	width: 180px;
 	padding-right:12px;
+	font-weight:normal;
+	font-style: italic;
 }
 .EXLLocationsTabContent div.EXLLocationList table.EXLLocationTable td.EXLLocationTableColumn1 {
 	width: 180px;
@@ -767,6 +778,8 @@ table.EXLLocationsTabSummaryHoldingsMoreLightBox tr:nth-child(even) {
 .EXLLocationsTabContent div.EXLLocationList table.EXLLocationTable th.EXLLocationTableHeaderColumn2  {
 	width: 260px;
 	padding-right:7px;
+	font-weight:normal;
+	font-style: italic;
 }
 .EXLLocationsTabContent div.EXLLocationList table.EXLLocationTable td.EXLLocationTableColumn2 {
 	width: 260px;
@@ -776,6 +789,8 @@ table.EXLLocationsTabSummaryHoldingsMoreLightBox tr:nth-child(even) {
 /* barcode */
 .EXLLocationsTabContent div.EXLLocationList table.EXLLocationTable th.EXLLocationTableHeaderColumn3  {
 	width: 115px;
+	font-weight:normal;
+	font-style: italic;
 }
 .EXLLocationsTabContent div.EXLLocationList table.EXLLocationTable td.EXLLocationTableColumn3 {
 	width: 115px;
@@ -886,11 +901,13 @@ padding-right: 0.4em;
 	padding-top: 10px;
 }
 .EXLTabsRibbon div li.EXLResultTab a {
-	color:#293352;
+	/*color:#293352;*/
+	color:#a51c30;
 }
 .EXLTabsRibbon div li.EXLResultTab a:hover {
-	color:#a51c30;
-	text-decoration:none;
+	color:#293352;
+	/*color:#a51c30;	
+	text-decoration:none;*/
 }
 .EXLTabsRibbon div li.EXLResultSelectedTab {
 	border: 1px solid #e4e4e4;
@@ -991,14 +1008,16 @@ body.EXLFullView div.EXLTabContent{
 	background-image: none;
 }
 .EXLTabsRibbon div li.EXLLocationsTab {	
-	background-image: url(../../uploaded_files/HVD/locations_icon.png);
+	/*background-image: url(../../uploaded_files/HVD/locations_icon.png);
 	background-repeat: no-repeat;
 	background-position: -1px 7px;
-	padding-left:22px;
+	padding-left:22px;*/
+	margin-left: -9px;
 }
 .EXLTabsRibbon div li.EXLLocationsTab.EXLResultSelectedTab {
 	background-position: 2px 7px;
-    padding-left: 24px;
+   /* padding-left: 24px;*/
+   margin-left: 0px;
 }
 /* Details tab TOC */
 .EXLTabHeader div.EXLTabHeaderContent {
@@ -1328,13 +1347,21 @@ table#ilsFields #email {display:none;}
 }
 
 .HVDExpandAll {
-	position: relative;
+	/*position: relative;*/
 	left: 28px;
 	margin-top: 8px;
 	margin-bottom: 8px;
-	font-weight: bold;
-	cursor: pointer;
+	text-align: center;
+}
+.HVDExpandAll button{
+    border: 2px solid #BAC5C6;
+    text-align: center;
+    padding: 6px;
+    border-radius: 5px;
+    display: inline-block;
 	color: #A51C30;
+    font-weight: bold;
+	background-color: #fff;
 }
 
 /* Alon B: Borrow Direct links: */
