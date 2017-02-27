@@ -1122,6 +1122,10 @@ body.EXLFullView div.EXLResultsList h1.EXLResultTitle {
 .EXLDetailsTabContent div.EXLDetailsLinks li.hvd_hathi span.EXLDetailsLinksBullet {
     padding-left:1px;
 }
+.EXLDetailsTabContent div.EXLDetailsLinks li.EXLFullDetailsSourcerecord {
+    display: block;
+    clear: both;
+}
 /*---Removing Languages drop-down from main menu---*/
 #exlidMainMenuTile div.EXLLanguagesContainer {
     display: none
