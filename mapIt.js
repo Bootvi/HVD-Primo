@@ -29,7 +29,8 @@ function stacksMap(itemArgs, element) {
 				range = data[0]['range'];
 				floordisplay = floor.replace("E", " East");
 				floordisplay = floordisplay.replace("W", " West");
-				var htmlCode = '<br><strong>Map It: </strong><a target="_blank" href="' + data[0].maplink + '">' + 'Floor ' + floordisplay + ' Row ' + range + '</a>';
+				var htmlCode = '<br><strong>Map It: </strong><a class="hvd_mapit" target="_blank" href="' + data[0].maplink + '">' + 'Floor ' + floordisplay + ' Row ' + range + '</a>';
+				//var htmlCode = '<br><strong>Map It: </strong><a class="hvd_mapit" target="_blank" href="' + data[0].maplink + '" onclick="ga("send", "event","Map It",);">' + 'Floor ' + floordisplay + ' Row ' + range + '</a>';
 				
 				if (element.parent().siblings(".EXLLocationTableColumn1").html().indexOf("<br>") == -1)
 					element.parent().siblings(".EXLLocationTableColumn1").append(htmlCode);

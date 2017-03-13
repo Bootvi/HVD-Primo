@@ -175,9 +175,18 @@ $(document).ready(function() {
 		 //console.log(evt.currentTarget.pathname);
 		 ga('send', 'event','Library info link',evt.currentTarget.pathname);
 		 
+	});	
+	//20170227 CB adding analytics for yewno home page link
+	$(".yewno").click(function(evt) {
+		 //console.log('TEST'+evt.timeStamp);
+		 ga('send', 'event','Yewno',evt.timeStamp);
+		 
 	});			
-
-	
+	//20170228 CB adding analytics for map it clicks
+	$(".hvd_mapit").click(function(evt) {
+		 //console.log("Map It click");
+		 ga('send', 'event','Map It clickthrough',evt.timeStamp);		 
+	});		
 	
 	//if on adv search page, add barcode search box
 	/*var barcodeHtml = "<div class='barcodeSearchRow'><label for='barcodeInput'>Barcode (beta)</label><input type='text' id='barcodeInput' value=''/><div id='search_barcode' onclick='submitBarcode()'>Find barcode</div></div>";

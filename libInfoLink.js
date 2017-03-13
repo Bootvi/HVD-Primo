@@ -92,7 +92,7 @@ function libInfoLink() {
 			};
 			var libName = $(this).text().trim();
 			var libCode = libraryHash[libName];
-			$(this).append(' <span class="hvdLibInfo"><a href="' + baseUrl + libCode + '" target="_blank"><img alt="'+ libName +'" title="'+libName+'" src="../uploaded_files/HVD/marker-icon.png" /></a><span>');
+			$(this).append(' <span class="hvdLibInfo"><a onclick="ga("send", "event","Map It clickthrough","click");" href="' + baseUrl + libCode + '" target="_blank"><img alt="'+ libName +'" title="'+libName+'" src="../uploaded_files/HVD/marker-icon.png" /></a><span>');
 		}
 	});
 }
