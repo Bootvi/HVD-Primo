@@ -37,6 +37,7 @@
 	20161019 KY added Harvard Direct requests for SCH- item status 62, items delivered to SCH ONLY
         20161108 KY added RD IPS for RECAP (LAW, HYL, WID for now)
 	20170120 KY added Scan & Deliver requests for RD materials (same as HD)
+        20170705 KY added Harvard Direct requests for PHY- item status 28, IPS NULL
         -->				  
 
 
@@ -549,6 +550,9 @@
 		</alephHoldRequest>
 		<alephHoldRequest itemProcessStatus="NULL">
 			<xserver on-hold="Y" item-status="28;61"/>
+                </alephHoldRequest>
+                <alephHoldRequest itemProcessStatus="NULL">
+			<xserver loan-status="NULL" on-hold="N" item-status="28"/>
 		</alephHoldRequest>
 
 		<scanDeliver itemProcessStatus="HD;RD;NULL">
