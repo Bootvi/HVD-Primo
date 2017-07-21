@@ -578,10 +578,10 @@ body.EXLFullView div.EXLBackToResults {
 .EXLTabsRibbon div li.EXLResultFirstTab {
 	padding-left: 0.8em;	
 }
-/* 20170221 CB hiding browse shelf b/c it's broken */
+/* 20170221 CB hiding browse shelf b/c it's broken 
 .EXLTabsRibbon div li.EXLResultTab.EXLBrowseshelfTab  {
 	display:none;
-}
+}*/
 /* changing default icons for resource types to local versions */
 .EXLResultMediaTYPEarchive_manuscript .multipleCoverImageContainer {
    background-image: url(../HVD/icon_mss.png); 
