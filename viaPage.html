@@ -42,7 +42,7 @@
 		});
 
 		//For each component (surrogate/subwork), let's find a match
-		$(viaXML).find("surrogate, subwork").each(function() {
+		$(viaXML).find("component").each(function() {
 			//Get the Component ID of each one
 			var componentId = $(this).attr("componentID");
 
@@ -85,7 +85,7 @@
 	function recursiveCleanup(element) {
 		if (element[0].nodeName == '#document')
 			return;
-		$(element).siblings("subwork, surrogate, image").remove();
+		$(element).siblings("subwork, surrogate, image, component").remove();
 
 		recursiveCleanup(element.parent());
 

@@ -26,7 +26,7 @@
 		</html>
 	</xsl:template>
 
-	<xsl:template match="work|group">
+	<xsl:template match="work|group|component">
 
 		<xsl:choose>
 			<xsl:when test="count(//image)=1">
@@ -107,7 +107,8 @@
 
 		<!-- <br/> -->
 
-		<xsl:for-each select="//surrogate|//subwork">
+		<!-- <xsl:for-each select="//surrogate|//subwork"> -->
+		<xsl:for-each select="//component">
 			<div class="viaComponenetMetaData">
 				<table class="VIAMetaDataTable">
 					<xsl:call-template name="componentId"/>
@@ -562,6 +563,285 @@
 				</td>
 				<td class="VIAMetaDataValue VIAMetaDataValueRepositoryElement">
 					<xsl:for-each select="repository">
+						<span class="location">
+							<xsl:if test="repositoryName = 'unknown' ">
+								<xsl:text>Repository </xsl:text>
+							</xsl:if>
+							<xsl:value-of select="repositoryName"/>
+							<xsl:call-template name="ilinks" />
+						</span>
+						<xsl:if test="note">
+							<xsl:text>.</xsl:text>
+							<xsl:value-of select="note"/>
+						</xsl:if>
+						<xsl:for-each select="number">
+							<span class="collection">								
+								<xsl:text> </xsl:text>
+								<xsl:value-of select="." />								
+							</span>	
+						</xsl:for-each>
+						<xsl:if test="position()!=last()">
+							<br/>
+						</xsl:if>
+					</xsl:for-each>
+				</td>
+			</tr>
+		</xsl:if>
+
+				<xsl:if test="hvd_title">
+			<tr>
+				<td class="VIAMetaDataKey">
+					<strong>Image Title:</strong>
+				</td>
+				<td class="VIAMetaDataValue">
+					<xsl:for-each select="hvd_title">
+						<xsl:if test="type">
+							<i>	<xsl:value-of select="type"/>: </i>
+						</xsl:if>               
+						<xsl:value-of select="textElement"/>						
+						<xsl:if test="position()!=last()"><br /></xsl:if>						
+					</xsl:for-each>
+				</td>
+			</tr>
+		</xsl:if>
+
+		<xsl:if test="hvd_workType">
+			<tr>
+				<td class="VIAMetaDataKey">
+					<strong>Imgae Work Type:</strong>
+				</td>
+				<td class="VIAMetaDataValue">
+					<xsl:value-of select="hvd_workType"/>
+				</td>
+			</tr>
+		</xsl:if>
+
+		<xsl:if test="hvd_creator/nameElement">
+			<tr>
+				<td class="VIAMetaDataKey">
+					<strong>Image Creator:</strong>
+				</td>
+				<td class="VIAMetaDataValue">
+					<xsl:value-of select="creator/nameElement"/>
+					<xsl:if test="hvd_creator/dates">
+												, <xsl:value-of select="hvd_creator/dates"/>, 
+					</xsl:if>
+					<xsl:if test="hvd_creator/nationality">
+												, <xsl:value-of select="hvd_creator/nationality"/>
+					</xsl:if>
+					<xsl:if test="hvd_creator/role">
+												, <xsl:value-of select="hvd_creator/role"/>
+					</xsl:if>
+				</td>
+			</tr>
+		</xsl:if>
+
+
+		<xsl:if test="hvd_freeDate">
+			<tr>
+				<td class="VIAMetaDataKey">
+					<strong>Image Date:</strong>
+				</td>
+				<td class="VIAMetaDataValue">
+					<xsl:value-of select="hvd_freeDate"/>
+				</td>
+			</tr>
+		</xsl:if>
+
+		<xsl:if test="hvd_associatedName">
+			<tr>
+				<td class="VIAMetaDataKey">
+					<strong>Image Associated Name:</strong>
+				</td>
+				<td class="VIAMetaDataValue VIAMetaDataValueAssociatedName">
+					<xsl:for-each select="hvd_associatedName">
+						<xsl:value-of select="nameElement"/>
+						<xsl:if test="dates">
+							<xsl:text>, </xsl:text>
+							<xsl:value-of select="dates"/>
+						</xsl:if>
+						<xsl:if test="nationality">
+							<xsl:text>, </xsl:text>
+							<xsl:value-of select="nationality"/>
+						</xsl:if>
+						<xsl:if test="place">
+							<xsl:text>, </xsl:text>
+							<xsl:value-of select="place"/>
+						</xsl:if>
+						<xsl:if test="role">
+							<xsl:text>, </xsl:text>
+							<xsl:value-of select="role"/>
+						</xsl:if>
+						<xsl:if test="position()!=last()">; </xsl:if>
+					</xsl:for-each>
+				</td>
+			</tr>
+		</xsl:if>
+
+		<xsl:if test="relatedWork">
+			<tr>
+				<td class="VIAMetaDataKey">
+					<strong>Image Related Work:</strong>
+				</td>
+				<td class="VIAMetaDataValue VIAMetaDataValueRelatedWork">
+					<xsl:for-each select="hvd_relatedWork">
+						<xsl:if test="relationship">
+							<xsl:value-of select="relationship"/>
+							<xsl:text>&#160;</xsl:text>
+							<xsl:value-of select="textElement"/>
+						</xsl:if>
+						<xsl:if test="creator">
+							<xsl:value-of select="creator"/>
+							<xsl:text>.&#160;</xsl:text>
+							<xsl:value-of select="production"/>
+							<xsl:text>.&#160;</xsl:text>
+							<xsl:value-of select="freeDate"/>
+						</xsl:if>
+						<xsl:if test="position()!=last()">
+							<br />
+						</xsl:if>
+					</xsl:for-each>
+				</td>
+			</tr>
+		</xsl:if>
+
+		<xsl:if test="relatedInformation">
+			<tr>
+				<td class="VIAMetaDataKey">
+					<strong>Image Related Information:</strong>
+				</td>
+				<td class="VIAMetaDataValue VIAMetaDataValueRelatedInformation">
+					<xsl:for-each select="hvd_relatedInformation">
+						<xsl:choose>
+							<xsl:when test="./@xlink:href">
+								<a target="_blank">
+									<xsl:attribute name="href">
+										<xsl:value-of select="./@xlink:href"/>
+									</xsl:attribute>
+									<xsl:value-of select="."/>
+								</a>
+							</xsl:when>
+							<xsl:otherwise>
+								<xsl:value-of select="."/>
+							</xsl:otherwise>
+						</xsl:choose>							
+						<xsl:if test="position()!=last()">
+							<br />
+						</xsl:if>
+					</xsl:for-each>
+				</td>
+			</tr>
+		</xsl:if>		
+
+		<xsl:if test="hvd_notes">
+			<tr>
+				<td class="VIAMetaDataKey">
+					<strong>Image Note:</strong>
+				</td>
+				<td class="VIAMetaDataValue VIAMetaDataValueNotes">
+					<xsl:for-each select="notes">
+						<xsl:value-of select="."/>
+						<xsl:if test="position()!=last()">
+							<br />
+						</xsl:if> 
+					</xsl:for-each>
+				</td>
+			</tr>
+		</xsl:if>		
+
+		<xsl:if test="hvd_classification">
+			<tr>
+				<td class="VIAMetaDataKey">
+					<strong>Image Classification:</strong>
+				</td>
+				<td class="VIAMetaDataValue VIAMetaDataValueClassification">
+					<xsl:for-each select="classification">
+						<xsl:if test="type">
+							<xsl:value-of select="type"/>:
+						</xsl:if>
+						<xsl:value-of select="number"/>
+						<xsl:if test="position()!=last()">
+							<br/>
+						</xsl:if>
+					</xsl:for-each>
+				</td>
+			</tr>
+		</xsl:if>
+
+		<xsl:if test="hvd_itemIdentifier">
+			<tr>
+				<td class="VIAMetaDataKey">
+					<strong>Image Identifier:</strong>
+				</td>
+				<td class="VIAMetaDataValue VIAMetaDataValueItemIdentifier">
+					<xsl:for-each select="itemIdentifier">
+						<xsl:value-of select="."/>
+						<xsl:if test="position()!=last()">
+							<br/>
+						</xsl:if>
+					</xsl:for-each>
+				</td>
+			</tr>
+		</xsl:if>
+
+		<xsl:if test="hvd_copyright">
+			<tr>
+				<td class="VIAMetaDataKey">
+					<strong>Image Copyright:</strong>
+				</td>
+				<td class="VIAMetaDataValue VIAMetaDataValueCopyright">
+					<xsl:for-each select="copyright">
+						<xsl:choose>
+							<xsl:when test="./@xlink:href">
+								<a target="_blank">
+									<xsl:attribute name="href">
+										<xsl:value-of select="./@xlink:href"/>
+									</xsl:attribute>
+									<xsl:value-of select="."/>
+								</a>
+							</xsl:when>
+							<xsl:otherwise>
+								<xsl:value-of select="."/>
+							</xsl:otherwise>
+						</xsl:choose>
+						<xsl:if test="position()!=last()">
+							<br/>
+						</xsl:if>
+					</xsl:for-each>
+				</td>
+			</tr>
+		</xsl:if>
+
+		<xsl:if test="hvd_useRestrictions">
+			<tr>
+				<td class="VIAMetaDataKey">
+					<strong>Image Use Restrictions:</strong>
+				</td>
+				<td class="VIAMetaDataValue VIAMetaDataValueUseRestrictions">
+					<xsl:for-each select="useRestrictions">
+						<xsl:value-of select="."/>
+						<xsl:if test="position()!=last()">
+							<br/>
+						</xsl:if>
+					</xsl:for-each>
+				</td>
+			</tr>
+		</xsl:if>
+
+		<tr class="VIAMetaDataHide">
+			<td class="VIAMetaDataKey">
+				<strong>HOLLIS Number:</strong>
+			</td>
+			<td class="VIAMetaDataValue VIAMetaDataValueHollisNumber"/>
+		</tr>
+
+		<xsl:if test="hvd_repository">
+			<tr>
+				<td class="VIAMetaDataKey">
+					<strong>Harvard Repository:</strong>
+				</td>
+				<td class="VIAMetaDataValue VIAMetaDataValueRepositoryElement">
+					<xsl:for-each select="hvd_repository">
 						<span class="location">
 							<xsl:if test="repositoryName = 'unknown' ">
 								<xsl:text>Repository </xsl:text>
