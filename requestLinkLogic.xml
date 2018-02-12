@@ -38,6 +38,7 @@
         20161108 KY added RD IPS for RECAP (LAW, HYL, WID for now)
 	20170120 KY added Scan & Deliver requests for RD materials (same as HD)
         20170705 KY added Harvard Direct requests for PHY- item status 28, IPS NULL
+        20180212 KY added 91 status to Aeon for HYL, TOZ
         -->				  
 
 
@@ -334,7 +335,7 @@
 		</scanDeliver>
 
 		<aeonrequest itemProcessStatus="HD;RD;NULL">
-			<xserver loan-status="NULL" on-hold="N" item-status="92"/>
+			<xserver loan-status="NULL" on-hold="N" item-status="91;92"/>
 		</aeonrequest>
 	</sublibrary>
 
@@ -651,7 +652,7 @@
 		</scanDeliver>
 
 		<aeonrequest itemProcessStatus="NULL">
-			<xserver loan-status="NULL" on-hold="N" item-status="92"/>
+			<xserver loan-status="NULL" on-hold="N" item-status="91;92"/>
 		</aeonrequest>					 
 	</sublibrary>
 
