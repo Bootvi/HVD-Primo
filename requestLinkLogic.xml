@@ -39,8 +39,8 @@
 	20170120 KY added Scan & Deliver requests for RD materials (same as HD)
         20170705 KY added Harvard Direct requests for PHY- item status 28, IPS NULL
         20180212 KY added 91 status to Aeon for HYL, TOZ
+        20180228 KY added 91 status to Aeon for MCZ and BOT (ARG, ARN, ECB, FAR, GRA, ORC) at end of file
         -->				  
-
 
 	<sublibrary id="AJP">
 		<alephHoldRequest itemProcessStatus="BD;BP;CO;CT;MI;OR;RE">
@@ -464,6 +464,13 @@
 		<scanDeliver itemProcessStatus="NULL">
 			<xserver loan-status="NULL" on-hold="N" item-status="02"/>
 		</scanDeliver>
+
+                <aeonrequest itemProcessStatus="BD;BP;CO;HD;MI;OR;RE;">
+  			<xserver loan-status="NULL" on-hold="N" item-status="91"/>
+		</aeonrequest>
+		<aeonrequest itemProcessStatus="NULL">
+			<xserver loan-status="NULL" on-hold="N" item-status="91"/>
+		</aeonrequest>
 	</sublibrary>
 
 	<sublibrary id="MED">
@@ -699,6 +706,61 @@
 			<xserver on-hold="Y" item-status="01;04;24;26"/>
 		</alephHoldRequest>
 	</sublibrary>
+
+        
+        <sublibrary id="ARG">
+                <aeonrequest itemProcessStatus="BD;BP;CO;HD;RD;MI;RE;">
+			<xserver loan-status="NULL" on-hold="N" item-status="91"/>
+		</aeonrequest>
+		<aeonrequest itemProcessStatus="NULL">
+			<xserver loan-status="NULL" on-hold="N" item-status="91"/>
+		</aeonrequest>
+        </sublibrary>
+
+        <sublibrary id="ARN">
+                <aeonrequest itemProcessStatus="BD;BP;CO;HD;RD;MI;RE;">
+			<xserver loan-status="NULL" on-hold="N" item-status="91"/>
+		</aeonrequest>
+		<aeonrequest itemProcessStatus="NULL">
+			<xserver loan-status="NULL" on-hold="N" item-status="91"/>
+		</aeonrequest>
+        </sublibrary>        
+
+        <sublibrary id="ECB">
+                <aeonrequest itemProcessStatus="BD;BP;CO;HD;RD;MI;RE;">
+			<xserver loan-status="NULL" on-hold="N" item-status="91"/>
+		</aeonrequest>
+		<aeonrequest itemProcessStatus="NULL">
+			<xserver loan-status="NULL" on-hold="N" item-status="91"/>
+		</aeonrequest>
+        </sublibrary>
+
+        <sublibrary id="FAR">
+                <aeonrequest itemProcessStatus="BD;BP;CO;HD;RD;MI;RE;">
+			<xserver loan-status="NULL" on-hold="N" item-status="91"/>
+		</aeonrequest>
+		<aeonrequest itemProcessStatus="NULL">
+			<xserver loan-status="NULL" on-hold="N" item-status="91"/>
+		</aeonrequest>
+        </sublibrary>
+
+        <sublibrary id="GRA">
+                <aeonrequest itemProcessStatus="BD;BP;CO;HD;RD;MI;RE;">
+			<xserver loan-status="NULL" on-hold="N" item-status="91"/>
+		</aeonrequest>
+		<aeonrequest itemProcessStatus="NULL">
+			<xserver loan-status="NULL" on-hold="N" item-status="91"/>
+		</aeonrequest>
+        </sublibrary> 	
+
+        <sublibrary id="ORC">
+                <aeonrequest itemProcessStatus="BD;BP;CO;HD;RD;MI;RE;">
+			<xserver loan-status="NULL" on-hold="N" item-status="91"/>
+		</aeonrequest>
+		<aeonrequest itemProcessStatus="NULL">
+			<xserver loan-status="NULL" on-hold="N" item-status="91"/>
+		</aeonrequest>
+        </sublibrary>
 
 </requestlinkconfig>
 
