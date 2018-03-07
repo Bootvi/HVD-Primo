@@ -40,6 +40,8 @@
         20170705 KY added Harvard Direct requests for PHY- item status 28, IPS NULL
         20180212 KY added 91 status to Aeon for HYL, TOZ
         20180228 KY added 91 status to Aeon for MCZ and BOT (ARG, ARN, ECB, FAR, GRA, ORC) at end of file
+        20180305 KY added 91 status to Aeon for MAP and MUS
+        20180307 KY added 91 status to Aeon for FAL (RUB, HFA)
         -->				  
 
 	<sublibrary id="AJP">
@@ -250,7 +252,7 @@
 		</scanDeliver>
 
 		<aeonrequest itemProcessStatus="HD;NULL">
-			<xserver loan-status="NULL" on-hold="N" item-status="92"/>
+			<xserver loan-status="NULL" on-hold="N" item-status="91;92"/>
 		</aeonrequest>
 
 	</sublibrary>
@@ -300,7 +302,7 @@
 		</alephHoldRequest>
 
 		<aeonrequest itemProcessStatus="HD">
-			<xserver loan-status="NULL" on-hold="N" item-status="92"/>
+			<xserver loan-status="NULL" on-hold="N" item-status="91;92"/>
 		</aeonrequest>
 	</sublibrary> 
 
@@ -413,10 +415,10 @@
 
 	<sublibrary id="MAP">
 		<aeonrequest itemProcessStatus="BD;BP;CO;HD;MI;OR;RE;">
-			<xserver loan-status="NULL" on-hold="N" item-status="02"/>
+			<xserver loan-status="NULL" on-hold="N" item-status="02;91"/>
 		</aeonrequest>
 		<aeonrequest itemProcessStatus="NULL">
-			<xserver loan-status="NULL" on-hold="N" item-status="02"/>
+			<xserver loan-status="NULL" on-hold="N" item-status="02;91"/>
 		</aeonrequest>
 	</sublibrary>
 
@@ -541,7 +543,7 @@
 		</scanDeliver>
 
 		<aeonrequest itemProcessStatus="HD;NULL">
-			<xserver loan-status="NULL" on-hold="N" item-status="92"/>
+			<xserver loan-status="NULL" on-hold="N" item-status="91;92"/>
 		</aeonrequest>
 
 	</sublibrary>
@@ -613,7 +615,7 @@
 		</scanDeliver>
 
 		<aeonrequest itemProcessStatus="HD;NULL">
-			<xserver loan-status="NULL" on-hold="N" item-status="92"/>
+			<xserver loan-status="NULL" on-hold="N" item-status="91;92"/>
 		</aeonrequest>
 
 	</sublibrary>
