@@ -42,6 +42,7 @@
         20180228 KY added 91 status to Aeon for MCZ and BOT (ARG, ARN, ECB, FAR, GRA, ORC) at end of file
         20180305 KY added 91 status to Aeon for MAP and MUS
         20180307 KY added 91 status to Aeon for FAL (RUB, HFA)
+        20180307 KY added 91 status to Aeon for HOU, THE
         -->				  
 
 	<sublibrary id="AJP">
@@ -308,7 +309,7 @@
 
 	<sublibrary id="HOU">
 		<aeonrequest itemProcessStatus="HD;NULL">
-			<xserver loan-status="NULL" on-hold="N" item-status="02;92"/>
+			<xserver loan-status="NULL" on-hold="N" item-status="02;91;92"/>
 		</aeonrequest>
 	</sublibrary>
 
@@ -629,7 +630,7 @@
 	
 	<sublibrary id="THE">
 		<aeonrequest itemProcessStatus="HD;NULL">
-			<xserver loan-status="NULL" on-hold="N" item-status="02;92"/>
+			<xserver loan-status="NULL" on-hold="N" item-status="02;91;92"/>
 		</aeonrequest>
 	</sublibrary>
 
